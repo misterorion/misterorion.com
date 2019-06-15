@@ -32,17 +32,17 @@ There was also a question about selecting which distros use the RPM package mana
 Yet another mistake I made involved the `mv` command. The question was along the lines of, "You want to move `/dirA` and all of its contents to `/dirB`. Which is the correct command?" I had the correct answer narrowed down to two options, essentially:
 
 ```bash
-$ mv /dirA /dirB
+mv /dirA /dirB
 ```
 
 or
 
 ```bash
-$ mv -R /dirA dirB
+mv -R /dirA dirB
 ```
 
 I chose the command with the `-R` option, which is definitely *wrong*. There is no `-R` option available with `mv`.
 
-## Where to go from here?
+## Where to go from here
 
 The next exam on this path is the LPIC certification exam, but I think RHCSA would be more beneficial to my career.

@@ -51,7 +51,6 @@ Finally, we heard brief rundowns from a few tech companies. Here are two I found
 - [Initify](https://www.initiafy.com/) is a contractor management system. Companies using software can create a portal system with forms, orientation material and training documents to help onboard contractors and temporary employees. It also allows organizations to manage contractors through their tenure.
 - [KnowHowDo](https://www.knowhowdo.com/) is a "lifestyle learning" platform. Lifestyle learning is a term used to describe how people teach themselves new skills, learn more about their hobbies, pass-times, etc. This company says they will help develop your course, produce it, and distribute it to prime market areas according to your content.
 
-
 ## My thoughts
 
 ### Preface

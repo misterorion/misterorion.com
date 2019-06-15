@@ -15,10 +15,10 @@ Last Thursday I participated in the "Wild Rydes Workshop on Serverless," sponsor
 
 [Complete instructions](https://github.com/awslabs/aws-serverless-workshops) for the workshop are available on GitHub, so attending wasn't strictly necessary for success. That said, there are benefits to visiting an AWS loft. Visitors have the opportunity to consult with certified Amazon architects, network with other cloud pros, or just grab some free WiFi and enjoy the quirky decor while you work.
 
-After a brief welcome by the Amazon staff, we were pretty much left to our own devices. Most of us worked quietly through the instructions and create the serverless application while AWS staff roamed the room, helping out where needed. 
+After a brief welcome by the Amazon staff, we were pretty much left to our own devices. Most of us worked quietly through the instructions and create the serverless application while AWS staff roamed the room, helping out where needed.
 
 The most challenging part of the workshop was configuring the API Gateway. Having never been exposed to this service before, I had to read through several pages of documentation to understand how the parts fit together. I also made the mistake of placing my S3 bucket in a different region than my application (`us-east-1`). I didn't think this would make a difference, but it did, and I was forced to retrace my steps. I am consciously avoiding the `us-east-1` region because my ears are still ringing from the major S3 outage that occurred there in March.
 
-In the end, most of us got the app up and working, and watched with satisfaction as our unicorns darted happily across a map, picked up simulated customers, and flew them to their destinations in the cloud. 
+In the end, most of us got the app up and working, and watched with satisfaction as our unicorns darted happily across a map, picked up simulated customers, and flew them to their destinations in the cloud.
 
 I’d like to check out more of these workshops in the future. It seems like a neat way to evangelize AWS newcomers. The projects were fun and the staff were extremely knowledgable.
