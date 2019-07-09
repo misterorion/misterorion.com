@@ -3,7 +3,7 @@ frontend:
   phases:
     build:
       commands:
-        - git clone $THEME_REPO themes
+        - git clone $THEME_REPO themes/Alys
         - hugo
   artifacts:
     baseDirectory: public
