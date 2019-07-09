@@ -13,12 +13,12 @@ phases:
       - rm -rf /tmp/hugo*
   build:
     commands:
-      - hugo
+      - hugo --destination dist --minify
   post_build: 
     commands:
-      - aws s3 sync public s3://$S3_BUCKET --delete --cache-control max-age=3600
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
 
 artifacts:
   files:
     - '**/*'
+  base-directory: dist
