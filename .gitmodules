@@ -1,3 +1,4 @@
 [submodule "themes/Alys"]
 	path = themes/Alys
-	url = https://github.com/misterorion/Alys.git
+	url = git@github.com:misterorion/Alys.git
+	branch = master
