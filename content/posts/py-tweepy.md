@@ -20,4 +20,3 @@ import tweepy
 ```
 
 Here is some text to trigger a build.
- 
