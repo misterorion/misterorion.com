@@ -1,0 +1,11 @@
+version: 0.1
+frontend:
+  phases:
+    build:
+      commands:
+        - git clone $THEME_REPO themes
+        - hugo
+  artifacts:
+    baseDirectory: public
+    files:
+      - '**/*'
