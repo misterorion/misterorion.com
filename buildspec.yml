@@ -18,3 +18,7 @@ phases:
     commands:
       - aws s3 sync public s3://$S3_BUCKET --delete --cache-control max-age=3600
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+
+artifacts:
+  files:
+    - '**/*'
