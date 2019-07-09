@@ -10,7 +10,7 @@ tags:
  - Python
 ---
 
-Have you ever wanted to just dash off a tweet from the command line?
+Have you ever wanted to just dash off a tweet from the command line in a fit of haste?
 
 Python makes this pretty easy, but you'll need a developer account first.
 
