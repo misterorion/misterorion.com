@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    build-environments:
+      nodejs: 10
+  pre_build:
+    commands:
+      - curl -Ls $HUGO_URL -o /tmp/hugo.tar.gz
+      - echo $HUGO_SHA256 /tmp/hugo.tar.gz | sha256sum -c -
+      - tar xf /tmp/hugo.tar.gz -C /tmp
+      - mv /tmp/hugo /usr/bin/hugo
+      - rm -rf /tmp/hugo*
+      - git clone $THEME_REPO themes/Alys
+  build:
+    commands:
+      - hugo -e $HUGO_ENV
+  post_build: 
+    commands:
+      - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+
+artifacts:
+  files:
+    - public/**/*
