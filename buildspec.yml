@@ -22,3 +22,4 @@ phases:
 artifacts:
   files:
     - public/**/*
+  base-directory: public
