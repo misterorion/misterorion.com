@@ -12,10 +12,10 @@ phases:
       - mv /tmp/hugo /usr/bin/hugo
       - rm -rf /tmp/hugo*
       - git clone $THEME_REPO themes/Alys
-      - aws s3 rm s3://$BUCKET_PATH --recursive --exclude ""
   build:
     commands:
       - hugo
+      - aws s3 rm s3://$BUCKET_PATH --recursive --exclude ""
   post_build:
     commands:
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'

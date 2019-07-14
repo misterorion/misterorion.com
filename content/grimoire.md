@@ -1,6 +1,6 @@
 ---
 title: "Grimoire"
-draft: true
+draft: false
 layout: "simple"
 menu: "main"
 ---
