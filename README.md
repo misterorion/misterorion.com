@@ -1,6 +1,6 @@
 # misterorion.com
 
-![Build Status](https://codebuild.us-east-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiUUFmUzg4UGY5aFJydFRmTDFLRUNXeXFiSEZLblU2aFV0SExiYVNhWE83eTdibVN0cVZOaURTT3RxSE5yUFRFNW0ybWovZTBjRFNxZTlkQXozbUU3dkRFPSIsIml2UGFyYW1ldGVyU3BlYyI6ImJURDhhbExxUmI4UGNXNG0iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![Build Status](https://codebuild.us-east-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoic1RiSXMrR0gyUlRaNDVkSEtpbVRicFFvdXkvckdJY2lYL2tRZjZYeWxobG9pUzR3RzF5RUVWd05rRWMyVGYxd2dhTnJpaGJaZW9DN3RmVHYyL1l2NXdzPSIsIml2UGFyYW1ldGVyU3BlYyI6IkdHc2kxOFBvaDBINURUOUoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 Stack:
 
