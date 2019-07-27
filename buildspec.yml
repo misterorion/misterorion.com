@@ -6,7 +6,7 @@ phases:
       nodejs: 10
   pre_build:
     commands:
-      - curl -Ls $HUGO_URL -o /tmp/hugo.tar.gz
+      - aws s3 cp s3://$HUGO_S3 -o /tmp/hugo.tar.gz
       - echo $HUGO_SHA256 /tmp/hugo.tar.gz | sha256sum -c -
       - tar xf /tmp/hugo.tar.gz -C /tmp
       - mv /tmp/hugo /usr/bin/hugo
