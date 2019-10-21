@@ -1,7 +1,7 @@
 ---
 title: PowerShell Tips
 date: "2019-10-21"
-draft: false
+draft: true
 slug: powershell-tips
 image_url: assets/img/powershell.png
 image_alt: PowerShell
@@ -12,10 +12,9 @@ tags:
 
 PowerShell is actually a pretty great tool. Here's a few tips I picked up using PowerShell at my job over the last couple of months.
 
-1) In PowerShell everything is an Object.
-2) Get the latest PowerShell core from GitHub.
-3) Naming your functions.
-4) ???
+ 1. 1) In PowerShell everything is an Object. 2) Get the latest
+    PowerShell core from GitHub. 3) Naming your functions. 4) ???
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5ODgzODEyMCw3MzA5OTgxMTZdfQ==
+eyJoaXN0b3J5IjpbMTAyMTcxOTc3NCw3MzA5OTgxMTZdfQ==
 -->
