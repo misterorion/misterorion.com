@@ -1,7 +1,4 @@
-
-
-
-> Written with [StackEdit](https://stackedit.io/).---
+---
 title: PowerShell Tips
 date: "2019-10-21"
 draft: false
@@ -20,5 +17,5 @@ PowerShell is actually a pretty great tool. Here's a few tips I picked up using 
 3) Naming your functions.
 4) ???
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzUwOTcyMDAsNzMwOTk4MTE2XX0=
+eyJoaXN0b3J5IjpbLTM5ODgzODEyMCw3MzA5OTgxMTZdfQ==
 -->
