@@ -6,7 +6,7 @@ phases:
       nodejs: 10
   pre_build:
     commands:
-      - aws s3 cp s3://$HUGO_S3 /tmp/hugo.tar.gz
+      - aws s3 cp s3://$HUGO_S3 /tmp/hugo.tar.gz --no-progress
       - echo $HUGO_SHA256 /tmp/hugo.tar.gz | sha256sum -c -
       - tar xf /tmp/hugo.tar.gz -C /tmp
       - mv /tmp/hugo /usr/bin/hugo
@@ -17,9 +17,5 @@ phases:
       - hugo
   post_build:
     commands:
-      - aws s3 sync public s3://$BUCKET_PATH --delete
+      - aws s3 sync public s3://$BUCKET_PATH --delete --no-progress
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
-  
-cache:
-  paths:
-    - 'themes/**/*'
