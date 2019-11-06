@@ -14,13 +14,12 @@ phases:
       - git clone $THEME_REPO themes/Alys
   build:
     commands:
-      - aws s3 rm s3://$BUCKET_PATH --recursive --exclude ""
       - hugo
   post_build:
     commands:
+      - aws s3 sync public s3://$BUCKET_PATH --delete
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
-
-artifacts:
-  files:
-    - '**/*'
-  base-directory: public
+  
+cache:
+  paths:
+    - 'themes/**/*'
