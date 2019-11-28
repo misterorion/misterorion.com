@@ -43,5 +43,3 @@ echo Done!
 
 echo Installed Hugo $(hugo version | awk '{ print $5 }')
 ```
-
-[Link to GitHub gist](https://gist.github.com/misterorion/8824811c3e25bba3c05189e513f1a585).
