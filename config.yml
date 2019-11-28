@@ -2,6 +2,17 @@ baseURL: https://misterorion.com
 languageCode: en-us
 title: Orion Anderson
 theme: Alys
+sectionPagesMenu: main
+preserveTaxonomyNames: true
+enableRobotsTXT: true
+
+googleAnalytics: UA-27884057-5
+permalinks:
+  posts: /posts/:year/:slug/
+
+markup:
+  highlight:
+    style: dracula
 
 Params:
   authorName: Orion Anderson
@@ -12,15 +23,3 @@ Params:
   authorPic: me3.jpg
   brandImg: favicon.png
   iconSize: 35
-  
-permalinks:
-  posts: /posts/:year/:slug/
-
-markup:
-  highlight:
-    style: dracula
-
-sectionPagesMenu: main
-preserveTaxonomyNames: true
-GoogleAnalytics: UA-27884057-5
-enableRobotsTXT: true
