@@ -16,9 +16,11 @@ Params:
 permalinks:
   posts: /posts/:year/:slug/
 
+markup:
+  highlight:
+    style: dracula
+
 sectionPagesMenu: main
 preserveTaxonomyNames: true
 GoogleAnalytics: UA-27884057-5
 enableRobotsTXT: true
-pygmentsUseClasses: true
-pygmentsCodeFences: true
