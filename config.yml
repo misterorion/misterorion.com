@@ -12,7 +12,7 @@ permalinks:
 
 markup:
   highlight:
-    style: dracula
+    style: rrt
 
 Params:
   authorName: Orion Anderson
