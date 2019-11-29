@@ -22,7 +22,7 @@ Done!
 Installed Hugo v0.51
 ```
 
-The complete script is below. You should change the value of `target_dir` to a location on your system that has execute permission.
+The complete script is below. You should change the value of `$target_dir` to a location on your system that has execute permission.
 
 ```bash
 #!/bin/bash
