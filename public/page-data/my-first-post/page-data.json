@@ -1,0 +1,1 @@
+{"componentChunkName":"component---src-templates-post-js","path":"/my-first-post","result":{"data":{"markdownRemark":{"html":"<p>Have you tried gatsbyjs?</p>","frontmatter":{"date":"May 04, 2019","path":"/my-first-post","title":"My first blog post"}}},"pageContext":{"isCreatedByStatefulCreatePages":false}}}
