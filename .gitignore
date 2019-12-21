@@ -1,2 +1,4 @@
 .vscode/
 themes/
+public/
+node_modules/
