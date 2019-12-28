@@ -1,16 +1,11 @@
 ---
-title: Edtech Meetup  
-date:  '2018-09-12'  
-draft:  false
-slug: edtech-meetup
-image_url:  /assets/img/edtech.jpg  
-image_alt: Edtech Panel
-description: Are edtech companies for real? Let's plug little Johnny into the Matrix.
-tags:
- - Career
+title: "Edtech Meetup"
+date:  "2018-09-12"
+slug: "edtech-meetup"
+imageFluid:  "../images/edtech.jpg"
 ---
 
-I recently attended a panel hosted by the [Irish International Business Network (IIBN) New York Chapter](http://www.iibn.nyc/) and [Digital Irish](http://digital.irish/) titled "Back to School: EdTech."<!--more-->
+I recently attended a panel hosted by the [Irish International Business Network (IIBN) New York Chapter](http://www.iibn.nyc/) and [Digital Irish](http://digital.irish/) titled "Back to School: EdTech."
 
 Here is the description of the event:
 
@@ -26,12 +21,15 @@ The event took place at Alley Chelsea, a workspace/community area in the Chelsea
 
 After Michelle introducted the panelists, we watched a video produced by BBC Worldhacks, "Schools of the Future," to provide context for the discussion to follow.
 
-{{< youtube VqK7V58sDAs >}}
+`youtube: VqK7V58sDAs`
 
-After the video, the panel opened into a lively discussion. Here are my notes:
+After the video, the panel opened into a lively discussion.
+
+Here are my notes:
 
 - Right now a huge amount of capital is flowing from venture capital into edtech.
-- The tech landscape has changed completely in the last few years. Ideas are being taken out of big data space and applied to education and schooling. Edtech companies are using large data-sets. What are the pros and dangers of that?
+- The tech landscape has changed completely in the last few years.
+- Ideas are being taken out of big data space and applied to education and schooling. Edtech companies are using large data-sets. What are the pros and dangers of that?
 - There is a clamoring to get in to the space regardless of proven benefits.
 - Use case #1 for higher-ed: can you use machine learning to predict whether a student is on-track to graduate?
 - Use case #2 for higher-ed: develop "last-mile" programs for students to overcome the claim by employers that students are not prepared to enter the workforce. There is an opportunity in programs to get students trained-up, and provide access points to entry-level jobs.

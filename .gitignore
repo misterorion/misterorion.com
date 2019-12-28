@@ -1,4 +1,4 @@
-.vscode/
-themes/
-public/
 node_modules/
+public/
+.cache/
+.vscode/

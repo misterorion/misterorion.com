@@ -1,17 +1,11 @@
 ---
-title: Wild Rydes Workshop on Serverless
+title: "Wild Rydes Workshop on Serverless"
 date: "2017-06-08"
-draft: false
-slug: wild-rydes-workshop
-image_url: /assets/img/wr-home-top.jpg
-image_alt: Wild Rydes
-description: I participated in the Wild Rydes Workshop sponsored by Amazon at the AWS pop-up loft in SoHo.
-tags:
-- AWS
-- Career
+slug: "wild-rydes-workshop"
+imageFluid: "../images/wr-home-top.jpg"
 ---
 
-Last Thursday I participated in the "Wild Rydes Workshop on Serverless," sponsored by Amazon at the AWS pop-up loft in SoHo. Workshop participants learned how to create a serverless web application using Lambda, Amazon API Gateway, S3, DynamoDB, and Cognito.<!--more-->
+Last Thursday I participated in the "Wild Rydes Workshop on Serverless," sponsored by Amazon at the AWS pop-up loft in SoHo. Workshop participants learned how to create a serverless web application using Lambda, Amazon API Gateway, S3, DynamoDB, and Cognito.
 
 [Complete instructions](https://github.com/awslabs/aws-serverless-workshops) for the workshop are available on GitHub, so attending wasn't strictly necessary for success. That said, there are benefits to visiting an AWS loft. Visitors have the opportunity to consult with certified Amazon architects, network with other cloud pros, or just grab some free WiFi and enjoy the quirky decor while you work.
 

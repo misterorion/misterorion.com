@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+@import "prism-dracula";
+
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono:500|Roboto:400,700&display=swap");
+
+/*! purgecss start ignore */
+
+@tailwind base;
+@tailwind components;
+
+$code-font: "Fira Mono", monospace; // CODE FONT
+
+// TEXT STYLES
+
+body {
+  background-image: url("./funky-lines.png");
+  @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
+}
+
+p {
+  @apply text-xl my-4 leading-relaxed;
+  code.language-text {
+    @apply text-base p-1;
+  }
+}
+
+blockquote {
+  @apply pl-6 my-6 border-l-4 border-teal-400;
+}
+
+article {
+  @apply my-12;
+  a {
+    @apply text-red-600;
+    padding-bottom: .1rem;
+    &:hover{
+      @apply border-red-400 border-b-2 bg-red-100;
+    }
+  }
+  h2 {
+    @apply text-3xl mt-12 font-bold;
+  }
+  h3 {
+    @apply text-xl mt-8 font-bold;
+  }
+  img {
+    border-radius: 0.4rem;
+  }
+  ul {
+    @apply list-outside ml-8;
+    li {
+      @apply list-disc text-lg mb-4;
+    }
+  }
+  pre, code {
+    font-family: $code-font;
+    font-weight: 500 !important;
+  }
+}
+.gatsby-highlight, .gatsby-resp-iframe-wrapper, .gatsby-resp-image-figure {
+  @apply my-8;
+}
+
+/*! purgecss end ignore */
+
+@tailwind utilities;
