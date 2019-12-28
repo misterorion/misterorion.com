@@ -1,45 +1,41 @@
-import React from "react";
-import { graphql } from "gatsby";
-import PostLink from "../components/Post-Link";
-import SiteConfig from "../../SiteConfig";
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "../components/Layout"
+import Hero from "../components/Hero"
+import PostLink from "../components/Post-Link"
 
 const IndexPage = ({
   data: {
-    allMarkdownRemark: { edges }
+    posts: { edges }
   }
 }) => {
-  const Posts = edges
-    .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
-    .map(edge => <PostLink key={edge.node.id} post={edge.node} />);
-
+  const Posts = edges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   return (
-    <div>
-      <h1>{SiteConfig.siteTitle}</h1>
-      <h3>{SiteConfig.userTwitter}</h3>
-      <div>{Posts}</div>
-    </div>
-  );
-};
+    <Layout>
+    <Hero />
+      <div className="py-6">{Posts}</div>
+    </Layout>
+  )
+}
 
-export default IndexPage;
+export default IndexPage
 
 export const pageQuery = graphql`
   query MyQuery {
-    allMarkdownRemark(
+    posts: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { template: { ne: "page" } } }
+      filter: { fileAbsolutePath: { regex: "/(posts)/" } }
     ) {
       edges {
         node {
           id
-          excerpt(pruneLength: 250)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
+            slug
             title
           }
         }
       }
     }
   }
-`;
+`
