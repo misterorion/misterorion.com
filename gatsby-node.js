@@ -1,39 +1,80 @@
-const path = require(`path`);
+const path = require(`path`)
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
-  reporter.info(`Your Gatsby site has been built!`);
-};
+  reporter.info(`Your Gatsby site has been built!`)
+}
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions;
-  const blogPostTemplate = path.resolve(`src/templates/post.js`);
+// Create pages dynamically
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  // Query Ghost data
   const result = await graphql(`
     {
-      allMarkdownRemark(
+      allPost: allMarkdownRemark(
         sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
+        filter: { fileAbsolutePath: { regex: "/(posts)/" } }
       ) {
         edges {
           node {
+            id
             frontmatter {
-              path
+              date(formatString: "MMMM DD, YYYY")
+              slug
+              title
+            }
+          }
+        }
+      }
+      allPage: allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        filter: { fileAbsolutePath: { regex: "/(pages)/" } }
+      ) {
+        edges {
+          node {
+            id
+            frontmatter {
+              slug
+              title
             }
           }
         }
       }
     }
-  `);
+  `)
   // Handle errors
   if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`);
-    return;
+    throw new Error(result.errors)
   }
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+
+  // Extract query results
+  const posts = result.data.allPost.edges
+  const pages = result.data.allPage.edges
+
+  // Load templates
+  const postTemplate = path.resolve(`src/templates/post.js`)
+  const pageTemplate = path.resolve(`src/templates/page.js`)
+
+  // Create post pages
+  posts.forEach(({ node }) => {
     createPage({
-      path: node.frontmatter.path,
-      component: blogPostTemplate,
-      context: {} // additional data can be passed via context
-    });
-  });
-};
+      path: node.frontmatter.slug,
+      component: postTemplate,
+      context: {
+        slug: node.frontmatter.slug,
+      },
+    })
+  })
+
+  // Create pages
+  pages.forEach(({ node }) => {
+    createPage({
+      path: node.frontmatter.slug,
+      component: pageTemplate,
+      context: {
+        slug: node.frontmatter.slug,
+      },
+    })
+  })
+}
