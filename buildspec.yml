@@ -14,3 +14,7 @@ phases:
     commands:
       - aws s3 sync public s3://$BUCKET_PATH --delete --no-progress
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+
+cache:
+  paths:
+    - '/root/.node_modules/**/*'
