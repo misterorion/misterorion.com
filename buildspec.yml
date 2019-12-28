@@ -17,4 +17,4 @@ phases:
 
 cache:
   paths:
-    - '/root/node_modules/**/*'
+    - 'node_modules/**/*'
