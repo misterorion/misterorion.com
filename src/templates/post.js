@@ -2,11 +2,14 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Img from "gatsby-image"
+import Helmet from "react-helmet"
 
 export default ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
+      <Helmet title={post.frontmatter.title}/>
+
       <h1 className="text-4xl mb-4 mt-12 font-bold">
         {post.frontmatter.title}
       </h1>
@@ -28,7 +31,7 @@ export default ({ data }) => {
     </Layout>
   )
 }
-export const pageQuery = graphql`
+export const postQuery = graphql`
   query BlogPostByPath($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html

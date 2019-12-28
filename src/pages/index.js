@@ -17,7 +17,6 @@ const IndexPage = ({
     </Layout>
   )
 }
-
 export default IndexPage
 
 export const pageQuery = graphql`
