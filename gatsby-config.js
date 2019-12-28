@@ -1,3 +1,5 @@
+const config = require('./SiteConfig')
+
 module.exports = {
   plugins: [
     `gatsby-plugin-sharp`,
@@ -55,17 +57,21 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: config.GoogleAnalyticsID,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Orion Anderson`,
-        short_name: `Orion Anderson`,
+        name: config.userName,
+        short_name: config.userName,
         start_url: `/`,
         background_color: `#6b37bf`,
         theme_color: `#6b37bf`,
-        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: `standalone`,
-        icon: `content/images/favicon.png` // This path is relative to the root of the site.
+        icon: `content/images/favicon.png`
       }
     }
   ]
