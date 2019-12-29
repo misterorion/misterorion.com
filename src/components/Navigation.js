@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import Logo from "../../content/images/favicon.png"
+import Logo from "../../content/images/icons/favicon.png"
 import SiteConfig from "../../SiteConfig"
 
 export default () => {
@@ -35,7 +35,7 @@ export default () => {
           {navData.map((navItem, i) => {
             return (
               <div className="ml-4 text-lg text-gray-600 hover:text-red-600">
-                <Link to={`/${navItem.node.frontmatter.slug}/`} key={i}>
+                <Link to={navItem.node.frontmatter.slug} key={i}>
                   {navItem.node.frontmatter.title}
                 </Link>
               </div>

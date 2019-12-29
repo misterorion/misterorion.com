@@ -29,11 +29,9 @@ export default ({ data }) => (
       </a>
     </div>
     <div className="justify-end ml-auto flex flex-row items-center">
-      <div className="ml-5">
         <a href="https://gatsbyjs.org">
           <img src={GatsbyLogo} alt="Made with GatsbyJS" width="35" />
         </a>
-      </div>
     </div>
   </footer>
 )
