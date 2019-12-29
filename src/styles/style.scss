@@ -1,14 +1,13 @@
 /* purgecss start ignore */
 @charset "utf-8";
 
+@tailwind  base;
+@tailwind  components;
+
 @import "prism-dracula";
 
 @import url("https://fonts.googleapis.com/css?family=Fira+Mono:500|Roboto:400,700&display=swap");
 
-@tailwind  base;
-@tailwind  components;
-
-// Global styles start
 body {
   background-image: url("./funky-lines.png");
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
@@ -59,7 +58,6 @@ article {
 .gatsby-resp-image-figure {
   @apply my-8;
 }
-// Global styles end
-/*! purgecss end ignore */
+/* purgecss end ignore */
 
 @tailwind utilities;
