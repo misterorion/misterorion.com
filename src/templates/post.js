@@ -8,7 +8,7 @@ export default ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
-      <Helmet title={post.frontmatter.title}/>
+      <Helmet title={post.frontmatter.title} />
 
       <h1 className="text-4xl mb-4 mt-12 font-bold">
         {post.frontmatter.title}
@@ -48,7 +48,7 @@ export const postQuery = graphql`
         }
         imageFixed {
           childImageSharp {
-            fixed(width:200 ) {
+            fixed {
               ...GatsbyImageSharpFixed
             }
           }

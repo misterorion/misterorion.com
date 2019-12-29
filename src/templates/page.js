@@ -14,7 +14,7 @@ export default ({ data }) => {
   )
 }
 export const pageQuery = graphql`
-  query BlogPageByPath($slug: String!) {
+  query PageByPath($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
