@@ -2,7 +2,7 @@
 title: AWS Triple Threat
 date: "2017-06-19"
 slug: aws-triple-threat
-imageFluid: "../images/aws-trifecta.png"
+imageFluid: "../images/matrix-architect.jpg"
 ---
 
 I'm happy to announce that I now hold all three AWS Associate-level certifications. I picked up Solutions Architect back in January and cleared SysOps and Developer on the same day (one in the morning and one in the afternoon).

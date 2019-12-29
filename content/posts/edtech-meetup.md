@@ -38,7 +38,7 @@ Here are my notes:
 - Teachers are not looking for big changes, only incremental additives that make their lives easier day-to-day. Things that save teacher time are the bottom-line.
 - The concept of aligning/teaching to standards is going to be wiped out within the next 4-5 years.
 - There is high learner variability so student profiles will become more of a thing. There should be solutions that allow student profiles to carry, but there are bureaucratic and legal challenges.
-- How to to overcome the "creepiness factor," *i.e.* cameras on the wall, capturing all the data points?
+- How to to overcome the "creepiness factor" (cameras on the wall, capturing every data point)?
 - There is a concept of voice-activated learning, or conversational learning, in which students can interact with bots using their voices.
 - 2018 is "The Year of the Chat Bot."
 
@@ -69,7 +69,7 @@ What is predictive analysis? According to Wikipedia,
 
 > Predictive analytics encompasses a variety of statistical techniques from predictive modelling, machine learning, and data mining that analyze current and historical facts to make predictions about future or otherwise unknown events.
 
-AI is great at learning patterns. Applied to the classroom, AI can quickly process patterns in the learning environment and generate highly-accurate student profiles. With this data, material students are presented with can be made hyper-relevant, or even personal. Meanwhile, teachers prioritize time more efficiently (*e.g.* if you only had 20 minutes with your students, you know exactly where to spend it). Data can be used to drive instruction.
+AI is great at learning patterns. Applied to the classroom, AI can quickly process patterns in the learning environment and generate highly-accurate student profiles. With this data, material students are presented with can be made hyper-relevant, or even personal. Meanwhile, teachers prioritize time more efficiently (if you only had 20 minutes with your students, you know exactly where to spend it). Data can be used to drive instruction.
 
 Since teachers simply don't have enough time or energy to devote personalized attention and analysis to every single student, I can see the obvious benefit.
 
