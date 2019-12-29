@@ -6,7 +6,7 @@ phases:
       nodejs: 10
     commands:
       - npm install -g yarn
-      - yarn
+      - yarn install --silent
   build:
     commands:
       - yarn build
@@ -14,7 +14,3 @@ phases:
     commands:
       - aws s3 sync public s3://$BUCKET_PATH --delete --no-progress
       - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
-
-cache:
-  paths:
-    - 'node_modules/**/*'
