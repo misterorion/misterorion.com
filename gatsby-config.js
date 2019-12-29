@@ -1,4 +1,4 @@
-const config = require('./SiteConfig')
+const config = require("./SiteConfig")
 
 module.exports = {
   plugins: [
@@ -24,7 +24,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
-        printRejected: false,
+        printRejected: true,
         develop: true,
         tailwind: true
       }
@@ -67,8 +67,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-27884057-5`,
-      },
+        trackingId: `UA-27884057-5`
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
