@@ -108,14 +108,14 @@
      color: #ffb86c;
  }
  
- .token.important,
+ /* .token.important,
  .token.bold {
      font-weight: bold;
  }
  
  .token.italic {
      font-style: italic;
- }
+ } */
  
  .token.entity {
      cursor: help;
