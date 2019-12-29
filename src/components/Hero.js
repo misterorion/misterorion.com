@@ -1,5 +1,6 @@
 import React from "react"
 import Me from "../../content/images/me.jpg"
+
 export default () => {
   return (
     <div className="flex w-auto mb-8 p-6 items-center border border-teal-400 rounded shadow">
