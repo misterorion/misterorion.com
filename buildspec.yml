@@ -6,7 +6,7 @@ phases:
       nodejs: 10
     commands:
       - npm install -g yarn
-      - yarn install --silent
+      - yarn
   build:
     commands:
       - yarn build
