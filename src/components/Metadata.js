@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 
-const Metadata = () => {
+export default () => {
   return (
     <Helmet defer={false} defaultTitle="Orion Anderson">
       <meta
@@ -13,4 +13,3 @@ const Metadata = () => {
     </Helmet>
   )
 }
-export default Metadata

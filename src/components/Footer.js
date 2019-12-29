@@ -6,7 +6,7 @@ import GithubLogo from "../../content/images/icons/github.svg"
 import LinkedInLogo from "../../content/images/icons/linkedin.svg"
 import GatsbyLogo from "../../content/images/icons/gatsby.png"
 
-const Footer = ({ data }) => (
+export default ({ data }) => (
   <footer className="flex flex-row py-10 border-t border-teal-400">
     <div className="mr-3">
       <a href={`mailto:${data.userEmail}`}>
@@ -37,4 +37,3 @@ const Footer = ({ data }) => (
     </div>
   </footer>
 )
-export default Footer
