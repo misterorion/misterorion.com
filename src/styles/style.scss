@@ -1,18 +1,14 @@
+/* purgecss start ignore */
 @charset "utf-8";
 
 @import "prism-dracula";
 
 @import url("https://fonts.googleapis.com/css?family=Fira+Mono:500|Roboto:400,700&display=swap");
 
-/*! purgecss start ignore */
+@tailwind  base;
+@tailwind  components;
 
-@tailwind base;
-@tailwind components;
-
-$code-font: "Fira Mono", monospace; // CODE FONT
-
-// TEXT STYLES
-
+// Global styles start
 body {
   background-image: url("./funky-lines.png");
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
@@ -33,8 +29,8 @@ article {
   @apply my-12;
   a {
     @apply text-red-600;
-    padding-bottom: .1rem;
-    &:hover{
+    padding-bottom: 0.1rem;
+    &:hover {
       @apply border-red-400 border-b-2 bg-red-100;
     }
   }
@@ -53,15 +49,17 @@ article {
       @apply list-disc text-lg mb-4;
     }
   }
-  pre, code {
-    font-family: $code-font;
-    font-weight: 500 !important;
+  pre,
+  code {
+    font-family: "Fira Mono", monospace;
   }
 }
-.gatsby-highlight, .gatsby-resp-iframe-wrapper, .gatsby-resp-image-figure {
+.gatsby-highlight,
+.gatsby-resp-iframe-wrapper,
+.gatsby-resp-image-figure {
   @apply my-8;
 }
-
+// Global styles end
 /*! purgecss end ignore */
 
 @tailwind utilities;
