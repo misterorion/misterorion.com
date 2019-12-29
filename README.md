@@ -1,3 +1,3 @@
-![Build Status](https://codebuild.us-east-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiRjVEdHFTTFJDNlZkY21UWHFIYm9mYjhWd3JodXBHc2tWNS9lcmNiTzZOa3RmR0lJK1JEalVWZXZRTUpCd0JRL3lkeEpHZmhwWHh2azRndTRaOHVOajF3PSIsIml2UGFyYW1ldGVyU3BlYyI6InpoM1RIc3pJV2lYUjhKZC8iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/02065ba0-2f71-4f12-a588-c0079ea5f076/deploy-status)](https://app.netlify.com/sites/misterorion/deploys)
 
 New version of my home page built with GatsbyJS.
