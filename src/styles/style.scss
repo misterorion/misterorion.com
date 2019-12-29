@@ -1,4 +1,4 @@
-/* purgecss start ignore */
+/*! purgecss start ignore */
 @charset "utf-8";
 
 @tailwind  base;
@@ -58,6 +58,6 @@ article {
 .gatsby-resp-image-figure {
   @apply my-8;
 }
-/* purgecss end ignore */
+/*! purgecss end ignore */
 
 @tailwind utilities;
