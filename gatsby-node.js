@@ -9,7 +9,7 @@ exports.onPostBuild = ({ reporter }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  // Query Ghost data
+  // Query post and page data
   const result = await graphql(`
     {
       allPost: allMarkdownRemark(
@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create post pages
   posts.forEach(({ node }) => {
     createPage({
-      path: `/${node.frontmatter.slug}/`,
+      path: node.frontmatter.slug,
       component: postTemplate,
       context: {
         slug: node.frontmatter.slug,
@@ -70,7 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create pages
   pages.forEach(({ node }) => {
     createPage({
-      path: `/${node.frontmatter.slug}/`,
+      path: node.frontmatter.slug,
       component: pageTemplate,
       context: {
         slug: node.frontmatter.slug,

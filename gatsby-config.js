@@ -2,8 +2,8 @@ const config = require("./SiteConfig")
 
 module.exports = {
   plugins: [
-    `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -77,7 +77,7 @@ module.exports = {
         background_color: `#6b37bf`,
         theme_color: `#6b37bf`,
         display: `standalone`,
-        icon: `content/images/favicon.png`
+        icon: `content/images/icons/favicon.png`
       }
     }
   ]

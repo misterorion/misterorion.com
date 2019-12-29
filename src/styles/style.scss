@@ -6,15 +6,16 @@
 
 @import "prism-dracula";
 
-@import url("https://fonts.googleapis.com/css?family=Fira+Mono:500|Roboto:400,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Fira+Code:500|Roboto:400,400i,700&display=swap');
 
 body {
   background-image: url("./funky-lines.png");
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
-  @apply text-xl my-4 leading-relaxed;
+  @apply text-xl my-4 leading-normal;
   code.language-text {
     @apply text-base p-1;
   }
@@ -34,10 +35,10 @@ article {
     }
   }
   h2 {
-    @apply text-3xl mt-12 font-bold;
+    @apply text-3xl mt-16 font-bold;
   }
   h3 {
-    @apply text-xl mt-8 font-bold;
+    @apply text-xl mt-10 font-bold;
   }
   img {
     border-radius: 0.4rem;
@@ -50,7 +51,7 @@ article {
   }
   pre,
   code {
-    font-family: "Fira Mono", monospace;
+    font-family: 'Fira Code', monospace;
   }
 }
 .gatsby-highlight,
