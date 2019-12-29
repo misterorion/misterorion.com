@@ -22,6 +22,14 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: false,
+        develop: true,
+        tailwind: true
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
@@ -59,7 +67,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: config.GoogleAnalyticsID,
+        trackingId: `UA-27884057-5`,
       },
     },
     {
