@@ -49,7 +49,7 @@ export const postQuery = graphql`
         imageFixed {
           childImageSharp {
             fixed {
-              ...GatsbyImageSharpFluid_tracedSVG
+              ...GatsbyImageSharpFixed_tracedSVG
             }
           }
         }
