@@ -42,14 +42,14 @@ export const postQuery = graphql`
         imageFluid {
           childImageSharp {
             fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_tracedSVG
             }
           }
         }
         imageFixed {
           childImageSharp {
             fixed {
-              ...GatsbyImageSharpFixed
+              ...GatsbyImageSharpFluid_tracedSVG
             }
           }
         }
