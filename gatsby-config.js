@@ -1,30 +1,28 @@
-const config = require("./SiteConfig")
-
 module.exports = {
+  siteMetadata: {
+    siteTitle: `Orion Anderson`,
+    userName: `Orion Anderson`,
+    userEmail: `orion@mechapower.com`,
+    userTwitter: `MisterOrion`,
+    userLinkedIn: `orionanderson`,
+    userGitHub: `MisterOrion`
+  },
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        tailwind: true
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/content/images`
-      }
-    },
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        postCssPlugins: [
-          require("tailwindcss"),
-          require("./tailwind.config.js")
-        ]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        tailwind: true
       }
     },
     {
@@ -65,19 +63,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-27884057-5`
+        trackingId: "12345"
       }
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: config.userName,
-        short_name: config.userName,
+        name: "Orion Anderson",
+        short_name: "Orion Anderson",
         start_url: `/`,
         background_color: `#6b37bf`,
         theme_color: `#6b37bf`,
         display: `standalone`,
-        icon: `content/images/icons/favicon.png`
+        icon: `src/components/icons/favicon.png`
       }
     }
   ]
