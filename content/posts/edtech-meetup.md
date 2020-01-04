@@ -3,6 +3,7 @@ title: "Edtech Meetup"
 date:  "2018-09-12"
 slug: "edtech-meetup"
 imageFluid:  "../images/edtech.jpg"
+tags: ["career"]
 ---
 
 I recently attended a panel hosted by the [Irish International Business Network (IIBN) New York Chapter](http://www.iibn.nyc/) and [Digital Irish](http://digital.irish/) titled "Back to School: EdTech."
