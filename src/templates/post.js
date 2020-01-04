@@ -4,7 +4,6 @@ import Layout from "../components/Layout"
 import Img from "gatsby-image"
 import Helmet from "react-helmet"
 
-
 export default ({ data }) => {
   const { markdownRemark: post } = data
   const _ = require("lodash")
@@ -34,13 +33,11 @@ export default ({ data }) => {
       <div className="tags border-t mt-6 pt-6 border-gray-400">
         <h3 className="inline">Tags:</h3>
         <ul className="inline ml-2">
-          {post.frontmatter.tags.map(tag => {
-            return (
-              <li className="inline-block mx-2">
-                <Link to={`/tags/${_.kebabCase(tag)}`}>{tag}</Link>
-              </li>
-            )
-          })}
+          {post.frontmatter.tags.map(tag => (
+            <li className="inline-block mx-2">
+              <Link to={`/tags/${_.kebabCase(tag)}`}>{tag}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </Layout>
