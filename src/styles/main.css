@@ -2,9 +2,223 @@
 @charset "utf-8";
 @tailwind base;
 @tailwind components;
-@import "layout.css";
-@import "content.css";
-@import "prism-dracula.css";
 @import url("https://fonts.googleapis.com/css?family=Fira+Code:500|Roboto:400,400i,700&display=swap");
+
+body {
+  @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
+  background-image: url("./funky-lines.png");
+  font-family: "Roboto", sans-serif;
+}
+
+.mainContainer {
+  @apply mx-auto rounded-lg px-6 py-6 max-w-5xl bg-gray-100 border-gray-400;
+}
+
+@screen sm {
+  .mainContainer {
+    @apply my-3 w-5/6 border;
+  }
+}
+
+@screen md {
+  .mainContainer {
+    @apply px-32;
+  }
+}
+
+@screen lg {
+  .mainContainer {
+    @apply w-4/5;
+  }
+}
+
+article p {
+  @apply text-xl my-4 leading-normal;
+}
+
+code.language-text {
+  @apply text-base p-1;
+}
+
+blockquote {
+  @apply pl-6 my-6 border-l-4 border-teal-400;
+}
+
+article pre {
+  font-family: "Fira Code", monospace;
+}
+
+article code {
+  font-family: "Fira Code", monospace;
+}
+
+article {
+  @apply my-12;
+}
+
+article img {
+  border-radius: 0.4rem;
+}
+
+article a {
+  @apply text-red-600;
+  padding-bottom: 0.1rem;
+}
+
+article a:hover {
+  @apply border-red-400 border-b-2 bg-red-100;
+}
+
+article h1 {
+  @apply text-4xl mb-4 mt-12 font-bold;
+}
+
+article h2 {
+  @apply text-3xl mt-16 font-bold;
+}
+
+article h3 {
+  @apply text-xl mt-10 font-bold;
+}
+
+article ul {
+  @apply list-outside ml-8;
+}
+
+article ul > li {
+  @apply list-disc text-lg mb-4;
+}
+
+.post-date {
+  @apply text-gray-600;
+}
+
+.feat-img {
+  @apply my-20;
+}
+
+.gatsby-highlight,
+.gatsby-resp-iframe-wrapper,
+.gatsby-resp-image-figure {
+  @apply my-8;
+}
+
+/* Prism Dracula start */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  /* text-shadow: 0 1px rgba(0, 0, 0, 0.3); */
+  /* font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; */
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #282a36;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6272a4;
+}
+
+.token.punctuation {
+  color: #f8f8f2;
+}
+
+.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #ff79c6;
+}
+
+.token.boolean,
+.token.number {
+  color: #bd93f9;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #50fa7b;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #f1fa8c;
+}
+
+.token.keyword {
+  color: #8be9fd;
+}
+
+.token.regex,
+.token.important {
+  color: #ffb86c;
+}
+
+/* .token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+} */
+
+.token.entity {
+  cursor: help;
+}
+/* Prism Dracula end */
 /*! purgecss end ignore */
 @tailwind utilities;
