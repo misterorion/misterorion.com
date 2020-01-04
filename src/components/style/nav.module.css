@@ -1,0 +1,27 @@
+.mainContainer {
+  @apply flex items-center border-b mb-12 py-6 border-teal-400;
+}
+
+.logo {
+  @apply fill-current h-8 w-8 mr-4;
+}
+
+.textContainer {
+  @apply flex w-full items-baseline;
+}
+
+.siteTitle {
+  @apply text-2xl font-bold;
+}
+
+.nav {
+  @apply ml-auto;
+}
+
+.menuItem {
+  @apply ml-4 text-lg text-gray-600;
+}
+
+.menuItem:hover {
+    @apply text-red-600;
+}

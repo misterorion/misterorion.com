@@ -1,0 +1,28 @@
+body {
+  @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
+  background-image: url("./funky-lines.png");
+  font-family: "Roboto", sans-serif;
+}
+
+.mainContainer {
+  @apply rounded-lg px-6 py-6 max-w-5xl bg-gray-100 border-gray-400;
+  margin: auto;
+}
+
+@screen sm {
+  .mainContainer {
+    @apply my-3 w-5/6 border;
+  }
+}
+
+@screen md {
+  .mainContainer {
+    @apply px-32;
+  }
+}
+
+@screen lg {
+  .mainContainer {
+    @apply w-4/5;
+  }
+}

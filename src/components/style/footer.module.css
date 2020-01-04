@@ -1,0 +1,11 @@
+.container {
+    @apply flex flex-row py-10 border-t border-teal-400;
+}
+
+.icon {
+    @apply mr-3;
+}
+
+.colophon {
+    @apply justify-end ml-auto flex flex-row items-center;
+}

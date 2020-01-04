@@ -1,0 +1,12 @@
+.box {
+  @apply mb-6 p-6 border border-gray-400 rounded;
+}
+.box:hover {
+  @apply border-red-500 bg-orange-100 shadow;
+}
+.title {
+  @apply text-xl text-2xl text-gray-900 font-bold;
+}
+.date {
+  @apply text-gray-600;
+}
