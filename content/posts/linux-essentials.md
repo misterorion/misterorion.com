@@ -3,6 +3,7 @@ title: I passed the Linux Essentials exam
 date: "2017-05-21"
 slug: passed-linux-essentials
 imageFluid: "../images/LPI-Essentials.jpg"
+tags: ["linux","career"]
 ---
 
 The [LPI Linux Essentials](https://www.lpi.org/our-certifications/linux-essentials-overview) certification demonstrates fundamental knowledge of the open source industry, an understanding of the major components of the Linux operating system, and technical proficiency in the command line.
