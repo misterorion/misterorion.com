@@ -10,19 +10,20 @@ export default ({ data }) => {
     <Layout>
       <Helmet title={post.frontmatter.title} />
 
-      <h1 className="text-4xl mb-4 mt-12 font-bold">
+      <h1>
         {post.frontmatter.title}
       </h1>
-      <div className="text-gray-600 mb-10">{post.frontmatter.date}</div>
+
+      <div className="post-date">{post.frontmatter.date}</div>
 
       {/* Check for featured image */}
 
       {post.frontmatter.imageFluid ? (
-        <div className="my-20">
+        <div className="feat-img">
           <Img fluid={post.frontmatter.imageFluid.childImageSharp.fluid} />
         </div>
       ) : (
-        <div className="my-20">
+        <div className="feat-img">
           <Img fixed={post.frontmatter.imageFixed.childImageSharp.fixed} />
         </div>
       )}

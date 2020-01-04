@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import Logo from "../../content/images/icons/favicon.png"
-import SiteConfig from "../../SiteConfig"
+import Logo from "./icons/favicon.png"
+import NavStyles from "./style/nav.module.css"
 
 export default () => {
   const data = useStaticQuery(graphql`
@@ -20,21 +20,26 @@ export default () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          siteTitle
+        }
+      }
     }
   `)
-  const Navigation = ({ navData }) => (
-    <div className="flex items-center border-b mb-12 py-6 border-teal-400">
+  const Navigation = ({ navData, metaData }) => (
+    <div className={NavStyles.mainContainer}>
       <Link to="/">
-        <img src={Logo} alt="ensō" className="fill-current h-8 w-8 mr-4" />
+        <img src={Logo} alt="ensō" className={NavStyles.logo} />
       </Link>
-      <div className="flex w-full items-baseline">
+      <div className={NavStyles.textContainer}>
         <Link to="/">
-          <h1 className="text-2xl font-bold">{SiteConfig.siteTitle}</h1>
+          <h1 className={NavStyles.siteTitle}>{metaData.siteTitle}</h1>
         </Link>
-        <nav className="ml-auto">
+        <nav className={NavStyles.nav}>
           {navData.map((navItem, i) => {
             return (
-              <div className="ml-4 text-lg text-gray-600 hover:text-red-600">
+              <div className={NavStyles.menuItem}>
                 <Link to={navItem.node.frontmatter.slug} key={i}>
                   {navItem.node.frontmatter.title}
                 </Link>
@@ -46,8 +51,9 @@ export default () => {
     </div>
   )
   return (
-    <div>
-      <Navigation navData={data.allMarkdownRemark.edges} />
-    </div>
+    <Navigation
+      navData={data.allMarkdownRemark.edges}
+      metaData={data.site.siteMetadata}
+    />
   )
 }

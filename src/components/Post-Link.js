@@ -1,11 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
+import PostStyles from "./style/post-link.module.css"
 
 export default ({ post }) => (
   <Link to={post.frontmatter.slug}>
-    <div className="mb-6 p-6 border border-gray-400 hover:border-red-500 hover:bg-orange-100 rounded hover:shadow">
-      <div className="text-xl sm:text-2xl text-gray-900 font-bold">{post.frontmatter.title}</div>
-      <div className="text-gray-600">{post.frontmatter.date}</div>
+    <div className={PostStyles.box}>
+      <div className={PostStyles.title}>{post.frontmatter.title}</div>
+      <div className={PostStyles.date}>{post.frontmatter.date}</div>
     </div>
   </Link>
 )

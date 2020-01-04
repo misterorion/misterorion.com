@@ -1,37 +1,65 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import FooterStyles from "./style/footer.module.css"
 
-import TwitterLogo from "../../content/images/icons/twitter.svg"
-import EmailLogo from "../../content/images/icons/email.svg"
-import GithubLogo from "../../content/images/icons/github.svg"
-import LinkedInLogo from "../../content/images/icons/linkedin.svg"
-import GatsbyLogo from "../../content/images/icons/gatsby.png"
+import TwitterLogo from "./icons/twitter.svg"
+import EmailLogo from "./icons/email.svg"
+import GithubLogo from "./icons/github.svg"
+import LinkedInLogo from "./icons/linkedin.svg"
+import GatsbyLogo from "./icons/gatsby.png"
 
-export default ({ data }) => (
-  <footer className="flex flex-row py-10 border-t border-teal-400">
-    <div className="mr-3">
-      <a href={`mailto:${data.userEmail}`}>
-        <img src={EmailLogo} alt="Email" width="35" />
+export default () => {
+  const data = useStaticQuery(graphql`
+    query FooterQuery {
+      site {
+        siteMetadata {
+          userEmail
+          userTwitter
+          userLinkedIn
+          userGitHub
+        }
+      }
+    }
+  `)
+  const meta = data.site.siteMetadata
+  
+  const FooterLink = props => (
+    <div className={FooterStyles.icon}>
+      <a href={props.link}>
+        <img src={props.logo} alt={props.logoAlt} width="35" />
       </a>
     </div>
-    <div className="mr-3">
-      <a href={`https://www.linkedin.com/in/${data.userLinkedIn}`}>
-        <img src={LinkedInLogo} alt="Twitter" width="35" />
-      </a>
-    </div>
-    <div className="mr-3">
-      <a href={`https://twitter.com/${data.userTwitter}`}>
-        <img src={TwitterLogo} alt="Twitter" width="35" />
-      </a>
-    </div>
-    <div className="mr-3">
-      <a href={`https://github.com/${data.userGitHub}`}>
-        <img src={GithubLogo} alt="Twitter" width="35" />
-      </a>
-    </div>
-    <div className="justify-end ml-auto flex flex-row items-center">
-        <a href="https://gatsbyjs.org">
-          <img src={GatsbyLogo} alt="Made with GatsbyJS" width="35" />
-        </a>
-    </div>
-  </footer>
-)
+  )
+
+  return (
+    <footer className={FooterStyles.container}>
+      <FooterLink
+        link={`mailto:${meta.userEmail}`}
+        logo={EmailLogo}
+        logoAlt={"Email"}
+      />
+      <FooterLink
+        link={`https://www.linkedin.com/in/${meta.userLinkedIn}`}
+        logo={LinkedInLogo}
+        logoAlt={"LinkedIn"}
+      />
+      <FooterLink
+        link={`https://twitter.com/${meta.userTwitter}`}
+        logo={TwitterLogo}
+        logoAlt={"Twitter"}
+      />
+      <FooterLink
+        link={`https://github.com/${meta.userGitHub}`}
+        logo={GithubLogo}
+        logoAlt={"GitHub"}
+      />
+      <div className={FooterStyles.colophon}>
+        <FooterLink
+          link={`https://gatsbyjs.org`}
+          logo={GatsbyLogo}
+          logoAlt={"Made with GatsbyJS"}
+        />
+      </div>
+    </footer>
+  )
+}
