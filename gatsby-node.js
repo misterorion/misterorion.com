@@ -1,4 +1,5 @@
 const path = require(`path`)
+const _ = require("lodash")
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -23,6 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
               date(formatString: "MMMM DD, YYYY")
               slug
               title
+              tags
             }
           }
         }
@@ -41,6 +43,11 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allTag: allMarkdownRemark(limit: 2000) {
+        group(field: frontmatter___tags) {
+          fieldValue
+        }
+      }
     }
   `)
   // Handle errors
@@ -51,10 +58,12 @@ exports.createPages = async ({ graphql, actions }) => {
   // Extract query results
   const posts = result.data.allPost.edges
   const pages = result.data.allPage.edges
+  const tags = result.data.allTag.group
 
   // Load templates
   const postTemplate = path.resolve(`src/templates/post.js`)
   const pageTemplate = path.resolve(`src/templates/page.js`)
+  const tagTemplate = path.resolve(`src/templates/tags.js`)
 
   // Create post pages
   posts.forEach(({ node }) => {
@@ -62,8 +71,8 @@ exports.createPages = async ({ graphql, actions }) => {
       path: node.frontmatter.slug,
       component: postTemplate,
       context: {
-        slug: node.frontmatter.slug,
-      },
+        slug: node.frontmatter.slug
+      }
     })
   })
 
@@ -73,8 +82,19 @@ exports.createPages = async ({ graphql, actions }) => {
       path: node.frontmatter.slug,
       component: pageTemplate,
       context: {
-        slug: node.frontmatter.slug,
-      },
+        slug: node.frontmatter.slug
+      }
+    })
+  })
+
+  // Create tag pages
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      component: tagTemplate,
+      context: {
+        tag: tag.fieldValue
+      }
     })
   })
 }

@@ -3,7 +3,7 @@ title: "Wild Rydes Workshop on Serverless"
 date: "2017-06-08"
 slug: "wild-rydes-workshop"
 imageFluid: "../images/wr-home-top.jpg"
-tags: ["aws","career"]
+tags: ["AWS","Career"]
 ---
 
 Last Thursday I participated in the "Wild Rydes Workshop on Serverless," sponsored by Amazon at the AWS pop-up loft in SoHo. Workshop participants learned how to create a serverless web application using Lambda, Amazon API Gateway, S3, DynamoDB, and Cognito.
