@@ -1,6 +1,7 @@
 ---
 slug: "about"
 title: "About"
+description: "About me."
 ---
 
 Greetings. I’m Orion Anderson, a developer living in New York City. I am currently a DevOps Developer at [Havas Production Studios](https://havasproductionstudios.com). I manage Jenkins and Windows servers and code in Python and PowerShell to help smooth the development process.

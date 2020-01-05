@@ -1,8 +1,8 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/Layout"
+import SEO from "../components/SEO"
 import Img from "gatsby-image"
-import Helmet from "react-helmet"
 
 export default ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
@@ -15,9 +15,18 @@ export default ({ data }) => {
     <Img fixed={post.imageFixed.childImageSharp.fixed} />
   )
 
+  const imagePath = post.imageFluid
+    ? post.imageFluid.childImageSharp.sizes.src
+    : post.imageFixed.childImageSharp.sizes.src
+
   return (
     <Layout>
-      <Helmet title={post.title} />
+      <SEO
+        title={post.title}
+        description={post.description || "nothin’"}
+        image={imagePath}
+        url={`${data.site.siteMetadata.siteUrl}/${post.slug}`}
+      />
       <h1>{post.title}</h1>
       <div className="post-date">{post.date}</div>
       <div className="feat-img">{image}</div>
@@ -43,11 +52,15 @@ export const postQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         slug
         title
+        description
         tags
         imageFluid {
           childImageSharp {
             fluid(maxWidth: 1000) {
               ...GatsbyImageSharpFluid_tracedSVG
+            }
+            sizes {
+              src
             }
           }
         }
@@ -56,8 +69,16 @@ export const postQuery = graphql`
             fixed {
               ...GatsbyImageSharpFixed_tracedSVG
             }
+            sizes {
+              src
+            }
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }

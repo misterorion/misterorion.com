@@ -2,6 +2,7 @@
 title: "Wild Rydes Workshop on Serverless"
 date: "2017-06-08"
 slug: "wild-rydes-workshop"
+description: "Wild Rydes Workshop on Serverless"
 imageFluid: "../images/wr-home-top.jpg"
 tags: ["AWS","Career"]
 ---

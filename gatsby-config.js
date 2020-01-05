@@ -2,11 +2,13 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://misterorion.com`,
     siteTitle: `Orion Anderson`,
+    siteDescription: `My personal home on the web.`,
     userName: `Orion Anderson`,
     userEmail: `orion@mechapower.com`,
     userTwitter: `MisterOrion`,
     userLinkedIn: `orionanderson`,
-    userGitHub: `MisterOrion`
+    userGitHub: `MisterOrion`,
+    siteImage: `/enso.jpg`
   },
   plugins: [
     `gatsby-plugin-sitemap`,

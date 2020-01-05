@@ -2,6 +2,7 @@
 title: "Edtech Meetup"
 date:  "2018-09-12"
 slug: "edtech-meetup"
+description: "Let's plug little Johnny into the Matrix."
 imageFluid:  "../images/edtech.jpg"
 tags: ["career"]
 ---

@@ -1,11 +1,18 @@
 import React from "react"
-import Me from "../../content/images/me.jpg"
 import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import HeroStyles from "./style/hero.module.css"
 
 export default () => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
+      homeImg: file(relativePath: { eq: "me.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 250, maxHeight: 250) {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
+        }
+      }
       site {
         siteMetadata {
           userName
@@ -16,7 +23,10 @@ export default () => {
   return (
     <div className={HeroStyles.box}>
       <div className={HeroStyles.image}>
-        <img src={Me} alt={data.site.siteMetadata.userName} />
+        <Img
+          fluid={data.homeImg.childImageSharp.fluid}
+          alt={data.site.siteMetadata.userName}
+        />
       </div>
       <div className={HeroStyles.text}>
         Greetings! My name is Orion Anderson. I'm a DevOps Developer located in
