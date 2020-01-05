@@ -60,11 +60,15 @@ export const pageQuery = graphql`
 
 It's not old-school HTML/CSS/JS, that's for sure. In general, I tried to modularize everything, extracting components for Layout, SEO, CSS modules, and so on. This makes the codebase a bit easier to understand and update.
 
-In the example above, we have React components for Layout and Hero, followed by a component for the post links themselves. Finally, a GraphQL query uses a regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful indeed and it's definitely the future.
+In the example above, we have React components for Layout and Hero, followed by a component for the post links themselves. SEO is handled by the imported Layout component. Finally, a GraphQL query uses a regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful indeed and it's definitely the future.
 
-## Room for improvement?
+## Room for improvement
 
-Gatsby is fast and made modular and robust via its plugin system. That said, I'm wary of plugins. Compared to Hugo with its single binary package that does it all, this approach is something I'm not used to. Gatsby's plugins are npm-based which, from my experience, tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
+### Plugins
+
+Gatsby is fast and made modular and robust via its plugin system. That said, I'm wary of plugins. Compared to Hugo with its single binary package that does it all, Gatsby's approach is something I'm not used to. Gatsby's plugins are npm-based which, from my experience, tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
+
+### Documentation
 
 I'm extremely grateful for Gatsby's docs but there are some inconsistencies in completeness. One example is the documentation for adding SEO to Gatsby posts. The documentation only goes as far as fetching the data with GraphQL, but does not document how to pass the data into posts in a programmatic way. For this final, crucial step the docs link you to some examples. The examples, while correct, are inconsistent in their approach. In the end I rolled up my own solution. Maybe I'll find the time contribute to the docs in some way.
 
@@ -76,7 +80,7 @@ I also switched hosting from an complex-yet-solid S3/CloudFront/CodeBuild setup 
 
 ## Conclusion
 
-This migration was a pretty standard developer experience of reading docs, troubleshooting, DuckDuckGo and Google searches, coffee and banging your head against the keyboard. In the end, I'm really happy with this setup despite the pain points outlined above. I learned about React and took my JavaScript up a notch. A great learning experience resulting in a fast, good-looking site if I do say so myself.
+This migration was a pretty standard developer experience of reading docs, troubleshooting, DuckDuckGo and Google searches, coffee and banging my head against the keyboard. In the end, I'm really happy with this setup despite the pain points outlined above. I learned about React and took my JavaScript up a notch. A great learning experience resulting in a fast, good-looking site if I do say so myself.
 
 ## Links
 
