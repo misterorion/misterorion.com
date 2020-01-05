@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteURL: `https://misterorion.com`,
+    siteUrl: `https://misterorion.com`,
     siteTitle: `Orion Anderson`,
     userName: `Orion Anderson`,
     userEmail: `orion@mechapower.com`,
