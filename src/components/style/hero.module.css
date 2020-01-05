@@ -6,6 +6,10 @@
   @apply w-1/4 mr-6;
 }
 
+.text {
+  @apply w-3/4;
+}
+
 @screen sm {
   .text {
     @apply w-2/3;
