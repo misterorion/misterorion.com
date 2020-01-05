@@ -2,20 +2,22 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import PostLink from "../components/Post-Link"
+import Helmet from "react-helmet"
 
-const Tags = ({ pageContext, data }) => {
+export default ({ pageContext, data }) => {
   const { tag } = pageContext
-  const { edges } = data.allMarkdownRemark
-  const Posts = edges.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  const Posts = data.allMarkdownRemark.edges.map(edge => (
+    <PostLink key={edge.node.id} post={edge.node} />
+  ))
   return (
     <Layout>
+      <Helmet title={`${tag} | ${data.site.siteMetadata.siteTitle}`} />
       <h1>Posts tagged with “{tag}”</h1>
       <div className="py-6">{Posts}</div>
     </Layout>
   )
 }
 
-export default Tags
 export const pageQuery = graphql`
   query($tag: String) {
     allMarkdownRemark(
@@ -26,13 +28,18 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
-            id
+          id
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             slug
             title
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteTitle
       }
     }
   }
