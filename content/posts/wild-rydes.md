@@ -13,7 +13,7 @@ Last Thursday I participated in the "Wild Rydes Workshop on Serverless," sponsor
 
 After a brief welcome by the Amazon staff, we were pretty much left to our own devices. Most of us worked quietly through the instructions and create the serverless application while AWS staff roamed the room, helping out where needed.
 
-The most challenging part of the workshop was configuring the API Gateway. Having never been exposed to this service before, I had to read through several pages of documentation to understand how the parts fit together. I also made the mistake of placing my S3 bucket in a different region than my application (`us-east-1`). I didn't think this would make a difference, but it did, and I was forced to retrace my steps. I am consciously avoiding the `us-east-1` region because my ears are still ringing from the major S3 outage that occurred there in March.
+The most challenging part of the workshop was configuring the API Gateway. Having never been exposed to this service before, I had to read through several pages of documentation to understand how the parts fit together. I also made the mistake of placing my S3 bucket in a different region than my application (us-east-1). I didn't think this would make a difference, but it did, and I was forced to retrace my steps. I am consciously avoiding the us-east-1 region because my ears are still ringing from the major S3 outage that occurred there in March.
 
 In the end, most of us got the app up and working, and watched with satisfaction as our unicorns darted happily across a map, picked up simulated customers, and flew them to their destinations in the cloud.
 
