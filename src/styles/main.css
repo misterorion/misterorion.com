@@ -33,7 +33,7 @@ body {
 }
 
 article p {
-  @apply text-xl my-4 leading-normal;
+  @apply text-xl my-6 leading-normal;
 }
 
 code.language-text {
