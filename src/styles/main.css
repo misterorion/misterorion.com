@@ -61,7 +61,7 @@ article img {
 }
 
 article a {
-  @apply text-red-600;
+  @apply text-red-700;
   padding-bottom: 0.1rem;
 }
 

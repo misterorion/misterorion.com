@@ -35,7 +35,7 @@ export default ({ data }) => {
         <h3 className="inline">Tags:</h3>
         <ul className="inline ml-2">
           {post.tags.map(tag => (
-            <li className="inline-block mx-2">
+            <li className="inline-block mx-2 font-bold">
               <Link to={`/tags/${_.kebabCase(tag)}`}>{tag}</Link>
             </li>
           ))}
