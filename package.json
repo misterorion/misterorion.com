@@ -1,7 +1,7 @@
 {
   "name": "misterorion-com",
   "description": "My personal home on the web.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Orion Anderson <orion@mechapower.com>",
   "dependencies": {
     "gatsby": "^2.18.17",
@@ -13,6 +13,7 @@
     "gatsby-plugin-purgecss": "^4.0.1",
     "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-sharp": "^2.3.10",
+    "gatsby-plugin-sitemap": "^2.2.24",
     "gatsby-remark-embed-video": "^2.0.1",
     "gatsby-remark-images": "^3.1.39",
     "gatsby-remark-prismjs": "^3.3.28",
@@ -21,7 +22,7 @@
     "gatsby-source-filesystem": "^2.1.43",
     "gatsby-transformer-remark": "^2.6.45",
     "gatsby-transformer-sharp": "^2.3.9",
-    "prismjs": "^1.17.1",
+    "prismjs": "^1.18.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
@@ -31,7 +32,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build --no-color",
+    "build": "gatsby build",
     "develop": "gatsby develop"
   }
 }
