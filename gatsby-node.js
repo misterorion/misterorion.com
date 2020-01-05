@@ -14,31 +14,23 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
       allPost: allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
         filter: { fileAbsolutePath: { regex: "/(posts)/" } }
       ) {
         edges {
           node {
-            id
             frontmatter {
-              date(formatString: "MMMM DD, YYYY")
               slug
-              title
-              tags
             }
           }
         }
       }
       allPage: allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
         filter: { fileAbsolutePath: { regex: "/(pages)/" } }
       ) {
         edges {
           node {
-            id
             frontmatter {
               slug
-              title
             }
           }
         }
@@ -66,23 +58,23 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagTemplate = path.resolve(`src/templates/tags.js`)
 
   // Create post pages
-  posts.forEach(({ node }) => {
+  posts.forEach(post => {
     createPage({
-      path: node.frontmatter.slug,
+      path: post.node.frontmatter.slug,
       component: postTemplate,
       context: {
-        slug: node.frontmatter.slug
+        slug: post.node.frontmatter.slug
       }
     })
   })
 
   // Create pages
-  pages.forEach(({ node }) => {
+  pages.forEach(page => {
     createPage({
-      path: node.frontmatter.slug,
+      path: page.node.frontmatter.slug,
       component: pageTemplate,
       context: {
-        slug: node.frontmatter.slug
+        slug: page.node.frontmatter.slug
       }
     })
   })
