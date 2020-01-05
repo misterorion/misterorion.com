@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    siteURL: `https://misterorion.com`,
     siteTitle: `Orion Anderson`,
     userName: `Orion Anderson`,
     userEmail: `orion@mechapower.com`,
@@ -8,6 +9,7 @@ module.exports = {
     userGitHub: `MisterOrion`
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
@@ -15,7 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
-        tailwind: true,
+        tailwind: true
       }
     },
     {
@@ -63,7 +65,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "12345"
+        trackingId: "UA-27884057-5"
       }
     },
     {
