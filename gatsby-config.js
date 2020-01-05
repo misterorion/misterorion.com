@@ -70,6 +70,7 @@ module.exports = {
         trackingId: "UA-27884057-5"
       }
     },
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
