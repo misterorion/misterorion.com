@@ -7,29 +7,21 @@ import Helmet from "react-helmet"
 export default ({ data }) => {
   const { markdownRemark: post } = data
   const _ = require("lodash")
+  
+  // Check for featured image in frontmatter
+  const featImg = post.frontmatter.imageFluid ? (
+    <Img fluid={post.frontmatter.imageFluid.childImageSharp.fluid} />
+  ) : (
+    <Img fixed={post.frontmatter.imageFixed.childImageSharp.fixed} />
+  )
 
   return (
     <Layout>
       <Helmet title={post.frontmatter.title} />
-
       <h1>{post.frontmatter.title}</h1>
-
       <div className="post-date">{post.frontmatter.date}</div>
-
-      {/* Check for featured image */}
-
-      {post.frontmatter.imageFluid ? (
-        <div className="feat-img">
-          <Img fluid={post.frontmatter.imageFluid.childImageSharp.fluid} />
-        </div>
-      ) : (
-        <div className="feat-img">
-          <Img fixed={post.frontmatter.imageFixed.childImageSharp.fixed} />
-        </div>
-      )}
-
+      <div className="feat-img">{featImg}</div>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
-
       <div className="tags border-t mt-6 pt-6 border-gray-400">
         <h3 className="inline">Tags:</h3>
         <ul className="inline ml-2">
