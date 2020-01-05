@@ -22,7 +22,7 @@ export default () => {
     }
   `)
   const meta = data.site.siteMetadata
-  
+
   const FooterLink = props => (
     <div className={FooterStyles.icon}>
       <a href={props.link}>
