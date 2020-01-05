@@ -2,16 +2,16 @@
 title: "Moving from Hugo to Gatsby"
 date:  "2020-01-05"
 slug: "moving-to-gatsby"
-description: "I moved this site from Hugo to Gatsby"
+description: "I moved my personal site from Hugo to Gatsby and now it's fast as hell."
 imageFluid:  "../images/great-gatsby.jpg"
 tags: ["Code", "Gatsby"]
 ---
 
-I recently upgraded this site from Hugo to Gatsby! Meant as a learning experience, I got my hands dirty with two technologies I had no prior experience with: React and GraphQL. If you're coming from Google and just want to see the code, here's the [GitHub repository](https://github.com/misterorion/misterorion.com).
+I recently upgraded this site from Hugo to Gatsby! Meant as a learning experience, I got my hands dirty with two technologies I had no prior experience with: React and GraphQL. This site is now a screaming fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit. If you just want to see the code, here's the [GitHub repository](https://github.com/misterorion/misterorion.com). 
 
-The experience wasn't always straightforward for me, coming from many years of writing static HTML templates for Hugo. If you're just getting started with Gatsby and React in general, do yourself a favor and go through their excellent [tutorial](https://www.gatsbyjs.org/tutorial/). Other links that helped me a lot are at the end of this post.
+The experience wasn't very straightforward for me, coming from many years of writing static HTML templates for Hugo, and Jekyll before that. If you're just getting started with Gatsby and React in general, do yourself a favor and go through the excellent [tutorial](https://www.gatsbyjs.org/tutorial/) on the Gatsby site. Other links that helped me a lot are at the end of this post.
 
-If you're coming from an old-school HTML/CSS/JS stack and want to try out Gatsby for your static site, here's the code of my home page as example of what you'll be writing:
+Here's the code of my home page; an example of code you'll be writing:
 
 ```jsx
 // index.js
@@ -56,11 +56,11 @@ export const pageQuery = graphql`
 `
 ```
 
-It's not old-school HTML and CSS, that's for sure. In general, I tried to modularize everything, extracting components for Layout, SEO, CSS modules, and so on. This makes the codebase a bit easier to understand and update.
+It's not old-school HTML/CSS/JS, that's for sure. In general, I tried to modularize everything, extracting components for Layout, SEO, CSS modules, and so on. This makes the codebase a bit easier to understand and update.
 
 In the example above, we have React components for Layout and Hero, followed by a component for the post links themselves. Finally, a GraphQL query uses a regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful indeed and it's definitely the future.
 
-## Issues I have with Gatsby
+## Room for improvement?
 
 Gatsby is fast and robust via its modular plugin system. That said, I'm still wary of plugins. Compared to Hugo with its single binary package that does it all, this is  something I'm not used to. Gatsby's plugins are npm-based which, from my experience, tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
 
