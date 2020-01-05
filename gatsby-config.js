@@ -53,7 +53,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              inlineCodeMarker: "±",
+              inlineCodeMarker: "±"
             }
           },
           {
