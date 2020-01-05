@@ -11,7 +11,7 @@ I recently upgraded this site from Hugo to Gatsby! Meant as a learning experienc
 
 The experience wasn't very straightforward for me, coming from many years of writing static HTML templates for Hugo, and Jekyll before that. If you're just getting started with Gatsby and React in general, do yourself a favor and go through the excellent [tutorial](https://www.gatsbyjs.org/tutorial/) on the Gatsby site. Other links that helped me a lot are at the end of this post.
 
-Here's the code of my home page; an example of code you'll be writing:
+Here's the code of my home page; an example of what you'll be writing:
 
 ```jsx
 // index.js
@@ -62,23 +62,23 @@ In the example above, we have React components for Layout and Hero, followed by 
 
 ## Room for improvement?
 
-Gatsby is fast and robust via its modular plugin system. That said, I'm still wary of plugins. Compared to Hugo with its single binary package that does it all, this is  something I'm not used to. Gatsby's plugins are npm-based which, from my experience, tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
+Gatsby is fast and made modular and robust via its plugin system. That said, I'm wary of plugins. Compared to Hugo with its single binary package that does it all, this approach is something I'm not used to. Gatsby's plugins are npm-based which, from my experience, tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
 
 I'm extremely grateful for Gatsby's docs but there are some inconsistencies in completeness. One example is the documentation for adding SEO to Gatsby posts. The documentation only goes as far as fetching the data with GraphQL, but does not document how to pass the data into posts in a programmatic way. For this final, crucial step the docs link you to some examples. The examples, while correct, are inconsistent in their approach. In the end I rolled up my own solution. Maybe I'll find the time contribute to the docs in some way.
 
-## Updates to CSS framework and hosting
+## Other updates: CSS framework and hosting
 
-For my CSS framework I switched Bootstrap to TailwindCSS. I like Tailwind because it's less opinionated than Bootstrap. Fighting with CSS frameworks is something I don't want to do anymore. That said, Tailwind is a pretty big framework in terms of file size, so I run it through PurceCSS to remove the classes I don't need. The result is very small set of CSS classes.
+For my CSS framework I switched Bootstrap to TailwindCSS. I like Tailwind because it's less opinionated than Bootstrap. Fighting with CSS frameworks is something I just don't want to do anymore. That said, Tailwind is a pretty big framework in terms of file size, so I run it through PurgeCSS to remove the classes I don't need. The result is very small set of CSS classes.
 
 I also switched hosting from an complex-yet-solid S3/CloudFront/CodeBuild setup on AWS to a simpler, yet still fully featured setup on Netlify. The complexity of AWS for such a small site like this isn't worth it. Netlify has been great so far; fast and easy to use. I really recommend it to developers who want to try out Continuous Integration with their static sites. Netlify even supports Hugo if you don't want to use Gatsby.
 
 ## Conclusion
 
-It was a pretty standard developer experience of reading docs, troubleshooting, DuckDuckGo and Google searches. In the end, I'm really happy with this setup despite the pain points outlined above. I learned about React and took my JavaScript up a notch.  A great learning experience resulting in a fast, good-looking site if I do say so myself.
+This migration was a pretty standard developer experience of reading docs, troubleshooting, DuckDuckGo and Google searches, coffee and banging your head against the keyboard. In the end, I'm really happy with this setup despite the pain points outlined above. I learned about React and took my JavaScript up a notch. A great learning experience resulting in a fast, good-looking site if I do say so myself.
 
 ## Links
 
-Here are the links that pointed me in the right direction during development.
+Here are the links that pointed me in the right direction during development:
 
 - [Gatsby.js Tutorial (gatsbyjs.org)](https://www.gatsbyjs.org/tutorial/)
 - [TailwindCSS Documentation (tailwindcss.com)](https://tailwindcss.com/docs/installation)
