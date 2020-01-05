@@ -51,7 +51,10 @@ module.exports = {
           `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
           {
-            resolve: `gatsby-remark-prismjs`
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              inlineCodeMarker: "±",
+            }
           },
           {
             resolve: `gatsby-remark-images`,
