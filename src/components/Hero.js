@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+
 import Img from "gatsby-image"
 import HeroStyles from "./style/hero.module.css"
 
