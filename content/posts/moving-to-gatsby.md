@@ -7,7 +7,9 @@ imageFluid:  "../images/great-gatsby.jpg"
 tags: ["Code", "Gatsby"]
 ---
 
-I recently upgraded this site from Hugo to Gatsby! Meant as a learning experience, I got my hands dirty with two technologies I had no prior experience with: React and GraphQL. This site is now a screaming fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit. If you just want to see the code, here's the [GitHub repository](https://github.com/misterorion/misterorion.com). 
+I recently upgraded this site from Hugo to Gatsby! Meant as a learning experience, I got my hands dirty with two technologies I had no prior experience with: React and GraphQL. This site is now a screaming fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit. 
+
+> If you just want to see the code, here's the [GitHub repository](https://github.com/misterorion/misterorion.com). 
 
 The experience wasn't very straightforward for me, coming from many years of writing static HTML templates for Hugo, and Jekyll before that. If you're just getting started with Gatsby and React in general, do yourself a favor and go through the excellent [tutorial](https://www.gatsbyjs.org/tutorial/) on the Gatsby site. Other links that helped me a lot are at the end of this post.
 
