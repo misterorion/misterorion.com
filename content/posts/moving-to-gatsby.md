@@ -11,7 +11,7 @@ This site is now made with Gatsby! Meant as a learning experience, this update f
 
 > If you just want to see the code, [here's the GitHub repository](https://github.com/misterorion/misterorion.com).
 
-At the beginning, the process wasn't straightforward for me, coming from many years of writing static HTML templates for Hugo, and Jekyll before that. If you're just getting started with Gatsby and React in general, do yourself a favor and go through the excellent [tutorial](https://www.gatsbyjs.org/tutorial/) on the Gatsby site. It's very well done. Other links that helped me a lot are at the end of this post.
+In the beginning, React wasn't straightforward for me, coming from many years of writing static HTML templates for Hugo, and Jekyll before that. If you're just getting started with Gatsby and React in general, do yourself a favor and go through the excellent [tutorial](https://www.gatsbyjs.org/tutorial/) on the Gatsby site. It's very well-done. Other links that helped clarify new concepts are at the end of this post.
 
 As an example of what you'll be writing, here's the code for the home page of this site:
 
@@ -58,29 +58,29 @@ export const pageQuery = graphql`
 `
 ```
 
-It's not your daddy's HTML/CSS/JS, that's for sure. In the example above, we have React components for Layout and Hero, followed by a component for the post links themselves. SEO is handled by the imported Layout component. Finally, a GraphQL query uses some regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful, indeed. It's definitely the future.
+It's not your daddy's HTML/CSS/JS, that's for sure. In this example, we use React components for Layout and Hero, followed by a component for the post links themselves. SEO is handled by the imported Layout component. Finally, a GraphQL query uses regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful, indeed. It's definitely the future.
 
-In general, I tried to modularize everything, extracting components for Layout, SEO, CSS modules, and so on. This makes the codebase a bit easier to understand and update.
+In general, I endeavored to modularize as much as I could, extracting components for Layout, SEO, CSS, and so on. This made the codebase a bit easier to understand and update.
 
 ## Room for improvement
 
 ### Plugins
 
-Gatsby is fast and made modular and robust via its plugin system. That said, I'm wary of plugins. Compared to Hugo with its single do-it-all binary package, the plugin approach is something I'm not comfortable with yet. In general, plugins tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
+Gatsby is fast and made modular and robust via its plugin system. Nonetheless, compared to Hugo with its single, do-it-all binary package, the plugin approach is something I'm not yet comfortable with. From my experience, plugins tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
 
 ### Documentation
 
-I'm extremely grateful for Gatsby's docs but there are occasional inconsistencies in completeness. One example is the documentation for adding SEO to Gatsby posts. The documentation only goes as far as fetching the data with GraphQL, but does not document how to pass the data into posts in a programmatic way. For this final, crucial step the docs link you to some examples. The examples, while correct, are inconsistent in their approach. In the end I rolled my own solution. Maybe I'll find the time contribute to the docs in some way.
+I'm extremely grateful for Gatsby's docs but there are occasional inconsistencies. One example is the documentation for adding SEO to Gatsby posts. The documentation goes as far as fetching the data with GraphQL, but does not document passing data into posts in a programmatic way. For this final, crucial step, the docs link you to examples, but the examples, while correct, are inconsistent in their approach. In the end I rolled my own solution. Maybe I'll find the time contribute to the docs in some way in the future.
 
 ## Other updates: CSS framework and hosting
 
-For my CSS framework, I switched Bootstrap to TailwindCSS. I like Tailwind because it's less opinionated than Bootstrap. Fighting with CSS frameworks is something I just don't want to do anymore. That said, Tailwind is a pretty big framework in terms of file size, so I run it through PurgeCSS to remove the classes I don't need. The result is very small set of CSS classes.
+For a CSS framework, I switched from Bootstrap to Tailwind. I prefer Tailwind because it's less opinionated than Bootstrap. Fighting with CSS frameworks is something I don't want to do anymore. That said, Tailwind is a pretty big framework in terms of file size, so I run it through PurgeCSS to remove the classes I don't need. The result is a very small set of CSS classes which result in very fast renders.
 
-FOr hosting, I moved from an complex-yet-solid S3/CloudFront/CodeBuild setup on AWS to a simpler, yet still fully featured setup on Netlify. The complexity of AWS for such a small site like this isn't worth it. Netlify has been great so far; it's fast and easy to use. I really recommend Netfliy for developers using Continuous Integration with their static sites. Netlify even supports Hugo if you don't want to use Gatsby.
+FOr hosting, I moved from an complex-yet-solid S3/CloudFront/CodeBuild setup on AWS to a simpler, yet still fully-featured setup on Netlify. The complexity of AWS for a small site like this isn't worth it. Netlify has been great so far; it's fast and easy to use. I really recommend Netfliy for developers using Continuous Integration with their static sites. Netlify even supports Hugo if you don't want to use Gatsby.
 
 ## Conclusion
 
-Overall, this migration was a pretty standard developer experience: reading docs, troubleshooting, DuckDuckGo and Google searches, coffee, and banging my head against the keyboard. 
+Overall, this migration was a pretty standard developer experience: reading docs, troubleshooting, DuckDuckGo and Google searches, coffee, and banging my head against the keyboard.
 
 In the end, I'm really happy with this setup despite the pain points outlined above. I learned a lot about React and took my JavaScript up a notch. A great learning experience resulting in a screaming-fast, good-looking site if I do say so myself.
 
