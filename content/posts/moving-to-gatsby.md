@@ -80,7 +80,9 @@ FOr hosting, I moved from an complex-yet-solid S3/CloudFront/CodeBuild setup on 
 
 ## Conclusion
 
-Overall, this migration was a pretty standard developer experience: reading docs, troubleshooting, DuckDuckGo and Google searches, coffee, and banging my head against the keyboard. In the end, I'm really happy with this setup despite the pain points outlined above. I learned a lot about React and took my JavaScript up a notch. A great learning experience resulting in a screaming-fast, good-looking site if I do say so myself.
+Overall, this migration was a pretty standard developer experience: reading docs, troubleshooting, DuckDuckGo and Google searches, coffee, and banging my head against the keyboard. 
+
+In the end, I'm really happy with this setup despite the pain points outlined above. I learned a lot about React and took my JavaScript up a notch. A great learning experience resulting in a screaming-fast, good-looking site if I do say so myself.
 
 ## Links
 
