@@ -58,9 +58,9 @@ export const pageQuery = graphql`
 `
 ```
 
-It's not old-school HTML/CSS/JS, that's for sure. In general, I tried to modularize everything, extracting components for Layout, SEO, CSS modules, and so on. This makes the codebase a bit easier to understand and update.
+It's not old-school HTML/CSS/JS, that's for sure. In the example above, we have React components for Layout and Hero, followed by a component for the post links themselves. SEO is handled by the imported Layout component. Finally, a GraphQL query uses a regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful indeed and it's definitely the future.
 
-In the example above, we have React components for Layout and Hero, followed by a component for the post links themselves. SEO is handled by the imported Layout component. Finally, a GraphQL query uses a regex to find markdown files in my posts folder, extracting only the information necessary to create the list of posts before passing it into the main function. GraphQL is very powerful indeed and it's definitely the future.
+In general, I tried to modularize everything, extracting components for Layout, SEO, CSS modules, and so on. This makes the codebase a bit easier to understand and update.
 
 ## Room for improvement
 
@@ -80,7 +80,7 @@ I also switched hosting from an complex-yet-solid S3/CloudFront/CodeBuild setup 
 
 ## Conclusion
 
-This migration was a pretty standard developer experience of reading docs, troubleshooting, DuckDuckGo and Google searches, coffee and banging my head against the keyboard. In the end, I'm really happy with this setup despite the pain points outlined above. I learned about React and took my JavaScript up a notch. A great learning experience resulting in a fast, good-looking site if I do say so myself.
+This migration was a pretty standard developer experience: reading docs, troubleshooting, DuckDuckGo and Google searches, coffee and banging my head against the keyboard. In the end, I'm really happy with this setup despite the pain points outlined above. I learned about React and took my JavaScript up a notch. A great learning experience resulting in a fast, good-looking site if I do say so myself.
 
 ## Links
 
