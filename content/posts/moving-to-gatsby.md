@@ -7,7 +7,9 @@ imageFluid:  "../images/great-gatsby.jpg"
 tags: ["Code", "Gatsby"]
 ---
 
-This site is now made with Gatsby! Meant as a learning experience, this update forced me to get my hands dirty with two technologies I had no prior experience with: React and GraphQL. As a result, this site is now a screaming-fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit.
+This site is now made with Gatsby! 
+
+Meant as a learning experience, this update forced me to get my hands dirty with two technologies I had no prior experience with: React and GraphQL. As a result, this site is now a screaming-fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit.
 
 > If you just want to see the code, [here's the GitHub repository](https://github.com/misterorion/misterorion.com).
 
