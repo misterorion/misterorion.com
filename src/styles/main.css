@@ -71,7 +71,7 @@ article h1 {
 }
 
 article h2 {
-  @apply text-3xl mt-16 font-bold;
+  @apply text-3xl mt-16 pb-6 font-bold border-b border-gray-400;
 }
 
 article h3 {
