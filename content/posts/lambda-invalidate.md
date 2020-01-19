@@ -49,7 +49,7 @@ I wanted a function I could reuse, such as with other distributions, so we tell 
 
 Then, we invalidate all paths in the site with `/*`. This is fine for small sites. However, your needs might require something more complex, such as a dictionary with multiple paths. CloudFront also needs a unique `CallerReference` so we just use the current time.
 
-Finally, we send a JSON response back to the ALB. Netlify requires webhooks to send back a response code (anything other than 4xx or 5xx), otherwise it automatically disables the webhook.
+Finally, we send a JSON response back to the ALB with an HTTP response code. Netlify requires webhooks to return a HTTP response code (other than 4xx or 5xx), otherwise the webhook is disabled.
 
 ```python
 # lambda_function.py
@@ -85,13 +85,13 @@ def lambda_handler(event, context):
 
 Inside my ALB, I created a target group that points at my Lambda.
 
-![Load Balancer Target Group](../images/alb-example-0.png)
+![ALB Target Group](../images/alb-example-0.png)
 
 Then I created a listener that watches for a path, and a querystring with a key of `token` and a random value. The value is random to give myself a little more security.
 
 Here's an example of how the listener might look:
 
-![Load Balancer Rule](../images/alb-example-1.png)
+![ALB Rule](../images/alb-example-1.png)
 
 ## Conclusion
 
