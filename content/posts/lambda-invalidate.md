@@ -75,7 +75,7 @@ def lambda_handler(event, context):
 
 ```
 
-I wanted a function I could use with other distributions, so we tell Lambda to look for a query string parameter `dist`. This parameter corresponds to a CloudFront distribution ID.
+I wanted a function I could use with other distributions, so we tell Lambda to look for a query string parameter `dist` corresponding to a CloudFront distribution ID.
 
 We invalidate all paths in the site with `/*`. This is fine for small sites. If your needs are more complex, you can use a Python dictionary with multiple paths. CloudFront also needs a unique `CallerReference` so we just use the current time.
 
