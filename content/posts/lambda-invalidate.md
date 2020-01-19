@@ -43,7 +43,7 @@ Before creating the Lambda function, I created an IAM role with very basic permi
 
 ### Lambda function
 
-Next, I created the Lambda function. The function creates an invalidation request and returns a 200 HTTP status code to Netlify.
+Next, I created the Lambda function using Python. The function creates an invalidation request and returns a 200 HTTP status code to Netlify.
 
 ```python
 # lambda_function.py
@@ -77,7 +77,7 @@ def lambda_handler(event, context):
 
 I wanted a function I could use with other distributions, so we tell Lambda to look for a query string parameter `dist` corresponding to a CloudFront distribution ID.
 
-We invalidate all paths in the site with `/*`. This is fine for small sites. If your needs are more complex, you can use a Python dictionary with multiple paths. CloudFront also needs a unique `CallerReference` so we just use the current time.
+We invalidate all paths in the site with `/*`. This is fine for small sites. If your needs are more complex, you can use a Python list with multiple paths. CloudFront also needs a unique `CallerReference` so we just use the current time.
 
 Finally, we send a JSON response back to the ALB with a 200 HTTP response code. Netlify requires webhooks to return a HTTP response code (other than 4xx or 5xx), otherwise the webhook is disabled.
 
