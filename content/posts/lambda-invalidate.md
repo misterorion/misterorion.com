@@ -7,25 +7,25 @@ imageFluid:  "../images/aircraft-clouds.jpg"
 tags: ["AWS"]
 ---
 
-The other day I was moving on of my friend's static website over to Netlify. It's a pretty simple Hugo site. Only a handful of pages and images. What makes his page unique is the hundreds of large PDF files that he hosts.
+The other day I was moving a friend's static website over to Netlify. His site is a simple static site with only a handful of pages and images. What makes his page unique is the hundreds of large PDF files that he hosts.
 
-Initially, I looked into putting the big files in Git LFS, since Netlify started supporting it. Unfortunately, I quickly hit the storage limit of my GitHub account and didn't really feel like paying the extra $5/month to increase it, just for this one site. 
+Initially, I looked into storing the large PDF files in [Git LFS](https://git-lfs.github.com/). Both Netlify and GitHub support it. Unfortunately, I quickly hit the storage limit of my GitHub account and I didn't feel like paying to increase it, just for this one site.
 
-## Netlify/AWS hybrid solution
+I rolled up a tidy Netlify/AWS hybrid solution. Netlify builds his site with Hugo, while the PDFs reside safely in S3. CloudFront sits in front using Netlify as the default origin, and an S3 origin for the content under `/pdf`.
 
-I wanted the nice automation of Netlify but also the benefits of S3 for the huge files. So, I rolled up a Netlify/AWS hybrid solution. Netlify builds his site with Hugo, and the PDFs reside in S3. CloudFront sits in front of both of them. Netlify as the default origin, and all content under /pdf uses a secondary S3 origin.
+This solves the problem of storage. I keep the simple CI/CD automation of Netlify but also the benefits of S3 for the PDF files. Dead simple automation and cheap, durable storage of the big files.
 
-The hybrid setup works great. Dead simple automation and cheap, durable storage of the big files. 
+Yet, there is another problem. What if we update the site content files and Netlify does a deploy? How will CloudFront know there is new content? We need to somehow send an invalidation request to CloudFront after each Netlify deploy.
 
-Yet, there is a problem. What if we update the site content files? How will CloudFront know? We need to send an invalidation request to CloudFront every time Netlify does a deploy. I decided to create my own webhook, a listener which Netlify can post to after every deploy. 
+I decided to create my own webhook.
 
-I created a Lambda function in Python and added it to my Application Load Balancer. 
+## AWS Webhook Recipe
 
-## IAM role
+The webhook is simply a listener on my Application Load Balancer (ALB) that points to a Lambda function. I have a subdomain set up in Route53 and point it at the ALB. The ALB listens for that host, and specific query strings, then forwards it to the Lambda. The Lambda runs some Python code to create a CloudFront invalidation
 
-The first thing to do was create an IAM role for my Lambda with very basic permissions; the only thing it needs to do is create an invalidation request.
+### IAM role
 
-I created this inline IAM role:
+Before creating the Lambda function, I created an IAM role with very basic permissions. The role needs permission to create a CloudFront invalidation request, and that is all.
 
 ```json
 {
@@ -41,17 +41,21 @@ I created this inline IAM role:
 }
 ```
 
-## Lambda function
+### Lambda function
 
-Next I had to create my Lambda function. I wanted a function I could reuse, such as with other distributions, so in the example below I'm telling it to look for a query string parameter `dist_id`, which corresponds to the a distribution ID.
+Next I created a simple Lambda function. The function should simply create an invalidation request and provide a 200 status code to Netlify, signaling that the webhook succeeded.
 
-I'm also invalidating all the paths in the site with `/*` which is fine for small sites. You might need to create a more complex dictionary for the paths, if your needs demand it. CloudFront needs a unique `CallerReference` so we just use the current time.
+I wanted a function I could reuse, such as with other distributions, so we tell the Lambda to look for a query string parameter `dist`. This parameter  corresponds to a distribution ID.
 
-Finally, Netlify requires webhooks to send back a response code (other than 4xx or 5xx), so we have the load balancer return a JSON response.
+Then, we invalidate all paths in the site with `/*`. This is fine for small sites. However, your needs might require something more complex, such as a dictionary with multiple paths. CloudFront also needs a unique `CallerReference` so we just use the current time.
+
+Finally, we send a JSON response back to the ALB. Netlify requires webhooks to send back a response code (anything other than 4xx or 5xx), otherwise it automatically disables the webhook.
 
 ```python
-import json
+# lambda_function.py
+
 import boto3
+import json
 import time
 
 
@@ -77,20 +81,24 @@ def lambda_handler(event, context):
 
 ```
 
-## Application Load Balancer
+### ALB Setup
 
-Inside my ALB, I created a target group that points at my Lambda, then created a listener rule that watches for a path I made up, and a querystring containg a token. I made the path and token somewhat random but you can go crazy with it. This is to give myself just a little more security.
+Inside my ALB, I created a target group that points at my Lambda.
 
-Here's an example of how the listener might look (I made up these values for this example).
+![Load Balancer Target Group](../images/alb-example-0.png)
 
-![](../images/alb-example-1.png)
+Then I created a listener that watches for a path, and a querystring with a key of `token` and a random value. The value is somewhat random to give myself a little more security.
+
+Here's an example of how the listener might look:
+
+![Load Balancer Rule](../images/alb-example-1.png)
 
 ## Conclusion
 
-You can put together a URL that looks like this:
+Now I can put together a URL that looks like this:
 
-```
-https://lambda.mysite.com/w2HhVu4MKqQP?dist_id=EWR32F5MCGOV3&token=5Gm3SY6...
+```text
+https://lambda.mysite.com/webhooks?dist_id=EWR32F5MCGOV3&token=U9Lp6...
 ```
 
-And plop that into your Netlify deploy configuration. Your site will automatically trigger a CloudFront invalidation on every new deploy.
+And plop it into my Netlify deploy configuration. When the deploy succeds, Netlify sends a POST request to the URL. The load balancer triggers the Lambda function and CloudFront begins its invaldiation. This solved the problem of getting Netlify and CloudFront to communicate! Very cool.

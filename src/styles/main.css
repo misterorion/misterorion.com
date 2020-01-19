@@ -100,6 +100,10 @@ article ul > li {
   @apply my-8;
 }
 
+article a:hover.gatsby-resp-image-link {
+  @apply border-0;
+}
+
 /* Prism Dracula start */
 code[class*="language-"],
 pre[class*="language-"] {
