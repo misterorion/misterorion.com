@@ -62,7 +62,7 @@ import time
 def lambda_handler(event, context):
     client = boto3.client("cloudfront")
 
-    distribution = event["queryStringParameters"]["dist_id"]
+    distribution = event["queryStringParameters"]["dist"]
     request = client.create_invalidation(
         DistributionId=distribution,
         InvalidationBatch={
@@ -87,7 +87,7 @@ Inside my ALB, I created a target group that points at my Lambda.
 
 ![Load Balancer Target Group](../images/alb-example-0.png)
 
-Then I created a listener that watches for a path, and a querystring with a key of `token` and a random value. The value is somewhat random to give myself a little more security.
+Then I created a listener that watches for a path, and a querystring with a key of `token` and a random value. The value is random to give myself a little more security.
 
 Here's an example of how the listener might look:
 
@@ -98,7 +98,9 @@ Here's an example of how the listener might look:
 Now I can put together a URL that looks like this:
 
 ```text
-https://lambda.mysite.com/webhooks?dist_id=EWR32F5MCGOV3&token=U9Lp6...
+https://lambda.mysite.com/webhooks?dist_id=EWR32F5MCGOV3&token=u9LP6qbQ
 ```
 
-And plop it into my Netlify deploy configuration. When the deploy succeds, Netlify sends a POST request to the URL. The load balancer triggers the Lambda function and CloudFront begins its invaldiation. This solved the problem of getting Netlify and CloudFront to communicate! Very cool.
+And plop it into my Netlify deploy configuration.
+
+This solved the problem of getting Netlify and CloudFront to communicate! When the deploy succeds, Netlify sends a POST request to the URL. The load balancer triggers the Lambda function and CloudFront begins its invaldiation.

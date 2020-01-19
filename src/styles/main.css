@@ -104,6 +104,10 @@ article a:hover.gatsby-resp-image-link {
   @apply border-0;
 }
 
+figcaption {
+  @apply text-gray-600 text-sm;
+}
+
 /* Prism Dracula start */
 code[class*="language-"],
 pre[class*="language-"] {
