@@ -2,7 +2,7 @@
 title: "Create a Webhook with AWS Lambda"
 date:  "2020-01-17"
 slug: "lambda-webhook"
-description: "Create a simple webhook for your automation with AWS Lambda and Python"
+description: "Create a simple webhook for your automation with AWS Lambda and Python."
 imageFluid:  "../images/aircraft-clouds.jpg"
 tags: ["AWS"]
 ---
