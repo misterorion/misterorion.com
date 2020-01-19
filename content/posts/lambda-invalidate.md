@@ -100,7 +100,7 @@ Here's an example of how the listener might look:
 Now I can put together a tidy URL:
 
 ```text
-https://lambda.mysite.com/webhooks?dist_id=EWR32F5MCGOV3&token=u9LP6qbQ
+https://lambda.mysite.com/webhooks?dist=EWR32F5MCGOV3&token=u9LP6qbQ
 ```
 
 ...and plop it into my Netlify deploy configuration.
