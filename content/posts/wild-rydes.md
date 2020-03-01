@@ -17,4 +17,4 @@ The most challenging part of the workshop was configuring the API Gateway. Havin
 
 In the end, most of us got the app up and working, and watched with satisfaction as our unicorns darted happily across a map, picked up simulated customers, and flew them to their destinations in the cloud.
 
-I’d like to check out more of these workshops in the future. It seems like a neat way to evangelize AWS newcomers. The projects were fun and the staff were extremely knowledgable.
+I’d like to check out more of these workshops in the future. It seems like a neat way to evangelize AWS newcomers. The projects were fun and the staff was extremely knowledgable.

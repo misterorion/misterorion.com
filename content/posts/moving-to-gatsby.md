@@ -68,17 +68,17 @@ In general, I endeavored to modularize as much as I could, extracting components
 
 ### Plugins
 
-Gatsby is incredible. Fast, yet modular and robust via its plugin system. Nonetheless, compared to Hugo with its single, do-it-all binary package, the plugin approach is something I'm not yet comfortable with. From my experience, plugins tend be abandoned, or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
+Gatsby is incredible. Fast, yet modular and robust via its plugin system. Nonetheless, compared to Hugo with its single, do-it-all binary package, the plugin approach is something I'm not yet comfortable with. From my experience, plugins tend to be abandoned or have supply-chain issues such as insecure dependencies. Fortunately, Gatsby's most popular plugins seem to have a lot of developer support.
 
 ### Documentation
 
-I'm extremely grateful for Gatsby's docs but there are occasional inconsistencies. One example is the documentation for adding SEO to Gatsby posts. The documentation goes as far as fetching the data with GraphQL, but does not document passing data into posts in a programmatic way. For this final, crucial step, the docs link you to examples, but the examples, while correct, are inconsistent in their approach. In the end I rolled my own solution. In the future, I hope to smooth out these inconsistencies by contributing to the docs in some way.
+I'm extremely grateful for Gatsby's docs but there are occasional inconsistencies. One example is the documentation for adding SEO to Gatsby posts. The documentation goes as far as fetching the data with GraphQL but does not document passing data into posts in a programmatic way. For this final, crucial step, the docs link you to examples, but the examples, while correct, are inconsistent in their approach. In the end, I rolled a solution of my own. In the future, I hope to smooth out these inconsistencies by contributing to the docs in some way.
 
 ## Other updates: CSS framework and hosting
 
-For a CSS framework, I switched from Bootstrap to Tailwind. I prefer Tailwind because it's less opinionated than Bootstrap. Fighting with CSS frameworks is something I don't want to do anymore. That said, Tailwind is a pretty big framework in terms of file size, so I run it through PurgeCSS to remove the classes I don't need. The result is a very small set of CSS classes which result in very fast renders.
+For a CSS framework, I switched from Bootstrap to Tailwind. I prefer Tailwind because it's less opinionated than Bootstrap. Fighting with CSS frameworks is something I don't want to do anymore. That said, Tailwind is a pretty big framework in terms of file size, so I run it through PurgeCSS to remove the classes I don't need. The result is a very small set of CSS classes which results in very fast renders.
 
-For hosting, I moved from an complex-yet-solid S3/CloudFront/CodeBuild setup on AWS to a simpler, yet still fully-featured setup on Netlify. The complexity of AWS for a small site like this isn't worth it. Netlify has been great so far; it's fast and easy to use. I highly recommend Netfliy for developers using Continuous Integration with their static sites. Netlify even supports Hugo if you don't want to use Gatsby.
+For hosting, I moved from a complex-yet-solid S3/CloudFront/CodeBuild setup on AWS to a simpler, yet still fully-featured setup on Netlify. The complexity of AWS for a small site like this isn't worth it. Netlify has been great so far; it's fast and easy to use. I highly recommend Netlify for developers using Continuous Integration with their static sites. Netlify even supports Hugo if you don't want to use Gatsby.
 
 ## Conclusion
 

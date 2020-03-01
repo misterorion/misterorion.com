@@ -21,7 +21,7 @@ The event took place at Alley Chelsea, a workspace/community area in the Chelsea
 
 ## Highlights and notes
 
-After Michelle introducted the panelists, we watched a video produced by BBC Worldhacks, "Schools of the Future," to provide context for the discussion to follow.
+After Michelle introduced the panelists, we watched a video produced by BBC Worldhacks, "Schools of the Future," to provide context for the discussion to follow.
 
 `youtube: VqK7V58sDAs`
 
@@ -32,7 +32,7 @@ Here are my notes:
 - Right now a huge amount of capital is flowing from venture capital into edtech.
 - The tech landscape has changed completely in the last few years.
 - Ideas are being taken out of big data space and applied to education and schooling. Edtech companies are using large data-sets. What are the pros and dangers of that?
-- There is a clamoring to get in to the space regardless of proven benefits.
+- There is a clamoring to get into this space regardless of proven benefits.
 - Use case #1 for higher-ed: can you use machine learning to predict whether a student is on-track to graduate?
 - Use case #2 for higher-ed: develop "last-mile" programs for students to overcome the claim by employers that students are not prepared to enter the workforce. There is an opportunity in programs to get students trained-up, and provide access points to entry-level jobs.
 - We are seeing a trend toward social, mobile, and curation. "We don't need a single bible of content" anymore. [No more textbooks.]
@@ -40,9 +40,9 @@ Here are my notes:
 - Teachers are not looking for big changes, only incremental additives that make their lives easier day-to-day. Things that save teacher time are the bottom-line.
 - The concept of aligning/teaching to standards is going to be wiped out within the next 4-5 years.
 - There is high learner variability so student profiles will become more of a thing. There should be solutions that allow student profiles to carry, but there are bureaucratic and legal challenges.
-- How to to overcome the "creepiness factor" (cameras on the wall, capturing every data point)?
+- How to overcome the "creepiness factor" (cameras on the wall, capturing every data point)?
 - There is a concept of voice-activated learning, or conversational learning, in which students can interact with bots using their voices.
-- 2018 is "The Year of the Chat Bot."
+- 2018 is "The Year of the chat bot."
 
 ## EdTech Pitches
 
@@ -79,14 +79,14 @@ Since teachers simply don't have enough time or energy to devote personalized at
 
 The main platform for testing and developing these ideas are Alt Schools. Alt schools are essentially a research product, or incubator environment, for this student-centric approach to teaching and learning. Alt schools apply concepts used in the big data space--bringing them into the sphere of education.
 
-Near the end of the discussion, one audience member asked, "How do edtech companies make money?" The answer from the panel was that they sell their product to school districts. While schools districts frequently have limited budgets, there are funds reserved to solve "failing outcomes." I interpret this to mean that schools set aside discretionary money for new or unique projects that could help in any way possible.
+Near the end of the discussion, one audience member asked, "How do edtech companies make money?" The answer from the panel was that they sell their product to school districts. While school districts frequently have limited budgets, there are funds reserved to solve "failing outcomes." I interpret this to mean that schools set aside discretionary money for new or unique projects that could help in any way possible.
 
 ### Blockchain
 
-Blockchain technology was only lightly discussed. The primary use of this technology are systems that synthesize student performance data into a highly-accurate and robust student profile. This profile would follow students throughout their educational career, helping teachers, admins and students themselves track progress on a long time-scale.
+Blockchain technology was only lightly discussed. The primary use of this technology is systems that synthesize student performance data into a highly-accurate and robust student profile. This profile would follow students throughout their educational career, helping teachers, admins and students themselves track progress on a long time-scale.
 
 ## Conclusion
 
-This was a fascinating panel. While I still believe the ideal solution to the problems presented by the panel is more teachers (who have more support financially and administratively), the solutions presented were realistic and practical, and in the end forced me to put some of my initial skepticism to the side.
+This was a fascinating panel. While I still believe the ideal solution to the problems presented by the panel is more teachers (who have more support financially and administratively), the solutions presented were realistic and practical, and in the end, forced me to put some of my initial skepticism to the side.
 
-It's impossible to forsee how this new generation of tech will impact education in the coming decades, but if it can help teachers and their students today, perhaps that's a good place to start.
+It's impossible to predict how this new generation of tech will impact education in the coming decades, but if it can help teachers and their students today, perhaps that's a good place to start.
