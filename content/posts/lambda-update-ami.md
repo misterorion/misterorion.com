@@ -2,7 +2,7 @@
 title: "Updating Launch Templates with Lambda"
 date:  "2020-02-29"
 slug: "lambda-update-ami"
-description: "How many Lambda functions does it take to replace an AMI?"
+description: "How many Lambda functions does it take to update a launch template?"
 imageFluid:  "../images/vinyl-jukebox.jpg"
 tags: ["AWS", "DevOps"]
 ---
