@@ -173,7 +173,7 @@ def lambda_handler(event, context):
             subject = "AMI is current."
             message = "AMI was not updated. AMI is current."
             # Uncomment below to be notified every time the Lambda runs.
-            send_sns_notification(subject, message)
+            #send_sns_notification(subject, message)
             return message
 
     ami_status = check_amis_and_update_if_needed()
