@@ -1,13 +1,13 @@
 ---
-title: "Updating Launch Templates with Lambda"
+title: "Updating EC2 Launch Templates with Lambda"
 date:  "2020-02-29"
 slug: "lambda-update-ami"
-description: "How many Lambda functions does it take to update a launch template?"
+description: "Tired of manually updating your EC2 launch templates?"
 imageFluid:  "../images/vinyl-jukebox.jpg"
 tags: ["AWS", "DevOps"]
 ---
 
-Are you tired of manually updating your auto-scaling group launch templates?
+Are you tired of manually updating your EC2 launch templates?
 
 ## Background
 
