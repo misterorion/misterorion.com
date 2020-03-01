@@ -78,16 +78,16 @@ article h3 {
   @apply text-xl mt-10 font-bold;
 }
 
-article ul {
+article ul,ol {
   @apply list-outside ml-8;
 }
 
 article ul > li {
-  @apply list-disc text-lg mb-4;
+  @apply list-disc text-xl mb-4;
 }
 
 article ol > li {
-  @apply list-decimal text-lg mb-4;
+  @apply list-decimal text-xl mb-4;
 }
 
 .post-date {
