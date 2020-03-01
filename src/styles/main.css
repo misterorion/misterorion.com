@@ -86,6 +86,10 @@ article ul > li {
   @apply list-disc text-lg mb-4;
 }
 
+article ol > li {
+  @apply list-decimal text-lg mb-4;
+}
+
 .post-date {
   @apply text-gray-600;
 }
