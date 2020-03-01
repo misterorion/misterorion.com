@@ -13,13 +13,13 @@ AWS frequently updates the Amazon Machine Image (AMI) for Elastic Container Serv
 
 I created a little Lambda function to take care up of the updates automatically.
 
-### Overview
+## Overview
 
 At 1 p.m. every day, the function checks a parameter which contains the latest-and-greatest ECS AMI ID. Then the function compares this AMI ID with the AMI ID in my ASG launch template. If the two values are different, the function updates the launch template with the new ID. It then sets the new version as the default version and deletes the `$Latest -1` version, so I can roll back if there are any breaking changes in the new AMI.
 
 My ASG is configured to remove instances older than 2 weeks and replace them with fresh instances. Thus, over time, all instances in my ASG will gradually be updated with the latest AMI.
 
-### IAM role for Lambda
+## IAM role for Lambda
 
 As usual, my first step is to create an IAM role. If I don't do this at the beginning, I'll find that my script doesn't work and I'll start second-guessing my code. Looking at it from a permissions-first perspective also helps me think about how the pieces fit together.
 
@@ -45,15 +45,15 @@ Below is the IAM role for this Lambda function. We allow getting a parameter wit
                 "ec2:CreateLaunchTemplateVersion"
             ],
             "Resource": [
-                "arn:aws:sns:us-east-2:209388400143:FAKE-NOTIFY-TOPIC",
-                "arn:aws:ec2:us-east-2:209388400143:launch-template/lt-01bc3g461b389209a"
+                "arn:aws:sns:us-east-2:xxx:FAKE-NOTIFY-TOPIC",
+                "arn:aws:ec2:us-east-2:xxx:launch-template/lt-xxx"
             ]
         }
     ]
 }
 ```
 
-### Lambda function
+## Lambda function
 
 The Lambda is pretty basic Python. The code grabs some environment variables from the Lambda settings. Then it queries the latest IAM ID and compares it to the IAM that the latest launch configuration uses. If the two are different, it updates the launch configuration to use the new IAM and publishes a notification to SNS, which I get in my email inbox.
 
