@@ -1,29 +1,47 @@
 ---
-title: "Updating ASG Launch Templates with Lambda"
+title: "Updating Launch Templates with Lambda"
 date:  "2020-02-29"
 slug: "lambda-update-ami"
 description: "How many Lambda functions does it take to replace an AMI?"
 imageFluid:  "../images/vinyl-jukebox.jpg"
-tags: ["AWS"]
+tags: ["AWS", "DevOps"]
 ---
 
-Are you sick and tired of updating your AWS auto-scaling groups manually? This post may be for you.
+Are you sick and tired of manually updating your auto-scaling group launch templates? Are you fed-up with clicking around in the AWS console like a little monkey every time AWS releases a new AMI?
 
-AWS frequently updates the Amazon Machine Image (AMI) for Elastic Container Service (ECS). The updates usually contain a newer version of the ECS agent as well as kernel updates, security updates, and other miscellaneous fixes. I love patches, but I don't like patching. Eventually, I got tired of clicking around in the console to update my Auto-Scaling Group (ASG) Launch Templates with the new AMI image ID.
+## Lexicon
 
-I created a little Lambda function to take care up of the updates automatically.
+As you probably know by now, Amazon loves their three-letter acronyms.
 
-## Overview
+This mini-tutorial touches on the following AWS services:
 
-At 1 p.m. every day, the function checks a parameter which contains the latest-and-greatest ECS AMI ID. Then the function compares this AMI ID with the AMI ID in my ASG launch template. If the two values are different, the function updates the launch template with the new ID. It then sets the new version as the default version and deletes the `$Latest -1` version, so I can roll back if there are any breaking changes in the new AMI.
+* ALB - Application Load Balancer
+* AMI - Amazon Machine Image
+* ASG - Auto-Scaling Group
+* EC2 - Elastic Compute Cloud
+* ECS - Elastic Container Service
+* EFS - Elastic File System
+* IAM - Identity & Access Management
+* SNS - Simple Notification Service
+* SSM - Systems Manager
+
+## Background
+
+AWS frequently updates the machine images (AMIs) used for their compute instances. The updates usually contain kernel updates, security patches, and other miscellaneous fixes. This is nice because the new AMIs contain a roll-up of new software so you don't need to use other configuration-management software to update your instances. Even so, rolling the new AMI out to your fleet of EC2 instances can be a bit tedious.
+
+I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an ASG. I think of them as a pool of resources (compute and memory). The only configuration I do is mount my EFS share at boot so my containers can mount directories as volumes. This mounting is accomplished by the `user-data` section of my launch template.
+
+When Amazon publishes new ECS-optimized AMIs, I need to update all ECS instances my cluster to this AMI. How do we do this without any manual work?
+
+To make my life easier, I created a little Lambda function to take care of it.
 
 My ASG is configured to remove instances older than 2 weeks and replace them with fresh instances. Thus, over time, all instances in my ASG will gradually be updated with the latest AMI.
 
 ## IAM role for Lambda
 
-As usual, my first step is to create an IAM role. If I don't do this at the beginning, I'll find that my script doesn't work and I'll start second-guessing my code. Looking at it from a permissions-first perspective also helps me think about how the pieces fit together.
+As usual, my first step when working with Lambda is to create an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my function doesn't work and I'll start second-guessing my code, while the root cause is permissions. Approaching the problem with a security-first mindset also helps me think about how the pieces fit together.
 
-Below is the IAM role for this Lambda function. We allow getting a parameter with the latest launch template version, creating and deleting launch template versions and sending SNS notification updates. The resource names are made up for security reasons.
+Below is the IAM role for this Lambda function. Very simple. We allow getting an SSM parameter with the latest launch template version, allow creating and deleting EC2 launch template versions and sending SNS notification updates. The resource names are made up for security reasons.
 
 ```json
 {
@@ -55,7 +73,7 @@ Below is the IAM role for this Lambda function. We allow getting a parameter wit
 
 ## Lambda function
 
-The Lambda is pretty basic Python. The code grabs some environment variables from the Lambda settings. Then it queries the latest IAM ID and compares it to the IAM that the latest launch configuration uses. If the two are different, it updates the launch configuration to use the new IAM and publishes a notification to SNS, which I get in my email inbox.
+The Lambda is blunt-force Python. The code grabs some environment variables from the Lambda settings. Then it queries the latest IAM ID and compares it to the IAM that the latest launch configuration uses. If the two are different, it updates the launch configuration to use the new IAM and publishes a notification to SNS, which sends an email.
 
 ```python
 # lambda_function.py
@@ -155,14 +173,20 @@ def lambda_handler(event, context):
 
 ```
 
-The trickiest bit I encountered coding this was getting the current launch template AMI. The `dictionary` response with the template information is massive, so it took some time to suss out the location of the `ImageId`.
+The trickiest bit I encountered coding this was getting the current launch template AMI. The `dictionary` response with the template information is convoluted, so it took some time to suss out the location of the `ImageId`.
 
 ## Scheduling
 
-We can also configure the function to run every day on a schedule using CloudWatch. In the example below, the Lambda is run every day at 1 p.m. UTC. If there is a new AMI released, my launch template will be updated and I'll get an email letting me know.
+We can configure the function to run every day on a schedule using CloudWatch. In the example below, the Lambda is run every day at 1 p.m. UTC. If there is a new AMI released, my launch template will be updated and I'll get an email letting me know.
 
 ![AWS Lambda template designer](../images/lambda-template-designer.png)
 
+## ToDo
+
+I'd like to receive an email if any part of this process fails. 
+
 ## Conclusion
+
+Every day at a pre-configured time, the function checks a parameter which contains the latest-and-greatest ECS AMI ID. Then, the function compares this AMI ID with the AMI ID in my ASG launch template. If the two values are different, the function updates the launch template with the new ID. Then it sets the new version as the default version and deletes the `$Latest -1` version, so I can roll back if there are any breaking changes in the new AMI. Finally, it sends a publish event to SNS, notifying me that the AMI has been updated.
 
 Hopefully this function will let me just forget about updating images in my launch templates.
