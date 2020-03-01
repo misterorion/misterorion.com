@@ -7,23 +7,21 @@ imageFluid:  "../images/vinyl-jukebox.jpg"
 tags: ["AWS", "DevOps"]
 ---
 
-Are you sick and tired of manually updating your auto-scaling group launch templates? Are you fed-up with clicking around in the AWS console like a little monkey every time AWS releases a new AMI?
+Are you tired of manually updating your auto-scaling group launch templates?
 
 ## Background
 
-I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an auto-scaling group. I think of them as a pool of resources (compute and memory). The only configuration configuration necessary is mounting my elasitc file system at boot so my containers can mount directories as volumes. This is accomplished by the `user-data` section of my launch template.
+I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an auto-scaling group. I think of them as a pool of resources (cattle not pets). The only configuration performed is mounting an elasitc file system at boot. This is accomplished by the `user-data` section of my launch template.
 
-AWS frequently updates the machine images (AMIs) used for their compute instances. The updates usually contain kernel updates, security patches, and other miscellaneous fixes. This is nice because the new AMIs contain a roll-up of new software so you don't need to use other configuration-management software to update your instances.
-
-When Amazon publishes new ECS-optimized AMIs, I need to update all ECS instances my cluster to this AMI. How do we do this without any manual work?
-
-To make my life easier, I created a little Lambda function to take care of it.
+AWS frequently updates their ECS-optimized AMIs. The updates contain new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all ECS instances my cluster to this new AMI. How do we do this without any manual work? To make my life easier, I created a little Lambda function to take care of it.
 
 ## IAM role for Lambda
 
 As usual, my first step when working with Lambda is to create an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my function doesn't work and I'll start second-guessing my code, while the root cause is permissions. Approaching the problem with a security-first mindset also helps me think about how the pieces fit together.
 
-Below is the IAM role for this Lambda function. Very simple. We allow getting an SSM parameter with the latest launch template version, allow creating and deleting EC2 launch template versions and sending SNS notification updates. Under `resource` you should add the full `arn`s to your EC2 launch template, SNS topic and auto-scaling group.
+Below is the IAM policy for this Lambda function. We allow getting an SSM parameter, creating and deleting EC2 launch template versions, creating auto-scaling group actions, and sending SNS notification updates.
+
+If you would like to use this policy, remember to add the full `arn` of your EC2 launch template, SNS topic and auto-scaling group.
 
 ```json
 {
@@ -58,7 +56,7 @@ Below is the IAM role for this Lambda function. Very simple. We allow getting an
 
 ## Lambda function
 
-The Lambda is blunt-force Python. My favorite!
+The Lambda itself is blunt-force Python. My favorite!
 
 1. Accept a trigger from CloudWatch Events (a `cron` expression).
 2. Check the SSM parameter for the latest-and-greatest ECS-optimized AMI ID.
@@ -68,8 +66,6 @@ The Lambda is blunt-force Python. My favorite!
 6. Publish an event to SNS, notifying me that the AMI has been updated.
 
 For purpose of example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an intial `desired` size of 1.
-
-
 
 ```python
 # lambda_function.py
@@ -199,11 +195,13 @@ The trickiest bit I encountered coding this was getting the current launch templ
 
 ## Scheduling
 
-We can configure the function to run every day on a schedule using CloudWatch. In the example below, the Lambda is run every day at 1 p.m. UTC. If there is a new AMI released, my launch template will be updated and I'll get an email letting me know.
+We configure the function to run every day on a schedule using CloudWatch. In the example below, the Lambda is run every day at 1 p.m. UTC.
 
 ![AWS Lambda template designer](../images/lambda-template-designer.png)
 
-The Lambda sets the `desired` size to 2, and then sets it back to 1 after a period of 15 minutes. This time-window is enough for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
+The Lambda sets the `desired` size to 2, and then sets it back to 1 after a period of 15 minutes. This is enough time for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. This ensures zero down time.
+
+Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
 
 ![AWS Lambda template designer](../images/asg-scheduled-actions.png)
 
