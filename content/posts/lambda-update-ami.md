@@ -58,7 +58,18 @@ Below is the IAM role for this Lambda function. Very simple. We allow getting an
 
 ## Lambda function
 
-The Lambda is blunt-force Python. The code grabs some environment variables from the Lambda settings. Then it queries the latest IAM ID and compares it to the IAM that the latest launch configuration uses. If the two are different, it updates the launch configuration to use the new IAM and publishes a notification to SNS, which sends an email.
+The Lambda is blunt-force Python. My favorite!
+
+1. Accept a trigger from CloudWatch Events (a `cron` expression).
+2. Check the SSM parameter for the latest-and-greatest ECS-optimized AMI ID.
+3. Compare this AMI ID with the AMI ID in my ASG launch template. If the values differ, update the launch template with the new AMI ID.
+4. Set the new launch template version as the default version, delete the `$Latest -2` version and keep the `$Latest -1` so I can roll back if necessary.
+5. Create two ASG scheduled actions; one to scale-up instances with the new AMI, one to scale-down (terminate) instances with the old AMI.
+6. Publish an event to SNS, notifying me that the AMI has been updated.
+
+For purpose of example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an intial `desired` size of 1.
+
+
 
 ```python
 # lambda_function.py
@@ -135,8 +146,6 @@ def lambda_handler(event, context):
             AutoScalingGroupName=asg_name,
             ScheduledActionName=f"Desire {desired_capacity}",
             StartTime=start_time,
-            MinSize=1,
-            MaxSize=2,
             DesiredCapacity=desired_capacity
         )
 
@@ -186,7 +195,7 @@ def lambda_handler(event, context):
 
 ```
 
-The trickiest bit I encountered coding this was getting the current launch template AMI. The `dictionary` response with the template information is convoluted, so it took some time to suss out the location of the `ImageId`.
+The trickiest bit I encountered coding this was getting the current launch template AMI. The `dictionary` response with the template information is convoluted, so it took some time to suss out the location of `ImageId`.
 
 ## Scheduling
 
@@ -194,10 +203,10 @@ We can configure the function to run every day on a schedule using CloudWatch. I
 
 ![AWS Lambda template designer](../images/lambda-template-designer.png)
 
-Our Lambda function creates scheduled actions in our ASG, increasing the desired instance count, then decreasing it. Our ASG termination policy is configured to terminate the oldest instance first, ensuring that instances with the new AMI will stay in service when the scale-down event occurs.
+The Lambda sets the `desired` size to 2, and then sets it back to 1 after a period of 15 minutes. This time-window is enough for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
+
+![AWS Lambda template designer](../images/asg-scheduled-actions.png)
 
 ## Conclusion
 
-Every day at a pre-configured time, the function checks a parameter which contains the latest-and-greatest ECS AMI ID. Then, the function compares this AMI ID with the AMI ID in my ASG launch template. If the two values are different, the function updates the launch template with the new ID. Then it sets the new version as the default version and deletes the `$Latest -1` version, so I can roll back if there are any breaking changes in the new AMI. Finally, it sends a publish event to SNS, notifying me that the AMI has been updated.
-
-Hopefully this function will let me just forget about updating images in my launch templates!
+I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways it's easier to write your own automation code than relying on whatever tools AWS may or may not have. Boto3 is very mature, and the documentation is great, unlike the standard AWS docs.
