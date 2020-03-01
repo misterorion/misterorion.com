@@ -191,19 +191,19 @@ def lambda_handler(event, context):
 
 ```
 
-The trickiest bit I encountered coding this was getting the current launch template AMI. The `dictionary` response with the template information is convoluted, so it took some time to suss out the location of `ImageId`.
+If you look closely, the Lambda sets the `desired` size to 2 and then sets it back to 1 after 15 minutes. This is enough time for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. This ensures zero downtime.
+
+![ASG scheduled actions](../images/asg-scheduled-actions.png)
+
+Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
+
+The trickiest bit I encountered coding this was getting the current launch template AMI. The response `dictionary` containing the template information is convoluted, so it took some time to suss out the location of `ImageId`.
 
 ## Scheduling
 
 We configure the function to run every day on a schedule using CloudWatch. In the example below, the Lambda is run every day at 1 p.m. UTC.
 
 ![Lambda template designer](../images/lambda-template-designer.png)
-
-The Lambda sets the `desired` size to 2 and then sets it back to 1 after 15 minutes. This is enough time for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. This ensures zero downtime.
-
-Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
-
-![ASG scheduled actions](../images/asg-scheduled-actions.png)
 
 ## Conclusion
 
