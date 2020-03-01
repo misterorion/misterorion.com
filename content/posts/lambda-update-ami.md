@@ -1,5 +1,5 @@
 ---
-title: "Update an ALB Target Group with Lambda"
+title: "Updating ASG Launch Templates with Lambda"
 date:  "2020-02-29"
 slug: "lambda-update-ami"
 description: "How many Lambda functions does it take to replace an AMI?"
@@ -7,7 +7,7 @@ imageFluid:  "../images/vinyl-jukebox.jpg"
 tags: ["AWS"]
 ---
 
-Do you use launch templates and auto-scaling? This post may be for you.
+Are you sick and tired of updating your AWS auto-scaling groups manually? This post may be for you.
 
 AWS frequently updates the Amazon Machine Image (AMI) for Elastic Container Service (ECS). The updates usually contain a newer version of the ECS agent as well as kernel updates, security updates, and other miscellaneous fixes. I love patches, but I don't like patching. Eventually, I got tired of clicking around in the console to update my Auto-Scaling Group (ASG) Launch Templates with the new AMI image ID.
 
@@ -138,12 +138,11 @@ def lambda_handler(event, context):
         if current_launch_template_ami != latest_ecs_ami:
             update_current_launch_template_ami(latest_ecs_ami)
             set_launch_template_default_version()
-            message = f"AMI was updated! New AMI is {latest_ecs_ami}."
-            send_sns_nofication("AMI was updated!", message)
+            message = f"Launch template updated with AMI {latest_ecs_ami}."
+            send_sns_nofication("Template AMI updated", message)
             return message
         else:
-            message = f"AMI was not updated. Launch Template AMI is current."
-            send_sns_nofication("AMI was NOT updated!", message)
+            message = f"Launch Template not updated."
             return message
 
     ami_status = check_amis_and_update_if_needed()
