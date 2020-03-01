@@ -13,7 +13,7 @@ Are you tired of manually updating your auto-scaling group launch templates?
 
 I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an auto-scaling group. I think of them as a pool of resources (cattle not pets). The only configuration performed is mounting an elastic file system at boot. This is accomplished by the `user-data` section of my launch template.
 
-AWS frequently updates ECS-optimized AMIs. The updates contain new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all ECS instances a cluster to this new AMI. How do we do this without any manual work? To make my life easier, I created a little Lambda function to take care of it.
+AWS frequently updates ECS-optimized AMIs. The updates contain new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all ECS instances a cluster to this new AMI. How do we do this without any manual work? To make life easier, I created a Lambda function to handle it.
 
 ## IAM role for Lambda
 
@@ -207,6 +207,6 @@ Our ASG termination policy is configured to terminate instances with the oldest 
 
 ## Conclusion
 
-I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than relying on tools AWS may or may not have. Boto3 is very mature, and the documentation is great, unlike the standard AWS docs.
+I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than relying on tools AWS may or may not have. Boto3 is powerful, and the documentation is great, unlike the standard AWS docs.
 
 I hope this mini-tutorial helps some of the automation fans out there!
