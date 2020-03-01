@@ -2,22 +2,18 @@
 title: "Updating EC2 Launch Templates with Lambda"
 date:  "2020-02-29"
 slug: "lambda-update-ami"
-description: "Tired of manually updating your EC2 launch templates?"
+description: "Push template updates to your auto-scaling group with Python and AWS Lambda."
 imageFluid:  "../images/vinyl-jukebox.jpg"
-tags: ["AWS", "DevOps"]
+tags: ["AWS", "DevOps", "Python"]
 ---
 
-Are you tired of manually updating your EC2 launch templates?
+Are you tired of manually updating your EC2 launch templates and auto-scaling groups?
 
-## Background
-
-I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an auto-scaling group. I think of them as a pool of resources (cattle not pets). The only configuration performed is mounting an elastic file system at boot. This is accomplished by the `user-data` section of my launch template.
-
-AWS frequently updates ECS-optimized AMIs. The updates contain new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all ECS instances a cluster to this new AMI. How do we do this without any manual work? To make life easier, I created a Lambda function to handle it.
+I run all of my applications in containers with ECS. If you're familiar with ECS, you know that AWS frequently updates it's ECS-Optimized AMI. The updates contain all kinds of goodies, such as new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all the things, so how do we accomplish this with automation? One way is with Python and AWS Lambda!
 
 ## IAM role for Lambda
 
-As usual, my first step when working with Lambda is to create an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my function doesn't work and I'll start second-guessing my code, while the root cause is permissions. Approaching the problem with a security-first mindset also helps me think about how the pieces fit together.
+As usual, my first step when working with Lambda is to create an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the pieces fit together.
 
 Below is the IAM policy for this Lambda function. We allow getting an SSM parameter, creating and deleting EC2 launch template versions, creating auto-scaling group actions, and sending SNS notification updates.
 
@@ -65,7 +61,7 @@ The Lambda itself is blunt-force Python. My favorite!
 5. Create two ASG scheduled actions; one to scale-up instances with the new AMI, one to scale-down (terminate) instances with the old AMI.
 6. Publish an event to SNS, notifying me that the AMI has been updated.
 
-For this example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an initial `desired` size of 1.
+> For this example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an initial `desired` size of 1.
 
 ```python
 # lambda_function.py
@@ -191,11 +187,11 @@ def lambda_handler(event, context):
 
 ```
 
-If you look closely, the Lambda sets the `desired` size to 2 and then sets it back to 1 after 15 minutes. This is enough time for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. This ensures zero downtime.
+If you look closely, you'll notice the Lambda setting the `desired` size to 2 and then sets it back to 1 after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. This ensures zero downtime.
 
 ![ASG scheduled actions](../images/asg-scheduled-actions.png)
 
-Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
+> Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
 
 The trickiest bit I encountered coding this was getting the current launch template AMI. The response `dictionary` containing the template information is convoluted, so it took some time to suss out the location of `ImageId`.
 
