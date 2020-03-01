@@ -2,14 +2,14 @@
 title: "Moving from Hugo to Gatsby"
 date:  "2020-01-05"
 slug: "moving-to-gatsby"
-description: "I moved my personal site from Hugo to Gatsby and now it's fast as hell."
+description: "I moved my site from Hugo to Gatsby and now it's fast as hell."
 imageFluid:  "../images/great-gatsby.jpg"
 tags: ["Code", "Gatsby"]
 ---
 
-This site is now made with Gatsby! 
+This site is now made with Gatsby!
 
-Meant as a learning experience, this update forced me to get my hands dirty with two technologies I had no prior experience with: React and GraphQL. As a result, this site is now a screaming-fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit.
+Meant as a learning experience, this update forced me to get my hands dirty with two technologies I had no prior experience with, React and GraphQL. As a result, this site is now a screaming-fast Progressive Web App and gets 100s across the board in Google's Lighthouse audit.
 
 > If you just want to see the code, [here's the GitHub repository](https://github.com/misterorion/misterorion.com).
 

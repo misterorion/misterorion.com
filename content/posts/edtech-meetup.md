@@ -34,7 +34,7 @@ Here are my notes:
 - Ideas are being taken out of big data space and applied to education and schooling. Edtech companies are using large data-sets. What are the pros and dangers of that?
 - There is a clamoring to get into this space regardless of proven benefits.
 - Use case #1 for higher-ed: can you use machine learning to predict whether a student is on-track to graduate?
-- Use case #2 for higher-ed: develop "last-mile" programs for students to overcome the claim by employers that students are not prepared to enter the workforce. There is an opportunity in programs to get students trained-up, and provide access points to entry-level jobs.
+- Use case #2 for higher-ed: develop "last-mile" programs for students to overcome the claim by employers that students are not prepared to enter the workforce. There is an opportunity in programs to get students trained-up and provide access points to entry-level jobs.
 - We are seeing a trend toward social, mobile, and curation. "We don't need a single bible of content" anymore. [No more textbooks.]
 - The average career is only 5 years. High burnout rate.
 - Teachers are not looking for big changes, only incremental additives that make their lives easier day-to-day. Things that save teacher time are the bottom-line.
@@ -42,26 +42,26 @@ Here are my notes:
 - There is high learner variability so student profiles will become more of a thing. There should be solutions that allow student profiles to carry, but there are bureaucratic and legal challenges.
 - How to overcome the "creepiness factor" (cameras on the wall, capturing every data point)?
 - There is a concept of voice-activated learning, or conversational learning, in which students can interact with bots using their voices.
-- 2018 is "The Year of the chat bot."
+- 2018 is "The Year of the chatbot."
 
 ## EdTech Pitches
 
 Finally, we heard brief rundowns from a few tech companies. Here are two I found interesting.
 
-- [Initify](https://www.initiafy.com/) is a contractor management system. Companies using software can create a portal system with forms, orientation material and training documents to help onboard contractors and temporary employees. It also allows organizations to manage contractors through their tenure.
+- [Initify](https://www.initiafy.com/) is a contractor management system. Companies using this software can create a portal system with forms, orientation material and training documents to help onboard contractors and temporary employees. It also allows organizations to manage contractors through their tenure.
 - [KnowHowDo](https://www.knowhowdo.com/) is a "lifestyle learning" platform. Lifestyle learning is a term used to describe how people teach themselves new skills, learn more about their hobbies, pass-times, etc. This company says they will help develop your course, produce it, and distribute it to prime market areas according to your content.
 
 ## My thoughts
 
 ### Preface
 
-Whenever I hear an abundance of buzzwords (#AI, #Blockchain, #VR, #AR) attached to a thing, I'm skeptical. We see it frequently with new tech: enthusiasm and hype build, but go nowhere. Indeed, AI as a concept has been around for decades with the big breakthrough perpetually [just around the corner](https://www.geektime.com/2014/12/01/how-intelligent-is-artificial-intelligence-we-ask-the-big-thinkers/).
+Whenever I hear an abundance of buzzwords (#AI, #Blockchain, #VR, #AR) attached to a thing, I'm skeptical. We see it frequently with new tech: enthusiasm and hype build but go nowhere. Indeed, AI as a concept has been around for decades with the big breakthrough perpetually [just around the corner](https://www.geektime.com/2014/12/01/how-intelligent-is-artificial-intelligence-we-ask-the-big-thinkers/).
 
 How is this latest resurgence of AI any different from those that came before? Are edtech companies for real? Or are they baiting venture capitalists and school districts with flashy buzzwords? In the context of education, how can this "new" generation of tech help a child understand *The Catcher in the Rye* or solve quadratic equations? How can it help teachers teach this material?
 
-### What problem is edtech seeking to solve?
+### The problem edtech seeking to solve
 
-The problem, according to the panelists, involves teachers and students alike. Teachers are overworked, and burn out is high. Students lack material appropriate to their learning level and style. There is a set standard, or curriculum, and classes are taught against it—regardless of each individual student's ability.
+The problem, according to the panelists, involves teachers and students alike. Teachers are overworked, and burn out is high. Students lack material appropriate to their learning level and style. There is a set curriculum, and classes are taught against it--regardless of each student's ability.
 
 ### Artificial "Intelligence"
 
@@ -69,7 +69,7 @@ Part of the solution, according to edtech companies, involves the use of artific
 
 What is predictive analysis? According to Wikipedia,
 
-> Predictive analytics encompasses a variety of statistical techniques from predictive modelling, machine learning, and data mining that analyze current and historical facts to make predictions about future or otherwise unknown events.
+> Predictive analytics encompasses a variety of statistical techniques from predictive modeling, machine learning, and data mining that analyze current and historical facts to make predictions about future or otherwise unknown events.
 
 AI is great at learning patterns. Applied to the classroom, AI can quickly process patterns in the learning environment and generate highly-accurate student profiles. With this data, material students are presented with can be made hyper-relevant, or even personal. Meanwhile, teachers prioritize time more efficiently (if you only had 20 minutes with your students, you know exactly where to spend it). Data can be used to drive instruction.
 
