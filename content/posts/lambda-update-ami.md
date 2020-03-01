@@ -11,9 +11,9 @@ Are you tired of manually updating your auto-scaling group launch templates?
 
 ## Background
 
-I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an auto-scaling group. I think of them as a pool of resources (cattle not pets). The only configuration performed is mounting an elasitc file system at boot. This is accomplished by the `user-data` section of my launch template.
+I run all of my applications in containers on ECS. The ECS instances in my cluster are just bare-bones, compute instances in an auto-scaling group. I think of them as a pool of resources (cattle not pets). The only configuration performed is mounting an elastic file system at boot. This is accomplished by the `user-data` section of my launch template.
 
-AWS frequently updates their ECS-optimized AMIs. The updates contain new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all ECS instances my cluster to this new AMI. How do we do this without any manual work? To make my life easier, I created a little Lambda function to take care of it.
+AWS frequently updates ECS-optimized AMIs. The updates contain new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. I want to update all ECS instances a cluster to this new AMI. How do we do this without any manual work? To make my life easier, I created a little Lambda function to take care of it.
 
 ## IAM role for Lambda
 
@@ -21,7 +21,7 @@ As usual, my first step when working with Lambda is to create an IAM policy and 
 
 Below is the IAM policy for this Lambda function. We allow getting an SSM parameter, creating and deleting EC2 launch template versions, creating auto-scaling group actions, and sending SNS notification updates.
 
-If you would like to use this policy, remember to add the full `arn` of your EC2 launch template, SNS topic and auto-scaling group.
+If you would like to use this policy, remember to add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.
 
 ```json
 {
@@ -65,7 +65,7 @@ The Lambda itself is blunt-force Python. My favorite!
 5. Create two ASG scheduled actions; one to scale-up instances with the new AMI, one to scale-down (terminate) instances with the old AMI.
 6. Publish an event to SNS, notifying me that the AMI has been updated.
 
-For purpose of example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an intial `desired` size of 1.
+For this example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an initial `desired` size of 1.
 
 ```python
 # lambda_function.py
@@ -197,14 +197,16 @@ The trickiest bit I encountered coding this was getting the current launch templ
 
 We configure the function to run every day on a schedule using CloudWatch. In the example below, the Lambda is run every day at 1 p.m. UTC.
 
-![AWS Lambda template designer](../images/lambda-template-designer.png)
+![Lambda template designer](../images/lambda-template-designer.png)
 
-The Lambda sets the `desired` size to 2, and then sets it back to 1 after a period of 15 minutes. This is enough time for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. This ensures zero down time.
+The Lambda sets the `desired` size to 2 and then sets it back to 1 after 15 minutes. This is enough time for the new instances to spin up, and applications to reach a healthy state and start receiving traffic from the load balancer. This ensures zero downtime.
 
 Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
 
-![AWS Lambda template designer](../images/asg-scheduled-actions.png)
+![ASG scheduled actions](../images/asg-scheduled-actions.png)
 
 ## Conclusion
 
-I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways it's easier to write your own automation code than relying on whatever tools AWS may or may not have. Boto3 is very mature, and the documentation is great, unlike the standard AWS docs.
+I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than relying on tools AWS may or may not have. Boto3 is very mature, and the documentation is great, unlike the standard AWS docs.
+
+I hope this mini-tutorial helps some of the automation fans out there!
