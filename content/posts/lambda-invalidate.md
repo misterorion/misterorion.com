@@ -15,13 +15,13 @@ So, I rolled up a tidy Netlify/AWS hybrid solution. Netlify builds the static HT
 
 This solved the large file problem. Cheap, durable storage of the PDFs in S3, with Netlify's dead-simple CI/CD automation.
 
-Yet, there is another problem. What if we update the site content files and Netlify does a deploy? How will CloudFront know there is new content? We need to somehow send an invalidation request to CloudFront after each Netlify deploy.
+Yet, there is another problem. What if we update the site content files and Netlify does a deploy? How will CloudFront know there is new content? We need to somehow send an invalidation request to CloudFront after each Netlify deployment.
 
-I decided to create my own webhook using AWS.
+I decided to create a webhook using a few AWS tools.
 
 ## AWS webhook recipe
 
-Simply put, the webhook is a listener on my Application Load Balancer (ALB) that points to a Lambda function. For convenience, I have a `lambda.` subdomain pointed at the ALB. The ALB listens for that host, and specific query strings, then forwards it to the Lambda. The Lambda runs some Python code to generate a CloudFront invalidation.
+Simply put, the webhook is a listener on my Application Load Balancer (ALB) that points to a Lambda function. For convenience, I have a `lambda.` subdomain pointed at the ALB. The ALB listens for that host and specific query strings. Then it forwards both of them to the Lambda function. The function then triggers a CloudFront invalidation.
 
 ### IAM role for Lambda
 
@@ -32,7 +32,6 @@ Before creating the Lambda function, I created an IAM role with very basic permi
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "cloudfront:CreateInvalidation",
             "Resource": "*"
@@ -79,7 +78,7 @@ I wanted a function I could use with other distributions, so we tell Lambda to l
 
 We invalidate all paths in the site with `/*`. This is fine for small sites. If your needs are more complex, you can use a Python list with multiple paths. CloudFront also needs a unique `CallerReference` so we just use the current time.
 
-Finally, we send a JSON response back to the ALB with a 200 HTTP response code. Netlify requires webhooks to return a HTTP response code (other than 4xx or 5xx), otherwise the webhook is disabled.
+Finally, we send a JSON response back to the ALB with a 200 HTTP response code. Netlify requires webhooks to return an HTTP response code (other than 4xx or 5xx). Without an acceptable response code, the webhook becomes disabled.
 
 I used the IAM role defined earlier for this function.
 
@@ -89,7 +88,7 @@ In my ALB settings, I created a target group and pointed it at my Lambda.
 
 ![ALB Target Group](../images/alb-example-0.png)
 
-Then, I created a listener. It watches for a path, and a querystring with a key of `token` assigned a random value. The value is random to provide a little security.
+Then, I created a listener. It watches for a path and a query string with a key of `token`, which is assigned a random value. The value is random to provide a little security.
 
 Here's an example of how the listener might look:
 
@@ -105,4 +104,4 @@ https://lambda.mysite.com/webhooks?dist=EWR32F5MCGOV3&token=u9LP6qbQ
 
 ...and plop it into my Netlify deploy configuration.
 
-When the deploy succeds, Netlify sends a POST request to the URL. The load balancer triggers the Lambda function and CloudFront begins its invaldiation.
+When the deploy succeeds, Netlify sends a POST request to the URL. The load balancer triggers the Lambda function and CloudFront begins its invalidation.
