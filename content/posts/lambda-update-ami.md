@@ -13,19 +13,19 @@ I run all of my applications in containers on Amazon's Elastic Container Service
 
 ## Scheduling
 
-First, let's consider how our Lambda can be triggered. One way is with SNS notifications, and quite fortunately, AWS publishes new AMI information as SNS topics. You can check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I'm using `us-east-2` in this guide.
+First, let's consider how our Lambda can be triggered. One way is with SNS notifications. Fortunately, AWS publishes new AMI information as SNS topics. Check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I'm using `us-east-2` in this guide.
 
-We'll subscribe to this topic and add our Lambda function as an endpoint, which will allow us to add it as a trigger in the designer.
+> We subscribe to the topic for our region and add our Lambda function as an endpoint, which will allow us to add it as a trigger in the designer.
 
 ![Lambda template designer](../images/lambda-template-designer.png)
 
 ## IAM role for Lambda
 
-Before writing any code I like to sketch out an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the building blocks fit together.
+Before writing any code I like to sketch out an IAM policy. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the building blocks fit together.
 
-Below is the IAM policy for this Lambda function. We allow describing, creating and deleting launch template versions, creating auto-scaling group actions, and publishing SNS notifications.
+Below is the final IAM policy for this Lambda function's IAM role. We allow describing, creating and deleting launch template versions, creating auto-scaling group actions, and publishing SNS notifications.
 
-> If you would like to use this policy, remember to add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.
+> If you would like to use this policy, add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.
 
 ```json
 {
@@ -182,6 +182,6 @@ If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` t
 
 The trickiest bit I encountered coding this was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
 
-I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than relying on tools AWS may or may not have. Boto3 is powerful, and the documentation is great, unlike many AWS docs.
+I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than rely on tools AWS may or may not have. Boto3 is powerful, and the documentation is great, unlike many AWS docs.
 
-I hope this mini-tutorial helps some of the automation fans out there!
+Hopefully, this mini-tutorial helps some automation fans out there!
