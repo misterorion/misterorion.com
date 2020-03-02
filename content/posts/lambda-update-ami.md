@@ -11,6 +11,12 @@ Tired of manually updating your EC2 launch templates and auto-scaling groups?
 
 I run all of my applications in containers on Amazon's Elastic Container Service (ECS). If you're familiar with ECS, you know that AWS frequently updates it's ECS-Optimized AMI for EC2. The updates contain all kinds of goodies, such as new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. Since we want to update all the things, how do we accomplish it with automation? One way is with Python and AWS Lambda!
 
+## Scheduling
+
+Lambdas can be triggered via SNS notifications, as is the case here. AWS publishes SNS topics with the lastest AMI information.
+
+![Lambda template designer](../images/lambda-template-designer.png)
+
 ## IAM role for Lambda
 
 As usual, my first step when working with Lambda is to create an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the components fit together.
@@ -71,7 +77,7 @@ def lambda_handler(event, context):
 
     sns_message = json.loads(event["Records"][0]["Sns"]["Message"])
 
-    latest_ami = sns_message["ECSAmis"][0]["Regions"]["us-east-2"]["ImageId"]
+    new_ami = sns_message["ECSAmis"][0]["Regions"]["us-east-2"]["ImageId"]
 
     # Get values from Lambda environment variables.
     launch_template_id = os.environ["launch_template_id"]
@@ -92,7 +98,7 @@ def lambda_handler(event, context):
                 "ImageId": ami
             }
         )
-        print(f"New launch template created with AMI: {ami}")
+        print(f"New launch template created with AMI {ami}")
 
     def set_launch_template_default_version():
         response = ec2.modify_launch_template(
@@ -113,7 +119,7 @@ def lambda_handler(event, context):
     def create_asg_scheduled_action(start_time, desired_capacity):
         response = asg.put_scheduled_update_group_action(
             AutoScalingGroupName=asg_name,
-            ScheduledActionName=f"Desire {desired_capacity}",
+            ScheduledActionName=f"desire-{desired_capacity}",
             StartTime=start_time,
             DesiredCapacity=desired_capacity
         )
@@ -128,7 +134,7 @@ def lambda_handler(event, context):
 
     def update_launch_template_and_asg():
         # Update template AMI and set as default
-        update_current_launch_template_ami(latest_ami)
+        update_current_launch_template_ami(new_ami)
         set_launch_template_default_version()
 
         # Create future ASG actions to roll out the new AMI
@@ -140,7 +146,7 @@ def lambda_handler(event, context):
 
         # Sent a notification that the update succeeded.
         subject = "AMI updated!"
-        message = f"AMI updated! New AMI is {latest_ami}."
+        message = f"AMI updated! New AMI is {new_ami}."
         send_sns_notification(subject, message)
         return message
 
@@ -163,12 +169,6 @@ If you look closely, you'll see that our code sets the ASG `desired` instance co
 > Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
 
 The trickiest bit I encountered coding this was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
-
-## Scheduling
-
-Lambdas can be triggered via SNS notifications, as is the case here. AWS publishes SNS topics with the lastest AMI information.
-
-![Lambda template designer](../images/lambda-template-designer.png)
 
 ## Conclusion
 
