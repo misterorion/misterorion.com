@@ -15,7 +15,7 @@ How do we update all instances in our ECS cluster with the new AMI? Since we wan
 
 ## Scheduling
 
-First, let's consider how our Lambda can be triggered. One way is with SNS notifications. Fortunately, AWS publishes new AMI information as SNS topics. Check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I use `us-east-2` in this guide.
+First, let's consider how our Lambda can be triggered. One way is with SNS notifications. Thankfully, AWS publishes new AMI information as SNS topics. Check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I use `us-east-2` in this guide.
 
 > We subscribe to the topic for our region and add our Lambda function as an endpoint, which will allow us to add it as a trigger in the designer.
 
@@ -172,9 +172,11 @@ def lambda_handler(event, context):
 
 ```
 
-> In this example, imagine we have an ASG already configured with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of `1`!
+> In this example, imagine we have an ASG already configured with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of `1`! You should adjust these values depending on the size of your auto-scaling group.
 
-If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` then sets it back to `1` after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. You may have to play with this window to ensure zero downtime.
+If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` then sets it back to `1` after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. Depending on your applications, you may need to play with this window to ensure zero downtime.
+
+The trickiest bit of the code was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
 
 ![ASG scheduled actions](../images/asg-scheduled-actions.png)
 
@@ -182,7 +184,7 @@ If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` t
 
 ## Conclusion
 
-The trickiest bit I encountered coding this was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
+We now have a nice, light Lambda that updates launch templates with the latest ECS-Optimized Ami immediately upon release, and updates all ECS instances in our cluster.
 
 I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than rely on tools AWS may or may not have. Boto3 is powerful, and the documentation is great, unlike many AWS docs.
 
