@@ -9,19 +9,23 @@ tags: ["AWS", "DevOps", "Python"]
 
 Tired of manually updating your EC2 launch templates and auto-scaling groups?
 
-I run all of my applications in containers on Amazon's Elastic Container Service (ECS). If you're familiar with ECS, you know that AWS frequently updates it's ECS-Optimized AMI for EC2. The updates contain all kinds of goodies, such as new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. Since we want to update all the things, how do we accomplish it with automation? One way is with Python and AWS Lambda!
+I run all of my applications in containers on Amazon's Elastic Container Service (ECS). If you're familiar with ECS, you know that AWS frequently updates it's ECS-Optimized AMI for EC2. The update contains all kinds of goodies, such as new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. How do we update all instances in our ECS cluster with the new AMI? Since we want to *automate all the things*, let's do it with Python and AWS Lambda!
 
 ## Scheduling
 
-Lambdas can be triggered via SNS notifications, as is the case here. AWS publishes SNS topics with the lastest AMI information.
+First, let's consider how our Lambda can be triggered. One way is with SNS notifications, and quite fortunately, AWS publishes new AMI information as SNS topics. You can check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I'm using `us-east-2` in this guide.
+
+We'll subscribe to this topic and add our Lambda function as an endpoint, which will allow us to add it as a trigger in the designer.
 
 ![Lambda template designer](../images/lambda-template-designer.png)
 
 ## IAM role for Lambda
 
-As usual, my first step when working with Lambda is to create an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the components fit together.
+Before writing any code I like to sketch out an IAM policy and IAM role. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the building blocks fit together.
 
-Below is the IAM policy for this Lambda function. We allow getting an SSM parameter, creating and deleting EC2 launch template versions, creating auto-scaling group actions, and sending SNS notification updates.
+Below is the IAM policy for this Lambda function. We allow describing, creating and deleting launch template versions, creating auto-scaling group actions, and publishing SNS notifications.
+
+> If you would like to use this policy, remember to add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.
 
 ```json
 {
@@ -51,19 +55,16 @@ Below is the IAM policy for this Lambda function. We allow getting an SSM parame
 }
 ```
 
-> If you would like to use this policy, remember to add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.
-
 ## Lambda function
 
 The Lambda itself is blunt-force Python. My favorite!
 
-1. Accept a trigger from an SNS topic.
-2. Retrieve the ECS-optimized AMI ID from the SNS message data.
-3. Update the launch template with the AMI ID.
-4. Set the new launch template version as the default version.
-5. Delete the `$Latest -2` version of the launch template and keep `$Latest -1`.
-6. Create ASG scheduled actions to replace instances.
-7. Publish an SNS event notifying me that the AMI has been updated.
+1. Retrieve the ECS-optimized AMI ID from the SNS message data.
+2. Update the launch template with the AMI ID.
+3. Set the new launch template version as the default version.
+4. Delete the `$Latest -2` version of the launch template and keep `$Latest -1`.
+5. Create ASG scheduled actions to replace instances.
+6. Publish an SNS event notifying me that the AMI has been updated.
 
 ```python
 # lambda_function.py
@@ -75,10 +76,6 @@ from datetime import datetime, timezone, timedelta
 
 def lambda_handler(event, context):
 
-    sns_message = json.loads(event["Records"][0]["Sns"]["Message"])
-
-    new_ami = sns_message["ECSAmis"][0]["Regions"]["us-east-2"]["ImageId"]
-
     # Get values from Lambda environment variables.
     launch_template_id = os.environ["launch_template_id"]
     sns_arn = os.environ["sns_arn"]
@@ -88,6 +85,10 @@ def lambda_handler(event, context):
     ec2 = boto3.client("ec2")
     asg = boto3.client("autoscaling")
     sns = boto3.client("sns")
+
+    # Parse the SNS message and get the new image id
+    sns_message = json.loads(event["Records"][0]["Sns"]["Message"])
+    new_ami = sns_message["ECSAmis"][0]["Regions"]["us-east-2"]["ImageId"]
 
     def update_current_launch_template_ami(ami):
         response = ec2.create_launch_template_version(
@@ -105,16 +106,16 @@ def lambda_handler(event, context):
             LaunchTemplateId=launch_template_id,
             DefaultVersion="$Latest"
         )
+        print("Default launch template set to $Latest.")
         previous_version = str(
             int(response["LaunchTemplate"]["LatestVersionNumber"]) - 2)
-
         response = ec2.delete_launch_template_versions(
             LaunchTemplateId=launch_template_id,
             Versions=[
                 previous_version,
             ]
         )
-        print(f"Launch template {previous_version} deleted.")
+        print(f"Old launch template {previous_version} deleted.")
 
     def create_asg_scheduled_action(start_time, desired_capacity):
         response = asg.put_scheduled_update_group_action(
@@ -123,6 +124,11 @@ def lambda_handler(event, context):
             StartTime=start_time,
             DesiredCapacity=desired_capacity
         )
+        print(f"""
+            ASG action created
+            Start time: {start_time}"
+            Desired capacity: {desired_capacity}
+            """)
 
     def send_sns_notification(subject, message):
         response = sns.publish(
@@ -130,7 +136,11 @@ def lambda_handler(event, context):
             Message=message,
             Subject=subject,
         )
-        print("Notification email sent.")
+        print(f"""
+            Notification email sent.
+            Subject: {subject}
+            Message: {message}
+            """)
 
     def update_launch_template_and_asg():
         # Update template AMI and set as default
@@ -160,17 +170,17 @@ def lambda_handler(event, context):
 
 ```
 
-> For this example, imagine we have an ASG with a `min` size of 1, a `max` size of 2 and an initial `desired` size of 1.
+> In this example, imagine we have an ASG with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of 1!
 
-If you look closely, you'll see that our code sets the ASG `desired` instance count to 2 and then sets it back to 1 after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. You may have to play with this window to ensure zero downtime.
+If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` then sets it back to `1` after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. You may have to play with this window to ensure zero downtime.
 
 ![ASG scheduled actions](../images/asg-scheduled-actions.png)
 
-> Our ASG termination policy is configured to terminate instances with the oldest launch configuration first.
-
-The trickiest bit I encountered coding this was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
+> Our ASG termination policy is configured to terminate instances with the oldest launch configuration first. This ensures that instances using the old launch template are automatically removed.
 
 ## Conclusion
+
+The trickiest bit I encountered coding this was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
 
 I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than relying on tools AWS may or may not have. Boto3 is powerful, and the documentation is great, unlike many AWS docs.
 
