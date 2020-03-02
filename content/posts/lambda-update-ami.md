@@ -23,10 +23,7 @@ Below is the IAM policy for this Lambda function. We allow getting an SSM parame
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": [
-                "ec2:DescribeLaunchTemplateVersions",
-                "ssm:GetParameter"
-            ],
+            "Action": "ec2:DescribeLaunchTemplateVersions",
             "Resource": "*"
         },
         {
@@ -39,8 +36,8 @@ Below is the IAM policy for this Lambda function. We allow getting an SSM parame
                 "autoscaling:PutScheduledUpdateGroupAction"
             ],
             "Resource": [
-                "arn:aws:ec2: ...",
                 "arn:aws:sns: ... ",
+                "arn:aws:ec2: ...",
                 "arn:aws:autoscaling: ..."
             ]
         }
