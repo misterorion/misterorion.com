@@ -49,8 +49,8 @@ Below is the final IAM policy for this Lambda function's IAM role. We allow desc
             ],
             "Resource": [
                 "arn:aws:sns: ... ",
-                "arn:aws:ec2: ...",
-                "arn:aws:autoscaling: ..."
+                "arn:aws:ec2: ... ",
+                "arn:aws:autoscaling: ... "
             ]
         }
     ]
