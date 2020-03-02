@@ -2,7 +2,7 @@
 title: "Updating Launch Template AMIs with Lambda"
 date:  "2020-03-01"
 slug: "lambda-update-ami"
-description: "Update launch templates and push them to an ECS cluster with Python and AWS Lambda."
+description: "Update launch template AMIs and roll them out to your ASG with AWS Lambda and Python."
 imageFluid:  "../images/vinyl-jukebox.jpg"
 tags: ["AWS", "DevOps", "Python", "Lambda"]
 ---
