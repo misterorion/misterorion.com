@@ -1,10 +1,10 @@
 ---
-title: "Updating EC2 Launch Templates with Lambda"
+title: "Updating Launch Template AMIs with Lambda"
 date:  "2020-03-01"
 slug: "lambda-update-ami"
-description: "Push template updates to your auto-scaling group with Python and AWS Lambda."
+description: "Update launch templates and push them to an ECS cluster with Python and AWS Lambda."
 imageFluid:  "../images/vinyl-jukebox.jpg"
-tags: ["AWS", "DevOps", "Python"]
+tags: ["AWS", "DevOps", "Python", "Lambda"]
 ---
 
 Tired of manually updating your EC2 launch templates and auto-scaling groups?
