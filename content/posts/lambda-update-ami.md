@@ -1,6 +1,6 @@
 ---
 title: "Updating EC2 Launch Templates with Lambda"
-date:  "2020-02-29"
+date:  "2020-03-01"
 slug: "lambda-update-ami"
 description: "Push template updates to your auto-scaling group with Python and AWS Lambda."
 imageFluid:  "../images/vinyl-jukebox.jpg"
@@ -120,7 +120,7 @@ def lambda_handler(event, context):
     def create_asg_scheduled_action(start_time, desired_capacity):
         response = asg.put_scheduled_update_group_action(
             AutoScalingGroupName=asg_name,
-            ScheduledActionName=f"desire-{desired_capacity}",
+            ScheduledActionName=f"Desire {desired_capacity}",
             StartTime=start_time,
             DesiredCapacity=desired_capacity
         )
@@ -170,7 +170,7 @@ def lambda_handler(event, context):
 
 ```
 
-> In this example, imagine we have an ASG with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of 1!
+> In this example, imagine we have an ASG already configured with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of `1`!
 
 If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` then sets it back to `1` after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. You may have to play with this window to ensure zero downtime.
 
