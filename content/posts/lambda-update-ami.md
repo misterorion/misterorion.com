@@ -9,11 +9,13 @@ tags: ["AWS", "DevOps", "Python"]
 
 Tired of manually updating your EC2 launch templates and auto-scaling groups?
 
-I run all of my applications in containers on Amazon's Elastic Container Service (ECS). If you're familiar with ECS, you know that AWS frequently updates it's ECS-Optimized AMI for EC2. The update contains all kinds of goodies, such as new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes. How do we update all instances in our ECS cluster with the new AMI? Since we want to *automate all the things*, let's do it with Python and AWS Lambda!
+I run all of my applications in containers on Amazon's Elastic Container Service (ECS). If you're familiar with ECS, you know that AWS frequently updates it's ECS-Optimized AMI for EC2. The update contains all kinds of goodies, such as new versions of the ECS Agent, kernel updates, security patches, and other miscellaneous fixes.
+
+How do we update all instances in our ECS cluster with the new AMI? Since we want to *automate all the things*, let's do it with Python and AWS Lambda!
 
 ## Scheduling
 
-First, let's consider how our Lambda can be triggered. One way is with SNS notifications. Fortunately, AWS publishes new AMI information as SNS topics. Check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I'm using `us-east-2` in this guide.
+First, let's consider how our Lambda can be triggered. One way is with SNS notifications. Fortunately, AWS publishes new AMI information as SNS topics. Check the [official docs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS-AMI-SubscribeTopic.html) to find the Amazon SNS Topic ARN for your region. I use `us-east-2` in this guide.
 
 > We subscribe to the topic for our region and add our Lambda function as an endpoint, which will allow us to add it as a trigger in the designer.
 
