@@ -70,9 +70,7 @@ The Lambda itself is blunt-force Python. My favorite!
 
 ```python
 # lambda_function.py
-import boto3
-import os
-import json
+import boto3, os, json
 from datetime import datetime, timezone, timedelta
 
 
