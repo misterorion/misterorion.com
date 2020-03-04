@@ -68,6 +68,8 @@ The Lambda itself is blunt-force Python. My favorite!
 5. Create ASG scheduled actions to replace instances.
 6. Publish an SNS event notifying me that the AMI has been updated.
 
+> In this example, imagine we have an ASG already configured with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of `1`! You should adjust these values depending on the size of your auto-scaling group.
+
 ```python
 # lambda_function.py
 import boto3, os, json
@@ -154,7 +156,7 @@ def lambda_handler(event, context):
         create_asg_scheduled_action(in_01_min, 2)
         create_asg_scheduled_action(in_15_min, 1)
 
-        # Sent a notification that the update succeeded.
+        # Send a notification that the update succeeded.
         subject = "AMI updated!"
         message = f"AMI updated! New AMI is {new_ami}."
         send_sns_notification(subject, message)
@@ -170,11 +172,11 @@ def lambda_handler(event, context):
 
 ```
 
-> In this example, imagine we have an ASG already configured with `MinCapacity=1`, `MaxCapacity=2` and `DesiredCapacity=1`. An army of `1`! You should adjust these values depending on the size of your auto-scaling group.
-
-If you look closely, you'll see that our code sets the ASG `DesiredCapacity=2` then sets it back to `1` after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. Depending on your applications, you may need to play with this window to ensure zero downtime.
-
 The trickiest bit of the code was getting the current launch template AMI out of the SNS message. Fortunately, it was just a matter of loading the JSON data and hunting down the key/value.
+
+## ASG scheduled actions
+
+If you look closely at the code above, you see that it sets the ASG `DesiredCapacity=2` then sets it back to `1` after 15 minutes. This is enough time for the new instances to spin up, applications to reach a healthy state and the load balancer to start sending traffic to them. Depending on your applications, you may need to play with this window to ensure zero downtime.
 
 ![ASG scheduled actions](../images/asg-scheduled-actions.png)
 
