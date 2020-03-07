@@ -13,7 +13,7 @@ module.exports = {
         },
         teal: {
           "400": "#88c0d0"
-        }
+        },
       }
     }
   },
