@@ -2,7 +2,12 @@
 @charset "utf-8";
 @tailwind base;
 @tailwind components;
-@import url("https://fonts.googleapis.com/css?family=Fira+Code:500|Roboto:400,400i,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap");
+
+@font-face {
+  font-family: "Cascadia";
+  src: url("./Cascadia.ttf");
+}
 
 body {
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
@@ -38,15 +43,6 @@ article p {
 
 blockquote {
   @apply pl-6 my-6 border-l-4 border-teal-400;
-}
-
-article pre {
-  font-family: "Fira Code", monospace;
-}
-
-article code {
-  @apply text-base;
-  font-family: "Fira Code", monospace;
 }
 
 article {
@@ -112,122 +108,134 @@ figcaption {
   @apply text-gray-600 text-sm;
 }
 
-/* Prism Dracula start */
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #f8f8f2;
-  background: none;
-  /* text-shadow: 0 1px rgba(0, 0, 0, 0.3); */
-  /* font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; */
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.5;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
 
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1.3em;
-  margin: 0;
-  overflow: auto;
-  border-radius: 0.3em;
-}
+/* Prism CSS start */
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #282a36;
-}
+/**
+ * GHColors theme by Avi Aryan (http://aviaryan.in)
+ * Inspired by Github syntax coloring
+ */
 
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: 0.1em 0.2em;
-  border-radius: 0.2em;
-  white-space: normal;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #6272a4;
-}
-
-.token.punctuation {
-  color: #f8f8f2;
-}
-
-.namespace {
-  opacity: 0.7;
-}
-
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-  color: #ff79c6;
-}
-
-.token.boolean,
-.token.number {
-  color: #bd93f9;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-  color: #50fa7b;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-  color: #f8f8f2;
-}
-
-.token.atrule,
-.token.attr-value,
-.token.function,
-.token.class-name {
-  color: #f1fa8c;
-}
-
-.token.keyword {
-  color: #8be9fd;
-}
-
-.token.regex,
-.token.important {
-  color: #ffb86c;
-}
-
-/* .token.important,
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-} */
-
-.token.entity {
-  cursor: help;
-}
-/* Prism Dracula end */
+ code[class*="language-"],
+ pre[class*="language-"] {
+   color: #393A34;
+   font-family: "Cascadia", monospace;
+   direction: ltr;
+   text-align: left;
+   white-space: pre;
+   word-spacing: normal;
+   word-break: normal;
+   font-size: 1em;
+   line-height: 1.2em;
+ 
+   -moz-tab-size: 4;
+   -o-tab-size: 4;
+   tab-size: 4;
+ 
+   -webkit-hyphens: none;
+   -moz-hyphens: none;
+   -ms-hyphens: none;
+   hyphens: none;
+ }
+ 
+ pre > code[class*="language-"] {
+   font-size: .9em;
+ }
+ 
+ pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+ code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+   background: #b3d4fc;
+ }
+ 
+ pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+ code[class*="language-"]::selection, code[class*="language-"] ::selection {
+   background: #b3d4fc;
+ }
+ 
+ /* Code blocks */
+ pre[class*="language-"] {
+   padding: 1.5em 2em;
+   margin: .5em 0;
+   overflow: auto;
+   border: 1px solid #dddddd;
+   border-radius: .5em;
+   background-color: white;
+ }
+ 
+ /* Inline code */
+ :not(pre) > code[class*="language-"] {
+   padding: .2em;
+   padding-top: 1px;
+   padding-bottom: 1px;
+   background: #f8f8f8;
+   border: 1px solid #dddddd;
+   @apply text-base;
+ }
+ 
+ .token.comment,
+ .token.prolog,
+ .token.doctype,
+ .token.cdata {
+   color: #999988;
+   /* font-style: italic; */
+ }
+ 
+ .token.namespace {
+   opacity: .7;
+ }
+ 
+ .token.string,
+ .token.attr-value {
+   color: #e3116c;
+ }
+ 
+ .token.punctuation,
+ .token.operator {
+   color: #393A34; /* no highlight */
+ }
+ 
+ .token.entity,
+ .token.url,
+ .token.symbol,
+ .token.number,
+ .token.boolean,
+ .token.variable,
+ .token.constant,
+ .token.property,
+ .token.regex,
+ .token.inserted {
+   color: #36acaa;
+ }
+ 
+ .token.atrule,
+ .token.keyword,
+ .token.attr-name,
+ .language-autohotkey .token.selector {
+   color: #00a4db;
+ }
+ 
+ .token.function,
+ .token.deleted,
+ .language-autohotkey .token.tag {
+   color: #9a050f;
+ }
+ 
+ .token.tag,
+ .token.selector,
+ .language-autohotkey .token.keyword {
+   color: #00009f;
+ }
+ 
+ /* .token.important,
+ .token.function,
+ .token.bold {
+   font-weight: bold;
+ }
+ 
+ .token.italic {
+   font-style: italic;
+ } */
+ 
+/* Prism CSS end */
 /*! purgecss end ignore */
 @tailwind utilities;

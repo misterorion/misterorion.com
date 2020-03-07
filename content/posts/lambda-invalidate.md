@@ -4,7 +4,7 @@ date:  "2020-01-17"
 slug: "lambda-webhook"
 description: "Create a simple webhook for your automation with AWS Lambda and Python."
 imageFluid:  "../images/aircraft-clouds.jpg"
-tags: ["AWS"]
+tags: ["AWS", "Lambda"]
 ---
 
 The other day I was moving a friend's static website over to Netlify. It's a simple static [Hugo](https://gohugo.io) site with only a handful of pages and images. What makes the site unique is the hundreds of large PDF files.
