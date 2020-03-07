@@ -21,7 +21,7 @@ First, let's consider how our Lambda can be triggered. One way is with SNS notif
 
 ![Lambda template designer](../images/lambda-template-designer.png)
 
-## IAM role for Lambda
+## IAM policy for Lambda
 
 Before writing any code I like to sketch out an IAM policy. If I don't perform this step at the beginning, I'll inevitably find that my tests don't work and I'll start second-guessing my code. Approaching the problem with a security-first mindset also helps me think about how the building blocks fit together.
 
