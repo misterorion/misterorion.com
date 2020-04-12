@@ -1,1 +1,2 @@
-YARN_VERSION = "2.0.0-rc.31"
+[context.production]
+    YARN_VERSION = "2.0.0-rc.31"
