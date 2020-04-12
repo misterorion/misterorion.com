@@ -127,7 +127,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],
       [
         "react-helmet",
-        "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.2.1"
+        "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.0.0"
       ],
       [
         "tailwindcss",
@@ -173,7 +173,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prismjs", "npm:1.20.0"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:16.13.1"],
-            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.2.1"],
+            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.0.0"],
             ["tailwindcss", "npm:1.2.0"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=270b6c"],
             ["webpack", "npm:4.42.1"]
@@ -8859,7 +8859,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gatsby-plugin-react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:3.2.2"],
             ["@babel/runtime", "npm:7.9.2"],
             ["gatsby", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:2.20.18"],
-            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.2.1"]
+            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.0.0"]
           ],
           "packagePeers": [
             "gatsby",
@@ -13148,7 +13148,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prismjs", "npm:1.20.0"],
             ["react", "npm:16.13.1"],
             ["react-dom", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:16.13.1"],
-            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.2.1"],
+            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.0.0"],
             ["tailwindcss", "npm:1.2.0"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=270b6c"],
             ["webpack", "npm:4.42.1"]
@@ -16095,15 +16095,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["react-helmet", [
-        ["virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.2.1", {
-          "packageLocation": "./.yarn/$$virtual/react-helmet-virtual-596abe3639/0/cache/react-helmet-npm-5.2.1-7d2cf84fcb-2.zip/node_modules/react-helmet/",
+        ["virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.0.0", {
+          "packageLocation": "./.yarn/$$virtual/react-helmet-virtual-8d1d16b1d6/0/cache/react-helmet-npm-6.0.0-13c238c42d-2.zip/node_modules/react-helmet/",
           "packageDependencies": [
-            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.2.1"],
+            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.0.0"],
             ["object-assign", "npm:4.1.1"],
             ["prop-types", "npm:15.7.2"],
             ["react", "npm:16.13.1"],
             ["react-fast-compare", "npm:2.0.4"],
-            ["react-side-effect", "virtual:596abe3639b9b0203f3c0b14445efc6fb9238f16fdf015f07d16c2be33ff1a542b11bc3bcfe872820b6b62725be328d10178cd410b56fbaee8ffc2c5453455a6#npm:1.2.0"]
+            ["react-side-effect", "virtual:8d1d16b1d6df078da779c02d9b4a39c524f480045a087b23032b54b3746f983adf3b76625f87fb2960cb6d562e3abf07e9262912593c9381120159d677dfc249#npm:2.1.0"]
           ],
           "packagePeers": [
             "react"
@@ -16181,12 +16181,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["react-side-effect", [
-        ["virtual:596abe3639b9b0203f3c0b14445efc6fb9238f16fdf015f07d16c2be33ff1a542b11bc3bcfe872820b6b62725be328d10178cd410b56fbaee8ffc2c5453455a6#npm:1.2.0", {
-          "packageLocation": "./.yarn/$$virtual/react-side-effect-virtual-d65efb9379/0/cache/react-side-effect-npm-1.2.0-fa44f450a7-2.zip/node_modules/react-side-effect/",
+        ["virtual:8d1d16b1d6df078da779c02d9b4a39c524f480045a087b23032b54b3746f983adf3b76625f87fb2960cb6d562e3abf07e9262912593c9381120159d677dfc249#npm:2.1.0", {
+          "packageLocation": "./.yarn/$$virtual/react-side-effect-virtual-45443f315a/0/cache/react-side-effect-npm-2.1.0-bf979181c2-2.zip/node_modules/react-side-effect/",
           "packageDependencies": [
-            ["react-side-effect", "virtual:596abe3639b9b0203f3c0b14445efc6fb9238f16fdf015f07d16c2be33ff1a542b11bc3bcfe872820b6b62725be328d10178cd410b56fbaee8ffc2c5453455a6#npm:1.2.0"],
-            ["react", "npm:16.13.1"],
-            ["shallowequal", "npm:1.1.0"]
+            ["react-side-effect", "virtual:8d1d16b1d6df078da779c02d9b4a39c524f480045a087b23032b54b3746f983adf3b76625f87fb2960cb6d562e3abf07e9262912593c9381120159d677dfc249#npm:2.1.0"],
+            ["react", "npm:16.13.1"]
           ],
           "packagePeers": [
             "react"
