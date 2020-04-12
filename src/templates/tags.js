@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 import Layout from "../components/Layout"
 import PostLink from "../components/Post-Link"
-import Helmet from "react-helmet"
 
 export default ({ pageContext, data }) => {
   const { tag } = pageContext
