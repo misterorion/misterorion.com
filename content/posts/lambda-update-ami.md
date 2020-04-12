@@ -184,7 +184,7 @@ If you look closely at the code above, you see that it sets the ASG `DesiredCapa
 
 ## Conclusion
 
-We now have a nice, light Lambda that updates launch templates with the latest ECS-Optimized Ami immediately upon release, and updates all ECS instances in our cluster.
+We now have a nice, light Lambda that updates launch templates with the latest ECS-Optimized AMI immediately upon release, and updates all ECS instances in our cluster.
 
 I'm enjoying using Lambdas to automate parts of my AWS infrastructure. In a lot of ways, it's easier to write automation code than rely on tools AWS may or may not have. Boto3 is powerful, and the documentation is great, unlike many AWS docs.
 
