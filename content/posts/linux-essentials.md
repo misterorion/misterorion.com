@@ -1,7 +1,7 @@
 ---
-title: I passed the Linux Essentials exam
+title: "I passed the Linux Essentials exam"
 date: "2017-05-21"
-slug: passed-linux-essentials
+slug: "passed-linux-essentials"
 imageFluid: "../images/LPI-Essentials.jpg"
 tags: ["Linux","Career"]
 ---
