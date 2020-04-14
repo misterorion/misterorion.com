@@ -7,7 +7,7 @@ import HeroStyles from "./style/hero.module.css"
 export default () => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
-      homeImg: file(relativePath: { eq: "me.jpg" }) {
+      homeImg: file(relativePath: { eq: "me3.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 250, maxHeight: 250) {
             ...GatsbyImageSharpFluid_tracedSVG
