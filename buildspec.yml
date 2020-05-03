@@ -8,6 +8,9 @@ phases:
   build:
     commands:
       - yarn build
+  post_build:
+    commands:
+      - - aws s3 rm s3://mecha-static-sites/misterorion-com --recursive --exclude ""
 artifacts:
   base-directory: public
   files:
