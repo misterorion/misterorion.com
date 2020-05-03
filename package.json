@@ -35,7 +35,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --no-color",
     "develop": "gatsby develop"
   }
 }
