@@ -1,20 +1,17 @@
 version: 0.2
 phases:
-    install:
-        runtime-versions:
-            nodejs: 12
-    pre_build:
-        commands:
-            - yarn install --silent
-    build:
-        commands:
-            - yarn run build
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - yarn install --silent
+  build:
+    commands:
+      - yarn run build
 artifacts:
-    base-directory: public
-    files:
-        - '**/*'
+  base-directory: public
+  files:
+    - '**/*'
 cache:
-    paths:
-        - '/root/.m2/**/*'
-        - '/root/.npm/**/*'
-        - 'node_modules/**/*'
+  paths:
+    - 'node_modules/**/*'
