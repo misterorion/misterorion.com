@@ -17,6 +17,9 @@ module.exports = {
       }
     }
   },
+  purge: {
+    enabled: false
+  },
   variants: {},
   plugins: []
 }
