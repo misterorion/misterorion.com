@@ -4,13 +4,14 @@ phases:
         runtime-versions:
             nodejs: 12
         commands:
-            - 'yarn global add gatsby-cli'
+            - 'touch .npmignore'
+            - 'npm install -g gatsby'
     pre_build:
         commands:
-            - 'yarn install --frozen-lockfile'
+            - 'npm install'
     build:
         commands:
-            - 'yarn build'
+            - 'npm run build'
 artifacts:
     base-directory: public
     files:
