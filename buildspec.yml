@@ -2,7 +2,7 @@ version: 0.2
 phases:
     install:
         runtime-versions:
-            nodejs: 13
+            nodejs: 12
         commands:
             - 'yarn global add gatsby'
     pre_build:
@@ -15,7 +15,6 @@ artifacts:
     base-directory: public
     files:
         - '**/*'
-    discard-paths: no
 cache:
     paths:
         - '.cache/*'
