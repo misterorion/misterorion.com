@@ -5,7 +5,7 @@ phases:
       nodejs: 12
     commands:
       - ls -d $PWD/node_modules
-      - yarn --silent --frozen-lockfile
+      - yarn --verbose --frozen-lockfile
   build:
     commands:
       - yarn build
