@@ -5,7 +5,7 @@ phases:
             nodejs: 12
     pre_build:
         commands:
-            - yarn install
+            - yarn install --silent
     build:
         commands:
             - yarn run build
