@@ -3,9 +3,11 @@ phases:
     install:
         runtime-versions:
             nodejs: 12
+        commands:
+            - 'yarn global add gatsby'
     pre_build:
         commands:
-            - 'yarn install --frozen-lockfile'
+            - 'yarn install --frozen-lockfile  --production'
     build:
         commands:
             - 'gatsby build --no-color'
