@@ -15,4 +15,6 @@ artifacts:
         - '**/*'
 cache:
     paths:
-        - node_modules/**/*
+        - '/root/.m2/**/*'
+        - '/root/.npm/**/*'
+        - 'node_modules/**/*'
