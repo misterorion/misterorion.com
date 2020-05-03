@@ -8,7 +8,6 @@ phases:
   build:
     commands:
       - yarn build
-      - ls node_modules
 artifacts:
   base-directory: public
   files:
