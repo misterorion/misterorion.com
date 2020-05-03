@@ -4,10 +4,10 @@ phases:
     runtime-versions:
       nodejs: 12
     commands:
-      - yarn install --silent
+      - yarn --silent --frozen-lockfile
   build:
     commands:
-      - yarn run build
+      - yarn build
 artifacts:
   base-directory: public
   files:
