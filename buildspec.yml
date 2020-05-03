@@ -4,17 +4,13 @@ phases:
         runtime-versions:
             nodejs: 12
         commands:
-            - 'touch .npmignore'
             - 'yarn global add gatsby'
     pre_build:
         commands:
-            - 'yarn install --frozen-lockfile --production'
+            - 'yarn install --frozen-lockfile'
     build:
         commands:
             - 'yarn run build'
-    post_build:
-        commands:
-            - 'yarn run deploy'
 artifacts:
     base-directory: public
     files:
