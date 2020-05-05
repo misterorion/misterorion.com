@@ -24,11 +24,9 @@ export default () => {
   const meta = data.site.siteMetadata
 
   const FooterLink = props => (
-    <div className={FooterStyles.icon}>
-      <a href={props.link}>
-        <img src={props.logo} alt={props.logoAlt} width="35" />
+      <a href={props.link} className={FooterStyles.icon}>
+        <img src={props.logo} alt={props.logoAlt} width="36" />
       </a>
-    </div>
   )
 
   return (

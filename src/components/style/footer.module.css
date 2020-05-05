@@ -1,9 +1,9 @@
 .container {
-    @apply flex flex-row py-10 border-t border-teal-400;
+    @apply flex flex-row py-10 border-t border-teal-400 items-center;
 }
 
 .icon {
-    @apply mr-3;
+    @apply mr-6;
 }
 
 .colophon {
