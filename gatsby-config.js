@@ -26,7 +26,7 @@ module.exports = {
           // you can add your directives or override defaults
         },
       },
-    }
+    },
     `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
