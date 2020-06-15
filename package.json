@@ -1,7 +1,7 @@
 {
   "name": "misterorion-com",
   "description": "My personal home on the web.",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "author": "Orion Anderson <orion@mechapower.com>",
   "dependencies": {
     "gatsby": "^2.21.33",
