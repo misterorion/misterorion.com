@@ -21,7 +21,7 @@ I decided to create a webhook using a few AWS tools.
 
 ## AWS webhook recipe
 
-Simply put, the webhook is a listener on my Application Load Balancer (ALB) that points to a Lambda function. For convenience, I have a `lambda.` subdomain pointed at the ALB. The ALB listens for that host and specific query strings. Then it forwards both of them to the Lambda function. The function then triggers a CloudFront invalidation.
+Simply put, the webhook is a listener on my Application Load Balancer (ALB) that points to a Lambda function. For convenience, I have a `lambda`. subdomain pointed at the ALB. The ALB listens for that host and specific query strings. Then it forwards both of them to the Lambda function. The function then triggers a CloudFront invalidation.
 
 ### IAM role for Lambda
 
