@@ -19,28 +19,6 @@ body {
   @apply mx-auto rounded-lg px-6 py-6 max-w-5xl bg-gray-100 border-gray-400;
 }
 
-@screen sm {
-  .mainContainer {
-    @apply my-3 w-5/6 border;
-  }
-}
-
-@screen md {
-  .mainContainer {
-    @apply px-32;
-  }
-}
-
-@screen lg {
-  .mainContainer {
-    @apply w-4/5;
-  }
-}
-
-article p {
-  @apply text-xl my-6 leading-normal;
-}
-
 blockquote {
   @apply pl-6 my-6 border-l-4 border-teal-400;
 }
@@ -108,6 +86,74 @@ figcaption {
   @apply text-gray-600 text-sm;
 }
 
+@screen mobile {
+  .mainContainer {
+    @apply my-2 mx-2 border rounded;
+  }
+  .feat-img {
+    @apply my-16;
+  }
+  :not(pre) > code[class*="language-"] {
+    @apply text-sm;
+  }
+  pre > code[class*="language-"] {
+    @apply text-xs;
+  }
+  article h1 {
+    @apply text-2xl;
+  }
+  article h2 {
+    @apply text-xl mt-8 pb-3;
+  }
+  article h3 {
+    @apply text-lg mt-8 pb-3;
+  }
+  article p {
+    @apply text-base my-4;
+  }
+  article ul,ol {
+    @apply list-outside ml-6 mr-6;
+  }
+  article ul > li {
+    @apply text-base mb-2;
+  }
+  article ol > li {
+    @apply list-decimal text-base mb-2;
+  }
+}
+
+@screen tablet {
+  .mainContainer {
+    @apply mx-auto my-6 border rounded-lg px-12 py-6 w-11/12;
+  }
+  article h2 {
+    @apply text-2xl mt-8 pb-3;
+  }
+  article p {
+    @apply text-lg my-3;
+  }
+  :not(pre) > code[class*="language-"] {
+    @apply text-base;
+  }
+  pre > code[class*="language-"] {
+    @apply text-base;
+  }
+}
+
+@screen desktop {
+  .mainContainer {
+    @apply mx-auto rounded-lg px-32 py-6 w-4/5 max-w-5xl bg-gray-100 border-gray-400;
+  }
+  article h1 {
+    @apply text-4xl;
+  }
+  article h2 {
+    @apply text-3xl mt-16 pb-3;
+  }
+  article p {
+    @apply text-xl my-6 leading-normal;
+  }
+}
 
 /* Prism CSS start */
 
@@ -125,7 +171,7 @@ figcaption {
    white-space: pre;
    word-spacing: normal;
    word-break: normal;
-   font-size: 1em;
+   /* font-size: 1em; */
    line-height: 1.2em;
  
    -moz-tab-size: 4;
@@ -139,7 +185,7 @@ figcaption {
  }
  
  pre > code[class*="language-"] {
-   font-size: .9em;
+   /* font-size: .9em; */
  }
  
  pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
@@ -169,7 +215,6 @@ figcaption {
    padding-bottom: 1px;
    background: #f8f8f8;
    border: 1px solid #dddddd;
-   @apply text-base;
  }
  
  .token.comment,

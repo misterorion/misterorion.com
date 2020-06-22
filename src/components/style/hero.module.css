@@ -1,37 +1,34 @@
-.box {
-  @apply flex w-auto mb-8 p-6 items-center border border-teal-400 rounded shadow;
-}
-
-.image {
-  @apply w-1/4 mr-6;
-}
-
-.text {
-  @apply w-3/4;
-}
-
-@screen sm {
-  .text {
-    @apply w-2/3;
+@screen mobile {
+  .box {
+    @apply mb-8 p-6 border border-teal-400 rounded shadow;
   }
-}
-
-@screen md {
   .image {
-    @apply w-1/3;
-  }
-}
-
-@screen lg {
-  .image {
-    @apply w-1/4;
+    @apply mb-6 w-40;
   }
   .text {
-    @apply w-3/4 text-xl;
+    @apply text-lg;
   }
 }
 
-@screen xl {
+@screen tablet {
+  .box {
+    @apply flex mb-8 p-6 border border-teal-400 rounded shadow;
+  }
+  .image {
+    @apply flex-shrink-0 mr-6 mb-0 w-32;
+  }
+  .text {
+    @apply text-xl;
+  }
+}
+
+@screen desktop {
+  .box {
+    @apply flex items-center mb-8 p-6 border border-teal-400 rounded shadow;
+  }
+  .image {
+    @apply flex-shrink-0 mr-6 mb-0 w-32;
+  }
   .text {
     @apply text-2xl;
   }
