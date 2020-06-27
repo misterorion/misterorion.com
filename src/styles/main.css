@@ -133,7 +133,7 @@ figcaption {
     @apply text-lg my-3;
   }
   :not(pre) > code[class*="language-"] {
-    @apply text-base;
+    @apply text-lg;
   }
   pre > code[class*="language-"] {
     @apply text-base;
@@ -152,6 +152,12 @@ figcaption {
   }
   article p {
     @apply text-xl my-6 leading-normal;
+  }
+  article ul > li {
+    @apply mb-2;
+  }
+  article ol > li {
+    @apply list-decimal text-xl mb-2;
   }
 }
 
@@ -210,11 +216,14 @@ figcaption {
  
  /* Inline code */
  :not(pre) > code[class*="language-"] {
-   padding: .2em;
-   padding-top: 1px;
-   padding-bottom: 1px;
-   background: #f8f8f8;
-   border: 1px solid #dddddd;
+   padding: .15rem .4rem;
+   line-height: 1rem;
+   /* padding-top: 1px;
+   padding-bottom: 1px; */
+   /* background: #999988; */
+   border: 1px solid #b3d4fc;
+   border-radius: .25rem;
+   background-color: white;
  }
  
  .token.comment,

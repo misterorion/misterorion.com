@@ -1,6 +1,6 @@
 @screen mobile {
   .box {
-    @apply mb-8 p-6 border border-teal-400 rounded shadow;
+    @apply mb-6 p-6 border border-teal-400 rounded shadow;
   }
   .image {
     @apply mb-6 w-40;
@@ -12,7 +12,7 @@
 
 @screen tablet {
   .box {
-    @apply flex mb-8 p-6 border border-teal-400 rounded shadow;
+    @apply flex mb-6 p-6 border border-teal-400 rounded shadow;
   }
   .image {
     @apply flex-shrink-0 mr-6 mb-0 w-32;
@@ -24,7 +24,7 @@
 
 @screen desktop {
   .box {
-    @apply flex items-center mb-8 p-6 border border-teal-400 rounded shadow;
+    @apply flex items-center mb-6 p-6 border border-teal-400 rounded shadow;
   }
   .image {
     @apply flex-shrink-0 mr-6 mb-0 w-32;
