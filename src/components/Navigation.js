@@ -40,7 +40,7 @@ export default () => {
           {navData.map((navItem, i) => {
             return (
               <div className={NavStyles.menuItem}>
-                <Link to={navItem.node.frontmatter.slug} key={i}>
+                <Link to={`/${navItem.node.frontmatter.slug}/`} key={i}>
                   {navItem.node.frontmatter.title}
                 </Link>
               </div>
