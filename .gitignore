@@ -1,6 +1,4 @@
 .cache/
 .vscode/
-.yarn/cache/
-.yarn/unplugged/
-public/
 node_modules/
+public/
