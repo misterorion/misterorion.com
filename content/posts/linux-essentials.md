@@ -24,7 +24,7 @@ I should have spent more time studying popular applications for desktop Linux di
 
 There was also a question about selecting which distros use the RPM package manager. I didn't remember one of them (Mandriva).
 
-Yet another mistake I made involved the `bash±mv` command. The question was along the lines of, "You want to move `bash±/dirA` and all of its contents to `bash±/dirB`. Which is the correct command?" I had the correct answer narrowed down to two options, essentially:
+Yet another mistake I made involved the `bash>mv` command. The question was along the lines of, "You want to move `bash> /dirA` and all of its contents to `bash> /dirB`. Which is the correct command?" I had the correct answer narrowed down to two options, essentially:
 
 ```bash
 mv /dirA /dirB
@@ -36,7 +36,7 @@ or
 mv -R /dirA dirB
 ```
 
-I chose the command with the `bash±-R` option, which is *wrong*. There is no `bash±-R` option available with `bash±mv`.
+I chose the command with the `bash> -R` option, which is *wrong*. There is no `bash> -R` option available with `bash> mv`.
 
 ## Where to go from here
 
