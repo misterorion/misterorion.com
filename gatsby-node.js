@@ -42,6 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+
   // Handle errors
   if (result.errors) {
     throw new Error(result.errors)
@@ -58,35 +59,35 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagTemplate = path.resolve(`src/templates/tags.js`)
 
   // Create post pages
-  posts.forEach(post => {
+  posts.forEach((post) => {
     createPage({
       path: post.node.frontmatter.slug,
       component: postTemplate,
       context: {
-        slug: post.node.frontmatter.slug
-      }
+        slug: post.node.frontmatter.slug,
+      },
     })
   })
 
   // Create pages
-  pages.forEach(page => {
+  pages.forEach((page) => {
     createPage({
       path: page.node.frontmatter.slug,
       component: pageTemplate,
       context: {
-        slug: page.node.frontmatter.slug
-      }
+        slug: page.node.frontmatter.slug,
+      },
     })
   })
 
   // Create tag pages
-  tags.forEach(tag => {
+  tags.forEach((tag) => {
     createPage({
       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
       component: tagTemplate,
       context: {
-        tag: tag.fieldValue
-      }
+        tag: tag.fieldValue,
+      },
     })
   })
 }
