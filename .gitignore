@@ -1,5 +1,4 @@
 .cache/
 .vscode/
-.yarn/
 node_modules/
 public/
