@@ -1,12 +1,12 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/Layout"
-import Hero from "../components/Hero"
-import PostLink from "../components/Post-Link"
+import Layout from '../components/Layout'
+import Hero from '../components/Hero'
+import PostLink from '../components/Post-Link'
 
-export default ({ data }) => {
-  const Posts = data.allMarkdownRemark.edges.map(edge => (
+const Index = ({ data }) => {
+  const Posts = data.allMarkdownRemark.edges.map((edge) => (
     <PostLink key={edge.node.id} post={edge.node} />
   ))
   return (
@@ -36,3 +36,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export default Index

@@ -51,15 +51,15 @@ module.exports = {
           `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
           {
-            resolve: "gatsby-remark-external-links",
+            resolve: 'gatsby-remark-external-links',
             options: {
-              target: "_blank",
+              target: '_blank',
             },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              inlineCodeMarker: ">",
+              inlineCodeMarker: '>',
             },
           },
           {
@@ -77,8 +77,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Orion Anderson",
-        short_name: "Orion Anderson",
+        name: 'Orion Anderson',
+        short_name: 'Orion Anderson',
         start_url: `/`,
         background_color: `#6b37bf`,
         theme_color: `#6b37bf`,

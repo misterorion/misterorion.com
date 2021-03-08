@@ -1,15 +1,15 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 
-export default ({ data }) => {
+const Page = ({ data }) => {
   const { markdownRemark: page } = data
   return (
     <Layout>
       <SEO
         title={page.frontmatter.title}
-        description={page.description || "nothin’"}
+        description={page.description || 'nothin’'}
         url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}`}
       />
       <h1 className="text-4xl mb-4 mt-12 font-bold">
@@ -37,3 +37,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export default Page

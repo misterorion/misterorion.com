@@ -1,9 +1,9 @@
-import React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
-import Logo from "./icons/favicon.png"
-import NavStyles from "./style/nav.module.css"
+import React from 'react'
+import { Link, graphql, useStaticQuery } from 'gatsby'
+import Logo from './icons/favicon.png'
+import * as navStyles from './style/nav.module.css'
 
-export default () => {
+const Navigation = () => {
   const data = useStaticQuery(graphql`
     query NavQuery {
       allMarkdownRemark(
@@ -28,18 +28,18 @@ export default () => {
     }
   `)
   const Navigation = ({ navData, metaData }) => (
-    <div className={NavStyles.mainContainer}>
+    <div className={navStyles.mainContainer}>
       <Link to="/">
-        <img src={Logo} alt="ensō" className={NavStyles.logo} />
+        <img src={Logo} alt="ensō" className={navStyles.logo} />
       </Link>
-      <div className={NavStyles.textContainer}>
+      <div className={navStyles.textContainer}>
         <Link to="/">
-          <h1 className={NavStyles.siteTitle}>{metaData.siteTitle}</h1>
+          <h1 className={navStyles.siteTitle}>{metaData.siteTitle}</h1>
         </Link>
-        <nav className={NavStyles.nav}>
+        <nav className={navStyles.nav}>
           {navData.map((navItem, i) => {
             return (
-              <div className={NavStyles.menuItem}>
+              <div className={navStyles.menuItem}>
                 <Link to={`/${navItem.node.frontmatter.slug}`} key={i}>
                   {navItem.node.frontmatter.title}
                 </Link>
@@ -57,3 +57,5 @@ export default () => {
     />
   )
 }
+
+export default Navigation

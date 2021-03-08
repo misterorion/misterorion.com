@@ -1,30 +1,30 @@
 module.exports = {
   theme: {
     screens: {
-      "mobile": "360px",
-      "tablet": "768px",
-      "desktop": "1024px"
+      mobile: '360px',
+      tablet: '768px',
+      desktop: '1024px',
     },
     container: {
-      center: true
+      center: true,
     },
     extend: {
       colors: {
         gray: {
-          "100": "#fafafa",
-          "400": "#d8dee9",
-          "600": "#4c566a",
-          "900": "#2e3440"
+          100: '#fafafa',
+          400: '#d8dee9',
+          600: '#4c566a',
+          900: '#2e3440',
         },
         teal: {
-          "400": "#88c0d0"
+          400: '#88c0d0',
         },
-      }
-    }
+      },
+    },
   },
   purge: {
-    enabled: false
+    enabled: false,
   },
   variants: {},
-  plugins: []
+  plugins: [],
 }

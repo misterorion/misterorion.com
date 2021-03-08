@@ -1,29 +1,29 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Layout from "../components/Layout"
-import SEO from "../components/SEO"
-import Img from "gatsby-image"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
-export default ({ data }) => {
+const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
   const { html: content } = data.markdownRemark
-  const _ = require("lodash")
+  const _ = require('lodash')
 
   const image = post.imageFluid ? (
-    <Img fluid={post.imageFluid.childImageSharp.fluid} />
+    <GatsbyImage image={post.imageFluid.childImageSharp.gatsbyImageData} />
   ) : (
-    <Img fixed={post.imageFixed.childImageSharp.fixed} />
+    <GatsbyImage image={post.imageFixed.childImageSharp.gatsbyImageData} />
   )
 
   const imagePath = post.imageFluid
-    ? post.imageFluid.childImageSharp.sizes.src
-    : post.imageFixed.childImageSharp.sizes.src
+    ? post.imageFluid.childImageSharp.fluid.src
+    : post.imageFixed.childImageSharp.fixed.src
 
   return (
     <Layout>
       <SEO
         title={post.title}
-        description={post.description || "nothin’"}
+        description={post.description || 'nothin’'}
         image={imagePath}
         url={`${data.site.siteMetadata.siteUrl}/${post.slug}`}
       />
@@ -34,7 +34,7 @@ export default ({ data }) => {
       <div className="tags border-t mt-12 pt-6 border-gray-400">
         <h3 className="inline">Tags:</h3>
         <ul className="inline ml-2">
-          {post.tags.map(tag => (
+          {post.tags.map((tag) => (
             <li className="inline-block mx-2 font-bold">
               <Link to={`/tags/${_.kebabCase(tag)}`}>{tag}</Link>
             </li>
@@ -56,20 +56,16 @@ export const postQuery = graphql`
         tags
         imageFluid {
           childImageSharp {
-            fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid_tracedSVG
-            }
-            sizes {
+            gatsbyImageData(placeholder: TRACED_SVG, layout: FULL_WIDTH)
+            fluid {
               src
             }
           }
         }
         imageFixed {
           childImageSharp {
+            gatsbyImageData(placeholder: TRACED_SVG, layout: FIXED)
             fixed {
-              ...GatsbyImageSharpFixed_tracedSVG
-            }
-            sizes {
               src
             }
           }
@@ -83,3 +79,4 @@ export const postQuery = graphql`
     }
   }
 `
+export default Post

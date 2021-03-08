@@ -1,14 +1,14 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import FooterStyles from "./style/footer.module.css"
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import * as footerStyles from './style/footer.module.css'
 
-import TwitterLogo from "./icons/twitter.svg"
-import EmailLogo from "./icons/email.svg"
-import GithubLogo from "./icons/github.svg"
-import LinkedInLogo from "./icons/linkedin.svg"
-import GatsbyLogo from "./icons/gatsby.png"
+import TwitterLogo from './icons/twitter.svg'
+import EmailLogo from './icons/email.svg'
+import GithubLogo from './icons/github.svg'
+import LinkedInLogo from './icons/linkedin.svg'
+import GatsbyLogo from './icons/gatsby.png'
 
-export default () => {
+const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
       site {
@@ -23,41 +23,43 @@ export default () => {
   `)
   const meta = data.site.siteMetadata
 
-  const FooterLink = props => (
-      <a href={props.link} className={FooterStyles.icon}>
-        <img src={props.logo} alt={props.logoAlt} width="36" />
-      </a>
+  const FooterLink = (props) => (
+    <a href={props.link} className={footerStyles.icon}>
+      <img src={props.logo} alt={props.logoAlt} width="36" />
+    </a>
   )
 
   return (
-    <footer className={FooterStyles.container}>
+    <footer className={footerStyles.container}>
       <FooterLink
         link={`mailto:${meta.userEmail}`}
         logo={EmailLogo}
-        logoAlt={"Email"}
+        logoAlt={'Email'}
       />
       <FooterLink
         link={`https://www.linkedin.com/in/${meta.userLinkedIn}`}
         logo={LinkedInLogo}
-        logoAlt={"LinkedIn"}
+        logoAlt={'LinkedIn'}
       />
       <FooterLink
         link={`https://twitter.com/${meta.userTwitter}`}
         logo={TwitterLogo}
-        logoAlt={"Twitter"}
+        logoAlt={'Twitter'}
       />
       <FooterLink
         link={`https://github.com/${meta.userGitHub}`}
         logo={GithubLogo}
-        logoAlt={"GitHub"}
+        logoAlt={'GitHub'}
       />
-      <div className={FooterStyles.colophon}>
+      <div className={footerStyles.colophon}>
         <FooterLink
           link={`https://gatsbyjs.org`}
           logo={GatsbyLogo}
-          logoAlt={"Made with GatsbyJS"}
+          logoAlt={'Made with GatsbyJS'}
         />
       </div>
     </footer>
   )
 }
+
+export default Footer

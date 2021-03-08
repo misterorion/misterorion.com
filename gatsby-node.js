@@ -1,5 +1,5 @@
 const path = require(`path`)
-const _ = require("lodash")
+const _ = require('lodash')
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {

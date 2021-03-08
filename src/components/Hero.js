@@ -1,17 +1,20 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 
-import Img from "gatsby-image"
-import HeroStyles from "./style/hero.module.css"
+import { GatsbyImage } from 'gatsby-plugin-image'
+import * as heroStyles from './style/hero.module.css'
 
-export default () => {
+const Hero = () => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
       homeImg: file(relativePath: { eq: "me3.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 250, maxHeight: 250) {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
+          gatsbyImageData(
+            width: 250
+            height: 250
+            placeholder: TRACED_SVG
+            layout: CONSTRAINED
+          )
         }
       }
       site {
@@ -22,17 +25,19 @@ export default () => {
     }
   `)
   return (
-    <div className={HeroStyles.box}>
-      <div className={HeroStyles.image}>
-        <Img
-          fluid={data.homeImg.childImageSharp.fluid}
+    <div className={heroStyles.box}>
+      <div className={heroStyles.image}>
+        <GatsbyImage
+          image={data.homeImg.childImageSharp.gatsbyImageData}
           alt={data.site.siteMetadata.userName}
         />
       </div>
-      <div className={HeroStyles.text}>
+      <div className={heroStyles.text}>
         Greetings. My name is Orion Anderson. I'm a DevOps Developer located in
         New York City. I love all things Linux, Docker, AWS and automation.
       </div>
     </div>
   )
 }
+
+export default Hero

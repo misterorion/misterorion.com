@@ -1,12 +1,14 @@
-import React from "react"
-import { Link } from "gatsby"
-import PostStyles from "./style/post-link.module.css"
+import React from 'react'
+import { Link } from 'gatsby'
+import * as postStyles from './style/post-link.module.css'
 
-export default ({ post }) => (
+const PostLink = ({ post }) => (
   <Link to={`/${post.frontmatter.slug}`}>
-    <div className={PostStyles.box}>
-      <div className={PostStyles.title}>{post.frontmatter.title}</div>
-      <div className={PostStyles.date}>{post.frontmatter.date}</div>
+    <div className={postStyles.box}>
+      <div className={postStyles.title}>{post.frontmatter.title}</div>
+      <div className={postStyles.date}>{post.frontmatter.date}</div>
     </div>
   </Link>
 )
+
+export default PostLink

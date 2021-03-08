@@ -1,8 +1,8 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
-export default ({ title, description, image, url }) => {
+const SEO = ({ title, description, image, url }) => {
   const data = useStaticQuery(graphql`
     {
       site {
@@ -19,8 +19,8 @@ export default ({ title, description, image, url }) => {
 
   const defaults = data.site.siteMetadata
 
-  if (defaults.siteUrl === "") {
-    console.error("Please set a siteUrl in your site metadata!")
+  if (defaults.siteUrl === '') {
+    console.error('Please set a siteUrl in your site metadata!')
     return null
   }
 
@@ -29,7 +29,7 @@ export default ({ title, description, image, url }) => {
     description: description || defaults.siteDescription,
     url: url || `${defaults.siteUrl}`,
     twitter: `@${defaults.userTwitter}`,
-    image: `${defaults.siteUrl}${image || defaults.siteImage}`
+    image: `${defaults.siteUrl}${image || defaults.siteImage}`,
   }
 
   return (
@@ -54,3 +54,5 @@ export default ({ title, description, image, url }) => {
     </Helmet>
   )
 }
+
+export default SEO
