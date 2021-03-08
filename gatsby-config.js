@@ -12,8 +12,9 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-sitemap`,
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {

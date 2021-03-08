@@ -57,7 +57,7 @@ export const postQuery = graphql`
         imageFluid {
           childImageSharp {
             gatsbyImageData(placeholder: TRACED_SVG, layout: FULL_WIDTH)
-            fluid {
+            original {
               src
             }
           }
@@ -65,7 +65,7 @@ export const postQuery = graphql`
         imageFixed {
           childImageSharp {
             gatsbyImageData(placeholder: TRACED_SVG, layout: FIXED)
-            fixed {
+            original {
               src
             }
           }
