@@ -16,8 +16,8 @@ const Post = ({ data }) => {
   )
 
   const imagePath = post.imageFluid
-    ? post.imageFluid.childImageSharp.fluid.src
-    : post.imageFixed.childImageSharp.fixed.src
+    ? post.imageFluid.childImageSharp.original.src
+    : post.imageFixed.childImageSharp.original.src
 
   return (
     <Layout>
