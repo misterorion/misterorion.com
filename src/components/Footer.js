@@ -6,7 +6,6 @@ import TwitterLogo from './icons/twitter.svg'
 import EmailLogo from './icons/email.svg'
 import GithubLogo from './icons/github.svg'
 import LinkedInLogo from './icons/linkedin.svg'
-import GatsbyLogo from './icons/gatsby.png'
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -51,13 +50,6 @@ const Footer = () => {
         logo={GithubLogo}
         logoAlt={'GitHub'}
       />
-      <div className={footerStyles.colophon}>
-        <FooterLink
-          link={`https://gatsbyjs.org`}
-          logo={GatsbyLogo}
-          logoAlt={'Made with GatsbyJS'}
-        />
-      </div>
     </footer>
   )
 }
