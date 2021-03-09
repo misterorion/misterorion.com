@@ -3,11 +3,6 @@
 @tailwind base;
 @tailwind components;
 
-@font-face {
-  font-family: 'Cascadia';
-  src: url('./Cascadia.ttf');
-}
-
 body {
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
   background-image: url('./funky-lines.png');
@@ -97,7 +92,7 @@ article a:hover.gatsby-resp-image-link {
 
 figcaption {
   @apply text-gray-600 text-sm;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   padding: 0.2rem;
 }
 
@@ -178,7 +173,6 @@ figcaption {
 }
 
 /* Prism CSS start */
-
 /**
  * GHColors theme by Avi Aryan (http://aviaryan.in)
  * Inspired by Github syntax coloring
@@ -187,13 +181,14 @@ figcaption {
 code[class*='language-'],
 pre[class*='language-'] {
   color: #393a34;
-  font-family: 'Cascadia', monospace;
+  font-family: 'JetBrains Mono', monospace;
+  /* font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace; */
   direction: ltr;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  /* font-size: 1em; */
+  font-size: 0.9em;
   line-height: 1.2em;
 
   -moz-tab-size: 4;
@@ -207,44 +202,40 @@ pre[class*='language-'] {
 }
 
 pre > code[class*='language-'] {
-  /* font-size: .9em; */
+  font-size: 1em;
 }
 
 pre[class*='language-']::-moz-selection,
 pre[class*='language-'] ::-moz-selection,
 code[class*='language-']::-moz-selection,
 code[class*='language-'] ::-moz-selection {
-  background: #10B981;
+  background: #b3d4fc;
 }
 
 pre[class*='language-']::selection,
 pre[class*='language-'] ::selection,
 code[class*='language-']::selection,
 code[class*='language-'] ::selection {
-  background: #10B981;
+  background: #b3d4fc;
 }
 
 /* Code blocks */
 pre[class*='language-'] {
-  padding: 1.5em 2em;
+  padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
   border: 1px solid #dddddd;
-  border-radius: 0.2em;
   background-color: white;
 }
 
 /* Inline code */
 :not(pre) > code[class*='language-'] {
-  padding: 0.25rem;
-  line-height: 1rem;
-  font-size: 0.875rem;
-  /* padding-top: 1px;
-   padding-bottom: 1px; */
-  /* background: #999988; */
-  /* border: 1px solid #b3d4fc; */
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
   border-radius: 3px;
-  background-color:#E5E7EB;
 }
 
 .token.comment,
@@ -252,7 +243,7 @@ pre[class*='language-'] {
 .token.doctype,
 .token.cdata {
   color: #999988;
-  /* font-style: italic; */
+  font-style: italic;
 }
 
 .token.namespace {
@@ -261,7 +252,7 @@ pre[class*='language-'] {
 
 .token.string,
 .token.attr-value {
-  color: #B91C1C;
+  color: #e3116c;
 }
 
 .token.punctuation,
@@ -279,37 +270,37 @@ pre[class*='language-'] {
 .token.property,
 .token.regex,
 .token.inserted {
-  color: #0F766E;
+  color: #36acaa;
 }
 
 .token.atrule,
 .token.keyword,
 .token.attr-name,
 .language-autohotkey .token.selector {
-  color: #0F766E;
+  color: #00a4db;
 }
 
 .token.function,
 .token.deleted,
 .language-autohotkey .token.tag {
-  color: #BE185D;
+  color: #9a050f;
 }
 
 .token.tag,
 .token.selector,
 .language-autohotkey .token.keyword {
-  color: #0284C7;
+  color: #00009f;
 }
 
-/* .token.important,
- .token.function,
- .token.bold {
-   font-weight: bold;
- }
- 
- .token.italic {
-   font-style: italic;
- } */
+.token.important,
+.token.function,
+.token.bold {
+  font-weight: 600;
+}
+
+.token.italic {
+  font-style: italic;
+}
 
 /* Prism CSS end */
 /*! purgecss end ignore */

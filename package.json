@@ -10,6 +10,7 @@
     "format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\""
   },
   "dependencies": {
+    "@fontsource/jetbrains-mono": "^4.2.2",
     "@fontsource/quicksand": "^4.2.2",
     "@fontsource/roboto": "^4.2.2",
     "autoprefixer": "^10.2.5",
