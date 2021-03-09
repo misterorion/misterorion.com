@@ -5,6 +5,8 @@ module.exports = {
     siteDescription: `My personal home on the web.`,
     userName: `Orion Anderson`,
     userEmail: `orion@mechapower.com`,
+    userFirstName: `orion`,
+    userLastName: `anderson`,
     userTwitter: `MisterOrion`,
     userLinkedIn: `orionanderson`,
     userGitHub: `MisterOrion`,
