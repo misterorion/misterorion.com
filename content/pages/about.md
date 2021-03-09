@@ -1,5 +1,5 @@
 ---
-slug: "about"
+slug: "who"
 title: "About"
 description: "About me."
 ---
