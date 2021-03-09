@@ -23,18 +23,23 @@ const Navigation = () => {
       site {
         siteMetadata {
           siteTitle
+          userFirstName
+          userLastName
         }
       }
     }
   `)
   const Navigation = ({ navData, metaData }) => (
     <div className={navStyles.mainContainer}>
-      <Link to="/">
+      {/* <Link to="/">
         <img src={Logo} alt="ensō" className={navStyles.logo} />
-      </Link>
+      </Link> */}
       <div className={navStyles.textContainer}>
         <Link to="/">
-          <h1 className={navStyles.siteTitle}>{metaData.siteTitle}</h1>
+          <h1 className={navStyles.siteTitle}>
+          <span className="text-pink-700">{metaData.userFirstName}</span>
+            <span className="text-teal-700">{metaData.userLastName}</span>
+          </h1>
         </Link>
         <nav className={navStyles.nav}>
           {navData.map((navItem, i) => {
