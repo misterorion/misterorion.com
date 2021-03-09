@@ -10,6 +10,8 @@
     "format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\""
   },
   "dependencies": {
+    "@fontsource/quicksand": "^4.2.2",
+    "@fontsource/roboto": "^4.2.2",
     "autoprefixer": "^10.2.5",
     "gatsby": "^3.0.3",
     "gatsby-plugin-image": "^1.0.0",
