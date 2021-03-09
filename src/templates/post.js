@@ -29,9 +29,10 @@ const Post = ({ data }) => {
       />
       <h1>{post.title}</h1>
       <div className="post-date">{post.date}</div>
+      <div className="post-description"><p>{post.description}</p></div>
       <div className="feat-img">{image}</div>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <div className="tags border-t mt-12 pt-6 border-gray-400">
+      <div className="tags border-t mt-12 pt-12 border-gray-400">
         <h3 className="inline">Tags:</h3>
         <ul className="inline ml-2">
           {post.tags.map((tag) => (
