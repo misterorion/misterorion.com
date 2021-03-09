@@ -33,7 +33,8 @@ const Hero = () => {
         />
       </div>
       <div className={heroStyles.text}>
-        Greetings. My name is Orion Anderson. I'm a DevOps Developer New York City. I love all things Linux, Docker, AWS and automation.
+        Greetings. My name is Orion Anderson. I'm a DevOps Developer New York
+        City. I love all things Linux, Docker, AWS and automation.
       </div>
     </div>
   )
