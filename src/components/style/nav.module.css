@@ -1,9 +1,9 @@
 .mainContainer {
-  @apply flex items-center border-b mb-12 py-6 border-teal-400;
+  @apply flex items-center mb-12 py-6 border-b border-gray-300;
 }
 
 .logo {
-  @apply fill-current h-8 w-8 mr-4;
+  @apply fill-current h-6 w-6 mr-4;
 }
 
 .textContainer {
@@ -11,7 +11,20 @@
 }
 
 .siteTitle {
-  @apply text-2xl font-bold;
+  @apply text-3xl font-bold;
+}
+
+.siteTitle::before {
+  content: "<";
+  font-size: 2rem;
+  padding-top: -6px;
+  margin-right: 8px;
+}
+.siteTitle::after {
+  content: ">";
+  font-size: 2rem;
+  padding-top: -6px;
+  margin-left: 8px;
 }
 
 .nav {
@@ -19,9 +32,10 @@
 }
 
 .menuItem {
+  font-family: "Quicksand", sans-serif;
   @apply transition duration-200 ease-in-out ml-4 text-lg text-gray-600;
 }
 
 .menuItem:hover {
-    @apply text-red-600;
+    @apply text-pink-700;
 }

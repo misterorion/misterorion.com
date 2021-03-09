@@ -1,11 +1,7 @@
 .container {
-    @apply flex flex-row py-10 border-t border-teal-400 items-center;
+    @apply flex flex-row py-8 border-t border-gray-400 justify-center;
 }
 
 .icon {
-    @apply mr-6;
-}
-
-.colophon {
-    @apply justify-end ml-auto flex flex-row items-center;
+    @apply mx-2;
 }

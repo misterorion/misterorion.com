@@ -2,17 +2,16 @@
 @charset "utf-8";
 @tailwind base;
 @tailwind components;
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap");
 
 @font-face {
-  font-family: "Cascadia";
-  src: url("./Cascadia.ttf");
+  font-family: 'Cascadia';
+  src: url('./Cascadia.ttf');
 }
 
 body {
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
-  background-image: url("./funky-lines.png");
-  font-family: "Roboto", sans-serif;
+  background-image: url('./funky-lines.png');
+  font-family: 'Roboto', sans-serif;
 }
 
 .mainContainer {
@@ -20,39 +19,53 @@ body {
 }
 
 blockquote {
-  @apply pl-6 my-6 border-l-4 border-teal-400;
+  @apply pl-6 my-6 border-l-4 border-pink-700;
 }
 
 article {
-  @apply my-12;
+  @apply my-10;
 }
 
-article img {
+.post-description {
+  @apply mt-12;
+}
+
+article picture,
+img {
   border-radius: 0.4rem;
 }
 
 article a {
-  @apply transition duration-200 ease-in-out text-red-700;
+  @apply transition duration-200 ease-in-out text-pink-700;
   padding-bottom: 0.1rem;
 }
 
 article a:hover {
-  @apply border-red-400 border-b-2 bg-red-100;
+  @apply border-pink-700 border-b-2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Quicksand', sans-serif;
 }
 
 article h1 {
-  @apply text-4xl mb-4 mt-12 font-bold;
+  @apply mb-4 mt-12 font-bold;
 }
 
 article h2 {
-  @apply text-3xl mt-16 pb-6 font-bold border-b border-gray-400;
+  @apply text-2xl mt-12 pb-6 font-bold border-b border-gray-300 text-teal-700;
 }
 
 article h3 {
-  @apply text-xl mt-10 font-bold;
+  @apply text-xl font-bold;
 }
 
-article ul,ol {
+article ul,
+ol {
   @apply list-outside ml-8;
 }
 
@@ -84,6 +97,8 @@ article a:hover.gatsby-resp-image-link {
 
 figcaption {
   @apply text-gray-600 text-sm;
+  font-family: "Quicksand", sans-serif;
+  padding: 0.2rem;
 }
 
 @screen mobile {
@@ -93,10 +108,10 @@ figcaption {
   .feat-img {
     @apply my-16;
   }
-  :not(pre) > code[class*="language-"] {
+  :not(pre) > code[class*='language-'] {
     @apply text-sm;
   }
-  pre > code[class*="language-"] {
+  pre > code[class*='language-'] {
     @apply text-xs;
   }
   article h1 {
@@ -111,7 +126,8 @@ figcaption {
   article p {
     @apply text-base my-4;
   }
-  article ul,ol {
+  article ul,
+  ol {
     @apply list-outside ml-6 mr-6;
   }
   article ul > li {
@@ -132,11 +148,11 @@ figcaption {
   article p {
     @apply text-lg my-3;
   }
-  :not(pre) > code[class*="language-"] {
-    @apply text-lg;
-  }
-  pre > code[class*="language-"] {
+  :not(pre) > code[class*='language-'] {
     @apply text-base;
+  }
+  pre > code[class*='language-'] {
+    @apply text-sm;
   }
 }
 
@@ -145,19 +161,19 @@ figcaption {
     @apply mx-auto rounded-lg px-32 py-6 w-4/5 max-w-5xl bg-gray-100 border-gray-400;
   }
   article h1 {
-    @apply text-4xl;
+    @apply text-3xl;
   }
   article h2 {
-    @apply text-3xl mt-16 pb-3;
+    @apply text-2xl mt-12 pb-3;
   }
   article p {
-    @apply text-xl my-6 leading-normal;
+    @apply text-lg leading-normal;
   }
   article ul > li {
     @apply mb-2;
   }
   article ol > li {
-    @apply list-decimal text-xl mb-2;
+    @apply list-decimal text-lg mb-2;
   }
 }
 
@@ -168,119 +184,124 @@ figcaption {
  * Inspired by Github syntax coloring
  */
 
- code[class*="language-"],
- pre[class*="language-"] {
-   color: #393A34;
-   font-family: "Cascadia", monospace;
-   direction: ltr;
-   text-align: left;
-   white-space: pre;
-   word-spacing: normal;
-   word-break: normal;
-   /* font-size: 1em; */
-   line-height: 1.2em;
- 
-   -moz-tab-size: 4;
-   -o-tab-size: 4;
-   tab-size: 4;
- 
-   -webkit-hyphens: none;
-   -moz-hyphens: none;
-   -ms-hyphens: none;
-   hyphens: none;
- }
- 
- pre > code[class*="language-"] {
-   /* font-size: .9em; */
- }
- 
- pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
- code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-   background: #b3d4fc;
- }
- 
- pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
- code[class*="language-"]::selection, code[class*="language-"] ::selection {
-   background: #b3d4fc;
- }
- 
- /* Code blocks */
- pre[class*="language-"] {
-   padding: 1.5em 2em;
-   margin: .5em 0;
-   overflow: auto;
-   border: 1px solid #dddddd;
-   border-radius: .5em;
-   background-color: white;
- }
- 
- /* Inline code */
- :not(pre) > code[class*="language-"] {
-   padding: .15rem .4rem;
-   line-height: 1rem;
-   /* padding-top: 1px;
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #393a34;
+  font-family: 'Cascadia', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  /* font-size: 1em; */
+  line-height: 1.2em;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre > code[class*='language-'] {
+  /* font-size: .9em; */
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  background: #10B981;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  background: #10B981;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1.5em 2em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  border-radius: 0.2em;
+  background-color: white;
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.25rem;
+  line-height: 1rem;
+  font-size: 0.875rem;
+  /* padding-top: 1px;
    padding-bottom: 1px; */
-   /* background: #999988; */
-   border: 1px solid #b3d4fc;
-   border-radius: .25rem;
-   background-color: white;
- }
- 
- .token.comment,
- .token.prolog,
- .token.doctype,
- .token.cdata {
-   color: #999988;
-   /* font-style: italic; */
- }
- 
- .token.namespace {
-   opacity: .7;
- }
- 
- .token.string,
- .token.attr-value {
-   color: #e3116c;
- }
- 
- .token.punctuation,
- .token.operator {
-   color: #393A34; /* no highlight */
- }
- 
- .token.entity,
- .token.url,
- .token.symbol,
- .token.number,
- .token.boolean,
- .token.variable,
- .token.constant,
- .token.property,
- .token.regex,
- .token.inserted {
-   color: #36acaa;
- }
- 
- .token.atrule,
- .token.keyword,
- .token.attr-name,
- .language-autohotkey .token.selector {
-   color: #00a4db;
- }
- 
- .token.function,
- .token.deleted,
- .language-autohotkey .token.tag {
-   color: #9a050f;
- }
- 
- .token.tag,
- .token.selector,
- .language-autohotkey .token.keyword {
-   color: #00009f;
- }
- 
- /* .token.important,
+  /* background: #999988; */
+  /* border: 1px solid #b3d4fc; */
+  border-radius: 3px;
+  background-color:#E5E7EB;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #999988;
+  /* font-style: italic; */
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+  color: #B91C1C;
+}
+
+.token.punctuation,
+.token.operator {
+  color: #393a34; /* no highlight */
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.variable,
+.token.constant,
+.token.property,
+.token.regex,
+.token.inserted {
+  color: #0F766E;
+}
+
+.token.atrule,
+.token.keyword,
+.token.attr-name,
+.language-autohotkey .token.selector {
+  color: #0F766E;
+}
+
+.token.function,
+.token.deleted,
+.language-autohotkey .token.tag {
+  color: #BE185D;
+}
+
+.token.tag,
+.token.selector,
+.language-autohotkey .token.keyword {
+  color: #0284C7;
+}
+
+/* .token.important,
  .token.function,
  .token.bold {
    font-weight: bold;
@@ -289,7 +310,7 @@ figcaption {
  .token.italic {
    font-style: italic;
  } */
- 
+
 /* Prism CSS end */
 /*! purgecss end ignore */
 @tailwind utilities;

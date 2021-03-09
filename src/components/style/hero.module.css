@@ -1,6 +1,6 @@
 @screen mobile {
   .box {
-    @apply mb-6 p-6 border border-teal-400 rounded shadow;
+    @apply mb-6 p-6 border border-teal-700 rounded shadow;
   }
   .image {
     @apply mb-6 w-40;
@@ -12,7 +12,7 @@
 
 @screen tablet {
   .box {
-    @apply flex mb-6 p-6 border border-teal-400 rounded shadow;
+    @apply flex mb-6 p-6 border border-gray-300 rounded shadow;
   }
   .image {
     @apply flex-shrink-0 mr-6 mb-0 w-32;
@@ -24,12 +24,13 @@
 
 @screen desktop {
   .box {
-    @apply flex items-center mb-6 p-6 border border-teal-400 rounded shadow;
+    @apply mb-4 p-4 pb-2 border border-gray-300 rounded shadow;
   }
   .image {
-    @apply flex-shrink-0 mr-6 mb-0 w-32;
+    @apply mr-6 w-24;
   }
   .text {
+    font-family: "Quicksand", sans-serif;
     @apply text-2xl;
   }
 }
