@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import Logo from './icons/favicon.png'
 import * as navStyles from './style/nav.module.css'
 
 const Navigation = () => {
