@@ -23,7 +23,7 @@ The event took place at Alley Chelsea, a workspace/community area in the Chelsea
 
 After Michelle introduced the panelists, we watched a video produced by BBC Worldhacks, "Schools of the Future," to provide context for the discussion to follow.
 
-`youtube: VqK7V58sDAs`
+`video: https://youtu.be/VqK7V58sDAs`
 
 After the video, the panel opened into a lively discussion.
 
