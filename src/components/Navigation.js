@@ -1,12 +1,5 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-
-// import { mainContainer } from './nav.module.css'
-// import { textContainer } from './nav.module.css'
-// import { siteTitle } from './nav.module.css'
-// import { nav } from './nav.module.css'
-// import { menuItem } from './nav.module.css'
-
 import {
   mainContainer,
   textContainer,

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-
 import { box, title, date } from './post-link.module.css'
 
 const PostLink = ({ post }) => (
