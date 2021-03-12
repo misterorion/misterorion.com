@@ -1,5 +1,5 @@
 ---
-slug: "/grimoire"
+slug: "grimoire"
 title: "Grimoire"
 description: "A book of secrets"
 ---
