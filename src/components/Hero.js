@@ -1,8 +1,10 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-
 import { GatsbyImage } from 'gatsby-plugin-image'
-import * as heroStyles from './style/hero.module.css'
+
+import { box } from './hero.module.css'
+import { image } from './hero.module.css'
+import { text } from './hero.module.css'
 
 const Hero = () => {
   const data = useStaticQuery(graphql`
@@ -25,14 +27,14 @@ const Hero = () => {
     }
   `)
   return (
-    <div className={heroStyles.box}>
-      <div className={heroStyles.image}>
+    <div className={box}>
+      <div className={image}>
         <GatsbyImage
           image={data.homeImg.childImageSharp.gatsbyImageData}
           alt={data.site.siteMetadata.userName}
         />
       </div>
-      <div className={heroStyles.text}>
+      <div className={text}>
         Greetings. My name is Orion Anderson. I'm a DevOps Developer New York
         City. I love all things Linux, Docker, AWS and automation.
       </div>

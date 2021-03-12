@@ -1,6 +1,11 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import * as navStyles from './style/nav.module.css'
+
+import { mainContainer } from './nav.module.css'
+import { textContainer } from './nav.module.css'
+import { siteTitle } from './nav.module.css'
+import { nav } from './nav.module.css'
+import { menuItem } from './nav.module.css'
 
 const Navigation = () => {
   const data = useStaticQuery(graphql`
@@ -29,21 +34,21 @@ const Navigation = () => {
     }
   `)
   const Navigation = ({ navData, metaData }) => (
-    <div className={navStyles.mainContainer}>
+    <div className={mainContainer}>
       {/* <Link to="/">
         <img src={Logo} alt="ensō" className={navStyles.logo} />
       </Link> */}
-      <div className={navStyles.textContainer}>
+      <div className={textContainer}>
         <Link to="/">
-          <h1 className={navStyles.siteTitle}>
+          <h1 className={siteTitle}>
             <span className="text-pink-700">{metaData.userFirstName}</span>
             <span className="text-teal-700">{metaData.userLastName}</span>
           </h1>
         </Link>
-        <nav className={navStyles.nav}>
+        <nav className={nav}>
           {navData.map((navItem, i) => {
             return (
-              <div className={navStyles.menuItem}>
+              <div className={menuItem}>
                 <Link to={`/${navItem.node.frontmatter.slug}`} key={i}>
                   {navItem.node.frontmatter.title}
                 </Link>
