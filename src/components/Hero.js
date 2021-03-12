@@ -1,7 +1,10 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { box, image, text } from './hero.module.css'
+
+import { box } from './hero.module.css'
+import { image } from './hero.module.css'
+import { text } from './hero.module.css'
 
 const Hero = () => {
   const data = useStaticQuery(graphql`

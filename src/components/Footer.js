@@ -1,10 +1,11 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import { icon } from './footer.module.css'
+import { container } from './footer.module.css'
 import TwitterLogo from './icons/twitter.svg'
 import EmailLogo from './icons/email.svg'
 import GithubLogo from './icons/github.svg'
 import LinkedInLogo from './icons/linkedin.svg'
-import { container, icon } from './footer.module.css'
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
