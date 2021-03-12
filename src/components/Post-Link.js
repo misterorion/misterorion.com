@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import { box } from './post-Link.module.css'
-import { title } from './post-Link.module.css'
-import { date } from './post-Link.module.css'
+import { box } from './post-link.module.css'
+import { title } from './post-link.module.css'
+import { date } from './post-link.module.css'
 
 const PostLink = ({ post }) => (
   <Link to={`/${post.frontmatter.slug}`}>
