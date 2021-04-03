@@ -30,8 +30,9 @@ const Hero = () => {
     <div className={box}>
       <div className={image}>
         <GatsbyImage
-          image={data.homeImg.childImageSharp.gatsbyImageData}
+          loading="eager"
           alt={data.site.siteMetadata.userName}
+          image={data.homeImg.childImageSharp.gatsbyImageData}
         />
       </div>
       <div className={text}>
