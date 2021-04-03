@@ -2,8 +2,9 @@
 title: "Updating Launch Template AMIs with Lambda"
 date:  "2020-03-01"
 slug: "lambda-update-ami"
-description: "Update launch template AMIs and roll them out to your ASG with AWS Lambda and Python."
+description: "Update launch template AMIs and roll them out to your auto-scaling group with AWS Lambda and Python."
 imageFluid:  "../images/vinyl-jukebox.jpg"
+imageAlt: "Vinyl Jukebox"
 tags: ["AWS", "DevOps", "Python", "Lambda"]
 ---
 
