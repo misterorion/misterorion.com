@@ -49,7 +49,7 @@ const Navigation = () => {
           {navData.map((navItem, i) => {
             return (
               <div className={menuItem}>
-                <Link to={`/${navItem.node.frontmatter.slug}`} key={i}>
+                <Link to={`/${navItem.node.frontmatter.slug}/`} key={i}>
                   {navItem.node.frontmatter.title}
                 </Link>
               </div>

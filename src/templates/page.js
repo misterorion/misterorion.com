@@ -10,7 +10,7 @@ const Page = ({ data }) => {
       <SEO
         title={page.frontmatter.title}
         description={page.description || 'nothin’'}
-        url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}`}
+        url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}/`}
       />
       <h1 className="text-4xl mb-4 mt-12 font-bold">
         {page.frontmatter.title}

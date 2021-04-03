@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create post pages
   posts.forEach((post) => {
     createPage({
-      path: post.node.frontmatter.slug,
+      path: `/${post.node.frontmatter.slug}/`,
       component: postTemplate,
       context: {
         slug: post.node.frontmatter.slug,
@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create pages
   pages.forEach((page) => {
     createPage({
-      path: page.node.frontmatter.slug,
+      path: `/${page.node.frontmatter.slug}/`,
       component: pageTemplate,
       context: {
         slug: page.node.frontmatter.slug,

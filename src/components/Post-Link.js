@@ -6,7 +6,7 @@ import { title } from './post-link.module.css'
 import { date } from './post-link.module.css'
 
 const PostLink = ({ post }) => (
-  <Link to={`/${post.frontmatter.slug}`}>
+  <Link to={`/${post.frontmatter.slug}/`}>
     <div className={box}>
       <div className={title}>{post.frontmatter.title}</div>
       <div className={date}>{post.frontmatter.date}</div>
