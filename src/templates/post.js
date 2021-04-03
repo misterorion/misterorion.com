@@ -10,9 +10,15 @@ const Post = ({ data }) => {
   const _ = require('lodash')
 
   const image = post.imageFluid ? (
-    <GatsbyImage image={post.imageFluid.childImageSharp.gatsbyImageData} />
+    <GatsbyImage
+      alt={post.imageAlt}
+      loading="eager"
+      image={post.imageFluid.childImageSharp.gatsbyImageData} />
   ) : (
-    <GatsbyImage image={post.imageFixed.childImageSharp.gatsbyImageData} />
+    <GatsbyImage
+      alt={post.imageAlt}
+      loading="eager"
+      image={post.imageFixed.childImageSharp.gatsbyImageData} />
   )
 
   const imagePath = post.imageFluid
@@ -25,7 +31,7 @@ const Post = ({ data }) => {
         title={post.title}
         description={post.description || 'nothin’'}
         image={imagePath}
-        url={`${data.site.siteMetadata.siteUrl}/${post.slug}`}
+        url={`${data.site.siteMetadata.siteUrl}/${post.slug}/`}
       />
       <h1>{post.title}</h1>
       <div className="post-date">{post.date}</div>
@@ -59,7 +65,7 @@ export const postQuery = graphql`
         tags
         imageFluid {
           childImageSharp {
-            gatsbyImageData(placeholder: TRACED_SVG, layout: FULL_WIDTH)
+            gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
             original {
               src
             }
@@ -67,12 +73,13 @@ export const postQuery = graphql`
         }
         imageFixed {
           childImageSharp {
-            gatsbyImageData(placeholder: TRACED_SVG, layout: FIXED)
+            gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
             original {
               src
             }
           }
         }
+        imageAlt
       }
     }
     site {
