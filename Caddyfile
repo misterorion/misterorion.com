@@ -6,10 +6,10 @@
   root * /srv
   file_server
   header {
-    Content-Security-Policy default-src https: data: 'unsafe-inline'
+    Content-Security-Policy "default-src https: data: 'unsafe-inline'"
     Permissions-Policy geolocation=()
     Referrer-Policy no-referrer-when-downgrade
-    Strict-Transport-Security max-age=63072000; includeSubDomains; preload
+    Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     X-Content-Type-Options nosniff
     X-Frame-Options DENY
   }
