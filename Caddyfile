@@ -1,7 +1,19 @@
 {
   admin off
 }
-:2016
-encode zstd gzip
-root * /srv
-file_server
+misterorion.com:2016 {
+  encode zstd gzip
+  root * /srv
+  file_server
+  header {
+    Permissions-Policy geolocation=()
+    Referrer-Policy no-referrer-when-downgrade
+    Server MECHAPOWER
+    Strict-Transport-Security max-age=63072000; includeSubdomains; preload
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+  }
+}
+www.misterorion.com {
+  redir https://misterorion.com{uri}
+}
