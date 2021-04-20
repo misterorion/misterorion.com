@@ -1,6 +1,7 @@
 # Build the site
-FROM node:alpine AS BUILD_IMAGE
+FROM node:latest AS BUILD_IMAGE
 WORKDIR /app
+COPY . .
 RUN npm ci && \
     npm run build
 
