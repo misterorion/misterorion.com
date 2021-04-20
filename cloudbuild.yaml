@@ -22,4 +22,4 @@ steps:
   - '--platform'
   - 'managed'
  images:
- - '$_GCR_HOSTNAME/$PROJECT_$_SERVICE_NAME:$SHORT_SHA'
+ - '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
