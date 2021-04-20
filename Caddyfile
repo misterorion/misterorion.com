@@ -1,0 +1,7 @@
+{
+  admin off
+}
+:2016
+encode zstd gzip
+root * /srv
+file_server
