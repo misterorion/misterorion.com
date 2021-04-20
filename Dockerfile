@@ -1,11 +1,12 @@
 # Build the site
-FROM node:latest AS BUILD_IMAGE
-WORKDIR /app
+FROM node:15 AS BUILD_IMAGE
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
 COPY . .
-RUN npm ci && \
-    npm run build
+RUN npm run build
 
 # Build the server
 FROM caddy:alpine
-COPY --from=BUILD_IMAGE /app/public /srv
+COPY --from=BUILD_IMAGE /usr/src/app /srv
 COPY Caddyfile /etc/caddy/Caddyfile
