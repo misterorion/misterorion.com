@@ -1,7 +1,7 @@
 {
   admin off
 }
-:2016 {
+misterorion.com:2016 {
   encode zstd gzip
   root * /srv
   file_server
@@ -14,4 +14,7 @@
     X-Content-Type-Options nosniff
     X-Frame-Options DENY
   }
+}
+www.misterorion.com:2016 {
+  redir https://misterorion.com{uri} permanent
 }
