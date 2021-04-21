@@ -1,15 +1,53 @@
 steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'pull-cache'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      (
+        set -e
+        gsutil hash -h package-lock.json | grep md5 | tr -s " " | awk '{print $3}' > hashed.pkg-lock
+        gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.pkg-lock)" $_SERVICE_NAME_cache.tar.gz 2> /dev/null
+        test -f $_SERVICE_NAME_cache.tar.gz
+        tar -zxf $_SERVICE_NAME_cache.tar.gz
+        echo "Using cached node_modules from gs://$_CACHE_BUCKET/$(cat hashed.pkg-lock)"
+      ) || true
 - name: node
-  entrypoint: npm
-  args: ['install']
+  id: 'npm-install'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+        test -f $_SERVICE_NAME_cache.tar.gz || npm ci;
+# - name: node
+#   entrypoint: npm
+#   args: ['install']
 - name: node
+  id: 'gatsby-build'
   entrypoint: npm
   args: ['run', 'build']
 - name: 'gcr.io/cloud-builders/docker'
+  id: ''
   args: ['build', '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA', '.']
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'upload-cache'
+  waitFor: ['ng-build']
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      (
+        set -e
+        test ! -f $_SERVICE_NAME_cache.tar.gz
+        tar -zcf $_SERVICE_NAME_cache.tar.gz .
+        gsutil -m cp $_SERVICE_NAME_cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.pkg-lock)"
+      ) || true
 - name: 'gcr.io/cloud-builders/docker'
+  id: 'push-built-container'
   args: ['push', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'update-service'
   entrypoint: gcloud
   args:
   - 'run'
