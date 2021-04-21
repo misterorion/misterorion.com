@@ -28,11 +28,10 @@ steps:
   entrypoint: npm
   args: ['run', 'build']
 - name: 'gcr.io/cloud-builders/docker'
-  id: ''
+  id: 'build-gatsby-container'
   args: ['build', '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/gcloud'
   id: 'upload-cache'
-  waitFor: ['ng-build']
   entrypoint: 'sh'
   args:
     - '-c'
@@ -44,7 +43,7 @@ steps:
         gsutil -m cp $_SERVICE_NAME_cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.pkg-lock)"
       ) || true
 - name: 'gcr.io/cloud-builders/docker'
-  id: 'push-built-container'
+  id: 'push-gatsby-container'
   args: ['push', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: 'update-service'
