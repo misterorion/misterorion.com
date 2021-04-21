@@ -1,7 +1,6 @@
 steps:
 - name: 'gcr.io/kaniko-project/executor:latest'
   id: 'build-container'
-  entrypoint: 'sh'
   args:
   - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA
   - --cache=true
