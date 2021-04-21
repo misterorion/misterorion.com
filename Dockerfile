@@ -1,6 +1,5 @@
-FROM node:alpine AS builder
+FROM node:latest AS builder
 WORKDIR /usr/src/app
-COPY package*.json ./
 COPY . .
 RUN npm install && \
     npm run build
