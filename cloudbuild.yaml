@@ -1,11 +1,11 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/yarn'
   args: [
-          'install'
+          'install',
+          '--production=true'
         ]
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/yarn'
   args: [
-          'run',
           'build'
         ]
 - name: gcr.io/cloud-builders/docker
