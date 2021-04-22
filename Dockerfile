@@ -5,6 +5,5 @@ RUN npm install && \
     npm run build
 
 FROM caddy:alpine
-WORKDIR /usr/src/app
 COPY Caddyfile /etc/caddy/Caddyfile
-COPY --from=builder ./public /srv
+COPY --from=builder /usr/src/app/public /srv

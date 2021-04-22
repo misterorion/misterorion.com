@@ -1,14 +1,12 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker pull $_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest || exit 0']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/kaniko-project/executor:latest'
   args: [
-          'build',
-          '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
-          '--cache-from', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
-          '.'
-        ]
+    '--destination=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
+    '--cache=true',
+    '--cache-ttl=72h'
+  ]
+  - --cache=true
+  - --cache-ttl=72h
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: [
@@ -18,4 +16,3 @@ steps:
           '--region', '$_DEPLOY_REGION',
           '--platform', 'managed'
         ]
-images: ['$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest']
