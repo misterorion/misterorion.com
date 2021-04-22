@@ -1,9 +1,13 @@
 steps:
-- name: 'gcr.io/kaniko-project/executor:latest'
+- name: 'gcr.io/cloud-builders/npm'
   args: [
-          '--destination=us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
-          '--cache=true',
-          '--cache-ttl=72h'
+          'install'
+        ]
+- name: gcr.io/cloud-builders/docker
+  args: [
+          'build',
+          '-t', 'us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '.'
         ]
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: gcloud
