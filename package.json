@@ -3,11 +3,11 @@
   "description": "My personal home on the web.",
   "version": "0.3.13",
   "author": "Orion Anderson <orion@mechapower.com>",
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "clean": "gatsby clean",
-    "format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\""
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^4.2.2",
@@ -39,12 +39,5 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "tailwindcss": "^2.1.1"
-  },
-  "devDependencies": {
-    "eslint-config-prettier": "^8.2.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "prettier": "^2.2.1",
-    "prettier-eslint-cli": "^5.0.1"
   }
 }

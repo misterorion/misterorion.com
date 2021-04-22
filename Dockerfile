@@ -1,7 +1,7 @@
 FROM gcr.io/cloud-builders/yarn AS builder
 WORKDIR /app
 COPY . .
-RUN yarn install --production && yarn build
+RUN yarn install --frozen-lockfile --silent && yarn build
 
 FROM caddy:alpine
 WORKDIR /app

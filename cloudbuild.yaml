@@ -5,6 +5,11 @@ steps:
           '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA',
           '.'
         ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+          'push', 
+          '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
+        ]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [
           'run',
@@ -13,3 +18,4 @@ steps:
           '--region=$_DEPLOY_REGION',
           '--platform=managed'
         ]
+images: '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
