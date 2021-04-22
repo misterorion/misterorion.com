@@ -15,4 +15,3 @@ steps:
   - '$_DEPLOY_REGION'
   - '--platform'
   - 'managed'
-image: '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
