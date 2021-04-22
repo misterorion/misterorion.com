@@ -10,7 +10,6 @@ steps:
           '.'
         ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: gcloud
   args: [
           'run',
           'deploy', '$_SERVICE_NAME',
