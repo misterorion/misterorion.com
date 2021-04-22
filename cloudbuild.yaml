@@ -1,18 +1,16 @@
 steps:
 - name: 'gcr.io/kaniko-project/executor:latest'
   args: [
-    '--destination=us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
-    '--cache=true',
-    '--cache-ttl=72h'
-  ]
-  - --cache=true
-  - --cache-ttl=72h
+          '--destination=us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '--cache=true',
+          '--cache-ttl=72h'
+        ]
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: [
           'run',
-          'deploy', '$_SERVICE_NAME',
-          '--image', 'us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
-          '--region', '$_DEPLOY_REGION',
-          '--platform', 'managed'
+          'deploy=$_SERVICE_NAME',
+          '--image=us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '--region=$_DEPLOY_REGION',
+          '--platform=managed'
         ]
