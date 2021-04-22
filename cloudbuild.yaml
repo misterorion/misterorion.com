@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  id: 'build-gatsby-container'
+  id: 'build-container'
   args: ['build', '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA', '.']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: 'update-service'
