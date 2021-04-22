@@ -1,17 +1,21 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  id: 'build-container'
-  args: ['build', '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA', '.']
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull $_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest || exit 0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+          'build',
+          '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '--cache-from', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '.'
+        ]
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  id: 'update-service'
   entrypoint: gcloud
-  args:
-  - 'run'
-  - 'deploy'
-  - '$_SERVICE_NAME'
-  - '--image'
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
-  - '--region'
-  - '$_DEPLOY_REGION'
-  - '--platform'
-  - 'managed'
+  args: [
+          'run',
+          'deploy', '$_SERVICE_NAME',
+          '--image', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '--region', '$_DEPLOY_REGION',
+          '--platform', 'managed'
+        ]
+images: ['$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest']
