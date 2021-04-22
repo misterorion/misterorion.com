@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/kaniko-project/executor:latest'
   args: [
-    '--destination=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
+    '--destination=us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
     '--cache=true',
     '--cache-ttl=72h'
   ]
@@ -12,7 +12,7 @@ steps:
   args: [
           'run',
           'deploy', '$_SERVICE_NAME',
-          '--image', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:latest',
+          '--image', 'us.gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
           '--region', '$_DEPLOY_REGION',
           '--platform', 'managed'
         ]
