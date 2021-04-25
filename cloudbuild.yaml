@@ -2,19 +2,19 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: [
           'build',
-          '-t', '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA',
+          '-t', '$_IMAGE:$SHORT_SHA',
           '.'
         ]
 - name: 'gcr.io/cloud-builders/docker'
   args: [
           'push',
-          '$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA'
+          '$_IMAGE:$SHORT_SHA'
         ]
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: [
-          'run',
-          'deploy', '$_SERVICE_NAME',
-          '--image=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA',
-          '--region=$_DEPLOY_REGION',
-          '--platform=managed'
-        ]
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args: [
+#           'run',
+#           'deploy', '$_SERVICE_NAME',
+#           '--image=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA',
+#           '--region=$_DEPLOY_REGION',
+#           '--platform=managed'
+#         ]
