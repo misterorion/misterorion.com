@@ -17,7 +17,7 @@ steps:
     args:
       - '-c'
       - |
-        test -f cache.tar.gz || yarn install;
+        test -f cache.tar.gz || yarn install
     id: Yarn install
     entrypoint: sh
   - name: $_NODE_IMAGE
@@ -27,17 +27,11 @@ steps:
     entrypoint: yarn
   - name: gcr.io/cloud-builders/gcloud
     args:
-      - '-q'
-      - '-m'
-      - rsync
-      - '-R'
-      - '-d'
-      - '-a'
-      - public-read
-      - ./public
-      - 'gs://$_WEBSITE_BUCKET/'
+      - '-c'
+      - |
+        gsutil -q -m rsync -R -d -a public-read ./public gs://$_WEBSITE_BUCKET/
     id: Sync bucket
-    entrypoint: gsutil
+    entrypoint: sh
   - name: gcr.io/cloud-builders/gcloud
     args:
       - '-c'
