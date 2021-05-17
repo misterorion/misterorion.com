@@ -1,0 +1,52 @@
+steps:
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - '-c'
+      - |
+        (
+          set -e
+          gsutil hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
+          gsutil -m cp "gs://mecha-cache/$(cat hashed.yarn-lock)" cache.tar.gz
+          test -f cache.tar.gz
+          tar -zxf cache.tar.gz
+          echo "Using cache from "gs://mecha-cache/$(cat hashed.yarn-lock)"
+        ) || true
+    id: Download cache
+    entrypoint: sh
+  - name: node:slim
+    args:
+      - '-c'
+      - |
+        test -f cache.tar.gz || yarn install;
+    id: Yarn install
+    entrypoint: sh
+  - name: node:slim
+    args:
+      - build
+    id: Yarn build
+    entrypoint: yarn
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - '-q'
+      - '-m'
+      - rsync
+      - '-R'
+      - '-d'
+      - '-a'
+      - public-read
+      - ./public
+      - 'gs://misterorion-com/'
+    id: Sync to bucket
+    entrypoint: gsutil
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - '-c'
+      - |
+        (
+          set -e
+          test ! -f cache.tar.gz
+          tar -zcf cache.tar.gz node_modules public
+          gsutil -m cp cache.tar.gz "gs://mecha-cache/$(cat hashed.yarn-lock)"
+        ) || true
+    id: Save cache
+    entrypoint: sh
