@@ -6,24 +6,24 @@ steps:
         (
           set -e
           gsutil hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
-          gsutil -m cp "gs://mecha-cache/$(cat hashed.yarn-lock)" cache.tar.gz
+          gsutil -m cp "gs://$_GS_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from "gs://mecha-cache/$(cat hashed.yarn-lock)"
+          echo "Using cache from "gs://$_GS_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    id: Download cache
+    id: Retrieve cache
     entrypoint: sh
-  - name: node:slim
+  - name: node:$_NODE_TAG
     args:
       - '-c'
       - |
         test -f cache.tar.gz || yarn install;
     id: Yarn install
     entrypoint: sh
-  - name: node:slim
+  - name: node:$_NODE_TAG
     args:
       - build
-    id: Yarn build
+    id: Build Gatsby
     entrypoint: yarn
   - name: gcr.io/cloud-builders/gcloud
     args:
@@ -36,7 +36,7 @@ steps:
       - public-read
       - ./public
       - 'gs://misterorion-com/'
-    id: Sync to bucket
+    id: Sync bucket
     entrypoint: gsutil
   - name: gcr.io/cloud-builders/gcloud
     args:
@@ -46,7 +46,7 @@ steps:
           set -e
           test ! -f cache.tar.gz
           tar -zcf cache.tar.gz node_modules public
-          gsutil -m cp cache.tar.gz "gs://mecha-cache/$(cat hashed.yarn-lock)"
+          gsutil -m cp cache.tar.gz "gs://$_GS_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
     id: Save cache
     entrypoint: sh
