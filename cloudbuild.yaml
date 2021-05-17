@@ -11,28 +11,27 @@ steps:
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    id: Retrieve cache
+    id: 'fetch-cache'
     entrypoint: sh
   - name: $_NODE_IMAGE
     args:
       - '-c'
       - |
         test -f cache.tar.gz || yarn install
-    id: Yarn install
+    id: 'yarn-install'
     entrypoint: sh
   - name: $_NODE_IMAGE
     args:
       - build
-    id: Build Gatsby
+    id: 'gatsby-build'
     entrypoint: yarn
   - name: gcr.io/cloud-builders/gcloud
     args:
       - '-c'
       - |
         gsutil -q -m rsync -R -d -a public-read ./public gs://$_WEBSITE_BUCKET/
-    id: Sync bucket
+    id: 'rsync-bucket'
     entrypoint: sh
-    waitFor: ['Build Gatsby']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - '-c'
@@ -40,9 +39,8 @@ steps:
         (
           set -e
           test ! -f cache.tar.gz
-          tar -zcf cache.tar.gz node_modules public
+          tar -zcf cache.tar.gz node_modules public .cache
           gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    id: Save cache
+    id: 'save-cache'
     entrypoint: sh
-    waitFor: ['Build Gatsby']
