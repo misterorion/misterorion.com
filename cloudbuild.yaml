@@ -32,6 +32,7 @@ steps:
         gsutil -q -m rsync -R -d -a public-read ./public gs://$_WEBSITE_BUCKET/
     id: 'rsync-bucket'
     entrypoint: sh
+    waitFor: ['gatsby-build']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - '-c'
@@ -44,3 +45,4 @@ steps:
         ) || true
     id: 'save-cache'
     entrypoint: sh
+    waitFor: ['gatsby-build']
