@@ -1,13 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import SEO from '../components/SEO'
+import Seo from '../components/Seo'
 
 const Page = ({ data }) => {
   const { markdownRemark: page } = data
   return (
     <Layout>
-      <SEO
+      <Seo
         title={page.frontmatter.title}
         description={page.description || 'nothin’'}
         url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}/`}

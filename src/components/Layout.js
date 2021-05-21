@@ -1,5 +1,5 @@
 import React from 'react'
-import SEO from '../components/SEO'
+import Seo from './Seo'
 import Navigation from './Navigation'
 import Footer from './Footer'
 import '@fontsource/roboto/400.css'
@@ -14,7 +14,7 @@ import '@fontsource/jetbrains-mono/600-italic.css'
 const Layout = ({ children }) => {
   return (
     <div className="mainContainer">
-      <SEO />
+      <Seo />
       <Navigation siteTitle="Orion Anderson" />
       <article>{children}</article>
       <Footer />

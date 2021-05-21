@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import SEO from '../components/SEO'
+import Seo from '../components/Seo'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 const Post = ({ data }) => {
@@ -27,7 +27,7 @@ const Post = ({ data }) => {
 
   return (
     <Layout>
-      <SEO
+      <Seo
         title={post.title}
         description={post.description || 'nothin’'}
         image={imagePath}
