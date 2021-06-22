@@ -14,7 +14,7 @@
     "@fontsource/quicksand": "^4.4.5",
     "@fontsource/roboto": "^4.4.5",
     "autoprefixer": "^10.2.6",
-    "gatsby": "^3.7.1",
+    "gatsby": "^3.7.2",
     "gatsby-plugin-image": "^1.7.1",
     "gatsby-plugin-manifest": "^3.7.1",
     "gatsby-plugin-offline": "^4.7.1",
@@ -38,6 +38,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "tailwindcss": "^2.1.4"
+    "tailwindcss": "^2.2.2"
   }
 }
