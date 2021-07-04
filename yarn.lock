@@ -6211,10 +6211,10 @@ gatsby-transformer-sharp@^3.8.0:
     semver "^7.3.4"
     sharp "^0.28.0"
 
-gatsby@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.8.0.tgz#b147967fa264d278804e6dae38a67e68b93bc3b8"
-  integrity sha512-6l1IOslajKT8Umz+qDIfu2Bv1ldAbLnsrMId6ExWvcoqNjOw2eSyGHkGjwnQIwl17A0UcA1wSTAw/Gsj480IxA==
+gatsby@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.8.1.tgz#e94f53c7bd07585ab8f6dee3fb10ad97766aff66"
+  integrity sha512-IZphTACphil3F9ODtAYASA4+l8ErIae4eSTG0a5q9YSpSsfZBBCA5YblRIv+j/7Qi1XX9fP/eNnaxbyurqsPOw==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.14.0"
@@ -10678,10 +10678,10 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-prismjs@^1.24.0:
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.24.0.tgz#0409c30068a6c52c89ef7f1089b3ca4de56be2ac"
-  integrity sha512-SqV5GRsNqnzCL8k5dfAjCNhUrF3pR0A9lTDSCUZeh/LIshheXJEaP0hwLz2t4XHivd2J/v2HR+gRnigzeKe3cQ==
+prismjs@^1.24.1:
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.24.1.tgz#c4d7895c4d6500289482fa8936d9cdd192684036"
+  integrity sha512-mNPsedLuk90RVJioIky8ANZEwYm5w9LcvCXrxHlwf4fNVSn8jEipMybMkWUyyF0JhnC+C4VcOVSBuHRKs1L5Ow==
 
 probe-image-size@^6.0.0:
   version "6.0.0"
