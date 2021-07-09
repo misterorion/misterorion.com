@@ -1,7 +1,9 @@
 steps:
-  - name: gcr.io/cloud-builders/gcloud
+  # If a cache exists, fetch it from Cloud Storage
+  - id: "Fetch cache"
+    name: gcr.io/cloud-builders/gcloud
     args:
-      - '-c'
+      - "-c"
       - |
         (
           set -e
@@ -11,31 +13,35 @@ steps:
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    id: 'fetch-cache'
     entrypoint: sh
-  - name: $_NODE_IMAGE
+  # Install Node dependencies
+  - id: "Yarn install"
+    name: $_BUILDERS_REPO/$_NODE_IMAGE
+    entrypoint: sh
     args:
-      - '-c'
+      - "-c"
       - |
         test -f cache.tar.gz || yarn install
-    id: 'yarn-install'
-    entrypoint: sh
-  - name: $_NODE_IMAGE
-    args:
-      - build
-    id: 'gatsby-build'
+  # Build CSS and JS
+  - id: "Yarn build"
+    name: $_BUILDERS_REPO/$_NODE_IMAGE
     entrypoint: yarn
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - '-c'
-      - |
-        gsutil -q -m rsync -R -d -a public-read ./public gs://$_WEBSITE_BUCKET/
-    id: 'rsync-bucket'
+    args: ["build"]
+  # Push files to website bucket
+  - id: "Sync to bucket"
+    name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
-    waitFor: ['gatsby-build']
-  - name: gcr.io/cloud-builders/gcloud
     args:
-      - '-c'
+      - "-c"
+      - |
+        gsutil -q -m rsync -R -d -j html,js,css,txt -a public-read ./public gs://$_WEBSITE_BUCKET/
+    waitFor: ["Yarn build"]
+  # Cache node_modules
+  - id: "Cache node_modules"
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
+    args:
+      - "-c"
       - |
         (
           set -e
@@ -43,6 +49,13 @@ steps:
           tar -zcf cache.tar.gz node_modules public .cache
           gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    id: 'save-cache'
+    waitFor: ["Yarn build"]
+  # Invalidate CDN cache
+  - id: "Invalidate cache"
+    name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
-    waitFor: ['gatsby-build']
+    args:
+      - "-c"
+      - |
+        gcloud compute url-maps invalidate-cdn-cache $_URL_MAP --host $_HOSTNAME --path "/*" --async
+    waitFor: ["Sync to bucket"]
