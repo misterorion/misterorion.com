@@ -11,6 +11,7 @@ const Seo = ({ title, description, image, url }) => {
           siteDescription
           siteUrl
           siteImage
+          userName
           userTwitter
         }
       }
@@ -28,6 +29,7 @@ const Seo = ({ title, description, image, url }) => {
     title: title || defaults.siteTitle,
     description: description || defaults.siteDescription,
     url: url || `${defaults.siteUrl}`,
+    author: defaults.userName,
     twitter: `@${defaults.userTwitter}`,
     image: `${defaults.siteUrl}${image || defaults.siteImage}`,
   }
@@ -39,6 +41,8 @@ const Seo = ({ title, description, image, url }) => {
       <meta name="description" content={seo.description} />
 
       <title>{seo.title}</title>
+
+      <meta name="author" content={seo.author}/>
 
       <meta property="og:url" content={seo.url} />
       <meta property="og:type" content="article" />
