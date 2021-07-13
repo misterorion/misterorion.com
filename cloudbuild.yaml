@@ -43,11 +43,10 @@ steps:
     args:
       - "-c"
       - |
-        gsutil -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/page-data/**/**.html
         gsutil -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/**/**.html
-        gsutil -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/static/**
-        gsutil -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**/!(sw).js || true
+        gsutil -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/static/**
         gsutil -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**.css
+        gsutil -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**.js
         gsutil -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/sw.js
     waitFor: ["Sync to bucket"]
   # Cache node_modules
