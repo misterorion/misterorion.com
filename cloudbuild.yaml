@@ -43,12 +43,12 @@ steps:
     args:
       - "-c"
       - |
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/**/**.html
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/page-data/**/**.html
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/static/**
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**/!(sw).js
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**.css
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/sw.js
+        gsutil setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/**/**.html
+        gsutil setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/page-data/**/**.html
+        gsutil setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/static/**
+        gsutil setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**/!(sw).js | true
+        gsutil setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**.css
+        gsutil setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/sw.js
     waitFor: ["Sync to bucket"]
   # Cache node_modules
   - id: "Cache node_modules"
