@@ -13,7 +13,7 @@
     "@fontsource/jetbrains-mono": "^4.5.0",
     "@fontsource/quicksand": "^4.5.0",
     "@fontsource/roboto": "^4.5.0",
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.3.1",
     "gatsby": "^3.9.1",
     "gatsby-plugin-image": "^1.9.0",
     "gatsby-plugin-manifest": "^3.9.0",
