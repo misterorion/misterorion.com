@@ -36,6 +36,16 @@ steps:
       - |
         gsutil -q -m rsync -R -d -j html,js,css,txt -a public-read ./public gs://$_WEBSITE_BUCKET/
     waitFor: ["Yarn build"]
+  # Set Gatsby-specific caching
+  - id: "Set cache-control metadata"
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
+    args:
+      - "-c"
+      - |
+        gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/**/*
+        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/static/**/*
+    waitFor: ["Sync to bucket"]
   # Cache node_modules
   - id: "Cache node_modules"
     name: gcr.io/cloud-builders/gcloud
@@ -51,11 +61,11 @@ steps:
         ) || true
     waitFor: ["Yarn build"]
   # Invalidate CDN cache
-  - id: "Invalidate cache"
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
-    args:
-      - "-c"
-      - |
-        gcloud compute url-maps invalidate-cdn-cache $_URL_MAP --host $_HOSTNAME --path "/*" --async
-    waitFor: ["Sync to bucket"]
+  # - id: "Invalidate cache"
+  #   name: gcr.io/cloud-builders/gcloud
+  #   entrypoint: sh
+  #   args:
+  #     - "-c"
+  #     - |
+  #       gcloud compute url-maps invalidate-cdn-cache $_URL_MAP --host $_HOSTNAME --path "/*" --async
+  #   waitFor: ["Sync to bucket"]
