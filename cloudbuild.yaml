@@ -36,7 +36,7 @@ steps:
       - |
         mkdir empty
         gsutil -q -m rsync -R -d empty gs://$_WEBSITE_BUCKET
-        gsutil -q -m cp -R -z css,html,js,json -a public-read public/* gs://$_WEBSITE_BUCKET
+        gsutil -q -m cp -R -z css,html,js,json,map -a public-read public/* gs://$_WEBSITE_BUCKET
     waitFor: ["Yarn build"]
   # Set Gatsby-specific caching
   - id: "Set cache-control metadata"
