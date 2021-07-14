@@ -2,6 +2,7 @@ steps:
   # If a cache exists, fetch it from Cloud Storage
   - id: "Fetch cache"
     name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
     args:
       - "-c"
       - |
@@ -13,7 +14,6 @@ steps:
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    entrypoint: sh
   # Install Node dependencies
   - id: "Yarn install"
     name: $_BUILDERS_REPO/$_NODE_IMAGE
