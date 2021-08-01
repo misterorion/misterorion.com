@@ -94,9 +94,10 @@ const ContactForm = () => {
       <h2>Contact Form</h2>
       <p>
         Form submissions are sent to my email inbox. Besides reading your
-        comment, I don't do anything with your information. Enter a valid email
-        if you want a response.
+        comment, I don't do anything with your information. Caveat: I log IPs
+        to prevent spam.
       </p>
+      <p><strong>Enter a valid email if you want a response.</strong></p>
       <div className={container}>
         <form onSubmit={handleSubmit}>
 
