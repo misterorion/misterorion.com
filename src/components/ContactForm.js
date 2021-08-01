@@ -23,7 +23,13 @@ const ContactForm = () => {
   };
 
   const {
-    values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    isSubmitting
   } = useFormik({
     initialValues: {
       namee2d8u: '',
@@ -86,15 +92,15 @@ const ContactForm = () => {
   return (
     <div>
       <h2>Contact Form</h2>
+      <p>
+        Form submissions go directly to my email inbox. Besides reading your 
+        comment, I don't do anything with your information.
+      </p>
       <div className={container}>
-        <p>
-          Form submissions go directly to my email inbox. Besides reading your 
-          comment, I don't do anything with your information.
-        </p>
         <form onSubmit={handleSubmit}>
 
           <div className={section}>
-            <label htmlFor="namee2d8u" className={label}>Name:</label>
+            <label htmlFor="namee2d8u" className={label}>Name</label>
             <input
               id="namee2d8u"
               name="namee2d8u"
@@ -114,7 +120,7 @@ const ContactForm = () => {
           </div>
 
           <div className={section}>
-            <label htmlFor="emaile2d8u" className={label}>Email:</label>
+            <label htmlFor="emaile2d8u" className={label}>Email</label>
             <input
               id="emaile2d8u"
               name="emaile2d8u"
@@ -134,7 +140,7 @@ const ContactForm = () => {
           </div>
 
           <div className={section}>
-            <label htmlFor="messagee2d8u" className={label}>Message:</label>
+            <label htmlFor="messagee2d8u" className={label}>Message</label>
             <textarea
               id="messagee2d8u"
               name="messagee2d8u"
@@ -154,41 +160,43 @@ const ContactForm = () => {
           </div>
 
           {/* H o n e y p o t BEGINS */}
-          <label
-            className={nope}
-            htmlFor="text">name</label>
-          <input
-            className={nope}
-            onChange={handleChange}
-            autocomplete="off"
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your name here" />
-          <label
-            className={nope}
-            htmlFor="text">email</label>
-          <input
-            className={nope}
-            onChange={handleChange}
-            autocomplete="off"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your email here" />
-          <label
-            className={nope}
-            htmlFor="message">message
-          </label>
-          <input
-            className={nope}
-            onChange={handleChange}
-            autocomplete="off"
-            type="text"
-            id="message"
-            name="message"
-            placeholder="Your message here" />
-          {errors.message}
+          <div>
+            <label
+              className={nope}
+              htmlFor="text">name</label>
+            <input
+              className={nope}
+              onChange={handleChange}
+              autocomplete="off"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name here" />
+            <label
+              className={nope}
+              htmlFor="text">email</label>
+            <input
+              className={nope}
+              onChange={handleChange}
+              autocomplete="off"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email here" />
+            <label
+              className={nope}
+              htmlFor="message">message
+            </label>
+            <input
+              className={nope}
+              onChange={handleChange}
+              autocomplete="off"
+              type="text"
+              id="message"
+              name="message"
+              placeholder="Your message here" />
+            {errors.message}
+          </div>
           {/* H o n e y p o t ENDS */}
 
           {buttonVisible ?
