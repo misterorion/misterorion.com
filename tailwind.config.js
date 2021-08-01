@@ -25,6 +25,10 @@ module.exports = {
   purge: {
     enabled: false,
   },
-  variants: {},
+  variants: {
+    extend: {
+      outline: ['focus'],
+    },
+  },
   plugins: [],
 }

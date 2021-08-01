@@ -1,0 +1,30 @@
+.container {
+  @apply w-full max-w-md
+}
+.section {
+  @apply mb-4
+}
+.label {
+  @apply block text-gray-700 text-sm font-bold mt-4 mb-2
+}
+.input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring
+}
+.message {
+  @apply h-24 w-32 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring
+}
+.errors {
+  @apply text-pink-700 text-sm h-4 pt-1 pl-2
+}
+.button {
+  @apply bg-pink-700 hover:bg-pink-500 text-white font-bold mt-3 py-2 px-4 rounded focus:outline-none focus:ring
+}
+.noWayJose {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
