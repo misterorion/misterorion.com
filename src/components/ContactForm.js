@@ -59,7 +59,7 @@ const ContactForm = () => {
       }
       return errors;
     },
-    onSubmit: (values, { setSubmitting }) => {
+    onSubmit: (values, { resetForm, setSubmitting }) => {
       var convertedValues = {
         name: values.namee2d8u,
         email: values.emaile2d8u,
@@ -140,7 +140,7 @@ const ContactForm = () => {
             onBlur={handleBlur}
             value={values.messagee2d8u}
             className={message}
-            placeholder="500 characters"
+            placeholder="Maximum 500 characters"
             autocomplete="off"
           />
           {errors.messagee2d8u && touched.messagee2d8u && (
