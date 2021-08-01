@@ -84,123 +84,127 @@ const ContactForm = () => {
   })
 
   return (
-
-    <div className={container}>
+    <div>
       <h2>Contact Form</h2>
+      <div className={container}>
+        <p>
+          Form submissions go directly to my email inbox. Besides reading your 
+          comment, I don't do anything with your information.
+        </p>
+        <form onSubmit={handleSubmit}>
 
-      <form onSubmit={handleSubmit}>
+          <div className={section}>
+            <label htmlFor="namee2d8u" className={label}>Name:</label>
+            <input
+              id="namee2d8u"
+              name="namee2d8u"
+              type="text"
+              placeholder="Donald Duck"
+              autocomplete="off"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.namee2d8u}
+              className={input}
+            />
+            {errors.namee2d8u && touched.namee2d8u && (
+              <div className={error}>
+                {errors.namee2d8u}
+              </div>
+            )}
+          </div>
 
-        <div className={section}>
-          <label htmlFor="namee2d8u" className={label}>Name:</label>
+          <div className={section}>
+            <label htmlFor="emaile2d8u" className={label}>Email:</label>
+            <input
+              id="emaile2d8u"
+              name="emaile2d8u"
+              type="email"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.emaile2d8u}
+              className={input}
+              placeholder="dd@disney.com"
+              autocomplete="off"
+            />
+            {errors.emaile2d8u && touched.emaile2d8u && (
+              <div className={error}>
+                {errors.emaile2d8u}
+              </div>
+            )}
+          </div>
+
+          <div className={section}>
+            <label htmlFor="messagee2d8u" className={label}>Message:</label>
+            <textarea
+              id="messagee2d8u"
+              name="messagee2d8u"
+              type="textarea"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.messagee2d8u}
+              className={message}
+              placeholder="Maximum 500 characters"
+              autocomplete="off"
+            />
+            {errors.messagee2d8u && touched.messagee2d8u && (
+              <div className={error}>
+                {errors.messagee2d8u}
+              </div>
+            )}
+          </div>
+
+          {/* H o n e y p o t BEGINS */}
+          <label
+            className={nope}
+            htmlFor="text">name</label>
           <input
-            id="namee2d8u"
-            name="namee2d8u"
+            className={nope}
+            onChange={handleChange}
+            autocomplete="off"
             type="text"
-            placeholder="Donald Duck"
-            autocomplete="off"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.namee2d8u}
-            className={input}
-          />
-          {errors.namee2d8u && touched.namee2d8u && (
-            <div className={error}>
-              {errors.namee2d8u}
-            </div>
-          )}
-        </div>
-
-        <div className={section}>
-          <label htmlFor="emaile2d8u" className={label}>Email:</label>
+            id="name"
+            name="name"
+            placeholder="Your name here" />
+          <label
+            className={nope}
+            htmlFor="text">email</label>
           <input
-            id="emaile2d8u"
-            name="emaile2d8u"
+            className={nope}
+            onChange={handleChange}
+            autocomplete="off"
             type="email"
+            id="email"
+            name="email"
+            placeholder="Your email here" />
+          <label
+            className={nope}
+            htmlFor="message">message
+          </label>
+          <input
+            className={nope}
             onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.emaile2d8u}
-            className={input}
-            placeholder="dd@disney.com"
             autocomplete="off"
-          />
-          {errors.emaile2d8u && touched.emaile2d8u && (
-            <div className={error}>
-              {errors.emaile2d8u}
-            </div>
-          )}
-        </div>
+            type="text"
+            id="message"
+            name="message"
+            placeholder="Your message here" />
+          {errors.message}
+          {/* H o n e y p o t ENDS */}
 
-        <div className={section}>
-          <label htmlFor="messagee2d8u" className={label}>Message:</label>
-          <textarea
-            id="messagee2d8u"
-            name="messagee2d8u"
-            type="textarea"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.messagee2d8u}
-            className={message}
-            placeholder="Maximum 500 characters"
-            autocomplete="off"
-          />
-          {errors.messagee2d8u && touched.messagee2d8u && (
-            <div className={error}>
-              {errors.messagee2d8u}
-            </div>
-          )}
-        </div>
-
-        {/* H o n e y p o t BEGINS */}
-        <label
-          className={nope}
-          htmlFor="text">name</label>
-        <input
-          className={nope}
-          onChange={handleChange}
-          autocomplete="off"
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Your name here" />
-        <label
-          className={nope}
-          htmlFor="text">email</label>
-        <input
-          className={nope}
-          onChange={handleChange}
-          autocomplete="off"
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Your email here" />
-        <label
-          className={nope}
-          htmlFor="message">message
-        </label>
-        <input
-          className={nope}
-          onChange={handleChange}
-          autocomplete="off"
-          type="text"
-          id="message"
-          name="message"
-          placeholder="Your message here" />
-        {errors.message}
-        {/* H o n e y p o t ENDS */}
-
-        {buttonVisible ?
-          <button
-            type="submit"
-            id="btnSubmit"
-            value="Submit"
-            className={button}
-            disabled={isSubmitting}>
-            Submit
-          </button> :
-          <div className={success}>
-            Thanks for your submission!
-          </div>}
-      </form>
+          {buttonVisible ?
+            <button
+              type="submit"
+              id="btnSubmit"
+              value="Submit"
+              className={button}
+              disabled={isSubmitting}>
+              Submit
+            </button> :
+            <div className={success}>
+              Thanks for your submission!
+            </div>}
+        </form>
+      </div>
     </div>
   )
 }
