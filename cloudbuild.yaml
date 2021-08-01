@@ -28,7 +28,7 @@ steps:
     entrypoint: yarn
     args: ["build"]
     env:
-      - 'GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}'
+      - 'FORM_ENDPOINT=${_FORM_ENDPOINT}'
   # Push files to website bucket
   - id: "Sync to bucket"
     name: gcr.io/cloud-builders/gcloud

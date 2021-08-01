@@ -15,7 +15,7 @@ import { success } from './modules/form.module.css'
 
 // Todo: at Yup validation
 
-const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
+const formEndpoint = `${process.env.FORM_ENDPOINT}`
 
 const ContactForm = () => {
 
