@@ -15,7 +15,7 @@ import { success } from './modules/form.module.css'
 
 // Todo: at Yup validation
 
-const url = 'https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t'
+const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
 
 const ContactForm = () => {
 
@@ -74,7 +74,7 @@ const ContactForm = () => {
         email: values.emaile2d8u,
         message: values.messagee2d8u
       }
-      await fetch(url, {
+      await fetch(formEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(convertedValues)
@@ -91,6 +91,7 @@ const ContactForm = () => {
 
   return (
     <div className={formContainer}>
+      <p>{formEndpoint}</p>
       <h2>Contact Form</h2>
       <p>
         Form submissions are sent to my email inbox. Besides reading your
