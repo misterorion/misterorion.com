@@ -37,7 +37,7 @@ const ContactForm = () => {
     initialValues: {
       namee2d8u: '',
       emaile2d8u: '',
-      messagee2d8u: '',
+      commente2d8u: '',
     },
     validate: values => {
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -50,8 +50,8 @@ const ContactForm = () => {
       } else if (!emailRegex.test(values.emaile2d8u)) {
         errors.emaile2d8u = 'Valid Email Required'
       }
-      if (touched.messagee2d8u && !values.messagee2d8u) {
-        errors.messagee2d8u = 'Message Required'
+      if (touched.commente2d8u && !values.commente2d8u) {
+        errors.commente2d8u = 'Comment Required'
       }
       if (touched.namee2d8u && values.namee2d8u.length > 100) {
         errors.namee2d8u = "Name must be less than 100 characters"
@@ -59,11 +59,11 @@ const ContactForm = () => {
       if (touched.emaile2d8u && values.emaile2d8u.length > 100) {
         errors.emaile2d8u = "Email must be less than 100 characters"
       }
-      if (touched.messagee2d8u && values.messagee2d8u.length > 500) {
-        errors.messagee2d8u = 'Message must be less than 500 characters'
+      if (touched.commente2d8u && values.commente2d8u.length > 500) {
+        errors.commente2d8u = 'Comment must be less than 500 characters'
       }
       // Honeypot trap
-      if ((values.name) || (values.email) || (values.message)) {
+      if ((values.name) || (values.email) || (values.comment)) {
         errors.message = 'Begone with you!'
       }
       return errors;
@@ -72,7 +72,7 @@ const ContactForm = () => {
       var convertedValues = {
         name: values.namee2d8u,
         email: values.emaile2d8u,
-        message: values.messagee2d8u
+        comment: values.commente2d8u
       }
       await fetch(formEndpoint, {
         method: "POST",
@@ -146,22 +146,22 @@ const ContactForm = () => {
           </div>
 
           <div className={section}>
-            <label htmlFor="messagee2d8u" className={label}>Message</label>
+            <label htmlFor="commente2d8u" className={label}>comment</label>
             <textarea
               autocomplete="off"
-              className={message}
-              id="messagee2d8u"
-              name="messagee2d8u"
+              className={comment}
+              id="commente2d8u"
+              name="commente2d8u"
               onBlur={handleBlur}
               onChange={handleChange}
               placeholder="Maximum 500 characters"
               type="textarea"
-              value={values.messagee2d8u}
+              value={values.commente2d8u}
             />
             <div className={error}>
-              {errors.messagee2d8u && touched.messagee2d8u && (
+              {errors.commente2d8u && touched.commente2d8u && (
                 <div className={errorText}>
-                  {errors.messagee2d8u}
+                  {errors.commente2d8u}
                 </div>
               )}
             </div>
