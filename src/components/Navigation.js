@@ -35,9 +35,6 @@ const Navigation = () => {
   `)
   const Navigation = ({ navData, metaData }) => (
     <div className={mainContainer}>
-      {/* <Link to="/">
-        <img src={Logo} alt="ensō" className={navStyles.logo} />
-      </Link> */}
       <div className={textContainer}>
         <Link to="/">
           <h1 className={siteTitle}>
