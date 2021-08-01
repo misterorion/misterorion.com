@@ -1,5 +1,5 @@
 .button {
-  @apply bg-pink-700 hover:bg-pink-500 text-white font-bold mt-3 py-2 px-4 rounded focus:outline-none focus:ring;
+  @apply bg-pink-700 hover:bg-pink-500 text-white font-bold mt-3 py-2 px-4 rounded focus:ring;
 }
 .container {
   @apply w-full;

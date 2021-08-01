@@ -102,15 +102,15 @@ const ContactForm = () => {
           <div className={section}>
             <label htmlFor="namee2d8u" className={label}>Name</label>
             <input
+              autocomplete="off"
+              className={input}
               id="namee2d8u"
               name="namee2d8u"
-              type="text"
-              placeholder="Donald Duck"
-              autocomplete="off"
-              onChange={handleChange}
               onBlur={handleBlur}
+              onChange={handleChange}
+              placeholder="Donald Duck"
+              type="text"
               value={values.namee2d8u}
-              className={input}
             />
             <div className={error}>
               {errors.namee2d8u && touched.namee2d8u && (
@@ -124,15 +124,15 @@ const ContactForm = () => {
           <div className={section}>
             <label htmlFor="emaile2d8u" className={label}>Email</label>
             <input
+              autocomplete="off"
+              className={input}
               id="emaile2d8u"
               name="emaile2d8u"
-              type="email"
-              onChange={handleChange}
               onBlur={handleBlur}
-              value={values.emaile2d8u}
-              className={input}
+              onChange={handleChange}
               placeholder="d.duck@disney.com"
-              autocomplete="off"
+              type="email"
+              value={values.emaile2d8u}
             />
             <div className={error}>
               {errors.emaile2d8u && touched.emaile2d8u && (
@@ -146,15 +146,15 @@ const ContactForm = () => {
           <div className={section}>
             <label htmlFor="messagee2d8u" className={label}>Message</label>
             <textarea
+              autocomplete="off"
+              className={message}
               id="messagee2d8u"
               name="messagee2d8u"
-              type="textarea"
-              onChange={handleChange}
               onBlur={handleBlur}
-              value={values.messagee2d8u}
-              className={message}
+              onChange={handleChange}
               placeholder="Maximum 500 characters"
-              autocomplete="off"
+              type="textarea"
+              value={values.messagee2d8u}
             />
             <div className={error}>
               {errors.messagee2d8u && touched.messagee2d8u && (
@@ -169,7 +169,9 @@ const ContactForm = () => {
           <div>
             <label
               className={nope}
-              htmlFor="text">name</label>
+              htmlFor="text">
+              Name
+            </label>
             <input
               className={nope}
               onChange={handleChange}
@@ -177,10 +179,14 @@ const ContactForm = () => {
               type="text"
               id="name"
               name="name"
-              placeholder="Your name here" />
+              placeholder="Your name here"
+              tabindex="-1"
+            />
             <label
               className={nope}
-              htmlFor="text">email</label>
+              htmlFor="text">
+              Email
+            </label>
             <input
               className={nope}
               onChange={handleChange}
@@ -188,10 +194,13 @@ const ContactForm = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="Your email here" />
+              placeholder="Your email here"
+              tabindex="-1"
+            />
             <label
               className={nope}
-              htmlFor="message">message
+              htmlFor="message">
+              Message
             </label>
             <input
               className={nope}
@@ -200,18 +209,21 @@ const ContactForm = () => {
               type="text"
               id="message"
               name="message"
-              placeholder="Your message here" />
+              placeholder="Your message here"
+              tabindex="-1"
+            />
             {errors.message}
           </div>
           {/* H o n e y p o t ENDS */}
 
           {buttonVisible ?
             <button
-              type="submit"
-              id="btnSubmit"
-              value="Submit"
               className={button}
-              disabled={isSubmitting}>
+              disabled={isSubmitting}
+              id="btnSubmit"
+              type="submit"
+              value="Submit"
+            >
               Submit
             </button> :
             <div className={success}>
