@@ -55,6 +55,8 @@ const Seo = ({ title, description, image, url }) => {
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:image" content={seo.image} />
       <meta name="twitter:description" content={seo.description} />
+
+      {/* <script src={withPrefix('validate.js')} type="text/javascript" /> */}
     </Helmet>
   )
 }
