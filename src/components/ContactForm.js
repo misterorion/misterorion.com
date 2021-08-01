@@ -10,6 +10,8 @@ import { nope } from './modules/form.module.css'
 import { section } from './modules/form.module.css'
 import { success } from './modules/form.module.css'
 
+// Todo: at Yup validation
+
 const url = `'https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t'`
 
 const ContactForm = () => {
@@ -51,6 +53,7 @@ const ContactForm = () => {
       if (touched.messagee2d8u && values.messagee2d8u.length > 500) {
         errors.messagee2d8u = 'Message must be less than 500 characters'
       }
+      // Honeypot trap
       if ((values.name) || (values.email) || (values.message)) {
         errors.message = 'Begone with you!'
       }
@@ -69,6 +72,7 @@ const ContactForm = () => {
           body: JSON.stringify(convertedValues)
         })
           .then(() => {
+            resetForm()
             toggleButtonVisible()
           })
           .catch(() => {
