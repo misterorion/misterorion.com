@@ -1,7 +1,6 @@
 .button {
   @apply bg-pink-700 hover:bg-pink-500 text-white font-bold mt-3 py-2 px-4 rounded focus:outline-none focus:ring;
 }
-
 .container {
   @apply w-full max-w-md;
 }
@@ -18,13 +17,7 @@
   @apply h-24 w-32 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring;
 }
 .nope {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 0;
-  width: 0;
-  z-index: -1;
+  @apply opacity-0 absolute top-0 left-0 w-0 h-0 z-n1;
 }
 .section {
   @apply mb-4;

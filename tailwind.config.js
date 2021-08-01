@@ -9,6 +9,9 @@ module.exports = {
       center: true,
     },
     extend: {
+      zIndex: {
+        'n1': '-10',
+      },
       colors: {
         gray: {
           100: '#fafafa',
