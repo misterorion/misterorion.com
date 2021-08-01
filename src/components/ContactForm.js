@@ -93,8 +93,9 @@ const ContactForm = () => {
     <div className={formContainer}>
       <h2>Contact Form</h2>
       <p>
-        Form submissions go directly to my email inbox. Besides reading your
-        comment, I don't do anything with your information.
+        Form submissions are sent to my email inbox. Besides reading your
+        comment, I don't do anything with your information. Enter a valid email
+        if you want a response.
       </p>
       <div className={container}>
         <form onSubmit={handleSubmit}>
