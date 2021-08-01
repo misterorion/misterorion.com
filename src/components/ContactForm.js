@@ -131,7 +131,7 @@ const ContactForm = () => {
               onBlur={handleBlur}
               value={values.emaile2d8u}
               className={input}
-              placeholder="dd@disney.com"
+              placeholder="d.duck@disney.com"
               autocomplete="off"
             />
             <div className={error}>
