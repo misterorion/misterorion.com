@@ -8,8 +8,9 @@ import { label } from './modules/form.module.css'
 import { message } from './modules/form.module.css'
 import { nope } from './modules/form.module.css'
 import { section } from './modules/form.module.css'
+import { success } from './modules/form.module.css'
 
-const url = 'https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t'
+const url = `'https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t'`
 
 const ContactForm = () => {
 
@@ -95,7 +96,6 @@ const ContactForm = () => {
             autocomplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
-            // touched={touched.namee2d8u}
             value={values.namee2d8u}
             className={input}
           />
@@ -193,7 +193,7 @@ const ContactForm = () => {
             disabled={isSubmitting}>
             Submit
           </button> :
-          <div>
+          <div className={success}>
             Thanks for your submission!
           </div>}
       </form>
