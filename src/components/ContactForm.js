@@ -91,7 +91,6 @@ const ContactForm = () => {
 
   return (
     <div className={formContainer}>
-      <p>{formEndpoint}</p>
       <h2>Contact Form</h2>
       <p>
         Form submissions are sent to my email inbox. Besides reading your
