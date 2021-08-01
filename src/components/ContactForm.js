@@ -3,6 +3,9 @@ import { useFormik } from 'formik'
 import { button } from './modules/form.module.css'
 import { container } from './modules/form.module.css'
 import { error } from './modules/form.module.css'
+import { errorText } from './modules/form.module.css'
+
+import { formContainer } from './modules/form.module.css'
 import { input } from './modules/form.module.css'
 import { label } from './modules/form.module.css'
 import { message } from './modules/form.module.css'
@@ -12,7 +15,7 @@ import { success } from './modules/form.module.css'
 
 // Todo: at Yup validation
 
-const url = `'https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t'`
+const url = 'https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t'
 
 const ContactForm = () => {
 
@@ -65,35 +68,32 @@ const ContactForm = () => {
       }
       return errors;
     },
-    onSubmit: (values, { resetForm, setSubmitting }) => {
+    onSubmit: async (values, { resetForm }) => {
       var convertedValues = {
         name: values.namee2d8u,
         email: values.emaile2d8u,
         message: values.messagee2d8u
       }
-      setTimeout(() => {
-        fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(convertedValues)
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(convertedValues)
+      })
+        .then(() => {
+          resetForm()
+          toggleButtonVisible()
         })
-          .then(() => {
-            resetForm()
-            toggleButtonVisible()
-          })
-          .catch(() => {
-            alert('Error');
-          })
-          .finally(() => setSubmitting(false))
-      }, 2000)
+        .catch(() => {
+          alert('Error');
+        })
     },
   })
 
   return (
-    <div>
+    <div className={formContainer}>
       <h2>Contact Form</h2>
       <p>
-        Form submissions go directly to my email inbox. Besides reading your 
+        Form submissions go directly to my email inbox. Besides reading your
         comment, I don't do anything with your information.
       </p>
       <div className={container}>
@@ -112,11 +112,13 @@ const ContactForm = () => {
               value={values.namee2d8u}
               className={input}
             />
-            {errors.namee2d8u && touched.namee2d8u && (
-              <div className={error}>
-                {errors.namee2d8u}
-              </div>
-            )}
+            <div className={error}>
+              {errors.namee2d8u && touched.namee2d8u && (
+                <div className={errorText}>
+                  {errors.namee2d8u}
+                </div>
+              )}
+            </div>
           </div>
 
           <div className={section}>
@@ -132,11 +134,13 @@ const ContactForm = () => {
               placeholder="dd@disney.com"
               autocomplete="off"
             />
-            {errors.emaile2d8u && touched.emaile2d8u && (
-              <div className={error}>
-                {errors.emaile2d8u}
-              </div>
-            )}
+            <div className={error}>
+              {errors.emaile2d8u && touched.emaile2d8u && (
+                <div className={errorText}>
+                  {errors.emaile2d8u}
+                </div>
+              )}
+            </div>
           </div>
 
           <div className={section}>
@@ -152,11 +156,13 @@ const ContactForm = () => {
               placeholder="Maximum 500 characters"
               autocomplete="off"
             />
-            {errors.messagee2d8u && touched.messagee2d8u && (
-              <div className={error}>
-                {errors.messagee2d8u}
-              </div>
-            )}
+            <div className={error}>
+              {errors.messagee2d8u && touched.messagee2d8u && (
+                <div className={errorText}>
+                  {errors.messagee2d8u}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* H o n e y p o t BEGINS */}
