@@ -5,8 +5,8 @@
 
 body {
   @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
-  background-image: url('./funky-lines.png');
-  font-family: 'Roboto', sans-serif;
+  background-image: url("./funky-lines.png");
+  font-family: "Roboto", sans-serif;
 }
 
 .mainContainer {
@@ -44,7 +44,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 article h1 {
@@ -86,13 +86,18 @@ article ol > li {
   @apply my-8;
 }
 
+button:disabled,
+button[disabled] {
+  @apply bg-gray-300 text-gray-400;
+}
+
 article a:hover.gatsby-resp-image-link {
   @apply border-0;
 }
 
 figcaption {
   @apply text-gray-600 text-sm;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   padding: 0.2rem;
 }
 
@@ -103,10 +108,10 @@ figcaption {
   .feat-img {
     @apply my-16;
   }
-  :not(pre) > code[class*='language-'] {
+  :not(pre) > code[class*="language-"] {
     @apply text-sm;
   }
-  pre > code[class*='language-'] {
+  pre > code[class*="language-"] {
     @apply text-xs;
   }
   article h1 {
@@ -143,10 +148,10 @@ figcaption {
   article p {
     @apply text-lg my-3;
   }
-  :not(pre) > code[class*='language-'] {
+  :not(pre) > code[class*="language-"] {
     @apply text-base;
   }
-  pre > code[class*='language-'] {
+  pre > code[class*="language-"] {
     @apply text-sm;
   }
 }
@@ -178,10 +183,10 @@ figcaption {
  * Inspired by Github syntax coloring
  */
 
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*="language-"],
+pre[class*="language-"] {
   color: #393a34;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   /* font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace; */
   direction: ltr;
   text-align: left;
@@ -201,26 +206,26 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
-pre > code[class*='language-'] {
+pre > code[class*="language-"] {
   font-size: 1em;
 }
 
-pre[class*='language-']::-moz-selection,
-pre[class*='language-'] ::-moz-selection,
-code[class*='language-']::-moz-selection,
-code[class*='language-'] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   background: #b3d4fc;
 }
 
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection,
-code[class*='language-']::selection,
-code[class*='language-'] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   background: #b3d4fc;
 }
 
 /* Code blocks */
-pre[class*='language-'] {
+pre[class*="language-"] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
@@ -229,7 +234,7 @@ pre[class*='language-'] {
 }
 
 /* Inline code */
-:not(pre) > code[class*='language-'] {
+:not(pre) > code[class*="language-"] {
   padding: 0.2em;
   padding-top: 1px;
   padding-bottom: 1px;
