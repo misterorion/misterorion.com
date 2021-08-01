@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
+import ContactForm from '../components/ContactForm'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 const Post = ({ data }) => {
@@ -50,6 +51,7 @@ const Post = ({ data }) => {
           ))}
         </ul>
       </div>
+      <ContactForm />
     </Layout>
   )
 }
