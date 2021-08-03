@@ -69,5 +69,5 @@ steps:
           tar -zcf cache.tar.gz node_modules public .cache
           gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    waitFor: 
+    waitFor:
       - Yarn build
