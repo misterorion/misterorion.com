@@ -145,7 +145,7 @@ const ContactForm = () => {
           </div>
 
           <div className={section}>
-            <label htmlFor="commente2d8u" className={label}>comment</label>
+            <label htmlFor="commente2d8u" className={label}>Comment</label>
             <textarea
               autocomplete="off"
               className={comment}
