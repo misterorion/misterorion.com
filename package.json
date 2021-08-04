@@ -1,8 +1,8 @@
 {
   "name": "misterorion-com",
   "description": "My personal home on the web.",
-  "version": "0.3.14",
-  "author": "Orion Anderson <orion@mechapower.com>",
+  "version": "0.3.15",
+  "author": "Orion Anderson",
   "license": "MIT",
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^4.5.0",
-    "@fontsource/quicksand": "^4.5.0",
+    "@fontsource/quicksand": "^4.5.1",
     "@fontsource/roboto": "^4.5.0",
     "autoprefixer": "^10.3.1",
     "formik": "^2.2.9",
