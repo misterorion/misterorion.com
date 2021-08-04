@@ -26,7 +26,7 @@
   @apply block text-gray-700 text-base font-bold mt-4 mb-1 pl-1;
 }
 .comment {
-  @apply h-24 w-32 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight placeholder-gray-500 focus:outline-none focus:ring;
+  @apply h-24 w-32 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight placeholder-gray-300 focus:outline-none focus:ring;
 }
 .nope {
   @apply opacity-0 absolute top-0 left-0 w-0 h-0 z-n1;
