@@ -39,14 +39,14 @@ const ContactForm = () => {
       commente2d8u: '',
     },
     validate: values => {
-      const nameRegex = /^[A-Za-z0-9\-']$/;
+      const nameRegex = /^(?![\s.]+$)[a-zA-Z\s'.]*$/; // Negative lookahead for all spaces or "."
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-      const commentRegex = /^[A-Za-z0-9\-,.'"]$/;
+      const commentRegex = /^[^:$#@^&*]*$/; // not :$#@^&*
       const errors = {};
       if (touched.namee2d8u && !values.namee2d8u) {
         errors.namee2d8u = 'Name Required'
       } else if (!nameRegex.test(values.namee2d8u)) {
-        errors.name = 'Valid Name required'
+        errors.namee2d8u = 'Valid Name required (no special characters)'
       }
       if (touched.emaile2d8u && !values.emaile2d8u) {
         errors.emaile2d8u = 'Email Required'
@@ -56,7 +56,7 @@ const ContactForm = () => {
       if (touched.commente2d8u && !values.commente2d8u) {
         errors.commente2d8u = 'Comment Required'
       } else if (!commentRegex.test(values.commente2d8u)) {
-        errors.commente2d8u = "Valid comment required"
+        errors.commente2d8u = "Valid comment required (:$#@^&* not allowed)"
       }
       if (touched.namee2d8u && values.namee2d8u.length > 100) {
         errors.namee2d8u = "Name must be less than 100 characters"
