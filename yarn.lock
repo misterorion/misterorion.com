@@ -1078,10 +1078,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/jetbrains-mono/-/jetbrains-mono-4.5.0.tgz#4cf4014ad1538b1441afb2794097109d8515b7e9"
   integrity sha512-gxUlpdCLoIrEQ6+1hkPbFHuQz8E5bPZ/iERU+13zEKb8rD/h21v3uHuAT7dTD+Co9nbSlgk6fyVkFwF5edUMog==
 
-"@fontsource/quicksand@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/quicksand/-/quicksand-4.5.0.tgz#a1a1d1c68b4464c3bcd2f322cd0cbf17972dd808"
-  integrity sha512-bioj+rNh6SFG1OQ5NogG87VEhlnkA2k19R5otCxjo7DN1ouZd7SwRzZ8/tC8Ent0Q/gUs5Xbkf7WwmeBv344NA==
+"@fontsource/quicksand@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/quicksand/-/quicksand-4.5.1.tgz#2de9e43289f0ca697a753537c05c6dc830988374"
+  integrity sha512-s40Umas42fr43/zHprNqEXtbPzVEAoX1iEJnXuH/Cz7b1/JXc0PFlzbFtyPMTNDmOwu6KARIgtRfKDvWpObFvA==
 
 "@fontsource/roboto@^4.5.0":
   version "4.5.0"
