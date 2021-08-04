@@ -232,7 +232,7 @@ const ContactForm = () => {
               Submit
             </button> :
             <div className={success}>
-              Thanks for your submission!
+              Thanks for your comment!
             </div>}
         </form>
       </div>
