@@ -39,9 +39,9 @@ const ContactForm = () => {
       commente2d8u: '',
     },
     validate: values => {
-      const nameRegex = /^[a-zA-Z0-9.-@]$/;
+      const nameRegex = /^[a-zA-Z0-9.\-@]$/;
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-      const commentRegex = /^[a-zA-Z0-9._{}-@]$/;
+      const commentRegex = /^[a-zA-Z0-9._{}\-@]$/;
       const errors = {};
       if (touched.namee2d8u && !values.namee2d8u) {
         errors.namee2d8u = 'Name Required'
