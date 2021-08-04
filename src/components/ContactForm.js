@@ -5,6 +5,7 @@ import { container } from './modules/form.module.css'
 import { error } from './modules/form.module.css'
 import { errorText } from './modules/form.module.css'
 import { formContainer } from './modules/form.module.css'
+import { formOpaque } from './modules/form.module.css'
 import { input } from './modules/form.module.css'
 import { label } from './modules/form.module.css'
 import { comment } from './modules/form.module.css'
@@ -12,9 +13,8 @@ import { nope } from './modules/form.module.css'
 import { section } from './modules/form.module.css'
 import { success } from './modules/form.module.css'
 
-// Todo: at Yup validation
-
-const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
+// const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
+const formEndpoint = "https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t"
 
 const ContactForm = () => {
 
@@ -104,8 +104,7 @@ const ContactForm = () => {
       </p>
       <p><strong>Enter a valid email if you want a response.</strong></p>
       <div className={container}>
-        <form onSubmit={handleSubmit}>
-
+        <form onSubmit={handleSubmit} className={isSubmitting ? formOpaque : "" }>
           <div className={section}>
             <label htmlFor="namee2d8u" className={label}>Name</label>
             <input

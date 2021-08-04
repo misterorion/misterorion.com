@@ -16,6 +16,9 @@
 .formContainer h2 {
   @apply mt-0;
 }
+.formOpaque {
+  @apply opacity-40;
+}
 .input {
   @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring placeholder-gray-500;
 }
@@ -32,5 +35,5 @@
   @apply mb-4;
 }
 .success {
-  @apply text-green-800
+  @apply text-xl text-green-800 font-bold;
 }
