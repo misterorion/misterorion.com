@@ -13,8 +13,7 @@ import { nope } from './modules/form.module.css'
 import { section } from './modules/form.module.css'
 import { success } from './modules/form.module.css'
 
-// const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
-const formEndpoint = "https://us-central1-mechapower.cloudfunctions.net/form-gobot-d4u4inxip72sg79t"
+const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
 
 const ContactForm = () => {
 
