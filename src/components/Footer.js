@@ -3,7 +3,6 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { icon } from './modules/footer.module.css'
 import { container } from './modules/footer.module.css'
 import TwitterLogo from './icons/twitter.svg'
-import EmailLogo from './icons/email.svg'
 import GithubLogo from './icons/github.svg'
 import LinkedInLogo from './icons/linkedin.svg'
 
@@ -12,7 +11,6 @@ const Footer = () => {
     query FooterQuery {
       site {
         siteMetadata {
-          userEmail
           userTwitter
           userLinkedIn
           userGitHub
@@ -30,11 +28,6 @@ const Footer = () => {
 
   return (
     <footer className={container}>
-      <FooterLink
-        link={`mailto:${meta.userEmail}`}
-        logo={EmailLogo}
-        logoAlt={'Email'}
-      />
       <FooterLink
         link={`https://www.linkedin.com/in/${meta.userLinkedIn}`}
         logo={LinkedInLogo}
