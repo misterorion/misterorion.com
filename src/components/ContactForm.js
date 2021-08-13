@@ -27,13 +27,7 @@ const ContactForm = () => {
   };
 
   const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleSubmit,
-    handleBlur,
-    isSubmitting
+    values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting
   } = useFormik({
     initialValues: {
       namee2d8u: '',
