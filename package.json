@@ -5,7 +5,7 @@
   "author": "Orion Anderson",
   "license": "MIT",
   "scripts": {
-    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "build": "gatsby build --log-pages",
     "develop": "gatsby develop",
     "clean": "gatsby clean"
   },
@@ -15,7 +15,7 @@
     "@fontsource/roboto": "^4.5.0",
     "autoprefixer": "^10.3.1",
     "formik": "^2.2.9",
-    "gatsby": "^3.11.0",
+    "gatsby": "^3.11.1",
     "gatsby-plugin-image": "^1.11.0",
     "gatsby-plugin-manifest": "^3.11.0",
     "gatsby-plugin-offline": "^4.11.0",
