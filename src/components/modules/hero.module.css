@@ -9,7 +9,6 @@
     @apply text-lg;
   }
 }
-
 @screen tablet {
   .box {
     @apply flex mb-6 p-6 border border-gray-300 rounded shadow;
@@ -21,7 +20,6 @@
     @apply text-xl;
   }
 }
-
 @screen desktop {
   .box {
     @apply mb-4 p-4 pb-2 border border-gray-300 rounded shadow;
