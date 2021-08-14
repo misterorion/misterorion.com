@@ -30,6 +30,7 @@ steps:
       - build
     env:
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
+      - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
   # Push files to website bucket
   - id: Sync to bucket
     name: gcr.io/cloud-builders/gcloud

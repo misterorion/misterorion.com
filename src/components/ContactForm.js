@@ -17,6 +17,7 @@ import {
 
 
 const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
+const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`
 
 const ContactForm = () => {
 
@@ -77,7 +78,10 @@ const ContactForm = () => {
       }
       await fetch(formEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": basicAuth
+        },
         body: JSON.stringify(convertedValues)
       })
         .then(() => {
