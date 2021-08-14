@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
-import {
-  button,
-  container,
-  error,
-  errorText,
-  formContainer,
-  formOpaque,
-  input,
-  label,
-  comment,
-  nope,
-  section,
-  success
-} from './modules/form.module.css'
-
+import { button } from './modules/form.module.css'
+import { comment } from './modules/form.module.css'
+import { container } from './modules/form.module.css'
+import { error } from './modules/form.module.css'
+import { errorText } from './modules/form.module.css'
+import { formContainer } from './modules/form.module.css'
+import { formOpaque } from './modules/form.module.css'
+import { input } from './modules/form.module.css'
+import { label } from './modules/form.module.css'
+import { nope } from './modules/form.module.css'
+import { section } from './modules/form.module.css'
+import { success } from './modules/form.module.css'
 
 const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
 const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`

@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { container, icon } from './modules/footer.module.css'
+import { container } from './modules/footer.module.css'
+import { icon } from './modules/footer.module.css'
 import TwitterLogo from './icons/twitter.svg'
 import GithubLogo from './icons/github.svg'
 import LinkedInLogo from './icons/linkedin.svg'
