@@ -1,4 +1,5 @@
 module.exports = {
+  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     screens: {
       mobile: '360px',
@@ -24,9 +25,6 @@ module.exports = {
         },
       },
     },
-  },
-  purge: {
-    enabled: false,
   },
   variants: {
     extend: {

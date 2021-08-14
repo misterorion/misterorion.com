@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
+import { title } from '../components/modules/Page.module.css'
 
 const Page = ({ data }) => {
   const { markdownRemark: page } = data
@@ -12,7 +13,7 @@ const Page = ({ data }) => {
         description={page.description || 'nothin’'}
         url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}/`}
       />
-      <h1 className="text-4xl mb-4 mt-12 font-bold">
+      <h1 className={title}>
         {page.frontmatter.title}
       </h1>
       <div dangerouslySetInnerHTML={{ __html: page.html }} />

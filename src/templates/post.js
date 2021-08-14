@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import ContactForm from '../components/ContactForm'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import { featImg, date, description, tags } from '../components/modules/Post.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
@@ -35,17 +36,17 @@ const Post = ({ data }) => {
         url={`${data.site.siteMetadata.siteUrl}/${post.slug}/`}
       />
       <h1>{post.title}</h1>
-      <div className="post-date">{post.date}</div>
-      <div className="post-description">
+      <div className={date}>{post.date}</div>
+      <div className={description}>
         <p>{post.description}</p>
       </div>
-      <div className="feat-img">{image}</div>
+      <div className={featImg}>{image}</div>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <div className="tags border-t mt-12 pt-12 border-gray-400">
-        <h3 className="inline">Tags:</h3>
-        <ul className="inline ml-2">
+      <div className={tags}>
+        <h3>Tags:</h3>
+        <ul>
           {post.tags.map((tag) => (
-            <li className="inline-block mx-2 font-bold">
+            <li>
               <Link to={`/tags/${_.kebabCase(tag)}`}>{tag}</Link>
             </li>
           ))}

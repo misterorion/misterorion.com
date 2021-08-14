@@ -1,0 +1,18 @@
+.date {
+  @apply text-gray-600;
+}
+.description {
+  @apply mt-12;
+}
+.featImg {
+  @apply my-20;
+}
+.tags {
+  @apply border-t mt-12 pt-12 border-gray-400
+}
+.tags h3 {
+  @apply inline;
+}
+.tags ul {
+  @apply inline-block mx-2 font-bold;
+}

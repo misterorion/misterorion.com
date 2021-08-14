@@ -1,12 +1,14 @@
 {
   "name": "misterorion-com",
+  "private": true,
+  "version": "1.0.0",
   "description": "My personal home on the web.",
-  "version": "0.3.15",
   "author": "Orion Anderson",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build --log-pages",
     "develop": "gatsby develop",
+    "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
   "dependencies": {
@@ -20,7 +22,6 @@
     "gatsby-plugin-manifest": "^3.11.0",
     "gatsby-plugin-offline": "^4.11.0",
     "gatsby-plugin-postcss": "^4.11.0",
-    "gatsby-plugin-purgecss": "^6.0.2",
     "gatsby-plugin-react-helmet": "^4.11.0",
     "gatsby-plugin-sharp": "^3.11.0",
     "gatsby-plugin-sitemap": "^4.7.0",
@@ -40,5 +41,9 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "tailwindcss": "^2.2.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/misterorion/misterorion.com"
   }
 }

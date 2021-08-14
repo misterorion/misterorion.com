@@ -1,4 +1,3 @@
-/*! purgecss start ignore */
 @charset "utf-8";
 @tailwind base;
 @tailwind components;
@@ -9,20 +8,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.mainContainer {
-  @apply mx-auto rounded-lg px-6 py-6 max-w-5xl bg-gray-100 border-gray-400;
-}
-
 blockquote {
   @apply pl-6 my-6 border-l-4 border-pink-700;
 }
 
 article {
   @apply my-10;
-}
-
-.post-description {
-  @apply mt-12;
 }
 
 article picture,
@@ -44,19 +35,20 @@ h2,
 h3,
 h4,
 h5 {
+  @apply font-bold;
   font-family: "Quicksand", sans-serif;
 }
 
 article h1 {
-  @apply mb-4 mt-12 font-bold;
+  @apply mb-4 mt-12;
 }
 
 article h2 {
-  @apply text-2xl mt-12 pb-6 font-bold border-b border-gray-300 text-teal-700;
+  @apply text-2xl mt-12 pb-6 border-b border-gray-300 text-teal-700;
 }
 
 article h3 {
-  @apply text-xl font-bold;
+  @apply text-xl;
 }
 
 article ul,
@@ -72,12 +64,8 @@ article ol > li {
   @apply list-decimal text-xl mb-4;
 }
 
-.post-date {
-  @apply text-gray-600;
-}
-
-.feat-img {
-  @apply my-20;
+.mainContainer {
+  @apply mx-auto rounded-lg px-6 py-6 max-w-5xl bg-gray-100 border-gray-400;
 }
 
 .gatsby-highlight,
@@ -177,136 +165,6 @@ figcaption {
   }
 }
 
-/* Prism CSS start */
-/**
- * GHColors theme by Avi Aryan (http://aviaryan.in)
- * Inspired by Github syntax coloring
- */
+@import url("prism.css");
 
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #393a34;
-  font-family: "JetBrains Mono", monospace;
-  /* font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace; */
-  direction: ltr;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  font-size: 0.9em;
-  line-height: 1.2em;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-pre > code[class*="language-"] {
-  font-size: 1em;
-}
-
-pre[class*="language-"]::-moz-selection,
-pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection {
-  background: #b3d4fc;
-}
-
-pre[class*="language-"]::selection,
-pre[class*="language-"] ::selection,
-code[class*="language-"]::selection,
-code[class*="language-"] ::selection {
-  background: #b3d4fc;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-  border: 1px solid #dddddd;
-  background-color: white;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: 0.2em;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  background: #f8f8f8;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #999988;
-  font-style: italic;
-}
-
-.token.namespace {
-  opacity: 0.7;
-}
-
-.token.string,
-.token.attr-value {
-  color: #e3116c;
-}
-
-.token.punctuation,
-.token.operator {
-  color: #393a34; /* no highlight */
-}
-
-.token.entity,
-.token.url,
-.token.symbol,
-.token.number,
-.token.boolean,
-.token.variable,
-.token.constant,
-.token.property,
-.token.regex,
-.token.inserted {
-  color: #36acaa;
-}
-
-.token.atrule,
-.token.keyword,
-.token.attr-name,
-.language-autohotkey .token.selector {
-  color: #00a4db;
-}
-
-.token.function,
-.token.deleted,
-.language-autohotkey .token.tag {
-  color: #9a050f;
-}
-
-.token.tag,
-.token.selector,
-.language-autohotkey .token.keyword {
-  color: #00009f;
-}
-
-.token.important,
-.token.function,
-.token.bold {
-  font-weight: 600;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-/* Prism CSS end */
-/*! purgecss end ignore */
 @tailwind utilities;

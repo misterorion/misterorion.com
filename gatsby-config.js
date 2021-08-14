@@ -23,12 +23,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        tailwind: true,
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
