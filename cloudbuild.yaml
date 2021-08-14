@@ -26,7 +26,7 @@ steps:
   - id: Yarn build
     name: $_BUILDERS_REPO/$_NODE_IMAGE
     entrypoint: yarn
-    args: 
+    args:
       - build
     env:
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
