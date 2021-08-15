@@ -9,7 +9,6 @@
     font-family: "Roboto", sans-serif;
   }
 
-  /* MOBILE FIRST */
   blockquote {
     @apply pl-6 my-6 border-l-4 border-pink-700;
   }
@@ -119,11 +118,6 @@
   }
 
   /* Prism CSS start */
-  /**
- * GHColors theme by Avi Aryan (http://aviaryan.in)
- * Inspired by Github syntax coloring
- */
-
   code[class*="language-"],
   pre[class*="language-"] {
     color: #393a34;
@@ -246,6 +240,5 @@
   .token.italic {
     font-style: italic;
   }
-
   /* Prism CSS end */
 }
