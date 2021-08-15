@@ -1,10 +1,9 @@
 .button {
   @apply
+  mt-3
+  py-2 px-4
   bg-pink-700 hover:bg-pink-500
   text-white font-bold
-  mt-3
-  py-2
-  px-4
   rounded
   focus:ring;
 }
@@ -32,55 +31,43 @@
   @apply opacity-40;
 }
 .input {
-  @apply 
+  @apply
   appearance-none
   shadow
   border rounded
   py-2 px-3
   focus:outline-none focus:ring
-  text-gray-700 leading-tight
-  placeholder-gray-300;
+  text-gray-700 leading-tight placeholder-gray-300;
 }
 .label {
-  @apply block
-  text-gray-700
-  text-base
-  font-bold
-  mt-4
-  mb-1
-  pl-1;
+  @apply
+  block
+  mt-4 mb-1 pl-1
+  text-base text-gray-700
+  font-bold;
 }
 .comment {
-  @apply h-24
-  shadow
+  @apply
+  h-24 w-full
   appearance-none
-  border
-  rounded
-  w-full
-  py-2
-  px-3
-  text-gray-700
-  leading-tight
-  placeholder-gray-300
-  focus:outline-none
-  focus:ring;
+  shadow
+  border rounded
+  py-2 px-3
+  text-gray-700 leading-tight placeholder-gray-300
+  focus:outline-none focus:ring;
 }
 .nope {
-  @apply opacity-0
-  absolute
-  top-0
-  left-0
-  w-0
-  h-0
+  @apply
+  opacity-0
+  absolute top-0 left-0 w-0 h-0
   z-n1;
 }
 .section {
   @apply mb-4;
 }
 .success {
-  @apply text-xl
-  text-green-800
-  font-bold;
+  @apply
+  text-xl font-bold text-green-800;
 }
 
 @screen tablet {
