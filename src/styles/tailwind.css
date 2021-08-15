@@ -96,12 +96,7 @@
 
   @screen desktop {
     .mainContainer {
-      @apply px-32 
-      py-6 
-      w-full 
-      max-w-5xl
-      my-6
-      border-2 border-teal-700 rounded-lg;
+      @apply px-32 py-6 w-full max-w-5xl my-6 border-2 border-teal-700 rounded-lg;
     }
     article h1 {
       @apply text-3xl;
@@ -122,10 +117,7 @@
       @apply list-decimal text-lg mb-2;
     }
   }
-}
 
-/* PRISM */
-@layer base {
   /* Prism CSS start */
   /**
  * GHColors theme by Avi Aryan (http://aviaryan.in)
