@@ -1,5 +1,8 @@
 .container {
-  @apply flex flex-row py-8 border-t border-gray-400 justify-center;
+  @apply flex flex-row
+  py-8
+  justify-center
+  border-t border-gray-400;
 }
 .icon {
   @apply mx-2;
