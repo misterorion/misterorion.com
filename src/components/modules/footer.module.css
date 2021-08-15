@@ -1,5 +1,6 @@
 .container {
-  @apply flex flex-row
+  @apply
+  flex flex-row
   py-8
   justify-center
   border-t border-gray-400;
