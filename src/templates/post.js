@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import ContactForm from '../components/ContactForm'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { featImg, date, description, tags } from '../components/modules/Post.module.css'
+import { featImg, date, description, tags } from '../components/modules/post.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark

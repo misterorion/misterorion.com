@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import { title } from '../components/modules/Page.module.css'
+import { title } from '../components/modules/page.module.css'
 
 const Page = ({ data }) => {
   const { markdownRemark: page } = data
