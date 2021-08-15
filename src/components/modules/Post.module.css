@@ -5,14 +5,29 @@
   @apply mt-12;
 }
 .featImg {
-  @apply my-20;
+  @apply my-16;
 }
 .tags {
-  @apply border-t mt-12 pt-12 border-gray-400
+  @apply border-t my-12 pt-6 border-gray-400;
 }
 .tags h3 {
-  @apply inline;
+  @apply block mb-3;
 }
 .tags ul {
-  @apply inline-block mx-2 font-bold;
+  @apply block font-bold ml-0;
+}
+.tags li {
+  @apply inline-block mr-2 text-base;
+}
+
+@screen tablet {
+  .tags h3 {
+    @apply inline text-lg mr-4;
+  }
+  .tags ul {
+    @apply inline;
+  }
+  .tags li {
+    @apply inline text-lg mr-4;
+  }
 }
