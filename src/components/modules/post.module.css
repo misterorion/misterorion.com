@@ -8,7 +8,7 @@
   @apply my-16;
 }
 .tags {
-  @apply border-t my-12 pt-6 border-gray-400;
+  @apply my-12 pt-6 border-t border-gray-400;
 }
 .tags h3 {
   @apply block mb-3;
