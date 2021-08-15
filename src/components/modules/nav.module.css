@@ -6,7 +6,8 @@
 }
 .menuItem {
   font-family: "Quicksand", sans-serif;
-  @apply inline-block
+  @apply
+  inline-block
   px-2 py-1
   bg-gray-200
   transition duration-200 ease-in-out
@@ -41,7 +42,7 @@
     @apply flex justify-between;
   }
   .siteTitle {
-    @apply text-3xl inline-block;
+    @apply inline-block text-3xl;
   }
   .nav {
     @apply pt-1;
