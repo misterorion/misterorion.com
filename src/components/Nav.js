@@ -5,7 +5,7 @@ import {
   menuItem,
   nav,
   siteTitle,
-} from './modules/Nav.module.css'
+} from './modules/nav.module.css'
 
 const Nav = () => {
   const data = useStaticQuery(graphql`
