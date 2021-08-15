@@ -1,5 +1,8 @@
 .container {
-  @apply mb-12 py-6 border-b border-gray-300 text-center;
+  @apply
+  mb-12 py-6
+  border-b border-gray-300
+  text-center;
 }
 .logo {
   @apply fill-current h-6 w-6 mr-4;
@@ -10,8 +13,9 @@
   inline-block
   px-2 py-1
   bg-gray-200
+  text-lg text-gray-600 
   transition duration-200 ease-in-out
-  text-lg text-gray-600 border rounded;
+  border rounded;
 }
 .menuItem:hover {
   @apply text-pink-700;
