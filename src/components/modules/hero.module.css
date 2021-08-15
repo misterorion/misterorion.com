@@ -1,8 +1,14 @@
 .box {
-  @apply mb-6 p-6 border border-gray-300 rounded shadow;
+  @apply mb-6
+  p-6
+  border
+  border-gray-300 
+  rounded
+  shadow;
 }
 .image {
-  @apply mb-6 w-40;
+  @apply mb-6
+  w-40;
 }
 .text {
   @apply text-lg;
@@ -14,7 +20,10 @@
     @apply flex;
   }
   .image {
-    @apply w-32 mb-0 mr-6 flex-shrink-0;
+    @apply w-32
+    mb-0
+    mr-6
+    flex-shrink-0;
   }
   .text {
     @apply text-xl;
@@ -23,10 +32,13 @@
 
 @screen desktop {
   .box {
-    @apply mb-4 p-4 pb-2;
+    @apply mb-4 
+    p-4 
+    pb-2;
   }
   .image {
-    @apply w-24 mr-6;
+    @apply w-24
+    mr-6;
   }
   .text {
     @apply text-2xl;

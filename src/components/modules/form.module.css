@@ -13,9 +13,7 @@
   @apply w-full;
 }
 .error {
-  @apply h-4
-  pt-1
-  pl-1;
+  @apply h-4 pt-1 pl-1;
 }
 .errorText {
   @apply text-pink-700
@@ -95,6 +93,6 @@
 
 @screen tablet {
   .formContainer {
-    @apply   px-12;
+    @apply px-12;
   }
 }
