@@ -1,10 +1,5 @@
 .box {
-  @apply mb-6
-  p-6
-  border
-  border-gray-300 
-  rounded
-  shadow;
+  @apply mb-6 p-6 border border-gray-300 rounded shadow;
 }
 .image {
   @apply mb-6
@@ -20,10 +15,7 @@
     @apply flex;
   }
   .image {
-    @apply w-32
-    mb-0
-    mr-6
-    flex-shrink-0;
+    @apply w-32 mb-0 mr-6 flex-shrink-0;
   }
   .text {
     @apply text-xl;
