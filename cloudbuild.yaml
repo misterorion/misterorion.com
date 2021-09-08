@@ -21,7 +21,7 @@ steps:
     args:
       - -c
       - |
-        test -f cache.tar.gz || yarn install --production --frozen-lockfile
+        test -f cache.tar.gz || yarn install --prod --frozen-lockfile
   # Build CSS and JS
   - id: Yarn build
     name: $_BUILDERS_REPO/$_NODE_IMAGE
