@@ -55,6 +55,8 @@ const Seo = ({ title, description, image, url }) => {
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:image" content={seo.image} />
       <meta name="twitter:description" content={seo.description} />
+
+      <script defer data-domain="misterorion.com" src="https://plausible.io/js/plausible.js"></script>
     </Helmet>
   )
 }
