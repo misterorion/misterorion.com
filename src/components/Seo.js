@@ -56,7 +56,7 @@ const Seo = ({ title, description, image, url }) => {
       <meta name="twitter:image" content={seo.image} />
       <meta name="twitter:description" content={seo.description} />
 
-      <script defer data-domain="misterorion.com" src="https://misterorion.com/js/plausible.js"></script>
+      <script defer data-domain="misterorion.com" src="https://misterorion.com/js/script.js"></script>
     </Helmet>
   )
 }
