@@ -1,5 +1,5 @@
 const path = require(`path`)
-const _ = require('lodash')
+const kebabCase = require('lodash/kebabCase')
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -13,9 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Query post and page data
   const result = await graphql(`
     {
-      allPost: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/(posts)/" } }
-      ) {
+      allPost: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/(posts)/"}}) {
         edges {
           node {
             frontmatter {
@@ -24,9 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allPage: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/(pages)/" } }
-      ) {
+      allPage: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/(pages)/"}}) {
         edges {
           node {
             frontmatter {
@@ -35,7 +31,25 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allTag: allMarkdownRemark(limit: 2000) {
+      allGrimoire: allMarkdownRemark(
+        filter: {fileAbsolutePath: {regex: "/(grimoire)/"}}
+      ) {
+        edges {
+          node {
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+      allGrimoireTag: allMarkdownRemark(
+        filter: {fileAbsolutePath: {regex: "/(grimoire)/"}}
+      ) {
+        group(field: frontmatter___tags) {
+          fieldValue
+        }
+      }
+      allTag: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/(posts)/"}}) {
         group(field: frontmatter___tags) {
           fieldValue
         }
@@ -51,12 +65,16 @@ exports.createPages = async ({ graphql, actions }) => {
   // Extract query results
   const posts = result.data.allPost.edges
   const pages = result.data.allPage.edges
+  const grimoire = result.data.allGrimoire.edges
+  const grimoireTags = result.data.allGrimoireTag.group
   const tags = result.data.allTag.group
 
   // Load templates
   const postTemplate = path.resolve(`src/templates/post.js`)
   const pageTemplate = path.resolve(`src/templates/page.js`)
   const tagTemplate = path.resolve(`src/templates/tags.js`)
+  const grimoireTemplate = path.resolve(`src/templates/grimoire.js`)
+  const grimoireTagTemplate = path.resolve(`src/templates/grimoireTag.js`)
 
   // Create post pages
   posts.forEach((post) => {
@@ -80,14 +98,37 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // Create tag pages
+  // Create Grimoire pages
+  grimoire.forEach((entry) => {
+    createPage({
+      path: `/grimoire/${kebabCase(entry.node.frontmatter.title)}/`,
+      component: grimoireTemplate,
+      context: {
+        title: entry.node.frontmatter.title,
+      },
+    })
+  })
+
+  // Create Grimoire Tag pages
+  grimoireTags.forEach((tag) => {
+    createPage({
+      path: `/grimoire/tag/${kebabCase(tag.fieldValue)}/`,
+      component: grimoireTagTemplate,
+      context: {
+        tag: tag.fieldValue,
+      },
+    })
+  })
+
+  // Create Post tag pages
   tags.forEach((tag) => {
     createPage({
-      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      path: `/tags/${kebabCase(tag.fieldValue)}/`,
       component: tagTemplate,
       context: {
         tag: tag.fieldValue,
       },
     })
   })
+
 }
