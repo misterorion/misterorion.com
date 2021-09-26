@@ -3,6 +3,7 @@ title: "I passed the Linux Essentials exam"
 date: "2017-05-21"
 slug: "passed-linux-essentials"
 imageFluid: "../images/LPI-Essentials.jpg"
+imageAlt: "LPI Essentials"
 tags: ["Linux","Career"]
 ---
 

@@ -4,6 +4,7 @@ date:  "2020-01-05"
 slug: "moving-to-gatsby"
 description: "I moved my site from Hugo to Gatsby and now it's fast as hell."
 imageFluid:  "../images/great-gatsby.jpg"
+imageAlt: "The Great Gatsby cover cropped"
 tags: ["Code", "Gatsby"]
 ---
 

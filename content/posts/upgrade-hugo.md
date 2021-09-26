@@ -4,6 +4,7 @@ date: "2018-11-09"
 title: "Bash Script to Upgrade Hugo"
 description: "A quick bash script that upgrades Hugo."
 imageFixed: "../images/bash.png"
+imageAlt: "Bash Logo"
 tags: ["Linux"]
 ---
 
