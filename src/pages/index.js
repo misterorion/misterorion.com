@@ -1,9 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
 import Layout from '../components/Layout'
-import Hero from '../components/Hero'
-import PostLink from '../components/PostLink'
+import Hero from '../components/modules/hero/Hero'
+import PostLink from '../components/modules/postlink/PostLink'
 
 const Index = ({ data }) => {
   const Posts = data.allMarkdownRemark.edges.map((edge) => (
@@ -12,7 +11,9 @@ const Index = ({ data }) => {
   return (
     <Layout>
       <Hero />
-      <div className="py-6">{Posts}</div>
+      <div className="py-6">
+        {Posts}
+      </div>
     </Layout>
   )
 }

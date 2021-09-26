@@ -4,22 +4,20 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import ContactForm from '../components/ContactForm'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import { kebabCase } from 'lodash'
 import { featImg, date, description, tags } from '../components/modules/post.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
   const { html: content } = data.markdownRemark
-  const _ = require('lodash')
 
   const image = post.imageFluid ? (
     <GatsbyImage
       alt={post.imageAlt}
-      loading="eager"
       image={post.imageFluid.childImageSharp.gatsbyImageData} />
   ) : (
     <GatsbyImage
       alt={post.imageAlt}
-      loading="eager"
       image={post.imageFixed.childImageSharp.gatsbyImageData} />
   )
 
@@ -31,7 +29,7 @@ const Post = ({ data }) => {
     <Layout>
       <Seo
         title={post.title}
-        description={post.description || 'nothin’'}
+        description={post.description || ''}
         image={imagePath}
         url={`${data.site.siteMetadata.siteUrl}/${post.slug}/`}
       />
@@ -46,8 +44,8 @@ const Post = ({ data }) => {
         <h3>Tags:</h3>
         <ul>
           {post.tags.map((tag) => (
-            <li>
-              <Link to={`/tags/${_.kebabCase(tag)}`}>{tag}</Link>
+            <li key={tag}>
+              <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>
             </li>
           ))}
         </ul>
@@ -68,7 +66,7 @@ export const postQuery = graphql`
         tags
         imageFluid {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+            gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
             original {
               src
             }
@@ -76,7 +74,7 @@ export const postQuery = graphql`
         }
         imageFixed {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+            gatsbyImageData(placeholder: NONE, layout: CONSTRAINED)
             original {
               src
             }

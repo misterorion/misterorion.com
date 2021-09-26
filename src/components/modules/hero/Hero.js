@@ -1,17 +1,17 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { box, image, text } from './modules/hero.module.css'
+import { box, image, text } from './hero.module.css'
 
 const Hero = () => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
-      homeImg: file(relativePath: { eq: "me3.jpg" }) {
+      homeImg: file(relativePath: {eq: "hero.jpg" }) {
         childImageSharp {
           gatsbyImageData(
             width: 250
             height: 250
-            placeholder: TRACED_SVG
+            placeholder: NONE
             layout: CONSTRAINED
           )
         }
@@ -27,7 +27,6 @@ const Hero = () => {
     <div className={box}>
       <div className={image}>
         <GatsbyImage
-          loading="eager"
           alt={data.site.siteMetadata.userName}
           image={data.homeImg.childImageSharp.gatsbyImageData}
         />

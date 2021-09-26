@@ -107,7 +107,7 @@ const ContactForm = () => {
           <div className={section}>
             <label htmlFor="namee2d8u" className={label}>Name</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               className={input}
               id="namee2d8u"
               name="namee2d8u"
@@ -129,7 +129,7 @@ const ContactForm = () => {
           <div className={section}>
             <label htmlFor="emaile2d8u" className={label}>Email</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               className={input}
               id="emaile2d8u"
               name="emaile2d8u"
@@ -151,7 +151,7 @@ const ContactForm = () => {
           <div className={section}>
             <label htmlFor="commente2d8u" className={label}>Comment</label>
             <textarea
-              autocomplete="off"
+              autoComplete="off"
               className={comment}
               id="commente2d8u"
               name="commente2d8u"
@@ -180,12 +180,12 @@ const ContactForm = () => {
             <input
               className={nope}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               type="text"
               id="name"
               name="name"
               placeholder="Your name here"
-              tabindex="-1"
+              tabIndex="-1"
             />
             <label
               className={nope}
@@ -195,12 +195,12 @@ const ContactForm = () => {
             <input
               className={nope}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               type="email"
               id="email"
               name="email"
               placeholder="Your email here"
-              tabindex="-1"
+              tabIndex="-1"
             />
             <label
               className={nope}
@@ -210,12 +210,12 @@ const ContactForm = () => {
             <input
               className={nope}
               onChange={handleChange}
-              autocomplete="off"
+              autoComplete="off"
               type="text"
               id="message"
               name="message"
               placeholder="Your message here"
-              tabindex="-1"
+              tabIndex="-1"
             />
             {errors.message}
           </div>

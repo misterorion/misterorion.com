@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import TwitterLogo from './icons/twitter.svg'
 import GithubLogo from './icons/github.svg'
 import LinkedInLogo from './icons/linkedin.svg'
-import { container, icon } from './modules/footer.module.css'
+import { container, icon } from './footer.module.css'
 
 const Footer = () => {
   const data = useStaticQuery(graphql`

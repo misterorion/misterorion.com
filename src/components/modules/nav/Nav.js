@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import { container, menuItem, nav, siteTitle } from './modules/nav.module.css'
+import { container, menuItem, nav, siteTitle } from './nav.module.css'
 
 const Nav = () => {
   const data = useStaticQuery(graphql`
@@ -37,10 +37,15 @@ const Nav = () => {
         </h1>
       </Link>
       <nav className={nav}>
-        {navData.map((navItem, i) => {
+        <div className={menuItem}>
+          <Link to={`/grimoire/`} key="grimoire">
+          ✨ Grimoire
+          </Link>
+        </div>
+        {navData.map((navItem) => {
           return (
-            <div className={menuItem}>
-              <Link to={`/${navItem.node.frontmatter.slug}/`} key={i}>
+            <div className={menuItem} key={navItem.node.id}>
+              <Link to={`/${navItem.node.frontmatter.slug}/`} >
                 {navItem.node.frontmatter.title}
               </Link>
             </div>

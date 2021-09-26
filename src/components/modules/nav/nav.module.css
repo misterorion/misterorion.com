@@ -9,6 +9,7 @@
   @apply inline-block px-2 py-1 bg-gray-200 text-lg text-gray-600
   transition duration-200 ease-in-out
   border rounded;
+  margin-left: 1rem;
 }
 .menuItem:hover {
   @apply text-pink-700;
