@@ -34,6 +34,7 @@ module.exports = {
       options: {
         name: `posts`,
         path: `${__dirname}/content/posts`,
+        ignore: [`**/_*`],
       },
     },
     {
@@ -41,6 +42,15 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/content/pages`,
+        ignore: [`**/_*`],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `grimoire`,
+        path: `${__dirname}/content/grimoire`,
+        ignore: [`**/_*`],
       },
     },
     {
@@ -58,16 +68,12 @@ module.exports = {
           },
           {
             resolve: `gatsby-remark-prismjs`,
-            options: {
-              inlineCodeMarker: '>',
-            },
           },
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 800,
               showCaptions: true,
-              tracedSVG: true,
             },
           },
         ],
@@ -83,7 +89,7 @@ module.exports = {
         background_color: `#6b37bf`,
         theme_color: `#6b37bf`,
         display: `standalone`,
-        icon: `src/components/icons/favicon.png`,
+        icon: `content/images/favicon.png`,
       },
     },
   ],
