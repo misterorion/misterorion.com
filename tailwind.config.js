@@ -21,6 +21,7 @@ module.exports = {
           900: '#2e3440',
         },
         teal: {
+          600: '#0D9488',
           700: '#0F766E',
         },
       },
@@ -29,6 +30,7 @@ module.exports = {
   variants: {
     extend: {
       outline: ['focus'],
+      borderWidth: ['hover', 'last']
     },
   },
   plugins: [],
