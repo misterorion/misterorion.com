@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
+import { Helmet } from 'react-helmet'
 
 const grimoireTags = ({ pageContext, data }) => {
   const { tag } = pageContext

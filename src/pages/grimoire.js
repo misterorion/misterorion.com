@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import GrimoireEntry from '../components/modules/grimoire/GrimoireEntry'
+import GrimoireEntry from '../components/modules/Grimoire'
 import { title } from '../components/modules/page.module.css'
-import { entryList } from '../components/modules/grimoire/grimoire.module.css'
+import { entryList } from '../components/modules/Grimoire/grimoire.module.css'
 
 const Grimoire = ({ data }) => {
   const Entries = data.allMarkdownRemark.edges.map((edge) => (
