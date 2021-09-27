@@ -30,6 +30,7 @@ module.exports = {
   variants: {
     extend: {
       outline: ['focus'],
+      margin: ['first'],
       borderWidth: ['hover', 'last']
     },
   },

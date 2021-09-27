@@ -8,9 +8,13 @@
   font-family: "Quicksand", sans-serif;
   @apply inline-block px-2 py-1 bg-gray-200 text-lg text-gray-600
   transition duration-200 ease-in-out
-  border rounded;
-  margin-left: 1rem;
+  border rounded ml-4 first:ml-0;
 }
+
+.menuItem:first-child {
+  margin-left: 0;
+}
+
 .menuItem:hover {
   @apply text-pink-700;
 }
