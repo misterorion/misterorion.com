@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Seo from '../components/modules/Seo'
-import { title } from '../components/modules/Page.module.css'
+import { title } from '../components/modules/styles/Page.module.css'
 
 const Page = ({ data }) => {
   const { markdownRemark: page } = data

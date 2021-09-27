@@ -6,7 +6,7 @@ import { kebabCase } from 'lodash'
 import ContactForm from '../components/modules/ContactForm'
 import Layout from '../components/Layout'
 import Seo from '../components/modules/Seo'
-import { featImg, date, description, tags } from '../components/modules/Post.module.css'
+import { featImg, date, description, tags } from '../components/modules/styles/Post.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
