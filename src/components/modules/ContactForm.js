@@ -13,7 +13,7 @@ import {
   nope,
   section,
   success
-} from './form.module.css'
+} from './ContactForm.module.css'
 
 const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
 const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`

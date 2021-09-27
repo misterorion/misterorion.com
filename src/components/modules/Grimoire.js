@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { kebabCase, toLower } from 'lodash'
-import { arrow, title, excerpt, row, tagStyle, tagsList } from './grimoire.module.css'
+
+import { arrow, title, excerpt, row, tagStyle, tagsList } from './Grimoire.module.css'
 
 const GrimoireEntry = ({ entry }) => (
   <div className={row}>

@@ -1,8 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+
 import Layout from '../components/Layout'
-import Seo from '../components/Seo'
-import { title } from '../components/modules/page.module.css'
+import Seo from '../components/modules/Seo'
+import { title } from '../components/modules/Page.module.css'
 
 const Page = ({ data }) => {
   const { markdownRemark: page } = data

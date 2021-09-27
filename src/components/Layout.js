@@ -1,7 +1,5 @@
 import React from 'react'
-import Nav from './modules/Nav'
-import Footer from './modules/Footer'
-import Seo from './Seo'
+
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/400-italic.css'
 import '@fontsource/roboto/700.css'
@@ -10,6 +8,10 @@ import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/jetbrains-mono/400-italic.css'
 import '@fontsource/jetbrains-mono/600.css'
 import '@fontsource/jetbrains-mono/600-italic.css'
+
+import Footer from './modules/Footer'
+import Nav from './modules/Nav'
+import Seo from './modules/Seo'
 
 const Layout = ({ children }) => {
   return (

@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Seo from '../components/Seo'
-import ContactForm from '../components/modules/ContactForm'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { kebabCase } from 'lodash'
-import { featImg, date, description, tags } from '../components/modules/post.module.css'
+
+import ContactForm from '../components/modules/ContactForm'
+import Layout from '../components/Layout'
+import Seo from '../components/modules/Seo'
+import { featImg, date, description, tags } from '../components/modules/Post.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
