@@ -2944,7 +2944,7 @@ browserslist@4.14.2:
     escalade "^3.0.2"
     node-releases "^1.1.61"
 
-browserslist@^4.0.0, browserslist@^4.12.2, browserslist@^4.14.5, browserslist@^4.16.0, browserslist@^4.16.3, browserslist@^4.16.6, browserslist@^4.17.0, browserslist@^4.17.1:
+browserslist@^4.0.0, browserslist@^4.12.2, browserslist@^4.14.5, browserslist@^4.16.0, browserslist@^4.16.3, browserslist@^4.16.6, browserslist@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.17.1.tgz#a98d104f54af441290b7d592626dd541fa642eb9"
   integrity sha512-aLD0ZMDSnF4lUt4ZDNgqi5BUn9BZ7YdQdI/cYlILrhdSSZJLU9aNZoD5/NBmM4SK34APB2e83MOsRt1EnkuyaQ==
@@ -3529,17 +3529,17 @@ core-js-compat@3.9.0:
     semver "7.0.0"
 
 core-js-compat@^3.16.0, core-js-compat@^3.16.2:
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.18.0.tgz#fb360652201e8ac8da812718c008cd0482ed9b42"
-  integrity sha512-tRVjOJu4PxdXjRMEgbP7lqWy1TWJu9a01oBkn8d+dNrhgmBwdTkzhHZpVJnEmhISLdoJI1lX08rcBcHi3TZIWg==
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.18.1.tgz#01942a0877caf9c6e5007c027183cf0bdae6a191"
+  integrity sha512-XJMYx58zo4W0kLPmIingVZA10+7TuKrMLPt83+EzDmxFJQUMcTVVmQ+n5JP4r6Z14qSzhQBRi3NSWoeVyKKXUg==
   dependencies:
-    browserslist "^4.17.0"
+    browserslist "^4.17.1"
     semver "7.0.0"
 
 core-js-pure@^3.16.0:
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.18.0.tgz#e5187347bae66448c9e2d67c01c34c4df3261dc5"
-  integrity sha512-ZnK+9vyuMhKulIGqT/7RHGRok8RtkHMEX/BGPHkHx+ouDkq+MUvf9mfIgdqhpmPDu8+V5UtRn/CbCRc9I4lX4w==
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.18.1.tgz#097d34d24484be45cea700a448d1e74622646c80"
+  integrity sha512-kmW/k8MaSuqpvA1xm2l3TVlBuvW+XBkcaOroFUpO3D4lsTGQWBTb/tBDCf/PNkkPLrwgrkQRIYNPB0CeqGJWGQ==
 
 core-js@^2.4.0:
   version "2.6.12"
@@ -3547,9 +3547,9 @@ core-js@^2.4.0:
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-js@^3.17.2:
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.0.tgz#9af3f4a6df9ba3428a3fb1b171f1503b3f40cc49"
-  integrity sha512-WJeQqq6jOYgVgg4NrXKL0KLQhi0CT4ZOCvFL+3CQ5o7I6J8HkT5wd53EadMfqTDp1so/MT1J+w2ujhWcCJtN7w==
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
+  integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -6615,6 +6615,11 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
+interpret@^1.0.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
+  integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
+
 invariant@^2.2.3, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -6835,7 +6840,7 @@ is-function@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-function/-/is-function-1.0.2.tgz#4f097f30abf6efadac9833b17ca5dc03f8144e08"
   integrity sha512-lw7DUp0aWXYg+CBCN+JKkcE0Q2RayZnSvnZBlwgxHBQhqt5pZNVy4Ri7H9GmmXkdu7LUthszM+Tor1u/2iBcpQ==
 
-is-glob@4.0.1, is-glob@^4.0.0, is-glob@^4.0.1, is-glob@~4.0.1:
+is-glob@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-4.0.1.tgz#7567dbe9f2f5e2467bc77ab83c4a29482407a5dc"
   integrity sha512-5G0tKtBTFImOqDnLB2hG6Bp2qcKEFduo4tZu9MT/H6NQv/ghhy30o55ufafxJ/LdH79LLs2Kfrn85TLKyA7BUg==
@@ -6848,6 +6853,13 @@ is-glob@^2.0.0:
   integrity sha1-0Jb5JqPe1WAPP9/ZEZjLCIjC2GM=
   dependencies:
     is-extglob "^1.0.0"
+
+is-glob@^4.0.0, is-glob@^4.0.1, is-glob@~4.0.1:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-4.0.2.tgz#859fc2e731e58c902f99fcabccb75a7dd07d29d8"
+  integrity sha512-ZZTOjRcDjuAAAv2cTBQP/lL59ZTArx77+7UzHdWW/XB1mrfp7DEaVpKmZ0XIzx+M7AxfhKcqV+nMetUQmFifwg==
+  dependencies:
+    is-extglob "^2.1.1"
 
 is-hexadecimal@^1.0.0:
   version "1.0.4"
@@ -9773,6 +9785,13 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+rechoir@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.6.2.tgz#85204b54dba82d5742e28c96756ef43af50e3384"
+  integrity sha1-hSBLVNuoLVdC4oyWdW70OvUOM4Q=
+  dependencies:
+    resolve "^1.1.6"
+
 recursive-readdir@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
@@ -10078,7 +10097,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.20.0, resolve@^1.3.2:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.20.0, resolve@^1.3.2:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
@@ -10436,6 +10455,23 @@ shell-quote@1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
+
+shelljs@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
+  integrity sha512-7gk3UZ9kOfPLIAbslLzyWeGiEqx9e3rxwZM0KE6EL8GlGwjym9Mrlx5/p33bWTu9YG6vcS4MBxYZDHYr5lr8BQ==
+  dependencies:
+    glob "^7.0.0"
+    interpret "^1.0.0"
+    rechoir "^0.6.2"
+
+shx@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/shx/-/shx-0.3.3.tgz#681a88c7c10db15abe18525349ed474f0f1e7b9f"
+  integrity sha512-nZJ3HFWVoTSyyB+evEKjJ1STiixGztlqwKLTUNV5KqMWtGey9fTd4KU1gdZ1X9BV6215pswQ/Jew9NsuS/fNDA==
+  dependencies:
+    minimist "^1.2.3"
+    shelljs "^0.8.4"
 
 side-channel@^1.0.4:
   version "1.0.4"

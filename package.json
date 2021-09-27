@@ -9,7 +9,8 @@
     "build": "gatsby build --log-pages",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "reset": "yarn run clean && shx rm yarn.lock && shx rm -rf .\\node_modules\\ && yarn install"
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^4.5.0",
@@ -45,5 +46,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/misterorion/misterorion.com"
+  },
+  "devDependencies": {
+    "shx": "^0.3.3"
   }
 }
