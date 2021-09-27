@@ -44,7 +44,7 @@
   }
 
   article h1 {
-    @apply mb-4 mt-12 text-xl;
+    @apply mb-4 mt-12 text-2xl;
   }
 
   article h2 {
