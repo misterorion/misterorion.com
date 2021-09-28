@@ -21,6 +21,7 @@ steps:
     args:
       - -c
       - |
+        node --version
         test -f cache.tar.gz || yarn install --prod --frozen-lockfile
   # Build Gatsby site
   - id: Yarn build
@@ -29,6 +30,7 @@ steps:
     args:
       - build
     env:
+      - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
   # Empty website bucket
