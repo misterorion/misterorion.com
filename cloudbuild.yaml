@@ -51,12 +51,8 @@ steps:
     args:
       - -c
       - |
-        (
-          set -e
-          test ! -f cache.tar.gz
-          tar -zcf cache.tar.gz node_modules public .cache
-          gsutil -m cp -n cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-        ) || true
+        tar -zcf cache.tar.gz node_modules public .cache
+        gsutil -m cp -n cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
     waitFor:
       - Yarn build
   # Copy files to website bucket
