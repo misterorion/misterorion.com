@@ -16,7 +16,8 @@ steps:
         ) || true
   # Install Node dependencies
   - id: Yarn install
-    name: $_BUILDERS_REPO/$_NODE_IMAGE
+    name: node
+    # name: $_BUILDERS_REPO/$_NODE_IMAGE
     entrypoint: sh
     args:
       - -c
@@ -24,7 +25,8 @@ steps:
         test -f cache.tar.gz || yarn install --prod --frozen-lockfile
   # Build CSS and JS
   - id: Yarn build
-    name: $_BUILDERS_REPO/$_NODE_IMAGE
+    name: node
+    # name: $_BUILDERS_REPO/$_NODE_IMAGE
     entrypoint: yarn
     args:
       - build
