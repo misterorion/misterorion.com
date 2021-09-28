@@ -12,7 +12,7 @@ steps:
           gsutil -m cp "gs://$_CACHE_BUCKET/$TRIGGER_NAME/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+          echo "Using cache from: gs://$_CACHE_BUCKET/$TRIGGER_NAME/$(cat hashed.yarn-lock)"
         ) || true
   # Install Node dependencies
   - id: Yarn install
