@@ -13,29 +13,26 @@ steps:
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-          touch /workspace/cache_not_changed
         ) || true
   # Install Node dependencies
   - id: Yarn install
     name: node
-    # name: $_BUILDERS_REPO/$_NODE_IMAGE
     entrypoint: sh
     args:
       - -c
       - |
         test -f cache.tar.gz || yarn install --prod --frozen-lockfile
-  # Build CSS and JS
+  # Build Gatsby site
   - id: Yarn build
     name: node
-    # name: $_BUILDERS_REPO/$_NODE_IMAGE
     entrypoint: yarn
     args:
       - build
     env:
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-  # Push files to website bucket
-  - id: Clean bucket
+  # Empty website bucket
+  - id: Empty bucket
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
     args:
@@ -47,8 +44,23 @@ steps:
         ) || true
     waitFor:
       - Yarn build
-  # Push files to website bucket
-  - id: Sync to bucket
+  # Cache node_modules and Gatsby-specific cache directories
+  - id: Save cache
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        (
+          set -e
+          test ! -f cache.tar.gz
+          tar -zcf cache.tar.gz node_modules public .cache
+          gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+        ) || true
+    waitFor:
+      - Yarn build
+  # Copy files to website bucket
+  - id: Copy to bucket
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
     args:
@@ -56,7 +68,7 @@ steps:
       - |
         gsutil -q -m cp -R -z css,html,js,json,map public/* gs://$_WEBSITE_BUCKET
     waitFor:
-      - Clean bucket
+      - Empty bucket
   # Set Gatsby-specific caching
   - id: Set cache-control metadata
     name: gcr.io/cloud-builders/gcloud
@@ -68,24 +80,5 @@ steps:
         gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/static/**
         gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**.{css,js}
         gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/sw.js
-    waitFor: 
-      - Sync to bucket
-  # Cache node_modules
-  - id: Cache node_modules
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        (
-          set -e
-          if test ! -f /workspace/cache_not_changed; then
-            test ! -f cache.tar.gz
-            tar -zcf cache.tar.gz node_modules public .cache
-            gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-          else
-            echo "Cache not changed. Not syncing to bucket."
-          fi
-        ) || true
     waitFor:
-      - Yarn build
+      - Copy to bucket
