@@ -35,7 +35,7 @@ steps:
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
   # Push files to website bucket
-  - id: Sync to bucket
+  - id: Clean bucket
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
     args:
@@ -43,9 +43,18 @@ steps:
       - |
         mkdir empty
         gsutil -q -m rsync -R -d empty gs://$_WEBSITE_BUCKET
-        gsutil -q -m cp -R -z css,html,js,json,map public/* gs://$_WEBSITE_BUCKET
     waitFor:
       - Yarn build
+  # Push files to website bucket
+  - id: Sync to bucket
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        gsutil -q -m cp -R -z css,html,js,json,map public/* gs://$_WEBSITE_BUCKET
+    waitFor:
+      - Clean bucket
   # Set Gatsby-specific caching
   - id: Set cache-control metadata
     name: gcr.io/cloud-builders/gcloud
