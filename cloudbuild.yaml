@@ -13,6 +13,7 @@ steps:
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+          touch /workspace/cache_true
         ) || true
   # Install Node dependencies
   - id: Yarn install
@@ -61,15 +62,19 @@ steps:
   # Cache node_modules
   - id: Cache node_modules
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
+    entrypoint: bash
     args:
       - -c
       - |
         (
           set -e
-          test ! -f cache.tar.gz
-          tar -zcf cache.tar.gz node_modules public .cache
-          gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+          if test ! -f /workspace/cache_true; then
+            test ! -f cache.tar.gz
+            tar -zcf cache.tar.gz node_modules public .cache
+            gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+          else
+            echo "Cache not changed. Not syncing to bucket."
+          fi
         ) || true
     waitFor:
       - Yarn build
