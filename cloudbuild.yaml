@@ -9,7 +9,7 @@ steps:
         (
           set -e
           gsutil hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
-          gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
+          gsutil -m cp "gs://$_CACHE_BUCKET/$TRIGGER_NAME/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
@@ -21,7 +21,7 @@ steps:
     args:
       - -c
       - |
-        test -f cache.tar.gz || yarn install --prod --frozen-lockfile
+        test -f cache.tar.gz || yarn install --prod --pure-lockfile
   # Build Gatsby site
   - id: Yarn build
     name: node
@@ -53,7 +53,7 @@ steps:
       - -c
       - |
         tar -zcf cache.tar.gz node_modules public .cache
-        gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+        gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$TRIGGER_NAME/$(cat hashed.yarn-lock)"
     waitFor:
       - Yarn build
   # Copy files to website bucket
