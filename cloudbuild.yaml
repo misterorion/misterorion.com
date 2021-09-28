@@ -41,8 +41,7 @@ steps:
     args:
       - -c
       - |
-        mkdir empty
-        gsutil -q -m rsync -R -d empty gs://$_WEBSITE_BUCKET
+        gsutil -q -m rm -f gs://$_WEBSITE_BUCKET/**
     waitFor:
       - Yarn build
   # Push files to website bucket
