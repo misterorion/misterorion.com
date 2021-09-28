@@ -48,7 +48,7 @@ steps:
   # Cache node_modules and Gatsby-specific cache directories
   - id: Save cache
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
+    entrypoint: sh
     args:
       - -c
       - |
