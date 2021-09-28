@@ -13,7 +13,7 @@ steps:
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
           echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-          touch /workspace/cache_true
+          touch /workspace/cache_not_changed
         ) || true
   # Install Node dependencies
   - id: Yarn install
@@ -41,7 +41,10 @@ steps:
     args:
       - -c
       - |
-        gsutil -q -m rm -f gs://$_WEBSITE_BUCKET/**
+        (
+          set -e
+          gsutil -q -m rm -f gs://$_WEBSITE_BUCKET/**
+        ) || true
     waitFor:
       - Yarn build
   # Push files to website bucket
@@ -76,7 +79,7 @@ steps:
       - |
         (
           set -e
-          if test ! -f /workspace/cache_true; then
+          if test ! -f /workspace/cache_not_changed; then
             test ! -f cache.tar.gz
             tar -zcf cache.tar.gz node_modules public .cache
             gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
