@@ -6,7 +6,6 @@
   "author": "Orion Anderson",
   "license": "MIT",
   "scripts": {
-    "ci": "CI=true gatsby build",
     "build": "gatsby build --log-pages",
     "develop": "gatsby develop",
     "serve": "gatsby serve",

@@ -27,7 +27,7 @@ steps:
     name: node
     entrypoint: yarn
     args:
-      - ci
+      - build
     env:
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
