@@ -21,7 +21,7 @@ steps:
     args:
       - -c
       - |
-        node --version
+        echo "Using Node version: $(node --version)"
         test -f cache.tar.gz || yarn install --prod --frozen-lockfile
   # Build Gatsby site
   - id: Yarn build
