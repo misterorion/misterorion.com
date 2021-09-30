@@ -4,15 +4,13 @@ excerpt: "Use Lambda for bonus points"
 tags: ["AWS","Lambda", "PowerShell"]
 ---
 
-Simple Lambda function to check your launch template AMI against the latest Bottlerocket AMI (or any AMI) and publish an SNS topic if a new AMI exists.
+A Simple Lambda function to check your launch template AMI against the latest Bottlerocket AMI (or any AMI) and publish an SNS message if a new AMI exists.
 
-Set `LaunchTemplateId` environment variable in Lambda console to the ID of your launch template.
+Create a `LaunchTemplateId` environment variable in Lambda console to the ID of your launch template. Create an `AmiId` environment variable with the value of the AMI ID you want to check against, for example, `/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id`.
 
-Set `AmiId` environment variable in Lambda console to the AMI ID you want to check against. For example, `/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id`
+☝ Tip 1: Run this Lambda on a schedule or trigger it from a GitHub webhook.
 
-The function publishes an SNS message to the ARN you specify and logs `$Message` to Cloudwatch Logs.
-
-☝Tip: Use the public AWS Bottlerocket SNS topic as trigger to receive notifications only when a new AMI is released. You can also create an SNS message that will update your launch templates automatically and trigger ECS auto-scaling group instance refreshes.
+☝ Tip 2: Send the output to SNS Topic that triggers another lambda function that updates your launch templates automatically or triggers auto-scaling group instance refreshes.
 
 ```powershell
 Requires -Modules @{ModuleName='AWS.Tools.Common';ModuleVersion='4.1.0.0';}
