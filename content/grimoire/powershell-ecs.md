@@ -1,10 +1,10 @@
 ---
-title: "Check Bottlerocket AMI with PowerShell"
+title: "Check AMI with PowerShell"
 excerpt: "Use Lambda for bonus points"
 tags: ["AWS","Lambda", "PowerShell"]
 ---
 
-Simple Lambda function to check your launch template AMI against the latest Bottlerocket AMI and publish an SNS topic if a new AMI exists.
+Simple Lambda function to check your launch template AMI against the latest Bottlerocket AMI (or any AMI) and publish an SNS topic if a new AMI exists.
 
 Set `LaunchTemplateId` environment variable in Lambda console to the ID of your launch template.
 
