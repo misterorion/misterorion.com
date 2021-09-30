@@ -1,5 +1,5 @@
 ---
-title: "Check Bottlerocket AMI with Lambda and PowerShell"
+title: "Check Bottlerocket AMI with Lambda"
 excerpt: ""
 tags: ["Powershell","AWS","Lambda"]
 ---
@@ -12,7 +12,7 @@ Set `AmiId` environment variable in Lambda console to the AMI ID you want to che
 
 The function publishes an SNS message to the ARN you specify and logs `$Message` to Cloudwatch Logs.
 
-☝Tip: Use the public AWS BottleRocket SNS topic as trigger to receive notifications only when a new AMI is released. You can also create an SNS message that will update your launch templates automatically and trigger ECS auto-scaling group instance refreshes.
+☝Tip: Use the public AWS Bottlerocket SNS topic as trigger to receive notifications only when a new AMI is released. You can also create an SNS message that will update your launch templates automatically and trigger ECS auto-scaling group instance refreshes.
 
 ```powershell
 Requires -Modules @{ModuleName='AWS.Tools.Common';ModuleVersion='4.1.0.0';}
