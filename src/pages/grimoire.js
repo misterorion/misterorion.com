@@ -13,7 +13,7 @@ const Grimoire = ({ data }) => {
   return (
     <Layout>
       <h1 className={title}>✨ Grimoire</h1>
-      <p><strong>Grimoire</strong>&nbsp;&nbsp;/gri·​moire/&nbsp;&nbsp;<strong>▶ noun</strong> A book of magic spells and invocations.</p>
+      <p><strong>Grimoire</strong>&nbsp;&nbsp;&nbsp;&nbsp;/gri·​moire/&nbsp;&nbsp;&nbsp;&nbsp;<strong>▶ noun</strong> A book of magic spells and invocations.</p>
       <p>Wherein I record knowledge of a technical nature for future reference.</p>
       <h2>All Entries</h2>
       <div className={entryList}>
