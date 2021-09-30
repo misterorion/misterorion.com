@@ -1,16 +1,18 @@
 ---
-title: "Go Channels"
-excerpt: "Check Bottlerocket AMI with Lambda and PowerShell"
-tags: ["Powershell","AWS","Lambda","ECS"]
+title: "Check Bottlerocket AMI with Lambda and PowerShell"
+excerpt: ""
+tags: ["Powershell","AWS","Lambda"]
 ---
 
-Simple Lambda function to check the AMI of your launch template against the latest Bottlerocket AMI.
+Simple Lambda function to check your launch template AMI against the latest Bottlerocket AMI and publish an SNS topic if a new AMI exists.
 
 Set `LaunchTemplateId` environment variable in Lambda console to the ID of your launch template.
 
-Set `AmiId` environment variable to the AMI ID you want to check against. For example, `/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id`
+Set `AmiId` environment variable in Lambda console to the AMI ID you want to check against. For example, `/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id`
 
 The function publishes an SNS message to the ARN you specify and logs `$Message` to Cloudwatch Logs.
+
+☝Tip: Use the public AWS BottleRocket SNS topic as trigger to receive notifications only when a new AMI is released. You can also create an SNS message that will update your launch templates automatically and trigger ECS auto-scaling group instance refreshes.
 
 ```powershell
 Requires -Modules @{ModuleName='AWS.Tools.Common';ModuleVersion='4.1.0.0';}
