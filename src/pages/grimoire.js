@@ -16,8 +16,8 @@ const Grimoire = ({ data }) => {
       <p>
         <strong>Grimoire</strong>
         &nbsp;&nbsp;&nbsp;/grəm-wär′/&nbsp;&nbsp;&nbsp;
-        <strong>▶&nbsp;&nbsp;noun</strong>
-        &nbsp;&nbsp;A book of magical knowledge, especially one containing spells.
+        <strong>▶&nbsp;&nbsp;&nbsp;noun</strong>
+        &nbsp;&nbsp;&nbsp;A book of magical knowledge.
       </p>
       <p>Wherein I record knowledge of a technical nature for future reference.</p>
       <h2>All Entries</h2>
