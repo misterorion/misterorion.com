@@ -1,10 +1,16 @@
 ---
-title: "Go Channels"
-excerpt: "Example of channels in Golang."
+title: "Example of channels in Golang"
+excerpt: "Using pasta dishes"
 tags: ["Code","Go"]
 ---
 
-Channels are communication channels between goroutines. Use channels when you want to pass errors or any other kind of information between goroutines.
+> Channels are communication channels between goroutines. Use channels when you want to pass errors or any other kind of information between goroutines.
+
+In the code below we use customers ordering pasta dishes as our scenario. 
+
+Each customer places an order for a pasta dish. The dish is assigned a random difficulty and sent off into a goroutine (the "kitchen" if you wish). The goroutine "makes" the dish, waiting a number of seconds to simulate difficulty before sending the completed dish into a channel.
+
+Our output prints (or "serves") the dishes in the order in which they were recieved by the channel.
 
 ```go
 package main
