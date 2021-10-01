@@ -12,15 +12,15 @@ Initially I tried to simply convert the counter `i` to a string with `string()`.
 
 I also tried `fmt.Sprint()`, which worked in this simple example. But I wasn't sure if this method was the best one to use. The `fmt` package has a ton of methods.
 
-After some research, I learned that the `Iota()` method returns the equivalent of `FormatInt(int64(x), 10)`. That is to say, the string of `x` when the base is 10.
+After some research, I learned that the `Itoa()` method returns the equivalent of `FormatInt(int64(x), 10)`. That is to say, the string of `x` when the base is 10.
 
 In math, 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 are [base ten numerals](https://en.wikipedia.org/wiki/Decimal). Base-10 is used in most modern civilizations (probably because we have 10 fingers) and forms the basis of our counting system and monetary system.
 
-Generally in Go, `Iota` is useful for when you want to create incrementing constants.
+Generally in Go, `Itoa` is useful for when you want to create incrementing constants.
 
 The takeaway is that the `strconv.Iota()` method is better for counters because it uses base 10 counting and thus is safer for incrementing counter values. 
 
-### Solution using Iota()
+### Solution using Itoa()
 
 ```go
 package main
@@ -41,13 +41,15 @@ func main() {
 			output += "Buzz"
 		}
 		if output == "" {
-			output += strconv.Iota(i)
+			output += strconv.Itoa(i)
 		}
 
 		fmt.Println(output)
 	}
 }
 ```
+[Run on Go Playground](https://play.golang.org/p/Te-zAR3wTEm)
+
 ### Alternate solution without Iota():
 
 ```go
@@ -55,18 +57,20 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-    if i%3 == 0 && i%5 == 0 {
-        fmt.Println("FizzBuzz")
-    } else if i%3 == 0 && i%5 != 0 {
-        fmt.Println("Fizz")
-    } else if i%3 != 0 && i%5 == 0 {
-        fmt.Println("Buzz")
-    } else {
-        fmt.Println(i)
-    }
+	for i := 1; i <= 15; i++ {
+		if i%3 == 0 && i%5 == 0 {
+			fmt.Println("FizzBuzz")
+		} else if i%3 == 0 && i%5 != 0 {
+			fmt.Println("Fizz")
+		} else if i%3 != 0 && i%5 == 0 {
+			fmt.Println("Buzz")
+		} else {
+			fmt.Println(i)
+		}
+	}
 }
 ```
+[Run on Go Playground](https://play.golang.org/p/YsOW2fOnZIU)
