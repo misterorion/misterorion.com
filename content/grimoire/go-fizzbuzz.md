@@ -8,7 +8,7 @@ tags: ["Code","Go"]
 
 I wrote this implementation in Go quickly as an answer on LeetCode. The interesting bit is the use of `Iota()`.
 
-Initially I tried to simply convert the counter `i` to a string with `string()`. This did not work because `string()` returns a rune, not a digit.
+Initially I tried to simply convert the counter `i` to a string with `string()`. This did not work because `string()` returns a [rune](https://golangdocs.com/rune-in-golang), not a digit.
 
 I also tried `fmt.Sprint()`, which worked in this simple example. But I wasn't sure if this method was the best one to use. The `fmt` package has a ton of methods.
 
