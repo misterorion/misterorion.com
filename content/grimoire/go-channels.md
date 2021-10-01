@@ -26,11 +26,11 @@ type Dish struct {
 	difficulty   int
 }
 
-func makeDish(i int, d Dish, ch chan string) {
-	di, p, s := d.difficulty, d.pasta, d.sauce
-	time.Sleep(time.Duration(di) * time.Second)
+func makeDish(i int, dish Dish, ch chan string) {
+	d, p, s := dish.difficulty, dish.pasta, dish.sauce
+	time.Sleep(time.Duration(d) * time.Second)
 	ch <- fmt.Sprintf(
-		"Serving Order #%d\t(Difficulty %d)\t%s %s", i, di, p, s)
+		"Serving Order #%d\t(Difficulty %d)\t%s %s", i, d, p, s)
 }
 
 func main() {
@@ -64,4 +64,4 @@ func main() {
 	fmt.Println("All dishes served.")
 }
 ```
-[Run on Go Playground](https://play.golang.org/p/jNRwsQkxO1s)
+[Run on Go Playground](https://play.golang.org/p/xTIrvSylXFy)
