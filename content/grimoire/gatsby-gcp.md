@@ -4,18 +4,20 @@ excerpt: "Using Google Cloud Build"
 tags: ["Gatsby","GCP","Cloud" ]
 ---
 
-Showing full `cloudbuild.yaml` below.
+A Cloud Build setup that caches `node_modules` and Gatsby-specific build folders. It also cleans your website bucket before deploying and sets cache-control headers that are appropriate for Gatsby. Caching really speeds up the builds and gives you almost Netlify-like speeds.
 
-Several environment variables need to be set.
+Several environment variables need to be set in your Cloud Build trigger:
 
-`_CACHE_BUCKET` is set to the bucket location where you want to cache your `node_modules`, and Gatsby `.cache` and `public` folders. This will speed up builds dramatically.
+**`_CACHE_BUCKET`** is set to the bucket location where you want to cache your `node_modules`, and Gatsby `.cache` and `public` folders.
 
-`_WEBSITE_BUCKET` is set to the bucket location that serves your site.
+**`_WEBSITE_BUCKET`** is set to the bucket location that serves your site.
 
-The `TRIGGER_NAME` is a built in variable.
+`TRIGGER_NAME` is a built in variable and does **not** need to be set.
 
+There are some things to be aware of. Number one is I'm not sure if the website bucket really needs to be cleaned out before deployment, although it does make viewing the files in the console more human readable. Number two is that the `gsutil setmeta` commands are "Class A" storage operations so they do accumulate some cost, although not much. There may be a better way to set the metadata.
 
 ```yaml
+# cloudbuild.yaml
 steps:
   # If a cache exists, fetch it from Cloud Storage
   - id: Fetch cache
