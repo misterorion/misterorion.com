@@ -20,6 +20,8 @@ In math, 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 are [base ten numerals](https://en.wik
 
 The takeaway is that the `strconv.Iota()` method is nicer for counters because it uses base 10 counting and thus is safer for incrementing counter values. 
 
+### Solution using Iota()
+
 ```go
 package main
 
@@ -46,7 +48,7 @@ func main() {
 	}
 }
 ```
-### Alternate solution without Iota:
+### Alternate solution without Iota():
 
 ```go
 package main
