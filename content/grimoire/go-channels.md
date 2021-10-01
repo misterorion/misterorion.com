@@ -1,5 +1,5 @@
 ---
-title: "Example of channels in Golang"
+title: "Example of channels in Go"
 excerpt: "Using pasta dishes"
 tags: ["Code","Go"]
 ---
@@ -64,3 +64,4 @@ func main() {
 	fmt.Println("All dishes served.")
 }
 ```
+[Run on Go Playground](https://play.golang.org/p/jNRwsQkxO1s)
