@@ -69,6 +69,8 @@ steps:
   - id: Set cache-control metadata
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
+      - -c
+      - |
         gsutil -q -m setmeta -h "$REVALIDATE" gs://$_WEBSITE_BUCKET/**/**
         gsutil -q -m setmeta -h "$IMMUTABLE" gs://$_WEBSITE_BUCKET/static/**
         gsutil -q -m setmeta -h "$IMMUTABLE" gs://$_WEBSITE_BUCKET/**/**.{css,js}
