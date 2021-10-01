@@ -8,7 +8,7 @@ tags: ["Code","Go"]
 
 I wrote this implementation in Go quickly as an answer on LeetCode. The interesting bit is the use of `Itoa()`.
 
-Initially I tried to simply convert the counter `i` to a string with `string()`. This did not work because `string()` returns a [rune](https://golangdocs.com/rune-in-golang), not a digit.
+Initially, I tried to convert the counter `i` to a string with `string()`. This did not work because `string()` returns a [rune](https://golangdocs.com/rune-in-golang), not a digit.
 
 I also tried `fmt.Sprint()`, which worked in this simple example. But I wasn't sure if this method was the best one to use. The `fmt` package has a ton of methods.
 
@@ -18,7 +18,7 @@ In math, 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 are [base ten numerals](https://en.wik
 
 Generally in Go, `Itoa` is useful for when you want to create incrementing constants.
 
-The takeaway is that the `strconv.Itoa()` method is better for counters because it uses base 10 counting and thus is safer for incrementing counter values. 
+The takeaway is that the `strconv.Itoa()` seems better for counters because it uses base 10 counting and thus is safer for incrementing counter values. 
 
 ### Solution using Itoa()
 
