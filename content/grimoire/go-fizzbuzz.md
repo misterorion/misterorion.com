@@ -8,7 +8,7 @@ tags: ["Code","Go"]
 
 I wrote this implementation in Go quickly as an answer on LeetCode. The interesting bit is the use of `Iota()`.
 
-Generally, Iota is useful for when you want to create incrementing constants. In the code below the package `strconv` has an `Iota` method that converts the counter to a string.
+Generally in Go, Iota is useful for when you want to create incrementing constants. In the code below the package `strconv` has an `Iota()` method that converts the counter to a string.
 
 The `Iota()` method returns the equivalent to `FormatInt(int64(x), 10)`. That is to say the string of `x` when the base is 10.
 
@@ -51,14 +51,14 @@ import (
 )
 
 func main() {
-  if i%3 == 0 && i%5 == 0 {
-    fmt.Println("FizzBuzz")
-  } else if i%3 == 0 && i%5 != 0 {
-  fmt.Println("Fizz")
-  } else if i%3 != 0 && i%5 == 0 {
-    fmt.Println("Buzz")
-  } else {
-    fmt.Println(i)
-  }
+    if i%3 == 0 && i%5 == 0 {
+        fmt.Println("FizzBuzz")
+    } else if i%3 == 0 && i%5 != 0 {
+        fmt.Println("Fizz")
+    } else if i%3 != 0 && i%5 == 0 {
+        fmt.Println("Buzz")
+    } else {
+        fmt.Println(i)
+    }
 }
 ```
