@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { kebabCase, toLower } from 'lodash'
+import { kebabCase } from 'lodash'
 
 import { arrow, title, excerpt, row, tagStyle, tagsList } from './styles/Grimoire.module.css'
 
@@ -16,7 +16,7 @@ const GrimoireEntry = ({ entry }) => (
     <div className={tagsList}>
       {entry.tags.map(tag => (
         <Link
-          to={`/grimoire/tag/${toLower(tag)}/`}
+          to={`/grimoire/tag/${kebabCase(tag)}/`}
           className={tagStyle}
           key={tag}>
           {tag}
