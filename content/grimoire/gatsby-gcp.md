@@ -6,15 +6,16 @@ tags: ["Gatsby","GCP","Cloud" ]
 
 A Cloud Build setup that caches `node_modules` and Gatsby-specific build folders. It also cleans your website bucket before deploying and sets cache-control headers that are appropriate for Gatsby. Caching really speeds up the builds and gives you almost Netlify-like speeds.
 
-Several environment variables need to be set in your Cloud Build trigger:
+Two substitution variables need to be set in your Cloud Build trigger:
 
-**`_CACHE_BUCKET`** is set to the bucket location where you want to cache your `node_modules`, and Gatsby `.cache` and `public` folders.
+**`_CACHE_BUCKET`** gets set to the bucket location where you want to cache your `node_modules`, and Gatsby `.cache` and `public` folders.
 
-**`_WEBSITE_BUCKET`** is set to the bucket location that serves your site.
+**`_WEBSITE_BUCKET`** gets set to the bucket location that serves your site.
 
-`TRIGGER_NAME` is a built in variable and does **not** need to be set.
+A couple of things to be aware of: 
 
-There are some things to be aware of. Number one is I'm not sure if the website bucket really needs to be cleaned out before deployment, although it does make viewing the files in the console more human readable. Number two is that the `gsutil setmeta` commands are "Class A" storage operations so they do accumulate some cost, although not much. There may be a better way to set the metadata.
+1. I'm not sure if the website bucket really needs to be cleaned out before deployment, although it does make viewing the files in the console more coherent. 
+2. The `gsutil setmeta` commands are "Class A" storage operations so they do accumulate some cost, although just a few cents if you have a small site and only deploy a few times per week. There may be a better way to set the metadata.
 
 ```yaml
 # cloudbuild.yaml
@@ -29,10 +30,10 @@ steps:
         (
           set -e
           gsutil hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
-          gsutil -m cp "gs://$_CACHE_BUCKET/$TRIGGER_NAME/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
+          gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from: gs://$_CACHE_BUCKET/$TRIGGER_NAME/$(cat hashed.yarn-lock)"
+          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
   # Install Node dependencies
   - id: Yarn install
@@ -71,7 +72,7 @@ steps:
       - -c
       - |
         tar -zcf cache.tar.gz node_modules public .cache
-        gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$TRIGGER/$(cat hashed.yarn-lock)"
+        gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
     waitFor:
       - Yarn build
   # Copy files to website bucket
