@@ -14,11 +14,11 @@ I also tried `fmt.Sprint()`, which worked in this simple example. But I wasn't s
 
 After some research, I learned that the `Iota()` method returns the equivalent of `FormatInt(int64(x), 10)`. That is to say, the string of `x` when the base is 10.
 
-Generally in Go, `Iota` is useful for when you want to create incrementing constants.
-
 In math, 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 are [base ten numerals](https://en.wikipedia.org/wiki/Decimal). Base-10 is used in most modern civilizations (probably because we have 10 fingers) and forms the basis of our counting system and monetary system.
 
-The takeaway is that the `strconv.Iota()` method is nicer for counters because it uses base 10 counting and thus is safer for incrementing counter values. 
+Generally in Go, `Iota` is useful for when you want to create incrementing constants.
+
+The takeaway is that the `strconv.Iota()` method is better for counters because it uses base 10 counting and thus is safer for incrementing counter values. 
 
 ### Solution using Iota()
 
