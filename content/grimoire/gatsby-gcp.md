@@ -52,11 +52,7 @@ steps:
     entrypoint: yarn
     args:
       - build
-    env:
-      - GATSBY_TELEMETRY_DISABLED=true
-      - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
-      - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-  # Empty website bucket
+  # Empty website bucket, continue if bucket is already empty.
   - id: Empty bucket
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
