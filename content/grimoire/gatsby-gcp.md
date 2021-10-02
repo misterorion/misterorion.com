@@ -6,15 +6,19 @@ tags: ["Gatsby","GCP","Cloud" ]
 
 A Cloud Build setup that caches `node_modules` and Gatsby-specific build folders. It also cleans your website bucket before deploying and sets cache-control headers that are appropriate for Gatsby. Caching really speeds up the builds and gives you almost Netlify-like speeds.
 
-Two substitution variables need to be set in your Cloud Build trigger:
+Four substitution variables need to be set in your Cloud Build trigger:
 
-**`_CACHE_BUCKET`** gets set to the bucket location where you want to cache your `node_modules`, and Gatsby `.cache` and `public` folders.
+**`_CACHE_BUCKET`** bucket storing  `node_modules`, `.cache`, and `public` folders.
 
-**`_WEBSITE_BUCKET`** gets set to the bucket location that serves your site.
+**`_WEBSITE_BUCKET`** bucket serving your site.
 
-A couple of things to be aware of: 
+**`_IMMUTABLE`** Header, e.g. `"Cache-Control:public,max-age=31536000,immutable"`
 
-1. I'm not sure if the website bucket really needs to be cleaned out before deployment, although it does make viewing the files in the console more coherent. 
+**`_REVALIDATE`** Header, e.g. `"Cache-Control:public,max-age=0,must-revalidate"`
+
+Two things to be aware of: 
+
+1. I'm not sure if the website bucket really needs to be cleaned out before deployment, although it does make viewing the files in the console more coherent.
 2. The `gsutil setmeta` commands are "Class A" storage operations so they do accumulate some cost, although just a few cents if you have a small site and only deploy a few times per week. There may be a better way to set the metadata.
 
 ```yaml
@@ -33,7 +37,6 @@ steps:
           gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
   # Install Node dependencies
   - id: Yarn install
@@ -51,6 +54,8 @@ steps:
       - build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
+      - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
+      - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
   # Empty website bucket
   - id: Empty bucket
     name: gcr.io/cloud-builders/gcloud
@@ -92,10 +97,10 @@ steps:
     args:
       - -c
       - |
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/**/**
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/static/**
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$_WEBSITE_BUCKET/**/**.{css,js}
-        gsutil -q -m setmeta -h "Cache-Control:public,max-age=0,must-revalidate" gs://$_WEBSITE_BUCKET/sw.js
+        gsutil -q -m setmeta -h $_REVALIDATE gs://$_WEBSITE_BUCKET/**/**
+        gsutil -q -m setmeta -h $_IMMUTABLE gs://$_WEBSITE_BUCKET/static/**
+        gsutil -q -m setmeta -h $_IMMUTABLE gs://$_WEBSITE_BUCKET/**/**.{css,js}
+        gsutil -q -m setmeta -h $_REVALIDATE gs://$_WEBSITE_BUCKET/sw.js
     waitFor:
       - Copy to bucket
 ```
