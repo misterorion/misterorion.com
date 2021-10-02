@@ -72,11 +72,9 @@ steps:
     args:
       - -c
       - |
-        REVALIDATE="Cache-Control:public,max-age=0,must-revalidate"
-        IMMUTABLE="Cache-Control:public,max-age=31536000,immutable"
-        gsutil -q -m setmeta -h $REVALIDATE gs://$_WEBSITE_BUCKET/**/**
-        gsutil -q -m setmeta -h $IMMUTABLE gs://$_WEBSITE_BUCKET/static/**
-        gsutil -q -m setmeta -h $IMMUTABLE gs://$_WEBSITE_BUCKET/**/**.{css,js}
-        gsutil -q -m setmeta -h $REVALIDATE gs://$_WEBSITE_BUCKET/sw.js
+        gsutil -q -m setmeta -h $_REVALIDATE gs://$_WEBSITE_BUCKET/**/**
+        gsutil -q -m setmeta -h $_IMMUTABLE gs://$_WEBSITE_BUCKET/static/**
+        gsutil -q -m setmeta -h $_IMMUTABLE gs://$_WEBSITE_BUCKET/**/**.{css,js}
+        gsutil -q -m setmeta -h $_REVALIDATE gs://$_WEBSITE_BUCKET/sw.js
     waitFor:
       - Copy to bucket
