@@ -1,6 +1,6 @@
 ---
 title: "Handy Kubernetes Commands"
-excerpt: "Using Itoa"
+excerpt: "My list"
 tags: ["Kubernetes","GCP","Cloud"]
 ---
 
@@ -9,10 +9,6 @@ tags: ["Kubernetes","GCP","Cloud"]
 
 ```sh
 gcloud container clusters get-credentials <CLUSTER>
-```
-
-```sh
-kubectl config set-context --current
 ```
 
 ### Run command on remote container
@@ -34,7 +30,7 @@ kubectl top node --use-protocol-buffers
 ### Create secret
 
 ```sh
-kubectl create secret generic <SECRET-NAME> --from-literal=<key>=<value> --from-literal=<key>=<value>
+kubectl create secret generic <SECRET-NAME> --from-literal=<key>=<value>
 ```
 
 ### Copy files from local machine to pod
@@ -43,6 +39,7 @@ Useful when backing up or restoring persistent volume claims.
 
 ```yaml
 # copier.yaml
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -64,11 +61,13 @@ spec:
 kubectl apply -f ./copier.yaml
 ```
 
+
 Copy from local to pod
 
 ```sh
 kubectl cp ./backup/dir copier:/srv/www
 ```
+
 
 Copy from pod to local
 
