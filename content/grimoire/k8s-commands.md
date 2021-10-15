@@ -30,7 +30,7 @@ kubectl top node --use-protocol-buffers
 ### Create secret
 
 ```sh
-kubectl create secret generic <SECRET-NAME> --from-literal=<key>=<value>
+kubectl create secret generic <SECRET_NAME> --from-literal=<key>=<value>
 ```
 
 ### Copy files from local machine to pod
@@ -78,5 +78,5 @@ kubectl cp copier:/srv/www ./backup/dir
 ### Perform rolling update of a service
 
 ```sh
-kubectl rollout restart deployment yiki-one
+kubectl rollout restart deployment <DEPLOYMENT_NAME>
 ```
