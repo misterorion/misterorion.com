@@ -8,21 +8,23 @@ imageAlt: "Ta Prohm Temple, Cambodia"
 tags: ["PowerShell","Google Cloud", "Docker"]
 ---
 
-When we push a container image to Google Container Registry with the same tag as an existing image, the tag on the existing image is removed leaving us an image with no tag. Assuming you have no use for these, they take up space and will raise your bill. 
+When we push a container image to Google Container Registry with the same tag as an existing image, the tag on the existing image is removed, leaving us an image with no tag. 
 
-Wouldn't it be nice if we could remove all of these untagged images at once?
-
-Unlike Amazon's ECR Lifecycle Policies, there is **currently** no official way to do this on GCP, but we have options.
+All images take up space and count towards your bill. Assuming you have no use for the untagged images, wouldn't it be nice if we could remove all of them at once?
 
 ## Existing Solutions
 
-I've seen a few ways to tackle this issue, notably [GCR Cleaner](https://github.com/sethvargo/gcr-cleaner), which is mentioned in Google's Container Registry's [official documentation](https://cloud.google.com/container-registry/docs/managing#deleting_images). There are also a few interesting proposals in this [Stack Overflow question](https://stackoverflow.com/questions/46451173/delete-untagged-images-on-google-cloud-registry).
+Unlike Amazon's ECR Lifecycle Policies, there is **currently** no official way to do this on GCP, but we have options.
 
-These are certainly viable options and should be reviewed before proceeding.
+I've seen a few ways to tackle this issue, notably [GCR Cleaner](https://github.com/sethvargo/gcr-cleaner), which is mentioned in Google's Container Registry's [official documentation](https://cloud.google.com/container-registry/docs/managing#deleting_images). 
+
+There are also a few interesting proposals in this [Stack Overflow question](https://stackoverflow.com/questions/46451173/delete-untagged-images-on-google-cloud-registry).
+
+These are certainly viable options and should be reviewed thoroughly before proceeding.
 
 ## My Solution
 
-My solution is to use Cloud Build and Cloud Scheduler with a dash of PowerShell and shell scripting. If you are very fluent in shell scripting you could probably omit the PowerShell step below and flesh out the shell script in the last step. Compared to my approach, this is cleaner because it doesn't write to the filesystem. But I find that PowerShell is is just nicer to use when working with the JSON omitted by `gcloud`.
+My solution is to use Cloud Build and Cloud Scheduler with a dash of PowerShell and shell scripting. It is a bit simpler than the solutions referenced above, but I find it works quite well.
 
 > The commands below are for Google Cloud *Artifact Registry* (not to be confused with Container Registry), but you can easily modify the `gcloud` commands to accommodate the latter.
 
@@ -35,6 +37,8 @@ My solution is to use Cloud Build and Cloud Scheduler with a dash of PowerShell 
 * A git repository containing the files below, added as a Source to your Cloud Build trigger.
 
 > Set the `$_REPO` substitution variable in your Cloud Build trigger to the image repository you want to clean up, for example: `us-central1-docker.pkg.dev/my-project/my-container-apps`
+
+If you are very fluent in shell scripting you could probably omit the PowerShell step below and flesh out the shell script in the last step. Compared to my approach, this is cleaner because it doesn't write to the filesystem. But I find that PowerShell is is just nicer to use when working with the JSON omitted by `gcloud`.
 
 ```yaml
 # cloudbuild.yaml
@@ -90,4 +94,8 @@ If ($UntaggedImages) {
 
 ```
   
+That's it!
+
+Instead of using Cloud Scheduler to trigger your build, you could certainly a clean step to an existing build.
+
 If this was helpful to you or you have a better solution, I'd love to hear about it! Send me a priave email using the form below.
