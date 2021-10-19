@@ -72,7 +72,7 @@ steps:
 
 ## PowerShell Script
 
-The PowerShell script takes our `untagged.json`, parses JSON, concatenates each package and digest (sha256) into a single line and appends it to a text file. If the JSON file is empty, this step is skipped.
+The PowerShell script takes our `untagged.json`, parses it, concatenates each package and digest (sha256) into a string on a single line, and appends it to a text file. If the JSON file is empty (no untagged images), this step is skipped.
 
 ```powershell
 # New-UntaggedImageList.ps1
@@ -89,3 +89,5 @@ If ($UntaggedImages) {
 }
 
 ```
+
+If this was helpful to you or you have a better solution, I'd love to hear about it. Send me a priave email using the form below.
