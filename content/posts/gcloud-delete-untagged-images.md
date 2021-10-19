@@ -28,11 +28,11 @@ My solution is to use Cloud Build and Cloud Scheduler with a dash of PowerShell 
 
 ## Cloud Build script
 
-### Prerequisites
+**Prerequisites**
 
-1. A service account for your Cloud Scheduler job with the Cloud Build Editor role so it can trigger the builds.
-2. Your Cloud Build service account should already have permission to list artifact images in your project, but you may need to give it the `artifactregistry.versions.delete` permission.
-3. A git repository containing the files below, added as a Source to your Cloud Build trigger.
+* A service account for your Cloud Scheduler job with the Cloud Build Editor role so it can trigger the builds.
+* Your Cloud Build service account should already have permission to list artifact images in your project, but you may need to give it the `artifactregistry.versions.delete` permission.
+* A git repository containing the files below, added as a Source to your Cloud Build trigger.
 
 > Set the `$_REPO` substitution variable in your Cloud Build trigger to the image repository you want to clean up, for example: `us-central1-docker.pkg.dev/my-project/my-container-apps`
 
@@ -89,5 +89,5 @@ If ($UntaggedImages) {
 }
 
 ```
-
-If this was helpful to you or you have a better solution, I'd love to hear about it. Send me a priave email using the form below.
+  
+If this was helpful to you or you have a better solution, I'd love to hear about it! Send me a priave email using the form below.
