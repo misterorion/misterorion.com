@@ -34,7 +34,7 @@ My solution uses Cloud Build and Cloud Scheduler with a dash of PowerShell and s
 * Your Cloud Build service account should already have permission to list artifact registry images in your project, but you may need to give it the additional `artifactregistry.versions.delete` permission.
 * A git repository containing the 2 files below, added as a Source to your Cloud Build trigger.
 
-## Cloud Build script
+## Cloud Build Script
 
 Set the `_REPO` substitution variable in your Cloud Build trigger to the image repository you want to clean up, for example: 
 
