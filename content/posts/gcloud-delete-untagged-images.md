@@ -1,5 +1,5 @@
 ---
-title: "Delete Untagged Images on Google Cloud"
+title: "Delete Untagged Images on Google Artifact Registry"
 date: "2021-10-19"
 slug: "gcloud-delete-untagged-images"
 description: "Using Cloud Build and Cloud Scheduler"
