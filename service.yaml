@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: misterorion-com
+  annotations:
+    cloud.google.com/neg: '{"exposed_ports": {"80": {"name": "misterorion-com-ug722rt"}}}'
+spec:
+  type: ClusterIP
+  selector:
+    app: misterorion-com
+  ports:
+    - name: caddy
+      protocol: TCP
+      port: 80
+      targetPort: 80

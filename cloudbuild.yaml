@@ -1,5 +1,4 @@
 steps:
-  # If a cache exists, fetch it from Cloud Storage
   - id: Fetch cache
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
@@ -12,27 +11,62 @@ steps:
           gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
+          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-  # Install Node dependencies
-  - id: Yarn install
-    name: node
+  - id: Yarn build
+    name: $_NODE_IMAGE
     entrypoint: sh
     args:
       - -c
       - |
-        test -f cache.tar.gz || yarn install --prod --pure-lockfile
-  # Build Gatsby site
-  - id: Yarn build
-    name: node
-    entrypoint: yarn
-    args:
-      - build
+        test -f cache.tar.gz || yarn install --prod --frozen-lockfile
+        yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-  # Empty website bucket
-  - id: Empty bucket
+  - name: gcr.io/cloud-builders/docker
+    id: Tag and push image
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
+        docker push $_APP_IMAGE:$SHORT_SHA
+  - id: Authorize Cloud Build instance
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        gcloud container clusters update $_CLUSTER \
+          --zone us-central1-f \
+          --enable-master-authorized-networks \
+          --master-authorized-networks $(curl -s v4.ipv6test.app)/32,$_HOME_IP/32 \
+          --no-user-output-enabled \
+          --verbosity error
+    waitFor: ['-']
+  - name: gcr.io/cloud-builders/gke-deploy
+    id: Deploy to GKE
+    args:
+      - run
+      - --filename=deployment.yaml
+      - --image=$_APP_IMAGE:$SHORT_SHA
+      - --location=us-central1-f
+      - --cluster=$_CLUSTER
+  - id: Deauthorize Cloud Build instance
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        gcloud container clusters update $_CLUSTER \
+          --zone us-central1-f \
+          --enable-master-authorized-networks \
+          --master-authorized-networks $_HOME_IP/32 \
+          --no-user-output-enabled \
+          --verbosity error
+  - id: Cache node_modules
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
     args:
@@ -40,41 +74,9 @@ steps:
       - |
         (
           set -e
-          gsutil -q -m rm -f gs://$_WEBSITE_BUCKET/**
+          test ! -f cache.tar.gz
+          tar -zcf cache.tar.gz node_modules public .cache
+          gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
     waitFor:
-      - Yarn build
-  # Cache node_modules and Gatsby-specific cache directories
-  - id: Save cache
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
-    args:
-      - -c
-      - |
-        tar -zcf cache.tar.gz node_modules public .cache
-        gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-    waitFor:
-      - Yarn build
-  # Copy files to website bucket
-  - id: Copy to bucket
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
-    args:
-      - -c
-      - |
-        gsutil -q -m cp -R -z css,html,js,json,map public/* gs://$_WEBSITE_BUCKET
-    waitFor:
-      - Empty bucket
-  # Set Gatsby-specific caching
-  - id: Set cache-control metadata
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        gsutil -q -m setmeta -h $_REVALIDATE gs://$_WEBSITE_BUCKET/**/**
-        gsutil -q -m setmeta -h $_IMMUTABLE gs://$_WEBSITE_BUCKET/static/**
-        gsutil -q -m setmeta -h $_IMMUTABLE gs://$_WEBSITE_BUCKET/**/**.{css,js}
-        gsutil -q -m setmeta -h $_REVALIDATE gs://$_WEBSITE_BUCKET/sw.js
-    waitFor:
-      - Copy to bucket
+      - Tag and push image
