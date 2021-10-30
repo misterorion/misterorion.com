@@ -20,10 +20,10 @@ spec:
         image: us-central1-docker.pkg.dev/mechapower/apps/misterorion-com
         resources:
           limits:
-            cpu: 10m
-            memory: 16Mi
+            cpu: 50m
+            memory: 32Mi
           requests:
-            cpu: 5m
+            cpu: 10m
             memory: 6Mi
         readinessProbe:
           httpGet:
