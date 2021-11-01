@@ -6,7 +6,7 @@ metadata:
   labels:
     app: misterorion-com
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: misterorion-com
@@ -20,11 +20,10 @@ spec:
         image: us-central1-docker.pkg.dev/mechapower/apps/misterorion-com
         resources:
           limits:
-            cpu: 50m
             memory: 32Mi
           requests:
-            cpu: 10m
-            memory: 6Mi
+            cpu: 5m
+            memory: 9Mi
         readinessProbe:
           httpGet:
             path: /robots.txt
