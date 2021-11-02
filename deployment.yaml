@@ -48,7 +48,7 @@ spec:
   selector:
     app: misterorion-com
   ports:
-    - name: caddy
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 80
