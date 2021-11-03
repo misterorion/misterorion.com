@@ -33,19 +33,6 @@ steps:
       - |
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
         docker push $_APP_IMAGE:$SHORT_SHA
-  - id: Authorize Cloud Build instance
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
-    args:
-      - -c
-      - |
-        gcloud container clusters update $_CLUSTER \
-          --zone us-central1-f \
-          --enable-master-authorized-networks \
-          --master-authorized-networks $(curl -s v4.ipv6test.app)/32,$_HOME_IP/32 \
-          --no-user-output-enabled \
-          --verbosity error
-    waitFor: ['-']
   - name: gcr.io/cloud-builders/gke-deploy
     id: Deploy to GKE
     args:
@@ -54,18 +41,6 @@ steps:
       - --image=$_APP_IMAGE:$SHORT_SHA
       - --location=us-central1-f
       - --cluster=$_CLUSTER
-  - id: Deauthorize Cloud Build instance
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
-    args:
-      - -c
-      - |
-        gcloud container clusters update $_CLUSTER \
-          --zone us-central1-f \
-          --enable-master-authorized-networks \
-          --master-authorized-networks $_HOME_IP/32 \
-          --no-user-output-enabled \
-          --verbosity error
   - id: Cache node_modules
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
@@ -79,4 +54,4 @@ steps:
           gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
     waitFor:
-      - Tag and push image
+      - Yarn build
