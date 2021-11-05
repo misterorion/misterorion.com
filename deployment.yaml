@@ -6,7 +6,7 @@ metadata:
   labels:
     app: misterorion-com
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: misterorion-com
