@@ -10,7 +10,7 @@ header {
 	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
 	Permissions-Policy "geolocation=()"
 	Referrer-Policy "no-referrer"
-	Strict-Transport-Security "max-age=63072000; includeSubDomains"
+	Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 	Server "MECHAPOWER"
 	X-Content-Type-Options "nosniff"
 	X-Frame-Options "DENY"
