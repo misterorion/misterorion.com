@@ -28,7 +28,13 @@ Before writing any code I like to sketch out an IAM policy. If I don't perform t
 
 Below is the final IAM policy for this Lambda function's IAM role. We allow describing, creating and deleting launch template versions, creating auto-scaling group actions, and publishing SNS notifications.
 
-> If you would like to use this policy, add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.
+> If you would like to use this policy, add the full `arn` of your EC2 launch template, SNS topic, and auto-scaling group.  
+>  
+> The `arn` format for launch templates is formatted this way:  
+> `arn:aws:ec2::<ACCOUNT-ID>:launch-template/<LAUNCH-TEMPLATE-ID>`  
+>  
+> For example:  
+> `arn:aws:ec2::012345678901:launch-template/lt-0123d456dbc789012`
 
 ```json
 {
