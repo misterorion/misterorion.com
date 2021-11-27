@@ -15,15 +15,17 @@ spec:
       labels:
         app: misterorion-com
     spec:
+      nodeSelector:
+        cloud.google.com/gke-spot: "true"
       containers:
       - name: misterorion-com
-        image: us-central1-docker.pkg.dev/mechapower/apps/misterorion-com
+        image: us-central1-docker.pkg.dev/mechapower/apps/misterorion-com:9bc2c01
         resources:
           limits:
-            memory: 32Mi
+            memory: 24Mi
           requests:
             cpu: 5m
-            memory: 9Mi
+            memory: 6Mi
         readinessProbe:
           httpGet:
             path: /robots.txt
