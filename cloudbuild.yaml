@@ -48,6 +48,7 @@ steps:
         gcloud source repos clone $_REPO_DEPLOYMENTS
         cd $_REPO_DEPLOYMENTS/$_SITE && \
         git checkout -b dev && \
+        git pull origin dev && \
         sed "s/COMMIT_SHA/$SHORT_SHA-dev/g" $_MANIFEST_DEV.tpl > $_MANIFEST_DEV && \
         sed "s/COMMIT_SHA/$SHORT_SHA/g" $_MANIFEST_PROD.tpl > $_MANIFEST_PROD && \
         git add $_MANIFEST_DEV $_MANIFEST_PROD && \
