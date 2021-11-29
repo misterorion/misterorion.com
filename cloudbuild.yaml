@@ -25,25 +25,39 @@ steps:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-  - name: gcr.io/cloud-builders/docker
-    id: Tag and push image
-    entrypoint: sh
+  - id: Build and push images
+    name: gcr.io/cloud-builders/docker
+    entrypoint: bash
     args:
       - -c
       - |
-        docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
-        docker push $_APP_IMAGE:$SHORT_SHA
-  # - name: gcr.io/cloud-builders/gke-deploy
-  #   id: Deploy to GKE
-  #   args:
-  #     - run
-  #     - --filename=deployment.yaml
-  #     - --image=$_APP_IMAGE:$SHORT_SHA
-  #     - --location=us-central1-f
-  #     - --cluster=$_CLUSTER
+        docker build --build-arg CADDY_IMAGE=$_IMAGE_CADDY -t $_IMAGE_APP:$SHORT_SHA .
+        echo -e "@auth {\n  path /\n  not path /robots.txt\n}" >> Caddyfile
+        echo -e "basicauth @auth {\n  $$BA_USER $$BA_PASS\n}" >> Caddyfile
+        sed -i "s/Allow/Disallow/g" public/robots.txt
+        docker build --build-arg CADDY_IMAGE=$_IMAGE_CADDY -t $_IMAGE_APP:$SHORT_SHA-dev .
+        docker push $_IMAGE_APP:$SHORT_SHA-dev
+        docker push $_IMAGE_APP:$SHORT_SHA
+    secretEnv: ['BA_USER', 'BA_PASS']
+  - id: Update manifests
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud source repos clone $_REPO_DEPLOYMENTS
+        cd $_REPO_DEPLOYMENTS/$_SITE && \
+        git checkout -b dev && \
+        sed "s/COMMIT_SHA/$SHORT_SHA-dev/g" $_MANIFEST_DEV.tpl > $_MANIFEST_DEV && \
+        sed "s/COMMIT_SHA/$SHORT_SHA/g" $_MANIFEST_PROD.tpl > $_MANIFEST_PROD && \
+        git add $_MANIFEST_DEV $_MANIFEST_PROD && \
+        git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)') && \
+        git config user.name "$_BOT_NAME" && \
+        git commit -m "Update images for commit $SHORT_SHA" && \
+        git push origin dev
   - id: Cache node_modules
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
+    entrypoint: bash
     args:
       - -c
       - |
@@ -51,7 +65,13 @@ steps:
           set -e
           test ! -f cache.tar.gz
           tar -zcf cache.tar.gz node_modules public .cache
-          gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+          gsutil -m cp cache.tar.gz "gs://$_BUCKET_CACHE/$(cat hashed.yarn-lock)"
         ) || true
     waitFor:
       - Yarn build
+availableSecrets:
+  secretManager:
+    - versionName: projects/mechapower/secrets/BA_USER/versions/latest
+      env: BA_USER
+    - versionName: projects/mechapower/secrets/BA_PASS/versions/latest
+      env: BA_PASS
