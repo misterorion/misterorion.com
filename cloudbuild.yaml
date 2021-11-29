@@ -1,20 +1,20 @@
 steps:
   - id: Fetch cache
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
+    entrypoint: bash
     args:
       - -c
       - |
         (
           set -e
           gsutil hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
-          gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
+          gsutil -m cp "gs://$_BUCKET_CACHE/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+          echo "Using cache from: gs://$_BUCKET_CACHE/$(cat hashed.yarn-lock)"
         ) || true
   - id: Yarn build
-    name: $_NODE_IMAGE
+    name: $_IMAGE_NODE
     entrypoint: sh
     args:
       - -c
