@@ -1,0 +1,33 @@
+steps:
+  - id: Prep SSH
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa
+        chmod 400 /root/.ssh/id_rsa
+        ssh-keyscan -t rsa github.com > known_hosts.github
+        cp known_hosts.github /root/.ssh/known_hosts
+    secretEnv:
+      - SECRET_KEY
+    volumes:
+      - name: ssh
+        path: /root/.ssh
+  - id: Update manifests
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        mkdir tmp && git clone $_CONFIG_REPO tmp && cd tmp && \
+        git checkout -b dev && git pull origin dev && \
+        git checkout prod && git merge dev && \
+        git push origin prod
+    volumes:
+      - name: ssh
+        path: /root/.ssh
+availableSecrets:
+  secretManager:
+    - versionName: projects/$_PROJECT/secrets/$_SECRET_KEY/versions/latest
+      env: SECRET_KEY

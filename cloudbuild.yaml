@@ -8,13 +8,13 @@ steps:
         (
           set -e
           gsutil hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
-          gsutil -m cp "gs://$_BUCKET_CACHE/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
+          gsutil -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from: gs://$_BUCKET_CACHE/$(cat hashed.yarn-lock)"
+          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
   - id: Yarn build
-    name: $_IMAGE_NODE
+    name: $_NODE_IMAGE
     entrypoint: sh
     args:
       - -c
@@ -31,31 +31,51 @@ steps:
     args:
       - -c
       - |
-        docker build --build-arg CADDY_IMAGE=$_IMAGE_CADDY -t $_IMAGE_APP:$SHORT_SHA .
+        docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
         echo -e "@auth {\n  path /\n  not path /robots.txt\n}" >> Caddyfile
-        echo -e "basicauth @auth {\n  $$BA_USER $$BA_PASS\n}" >> Caddyfile
+        echo -e "basicauth @auth {\n  $_BA_USER $_BA_PASS\n}" >> Caddyfile
         sed -i "s/Allow/Disallow/g" public/robots.txt
-        docker build --build-arg CADDY_IMAGE=$_IMAGE_CADDY -t $_IMAGE_APP:$SHORT_SHA-dev .
-        docker push $_IMAGE_APP:$SHORT_SHA-dev
-        docker push $_IMAGE_APP:$SHORT_SHA
-    secretEnv: ['BA_USER', 'BA_PASS']
+        docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA-dev .
+        docker push $_APP_IMAGE:$SHORT_SHA-dev
+        docker push $_APP_IMAGE:$SHORT_SHA
+  - id: Prep SSH
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa
+        chmod 400 /root/.ssh/id_rsa
+        ssh-keyscan -t rsa github.com > known_hosts.github
+        cp known_hosts.github /root/.ssh/known_hosts
+    secretEnv:
+      - SECRET_KEY
+    volumes:
+      - name: ssh
+        path: /root/.ssh
   - id: Update manifests
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
     args:
       - -c
       - |
-        gcloud source repos clone $_REPO_DEPLOYMENTS
-        cd $_REPO_DEPLOYMENTS/$_SITE && \
-        git checkout -b dev && \
-        git pull origin dev && \
-        sed "s/COMMIT_SHA/$SHORT_SHA-dev/g" $_MANIFEST_DEV.tpl > $_MANIFEST_DEV && \
-        sed "s/COMMIT_SHA/$SHORT_SHA/g" $_MANIFEST_PROD.tpl > $_MANIFEST_PROD && \
-        git add $_MANIFEST_DEV $_MANIFEST_PROD && \
-        git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)') && \
-        git config user.name "$_BOT_NAME" && \
-        git commit -m "Update images for commit $SHORT_SHA" && \
-        git push origin dev
+        (
+          set -e
+          AUTHOR_NAME=$$(git log -1 --pretty=format:"%an")
+          AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
+          LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
+          mkdir tmp && git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
+          sed "s/COMMIT_SHA/$SHORT_SHA-dev/g" dev/deployment.yaml.tpl > dev/deployment.yaml && \
+          sed "s/COMMIT_SHA/$SHORT_SHA/g" prod/deployment.yaml.tpl > prod/deployment.yaml && \
+          git add dev/deployment.yaml prod/deployment.yaml && \
+          git config user.name "$$AUTHOR_NAME" && \
+          git config user.email "$$AUTHOR_EMAIL" && \
+          git commit -m "$$LAST_COMMIT_MESSAGE" && \
+          git push origin dev
+        ) || true
+    volumes:
+      - name: ssh
+        path: /root/.ssh
   - id: Cache node_modules
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
@@ -66,13 +86,9 @@ steps:
           set -e
           test ! -f cache.tar.gz
           tar -zcf cache.tar.gz node_modules public .cache
-          gsutil -m cp cache.tar.gz "gs://$_BUCKET_CACHE/$(cat hashed.yarn-lock)"
+          gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
-    waitFor:
-      - Yarn build
 availableSecrets:
   secretManager:
-    - versionName: projects/mechapower/secrets/BA_USER/versions/latest
-      env: BA_USER
-    - versionName: projects/mechapower/secrets/BA_PASS/versions/latest
-      env: BA_PASS
+    - versionName: projects/$_PROJECT/secrets/$_SECRET_KEY/versions/latest
+      env: SECRET_KEY
