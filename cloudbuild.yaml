@@ -21,10 +21,10 @@ steps:
       - |
         test -f cache.tar.gz || yarn install --prod --frozen-lockfile
         yarn build
+        echo $GATSBY_BASIC_AUTH
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-      - echo $GATSBY_BASIC_AUTH
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
