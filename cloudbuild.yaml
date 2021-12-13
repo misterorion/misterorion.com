@@ -24,6 +24,7 @@ steps:
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
+      - echo $GATSBY_BASIC_AUTH
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
