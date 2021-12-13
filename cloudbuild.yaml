@@ -23,7 +23,6 @@ steps:
         yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
-      - GATSBY_FORM_ENDPOINT=${_GATSBY_FORM_ENDPOINT}
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
   - id: Build and push images
     name: gcr.io/cloud-builders/docker

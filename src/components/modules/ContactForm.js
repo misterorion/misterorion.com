@@ -15,7 +15,7 @@ import {
   success
 } from './styles/ContactForm.module.css'
 
-const formEndpoint = `${process.env.GATSBY_FORM_ENDPOINT}`
+const formEndpoint = '/contact'
 const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`
 
 const ContactForm = () => {

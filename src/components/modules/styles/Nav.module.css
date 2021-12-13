@@ -8,7 +8,7 @@
   font-family: "Quicksand", sans-serif;
   @apply inline-block px-2 py-1 bg-gray-200 text-lg text-gray-600
   transition duration-200 ease-in-out
-  border rounded ml-4 first:ml-0;
+  border-0 rounded ml-4 first:ml-0;
 }
 
 .menuItem:first-child {

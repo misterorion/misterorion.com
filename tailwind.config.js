@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['./src/**/*.js'],
+  content: ['./src/**/*.js'],
   theme: {
     screens: {
       mobile: '360px',
@@ -25,13 +25,6 @@ module.exports = {
           700: '#0F766E',
         },
       },
-    },
-  },
-  variants: {
-    extend: {
-      outline: ['focus'],
-      margin: ['first'],
-      borderWidth: ['hover', 'last']
     },
   },
   plugins: [],
