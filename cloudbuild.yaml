@@ -98,6 +98,8 @@ steps:
           tar -zcf cache.tar.gz node_modules .cache public
           gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
+    waitFor:
+      - Yarn build
 availableSecrets:
   secretManager:
     - versionName: projects/$_PROJECT/secrets/$_SECRET_KEY/versions/latest
