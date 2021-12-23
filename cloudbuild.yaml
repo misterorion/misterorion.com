@@ -33,7 +33,7 @@ steps:
       - |
         gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz
         tar -zxf brotli.tar.gz
-        find ./public -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli -4 -j
+        find ./public -type f -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli -4 -j
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
