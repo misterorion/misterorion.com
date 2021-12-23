@@ -2,9 +2,10 @@
 	admin off
 }
 :80
-file_server
+file_server {
+    precompressed br
+}
 root * /srv
-precompressed br
 
 header {
 	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
