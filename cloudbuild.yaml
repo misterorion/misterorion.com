@@ -42,10 +42,14 @@ steps:
     args:
       - -c
       - |
+        gsutil -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz
+        ./caddy fmt --overwrite
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
+        BA_PASS=$(./caddy hash-password --plaintext $_BA_PASS)
         echo -e "@auth {\n  path /\n  not path /robots.txt\n}" >> Caddyfile
-        echo -e "basicauth @auth {\n  $_BA_USER $_BA_PASS\n}" >> Caddyfile
+        echo -e "basicauth @auth {\n  $_BA_USER $$BA_PASS\n}" >> Caddyfile
         sed -i "s/Allow/Disallow/g" public/robots.txt
+        ./caddy fmt --overwrite
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA-dev .
         docker push $_APP_IMAGE:$SHORT_SHA-dev
         docker push $_APP_IMAGE:$SHORT_SHA
