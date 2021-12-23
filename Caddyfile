@@ -4,8 +4,8 @@
 :80
 file_server {
     precompressed br
+    root * /srv
 }
-root * /srv
 
 header {
 	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
