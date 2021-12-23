@@ -2,7 +2,7 @@
 	admin off
 }
 :80
-file_server {
+file_server * {
     precompressed br
     root /srv
 }
