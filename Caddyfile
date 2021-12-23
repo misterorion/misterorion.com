@@ -4,7 +4,7 @@
 :80
 file_server
 root * /srv
-encode gzip
+precompressed br
 
 header {
 	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
