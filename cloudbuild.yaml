@@ -34,7 +34,7 @@ steps:
         cp -R ./public ./srv
         find ./srv -type f -size +1400c \
           -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
-          -exec brotli --best {} \+ \
+          -exec ./brotli --best {} \+ \
           -exec gzip --best -k {} \+
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
