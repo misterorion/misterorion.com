@@ -33,7 +33,8 @@ steps:
       - |
         gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz
         tar -zxf brotli.tar.gz
-        find ./public -type f -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli -4 -j
+        cp -R ./public ./srv
+        find ./srv -type f -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli -4 -j
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
@@ -94,7 +95,7 @@ steps:
         (
           set -e
           test ! -f cache.tar.gz
-          tar -zcf cache.tar.gz node_modules
+          tar -zcf cache.tar.gz node_modules .cache public
           gsutil -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
 availableSecrets:
