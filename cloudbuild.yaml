@@ -30,7 +30,7 @@ steps:
     args:
       - -c
       - |
-        gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz && tar -zxf brotli.tar.gz
+        gsutil -m cp $_BROTLI_BIN brotli.tar.gz && tar -zxf brotli.tar.gz
         cp -R ./public ./srv
         find ./srv -type f -size +1400c \
           -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
