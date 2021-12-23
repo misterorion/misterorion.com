@@ -1,4 +1,4 @@
 ARG CADDY_IMAGE
 FROM $CADDY_IMAGE
-COPY ./srv /srv
+COPY ./public /srv
 COPY ./Caddyfile /etc/caddy/Caddyfile
