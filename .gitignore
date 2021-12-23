@@ -4,3 +4,6 @@
 .vscode/
 node_modules/
 public/
+srv/
+compress.sh
+.idea/
