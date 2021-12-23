@@ -30,10 +30,12 @@ steps:
     args:
       - -c
       - |
-        gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz
-        tar -zxf brotli.tar.gz
+        gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz && tar -zxf brotli.tar.gz
         cp -R ./public ./srv
-        find ./srv -type f -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli
+        find ./srv -type f -size +1400c \
+          -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
+          -exec brotli --best {} \+ \
+          -exec gzip --best -k {} \+
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash

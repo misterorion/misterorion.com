@@ -3,8 +3,8 @@
 }
 :80
 file_server {
-    precompressed br
-    root /srv
+	precompressed br gzip
+	root /srv
 }
 
 header {
