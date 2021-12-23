@@ -21,6 +21,8 @@ steps:
       - |
         test -f cache.tar.gz || yarn install --prod --frozen-lockfile
         yarn build
+        gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz
+        tar -zxf brotli.tar.gz
         find ./public -type f \( -name "*.js" -or -name "*.css" -or -name "*.html" -or -name "*.json" -or -name "*.xml" \) | xargs brotli -4 -j
         echo $$GATSBY_BASIC_AUTH
     env:
