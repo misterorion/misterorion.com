@@ -25,16 +25,16 @@ steps:
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-#  - id: Brotli compress
-#    name: gcr.io/cloud-builders/gcloud
-#    entrypoint: bash
-#    args:
-#      - -c
-#      - |
-#        gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz
-#        tar -zxf brotli.tar.gz
-#        cp -R ./public ./srv
-#        find ./srv -type f -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli -4 -j
+  - id: Brotli compress
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gsutil -m cp "gs://mecha-build-tools/brotli.tar.gz" brotli.tar.gz
+        tar -zxf brotli.tar.gz
+        cp -R ./public ./srv
+        find ./srv -type f -regex ".*\.\(js\|css\|html\|json\|xml\)$" | xargs ./brotli
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
