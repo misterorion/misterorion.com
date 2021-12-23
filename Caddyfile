@@ -4,7 +4,7 @@
 :80
 file_server {
     precompressed br
-    root * /srv
+    root /srv
 }
 
 header {
