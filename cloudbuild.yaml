@@ -24,7 +24,7 @@ steps:
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-  - id: Brotli compress
+  - id: Precompress files
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
     args:
@@ -42,8 +42,7 @@ steps:
     args:
       - -c
       - |
-        mkdir tmp
-        gsutil -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C tmp
+        gsutil -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C /tmp
     volumes:
       - name: caddy
         path: /tmp
