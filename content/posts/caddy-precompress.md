@@ -12,7 +12,7 @@ tags: ["Caddy","Linux","GCP"]
 
 Gzip is supported in virtually in all browsers, having been around since 1993. It is a file format, rather than an algorithm (although it is based on DEFLATE under the hood). Tried and true, it provides respectible compression and is blazing fast on modern hardware.
 
-Developed by Google and released in 2013 as a way to compress web fonts, the Brotli (not to be confused with the vegetable) algorithm is a relative newcomer, but provides better overall compression than Gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as Gzip.
+Developed by Google and released in 2013 as a way to compress web fonts, Brotli (not to be confused with the vegetable) is a relative newcomer, but its algorithm provides better overall compression than Gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as Gzip.
 
 ## Do I Need All This Complexity?
 
