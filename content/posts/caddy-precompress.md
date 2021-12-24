@@ -2,7 +2,7 @@
 title: "Precompressed Brotli and GZIP with Caddy"
 date: "2021-12-23"
 slug: "caddy-server-brotli"
-description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting brotli compression algorithm instead of boring gzip."
+description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting brotli compression algorithm."
 imageFixed: "../images/vapor.jpg"
 imageAlt: "Caddy Server"
 tags: ["Caddy","Linux","GCP"]
