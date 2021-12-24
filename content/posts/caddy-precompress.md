@@ -2,23 +2,21 @@
 title: "Precompressed Brotli and GZIP with Caddy"
 date: "2021-12-23"
 slug: "caddy-server-brotli"
-description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting brotli compression algorithm."
+description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting Brotli compression algorithm."
 imageFixed: "../images/vapor.jpg"
 imageAlt: "Caddy Server"
 tags: ["Caddy","Linux","GCP"]
 ---
 
-<!-- You are serving your website with [Caddy](https://caddyserver.com/). Great! You're an awesome person. But now you want to become even more awesome and serve your assets using the exciting brotli (not to be confused with the vegetable) compression algorithm instead of boring gzip, and save some bytes too. -->
-
 ## Gzip and Brotli
 
 Gzip is supported in virtually in all browsers, having been around since 1993. It is a file format, rather than an algorithm (although it is based on DEFLATE under the hood). Tried and true, it provides respectible compression and is blazing fast on modern hardware.
 
-Developed by Google and released in 2013 as a way to compress web fonts, the brotli (not to be confused with the vegetable) algorithm is a relative newcomer, but provides better overall compression than gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as gzip.
+Developed by Google and released in 2013 as a way to compress web fonts, the Brotli (not to be confused with the vegetable) algorithm is a relative newcomer, but provides better overall compression than Gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as Gzip.
 
 ## Do I Need All This Complexity?
 
-One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling brotli and gzip compression for you. Another way would be to use a CDN that performs on-the-fly brotli compression, such as KeyCDN.
+One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling Brotli and Gzip compression for you. Another way would be to use a CDN that performs on-the-fly Brotli compression, such as KeyCDN.
 
 But the situation may arise where you don't have access to, or are prohibited from using the above services, for example if you are restricted to using on-prem resources.
 
@@ -41,11 +39,11 @@ Moving along, here's our little functional spec.
 
 Our implementation should:
 
-- Serve precompressed brotli files by default
-- Serve precompressed gzip files if the user's browser doesn't support brotli
+- Serve precompressed Brotli files by default
+- Serve precompressed Gzip files if the user's browser doesn't support Brotli
 - Serve precompressed files only if they are >= 1,400 bytes
 
-> It's not a bad idea to allow falling back to gzip in case the users browser doesn't support brotli, or to handle other edge cases.
+> It's not a bad idea to allow falling back to Gzip in case the users browser doesn't support Brotli, or to handle other edge cases.
 
 ## How Can We Accomplish All of This?
 
@@ -66,7 +64,7 @@ find ./srv -type f -size +1400c \
 
 > \\+ is a `find` command delimiter, allowing you to chain -exec commands together. `{}` will be replaced with the file's path.
 
-Generally, we want to use highest level of compression for both gzip and brotli. This requires the most compute power up-front, but will produce the smallest files.
+Generally, we want to use highest level of compression for both Gzip and Brotli. This requires the most compute power up-front, but will produce the smallest files.
 
 To put this in perspective, the command above takes my 16-thread desktop CPU just a couple of seconds to process all ~250 files files on this site.
 
@@ -92,7 +90,7 @@ From the Caddy [docs](https://caddyserver.com/docs/caddyfile/directives/file_ser
 
 > **precompressed** is the list of encoding formats to search for precompressed sidecar files. Arguments are an ordered list of encoding formats to search for precompressed sidecar files. Supported formats are `gzip`, `zstd` and `br`.
 
-In other words, using our example, if the request `User-Agent` header advertises that the client can accept brotli, those files will be sent. Second in line are gzip files (if supported), followed by the uncompressed versions.
+In other words, using our example, if the request `User-Agent` header advertises that the client can accept Brotli, those files will be sent. Second in line are Gzip files (if supported), followed by the uncompressed versions.
 
 All too easy. Thanks, Caddy!
 
@@ -149,7 +147,7 @@ COPY ./Caddyfile /etc/caddy/Caddyfile
 
 A simplified version of my `cloudbuild.yaml`. 
 
-Substutition for `$_BROTLI_BIN` is the URI of my gzipped copy of the brotli binary on GCS.
+Substutition for `$_BROTLI_BIN` is the URI of my gzipped copy of the Brotli binary on GCS.
 
 Substitution for `$_APP_IMAGE` is a private repository on Artifact Registry storing the Docker image of my site.
 
@@ -188,7 +186,7 @@ steps:
 
 ## Summary
 
-It looks like brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I hope this article gave you some insights into brotli of how you can start using in your build automataion workflows. 
+It looks like Brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I hope this article gave you some insights into Brotli of how you can start using in your build automataion workflows. 
 
 I'd encourage you to give Caddy a try as well, as it's a fine piece of technology.
 
