@@ -1,0 +1,189 @@
+---
+title: "Use Caddy to Serve Precompressed Brotli"
+date: "2021-12-23"
+slug: "caddy-server-brotli"
+# description: "This shows up above the image"
+imageFixed: "../images/Caddy.png"
+imageAlt: "Caddy Server"
+tags: ["Caddy","Linux","GCP"]
+---
+
+You are serving your website with [Caddy](https://caddyserver.com/). Great! You're an awesome person. But now you want to become even more awesome and serve your assets using the exciting brotli (not to be confused with the vegetable) compression algorithm instead of boring gzip, and save some bytes too.
+
+## Gzip and Brotli
+
+Gzip is supported in virtually in all browsers, having been around since 1993. It is a file format, rather than an algorithm (although it is based on DEFLATE under the hood). Tried and true, it provides respectible compression and is blazing fast on modern hardware.
+
+Developed by Google and released in 2013 as a way to compress web fonts, the brotli algorithm is a relative newcomer, but provides better overall compression than gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as gzip.
+
+## Do I Need All This Complexity?
+
+One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling compression for you. Another way would be to use a CDN that performs on-the-fly brotli compression, such as KeyCDN.
+
+But the situation may arise where you don't have access to, or are prohibited from using the above services, for example if you are restricted to using on-prem resources.
+
+Or, you just fancy yourself a crazy hacker and like to roll your own solution, and learn
+something in the process!
+
+## What to Compress?
+
+It's a somewhat convoluted and perhaps controversial topic, but a common practice is to only compress files larger than 1500 bytes.
+
+The reasoning behind this states: because the most common maximum transmission unit (MTU) on the Internet is 1500 bytes, compressing files smaller than 1500 bytes has no effect.
+
+For example, if you were to compress a file to 400 bytes and send it, the containing packet will still occupy 1500 bytes on the wire, thus negating the benefit of compression. 
+
+All that said, 1400 bytes is a good starting point, accounting for the packet headers, so we'll be using that going forward.
+
+## Functional Spec
+
+Moving along, here's our little functional spec. 
+
+Our implementation should:
+
+- Serve precompressed brotli files by default
+- Serve precompressed gzip files if the user's browser doesn't support brotli
+- Serve precompressed files only if they are >= 1400 bytes
+
+> It's not a bad idea to allow falling back to gzip in case the users browser doesn't support brotli, or to handle other edge cases.
+
+## How Can We Accomplish All of This?
+
+### Bash Command
+
+We start with a folder of static website files. In this example we use the `srv` directory.
+
+We'll construct a bash one-liner to recursively find files of certain extensions larger than 1400 bytes, and create both `.br` and `.gz` compressed versions. We want original files to remain intact as well with the `-k` (keep) flag.
+
+```bash
+find ./srv -type f -size +1400c \
+    -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
+    -exec brotli --best {} \+ \
+    -exec gzip --best -k {} \+
+```
+
+Generally, we want to use highest level of compression for both gzip and brotli. This requires the most compute power up-front, but will produce the smallest files.
+
+If you have a gargantuan amount of files to process, you might want to lower the compression level to get a good ratio of speed/size, or rethink your build strategy.
+
+To put this in perspective, the command above takes my 16-thread desktop CPU just a couple of seconds to process all ~250 files files on this site.
+
+When this command runs on my GCP free-tier Cloud Build instance it takes around 30 seconds. Take that into consideration if you are using a hosted build platform or have smaller compute resources.
+
+> Disappointingly, I discovered that the `find` command does not accept Bash globbing within its parameters, and uses [Emacs-style regex](https://www.emacswiki.org/emacs/RegularExpression). Keep that in mind when tweaking the above for your use case.
+
+### Caddyfile
+
+Next we update our Caddyfile to serve the precompressed files. We do this by using the `file_server` directive.
+
+```caddy
+# Caddyfile
+
+file_server {
+	precompressed br gzip
+	root /srv
+}
+
+```
+
+From the Caddy [docs](https://caddyserver.com/docs/caddyfile/directives/file_server#syntax):
+
+> **precompressed** is the list of encoding formats to search for precompressed sidecar files. Arguments are an ordered list of encoding formats to search for precompressed sidecar files. Supported formats are `gzip`, `zstd` and `br`.
+
+In other words, if the request `User-Agent` header advertises that the client can accept brotli, those files will be sent. Second in line are gzip files, if supported, followed by the uncompressed versions.
+
+All too easy. Thanks, Caddy!
+
+## All the Code
+
+### Sample Caddyfile for a Gatsby Site
+
+In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination, so I'm not using Caddy's automatic https feature. I also disable the admin endpoint for security.
+
+```caddy
+# Caddyfile
+
+{
+	admin off
+}
+:80
+file_server {
+	precompressed br gzip
+	root /srv
+}
+
+header {
+	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
+	Referrer-Policy "strict-origin-when-cross-origin"
+	Strict-Transport-Security "max-age=63072000; includeSubDomains"
+	X-Content-Type-Options "nosniff"
+	X-Frame-Options "DENY"
+	X-XSS-Protection "1; mode=block"
+}
+
+@immutable {
+	path *.js *.css
+	path /static/*
+	not path /sw.js
+}
+route {
+	header Cache-Control public,max-age=0,must-revalidate
+	header @immutable Cache-Control public,max-age=31536000,immutable
+}
+```
+
+### Simplified Dockerfile
+
+Copy the `srv` directory and the tweaked Caddyfile into the image.
+
+```dockerfile
+# Dockerfile
+
+COPY ./srv /srv
+COPY ./Caddyfile /etc/caddy/Caddyfile
+```
+
+### Simplified Cloud Build Script on GCP
+
+A simplified version of my `cloudbuild.yaml`. Substutition for `$_BROTLI_BIN` is the URI of my copy of the brotli binary on Cloud Storage. Substitution for `$_APP_IMAGE` is a private repository on Artifact Registry where I store the Docker image of my site.
+
+```yaml
+# cloudbuild.yaml
+
+steps:
+  - id: Yarn build
+    name: node
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        yarn install --prod --frozen-lockfile
+        yarn build
+  - id: Precompress files
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gsutil -q -m cp $_BROTLI_BIN brotli.tar.gz && tar -zxf brotli.tar.gz
+        find ./srv -type f -size +1400c \
+          -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
+          -exec ./brotli --best {} \+ \
+          -exec gzip --best -k {} \+
+  - id: Build and push image
+    name: gcr.io/cloud-builders/docker
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        docker build -t $_APP_IMAGE:latest .
+        docker push $_APP_IMAGE:latest
+```
+
+## Summary
+
+It looks like brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I'd encourage you to give Caddy a try as well, as it's a fine piece of technology.
+
+I also hope this article gave you some insights into brotli of how you can start using in your build automataion workflows. 
+
+Send me a message using the form below with your thoughts or suggestions!
