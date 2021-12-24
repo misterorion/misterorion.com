@@ -1,14 +1,14 @@
 ---
-title: "Use Caddy to Serve Precompressed Brotli"
+title: "Precompressed Brotli and GZIP with Caddy"
 date: "2021-12-23"
 slug: "caddy-server-brotli"
-# description: "This shows up above the image"
+description: "You are serving your website with Caddy. Great! You’re an awesome person. But now you want to become even more awesome and serve your assets using the exciting brotli (not to be confused with the vegetable) compression algorithm instead of boring gzip."
 imageFixed: "../images/Caddy.png"
 imageAlt: "Caddy Server"
 tags: ["Caddy","Linux","GCP"]
 ---
 
-You are serving your website with [Caddy](https://caddyserver.com/). Great! You're an awesome person. But now you want to become even more awesome and serve your assets using the exciting brotli (not to be confused with the vegetable) compression algorithm instead of boring gzip, and save some bytes too.
+<!-- You are serving your website with [Caddy](https://caddyserver.com/). Great! You're an awesome person. But now you want to become even more awesome and serve your assets using the exciting brotli (not to be confused with the vegetable) compression algorithm instead of boring gzip, and save some bytes too. -->
 
 ## Gzip and Brotli
 
@@ -18,7 +18,7 @@ Developed by Google and released in 2013 as a way to compress web fonts, the bro
 
 ## Do I Need All This Complexity?
 
-One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling compression for you. Another way would be to use a CDN that performs on-the-fly brotli compression, such as KeyCDN.
+One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling brotli and gzip compression for you. Another way would be to use a CDN that performs on-the-fly brotli compression, such as KeyCDN.
 
 But the situation may arise where you don't have access to, or are prohibited from using the above services, for example if you are restricted to using on-prem resources.
 
@@ -29,11 +29,11 @@ something in the process!
 
 It's a somewhat convoluted and perhaps controversial topic, but a common practice is to only compress files larger than 1500 bytes.
 
-The reasoning behind this states: because the most common maximum transmission unit (MTU) on the Internet is 1500 bytes, compressing files smaller than 1500 bytes has no effect.
+The reasoning behind this states: "The most common maximum transmission unit (MTU) on the Internet is 1,500 bytes. Therefore, compressing files smaller than 1,500 bytes has no effect."
 
-For example, if you were to compress a file to 400 bytes and send it, the containing packet will still occupy 1500 bytes on the wire, thus negating the benefit of compression. 
+For example, if you were to compress a file to 400 bytes and send it, the containing packet will still occupy 1,500 bytes on the wire, thus negating the benefit of compression. 
 
-All that said, 1400 bytes is a good starting point, accounting for the packet headers, so we'll be using that going forward.
+All that said, 1,400 bytes is a good starting point (accounting for packet headers) so we'll be using that going forward.
 
 ## Functional Spec
 
@@ -62,19 +62,19 @@ find ./srv -type f -size +1400c \
     -exec gzip --best -k {} \+
 ```
 
-Generally, we want to use highest level of compression for both gzip and brotli. This requires the most compute power up-front, but will produce the smallest files.
+> Disappointingly, I discovered that the `find` command does not accept Bash globbing within its parameters, and uses [Emacs-style regex](https://www.emacswiki.org/emacs/RegularExpression). Keep that in mind when tweaking the above for your use case.
 
-If you have a gargantuan amount of files to process, you might want to lower the compression level to get a good ratio of speed/size, or rethink your build strategy.
+Generally, we want to use highest level of compression for both gzip and brotli. This requires the most compute power up-front, but will produce the smallest files.
 
 To put this in perspective, the command above takes my 16-thread desktop CPU just a couple of seconds to process all ~250 files files on this site.
 
 When this command runs on my GCP free-tier Cloud Build instance it takes around 30 seconds. Take that into consideration if you are using a hosted build platform or have smaller compute resources.
 
-> Disappointingly, I discovered that the `find` command does not accept Bash globbing within its parameters, and uses [Emacs-style regex](https://www.emacswiki.org/emacs/RegularExpression). Keep that in mind when tweaking the above for your use case.
+If you have a gargantuan amount of files to process, you might want to lower the compression level to get a good ratio of speed/size, or rethink your build strategy.
 
 ### Caddyfile
 
-Next we update our Caddyfile to serve the precompressed files. We do this by using the `file_server` directive.
+Next, we update our Caddyfile to serve the precompressed files. We do this by using the `file_server` directive.
 
 ```caddy
 # Caddyfile
@@ -98,7 +98,7 @@ All too easy. Thanks, Caddy!
 
 ### Sample Caddyfile for a Gatsby Site
 
-In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination, so I'm not using Caddy's automatic https feature. I also disable the admin endpoint for security.
+In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination. Thus, I'm not using Caddy's automatic https feature. I also disable the admin endpoint since it's not needed.
 
 ```caddy
 # Caddyfile
@@ -145,7 +145,11 @@ COPY ./Caddyfile /etc/caddy/Caddyfile
 
 ### Simplified Cloud Build Script on GCP
 
-A simplified version of my `cloudbuild.yaml`. Substutition for `$_BROTLI_BIN` is the URI of my copy of the brotli binary on Cloud Storage. Substitution for `$_APP_IMAGE` is a private repository on Artifact Registry where I store the Docker image of my site.
+A simplified version of my `cloudbuild.yaml`. 
+
+Substutition for `$_BROTLI_BIN` is the URI of my gzipped copy of the brotli binary on GCS.
+
+Substitution for `$_APP_IMAGE` is a private repository on Artifact Registry storing the Docker image of my site.
 
 ```yaml
 # cloudbuild.yaml
@@ -182,8 +186,8 @@ steps:
 
 ## Summary
 
-It looks like brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I'd encourage you to give Caddy a try as well, as it's a fine piece of technology.
+It looks like brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I hope this article gave you some insights into brotli of how you can start using in your build automataion workflows. 
 
-I also hope this article gave you some insights into brotli of how you can start using in your build automataion workflows. 
+I'd encourage you to give Caddy a try as well, as it's a fine piece of technology.
 
 Send me a message using the form below with your thoughts or suggestions!

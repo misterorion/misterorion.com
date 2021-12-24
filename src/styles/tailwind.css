@@ -61,7 +61,7 @@
   }
 
   article ul > li {
-    @apply list-disc text-lg mb-4;
+    @apply list-disc text-base mb-4;
   }
 
   article ol > li {
@@ -110,7 +110,7 @@
       @apply text-lg leading-normal;
     }
     article ul > li {
-      @apply mb-2;
+      @apply text-lg mb-2;
     }
     article ol > li {
       @apply list-decimal text-lg mb-2;
@@ -162,7 +162,7 @@ code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: 0.5em 0;
+  margin: 1rem 0;
   overflow: auto;
   border: 1px solid #dddddd;
   background-color: white;
