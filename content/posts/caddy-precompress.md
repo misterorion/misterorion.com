@@ -2,8 +2,8 @@
 title: "Precompressed Brotli and GZIP with Caddy"
 date: "2021-12-23"
 slug: "caddy-server-brotli"
-description: "You are serving your website with Caddy. Great! You’re an awesome person. But now you want to become even more awesome and serve your assets using the exciting brotli (not to be confused with the vegetable) compression algorithm instead of boring gzip."
-imageFixed: "../images/Caddy.png"
+description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting brotli compression algorithm instead of boring gzip."
+imageFixed: "../images/vapor.jpg"
 imageAlt: "Caddy Server"
 tags: ["Caddy","Linux","GCP"]
 ---
@@ -14,7 +14,7 @@ tags: ["Caddy","Linux","GCP"]
 
 Gzip is supported in virtually in all browsers, having been around since 1993. It is a file format, rather than an algorithm (although it is based on DEFLATE under the hood). Tried and true, it provides respectible compression and is blazing fast on modern hardware.
 
-Developed by Google and released in 2013 as a way to compress web fonts, the brotli algorithm is a relative newcomer, but provides better overall compression than gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as gzip.
+Developed by Google and released in 2013 as a way to compress web fonts, the brotli (not to be confused with the vegetable) algorithm is a relative newcomer, but provides better overall compression than gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as gzip.
 
 ## Do I Need All This Complexity?
 
@@ -27,7 +27,7 @@ something in the process!
 
 ## What to Compress?
 
-It's a somewhat convoluted and perhaps controversial topic, but a common practice is to only compress files larger than 1500 bytes.
+It's a somewhat convoluted and perhaps controversial topic, but a common practice is to only compress files larger than 1,500 bytes.
 
 The reasoning behind this states: "The most common maximum transmission unit (MTU) on the Internet is 1,500 bytes. Therefore, compressing files smaller than 1,500 bytes has no effect."
 
@@ -43,7 +43,7 @@ Our implementation should:
 
 - Serve precompressed brotli files by default
 - Serve precompressed gzip files if the user's browser doesn't support brotli
-- Serve precompressed files only if they are >= 1400 bytes
+- Serve precompressed files only if they are >= 1,400 bytes
 
 > It's not a bad idea to allow falling back to gzip in case the users browser doesn't support brotli, or to handle other edge cases.
 
@@ -53,7 +53,7 @@ Our implementation should:
 
 We start with a folder of static website files. In this example we use the `srv` directory.
 
-We'll construct a bash one-liner to recursively find files of certain extensions larger than 1400 bytes, and create both `.br` and `.gz` compressed versions. We want original files to remain intact as well with the `-k` (keep) flag.
+We'll construct a bash one-liner to recursively find files of certain extensions larger than 1,400 bytes, and create both `.br` and `.gz` compressed versions. We want original files to remain intact as well with the `-k` (keep) flag.
 
 ```bash
 find ./srv -type f -size +1400c \
@@ -62,7 +62,9 @@ find ./srv -type f -size +1400c \
     -exec gzip --best -k {} \+
 ```
 
-> Disappointingly, I discovered that the `find` command does not accept Bash globbing within its parameters, and uses [Emacs-style regex](https://www.emacswiki.org/emacs/RegularExpression). Keep that in mind when tweaking the above for your use case.
+> The `find` command does not accept Bash globbing within its parameters, and uses [Emacs-style regex](https://www.emacswiki.org/emacs/RegularExpression). Keep that in mind when tweaking the above for your use case.
+
+> \\+ is a `find` command delimiter, allowing you to chain -exec commands together. `{}` will be replaced with the file's path.
 
 Generally, we want to use highest level of compression for both gzip and brotli. This requires the most compute power up-front, but will produce the smallest files.
 
@@ -90,7 +92,7 @@ From the Caddy [docs](https://caddyserver.com/docs/caddyfile/directives/file_ser
 
 > **precompressed** is the list of encoding formats to search for precompressed sidecar files. Arguments are an ordered list of encoding formats to search for precompressed sidecar files. Supported formats are `gzip`, `zstd` and `br`.
 
-In other words, if the request `User-Agent` header advertises that the client can accept brotli, those files will be sent. Second in line are gzip files, if supported, followed by the uncompressed versions.
+In other words, using our example, if the request `User-Agent` header advertises that the client can accept brotli, those files will be sent. Second in line are gzip files (if supported), followed by the uncompressed versions.
 
 All too easy. Thanks, Caddy!
 
@@ -98,7 +100,7 @@ All too easy. Thanks, Caddy!
 
 ### Sample Caddyfile for a Gatsby Site
 
-In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination. Thus, I'm not using Caddy's automatic https feature. I also disable the admin endpoint since it's not needed.
+In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination. Thus, I'm not using Caddy's automatic https feature. I also disable the admin endpoint since I don't need it.
 
 ```caddy
 # Caddyfile
@@ -143,7 +145,7 @@ COPY ./srv /srv
 COPY ./Caddyfile /etc/caddy/Caddyfile
 ```
 
-### Simplified Cloud Build Script on GCP
+### Simplified Cloud Build Script
 
 A simplified version of my `cloudbuild.yaml`. 
 
