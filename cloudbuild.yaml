@@ -7,11 +7,11 @@ steps:
       - |
         (
           set -e
+          echo "Attempting to use cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
           gsutil -q hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
           gsutil -q -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
           test -f cache.tar.gz
           tar -zxf cache.tar.gz
-          echo "Using cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
         ) || true
   - id: Yarn build
     name: $_NODE_IMAGE
