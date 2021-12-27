@@ -79,7 +79,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -92,5 +91,6 @@ module.exports = {
         icon: `content/images/favicon.png`,
       },
     },
+    // `gatsby-plugin-offline`,
   ],
 }
