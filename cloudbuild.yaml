@@ -36,7 +36,7 @@ steps:
           -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
           -exec ./brotli --best {} \+ \
           -exec gzip --best -k {} \+
-  - id: Prep Caddy
+  - id: Fetch Caddy binary
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
     args:
@@ -65,7 +65,7 @@ steps:
     volumes:
       - name: caddy
         path: /tmp
-  - id: Prep SSH
+  - id: Prep SSH for GitHub
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
     args:
