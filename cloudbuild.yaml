@@ -20,7 +20,7 @@ steps:
     args:
       - -c
       - |
-        yarn set version berry && yarn install --immutable --immutable-cache && yarn build
+        yarn set version berry && yarn install && yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
