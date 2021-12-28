@@ -14,8 +14,7 @@ steps:
           tar -zxf cache.tar.gz
         ) || true
   - id: Yarn build
-    name: node
-    # name: $_NODE_IMAGE
+    name: $_NODE_IMAGE
     entrypoint: sh
     args:
       - -c
