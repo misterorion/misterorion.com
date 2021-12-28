@@ -42,7 +42,6 @@ steps:
       - -c
       - |
         gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C /tmp
-        docker -v
     volumes:
       - name: caddy
         path: /tmp
