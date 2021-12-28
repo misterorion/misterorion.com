@@ -20,7 +20,7 @@ steps:
     args:
       - -c
       - |
-        yarn build
+        yarn install && yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
