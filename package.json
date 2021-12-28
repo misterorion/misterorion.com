@@ -5,11 +5,14 @@
   "description": "My personal home on the web.",
   "author": "Orion Anderson",
   "license": "MIT",
+  "workspaces": [
+    "client"
+  ],
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "reset": "yarn run clean && shx rm yarn.lock && shx rm -rf .\\node_modules\\ && yarn install",
+    "reset": "yarn run clean && shx rm yarn.lock && shx rm -rf .\\node_modules\\ && yarn install --silent",
     "serve": "gatsby serve"
   },
   "dependencies": {
@@ -17,6 +20,7 @@
     "@fontsource/quicksand": "^4.5.1",
     "@fontsource/roboto": "^4.5.1",
     "autoprefixer": "^10.4.0",
+    "dotenv": "^10.0.0",
     "formik": "^2.2.9",
     "gatsby": "^4.4.0",
     "gatsby-plugin-image": "^2.4.0",
@@ -48,5 +52,6 @@
   },
   "devDependencies": {
     "shx": "^0.3.3"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }

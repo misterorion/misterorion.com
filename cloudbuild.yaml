@@ -1,26 +1,25 @@
 steps:
-  - id: Fetch cache
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        (
-          set -e
-          gsutil -q hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
-          echo "Attempting to use cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-          gsutil -q -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
-          test -f cache.tar.gz
-          tar -zxf cache.tar.gz
-        ) || true
+  # - id: Fetch cache
+  #   name: gcr.io/cloud-builders/gcloud
+  #   entrypoint: bash
+  #   args:
+  #     - -c
+  #     - |
+  #       (
+  #         set -e
+  #         gsutil -q hash -h yarn.lock | grep md5 | tr -s " " | awk '{print $3}' > hashed.yarn-lock
+  #         echo "Attempting to use cache from: gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+  #         gsutil -q -m cp "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)" cache.tar.gz 2> /dev/null
+  #         test -f cache.tar.gz
+  #         tar -zxf cache.tar.gz
+  #       ) || true
   - id: Yarn build
     name: $_NODE_IMAGE
     entrypoint: sh
     args:
       - -c
       - |
-        test -f cache.tar.gz || yarn install --prod --frozen-lockfile
-        yarn build
+        yarn set version berry && yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
@@ -102,16 +101,16 @@ steps:
     volumes:
       - name: ssh
         path: /root/.ssh
-  - id: Push cache
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        tar -zcf cache.tar.gz node_modules .cache public
-        gsutil -q -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
-    waitFor:
-      - Yarn build
+  # - id: Push cache
+  #   name: gcr.io/cloud-builders/gcloud
+  #   entrypoint: bash
+  #   args:
+  #     - -c
+  #     - |
+  #       tar -zcf cache.tar.gz node_modules .cache public
+  #       gsutil -q -m cp cache.tar.gz "gs://$_CACHE_BUCKET/$(cat hashed.yarn-lock)"
+  #   waitFor:
+  #     - Yarn build
 availableSecrets:
   secretManager:
     - versionName: projects/$_PROJECT/secrets/$_SECRET_KEY/versions/latest
