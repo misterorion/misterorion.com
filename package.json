@@ -6,14 +6,11 @@
   "description": "My personal home on the web.",
   "author": "Orion Anderson",
   "license": "MIT",
-  "workspaces": [
-    "client"
-  ],
   "scripts": {
-    "build": "gatsby build --no-color",
+    "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "reset": "yarn run clean && shx rm yarn.lock && shx rm -rf .\\node_modules\\ && yarn install --silent",
+    "reset": "yarn run clean && shx rm yarn.lock && yarn cache clean && yarn install",
     "serve": "gatsby serve"
   },
   "dependencies": {
