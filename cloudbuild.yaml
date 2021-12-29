@@ -52,8 +52,6 @@ steps:
       - |
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
         docker push $_APP_IMAGE:$SHORT_SHA
-    images:
-      - $_APP_IMAGE:$SHORT_SHA
   - id: Prep SSH for GitHub
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
