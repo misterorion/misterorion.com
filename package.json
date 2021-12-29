@@ -10,7 +10,7 @@
     "client"
   ],
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --no-color",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
     "reset": "yarn run clean && shx rm yarn.lock && shx rm -rf .\\node_modules\\ && yarn install --silent",
