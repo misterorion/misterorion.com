@@ -5,10 +5,8 @@ steps:
     args:
       - -c
       - |
-        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa
-        chmod 400 /root/.ssh/id_rsa
-        ssh-keyscan -t rsa github.com > known_hosts.github
-        cp known_hosts.github /root/.ssh/known_hosts
+        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa && chmod 400 /root/.ssh/id_rsa
+        ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
     secretEnv:
       - SECRET_KEY
     volumes:
@@ -20,9 +18,9 @@ steps:
     args:
       - -c
       - |
-        mkdir tmp && git clone $_CONFIG_REPO tmp && cd tmp && \
-        git checkout -b dev && git pull origin dev && \
-        git checkout prod && git merge dev && \
+        git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
+        git checkout -b prod && git pull origin prod && \
+        git merge dev && \
         git push origin prod
     volumes:
       - name: ssh
