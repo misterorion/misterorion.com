@@ -42,15 +42,16 @@ steps:
     args:
       - -c
       - |
-        mkdir tmp && gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C ./tmp
+        mkdir tmp && gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C tmp
+        tmp/caddy fmt --overwrite && rm tmp/*
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
     args:
       - -c
       - |
-        ./tmp/caddy fmt --overwrite && rm ./tmp/*
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
+        docker push $_APP_IMAGE:$SHORT_SHA
     images:
       - $_APP_IMAGE:$SHORT_SHA
   - id: Prep SSH for GitHub
@@ -59,8 +60,7 @@ steps:
     args:
       - -c
       - |
-        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa
-        chmod 400 /root/.ssh/id_rsa
+        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa && chmod 400 /root/.ssh/id_rsa
         ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
     secretEnv:
       - SECRET_KEY
