@@ -4,3 +4,4 @@ COPY ./srv /srv
 COPY ./Caddyfile /etc/caddy/Caddyfile
 RUN ls /config
 RUN chown -R 8879 /config
+RUN ls -lah /config
