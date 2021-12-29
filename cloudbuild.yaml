@@ -19,7 +19,7 @@ steps:
     args:
       - -c
       - |
-        test -f cache.tar.gz || yarn install --immutable 
+        test -f cache.tar.gz || yarn install --immutable
         yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
@@ -42,14 +42,14 @@ steps:
     args:
       - -c
       - |
-        mkdir ./tmp && gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C ./tmp
+        mkdir tmp && gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C ./tmp
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
     args:
       - -c
       - |
-        ./tmp/caddy fmt --overwrite
+        ./tmp/caddy fmt --overwrite && rm ./tmp/*
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
         docker push $_APP_IMAGE:$SHORT_SHA
   - id: Prep SSH for GitHub
@@ -60,8 +60,7 @@ steps:
       - |
         echo "$$SECRET_KEY" >> /root/.ssh/id_rsa
         chmod 400 /root/.ssh/id_rsa
-        ssh-keyscan -t rsa github.com > known_hosts.github
-        cp known_hosts.github /root/.ssh/known_hosts
+        ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
     secretEnv:
       - SECRET_KEY
     volumes:
@@ -77,7 +76,7 @@ steps:
           AUTHOR_NAME=$$(git log -1 --pretty=format:"%an")
           AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
           LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
-          mkdir tmp && git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
+          git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
           sed "s/COMMIT_SHA/$SHORT_SHA/g" dev/deployment.yaml.tpl > dev/deployment.yaml && \
           sed "s/COMMIT_SHA/$SHORT_SHA/g" prod/deployment.yaml.tpl > prod/deployment.yaml && \
           git add dev/deployment.yaml prod/deployment.yaml && \
