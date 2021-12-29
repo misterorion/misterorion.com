@@ -20,7 +20,7 @@ steps:
       - -c
       - |
         test -f cache.tar.gz || yarn install --immutable
-        yarn build
+        yarn build > output.txt && cat output.txt
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
