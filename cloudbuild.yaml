@@ -20,7 +20,7 @@ steps:
       - -c
       - |
         test -f cache.tar.gz || yarn install --immutable
-        yarn build > output.txt && cat output.txt
+        yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
@@ -36,7 +36,7 @@ steps:
           -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
           -exec ./brotli --best {} \+ \
           -exec gzip --best -k {} \+
-  - id: Fetch Caddy binary
+  - id: Caddy fmt
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
     args:
@@ -44,7 +44,7 @@ steps:
       - |
         gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz
         ./caddy fmt --overwrite
-  - id: Build and push images
+  - id: Build and push image
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
     args:
