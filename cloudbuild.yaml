@@ -42,7 +42,7 @@ steps:
     args:
       - -c
       - |
-        gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C ./tmp
+        mkdir ./tmp && gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C ./tmp
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
