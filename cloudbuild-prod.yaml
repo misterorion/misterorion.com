@@ -5,8 +5,8 @@ steps:
     args:
       - -c
       - |
-        echo "$$SECRET_KEY" >> /root/.ssh/id_rsa && chmod 400 /root/.ssh/id_rsa
-        ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+        echo "$$SECRET_KEY" >> /root/.ssh/id_ed25519 && chmod 400 /root/.ssh/id_ed25519
+        ssh-keyscan -p 2022 source.developers.google.com > /root/.ssh/known_hosts
     secretEnv:
       - SECRET_KEY
     volumes:
