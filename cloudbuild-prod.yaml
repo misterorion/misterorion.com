@@ -19,9 +19,9 @@ steps:
       - -c
       - |
         git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
-        git checkout -b prod && git pull origin prod && \
+        git checkout -b master && git pull origin master && \
         git merge dev && \
-        git push origin prod
+        git push origin master
     volumes:
       - name: ssh
         path: /root/.ssh
