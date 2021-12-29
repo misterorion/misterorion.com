@@ -42,8 +42,8 @@ steps:
     args:
       - -c
       - |
-        mkdir tmp && gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C tmp
-        tmp/caddy fmt --overwrite && rm tmp/*
+        gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz
+        ./caddy fmt --overwrite
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
