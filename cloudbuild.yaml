@@ -19,7 +19,8 @@ steps:
     args:
       - -c
       - |
-        yarn install && yarn build
+        test -f cache.tar.gz || yarn install --immutable 
+        yarn build
     env:
       - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
@@ -41,29 +42,16 @@ steps:
     args:
       - -c
       - |
-        gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C /tmp
-    volumes:
-      - name: caddy
-        path: /tmp
+        gsutil -q -m cp $_CADDY_BIN caddy.tar.gz && tar -zxf caddy.tar.gz -C ./tmp
   - id: Build and push images
     name: gcr.io/cloud-builders/docker
     entrypoint: bash
     args:
       - -c
       - |
-        /tmp/caddy fmt --overwrite
+        ./tmp/caddy fmt --overwrite
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
-        BA_PASS=$(/tmp/caddy hash-password --plaintext $_BA_PASS)
-        echo -e "@auth {\n  path /\n  not path /robots.txt\n}" >> Caddyfile
-        echo -e "basicauth @auth {\n  $_BA_USER $$BA_PASS\n}" >> Caddyfile
-        sed -i "s/Allow/Disallow/g" public/robots.txt
-        /tmp/caddy fmt --overwrite
-        docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA-dev .
-        docker push $_APP_IMAGE:$SHORT_SHA-dev
         docker push $_APP_IMAGE:$SHORT_SHA
-    volumes:
-      - name: caddy
-        path: /tmp
   - id: Prep SSH for GitHub
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
@@ -90,7 +78,7 @@ steps:
           AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
           LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
           mkdir tmp && git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
-          sed "s/COMMIT_SHA/$SHORT_SHA-dev/g" dev/deployment.yaml.tpl > dev/deployment.yaml && \
+          sed "s/COMMIT_SHA/$SHORT_SHA/g" dev/deployment.yaml.tpl > dev/deployment.yaml && \
           sed "s/COMMIT_SHA/$SHORT_SHA/g" prod/deployment.yaml.tpl > prod/deployment.yaml && \
           git add dev/deployment.yaml prod/deployment.yaml && \
           git config user.name "$$AUTHOR_NAME" && \
