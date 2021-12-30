@@ -61,18 +61,14 @@ steps:
         mkdir -p /root/.ssh
         echo "$$SECRET_KEY" >> /root/.ssh/id_ed25519 && chmod 400 /root/.ssh/id_ed25519
         ssh-keyscan -p 2022 source.developers.google.com > /root/.ssh/known_hosts
-        AUTHOR_NAME=$$(git log -1 --pretty=format:"%an")
-        AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
-        LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
         git clone $_CONFIG_REPO tmp && cd tmp && \
         test -f state/dev.yaml || mkdir state && \
-        kubectl kustomize --help && \
-        kubectl kustomize app/dev -o state/dev.yaml && \
+        kubectl kustomize app/dev > state/dev.yaml && \
         sed "s/SHORT_SHA/$SHORT_SHA/g" state/dev.yaml && \
         git add state/dev.yaml && \
-        git config user.name "$$AUTHOR_NAME" && \
-        git config user.email "$$AUTHOR_EMAIL" && \
-        git commit -m "$$LAST_COMMIT_MESSAGE" && \
+        git config user.name "$$(git log -1 --pretty=format:"%an")" && \
+        git config user.email "$$(git log -1 --pretty=format:"%ae")" && \
+        git commit -m "$$(git log --format=%B -n 1 $SHORT_SHA)" && \
         git push origin master || true
     secretEnv:
       - SECRET_KEY
