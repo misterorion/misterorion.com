@@ -63,7 +63,7 @@ steps:
         ssh-keyscan -p 2022 source.developers.google.com > /root/.ssh/known_hosts
         git clone $_CONFIG_REPO tmp && cd tmp && \
         test -f state/dev.yaml || mkdir state && \
-        kubectl kustomize app/dev > state/dev.yaml && \
+        kustomize build app/dev > state/dev.yaml && \
         sed "s/SHORT_SHA/$SHORT_SHA/g" state/dev.yaml && \
         git add state/dev.yaml && \
         git config user.name "$$(git log -1 --pretty=format:"%an")" && \
