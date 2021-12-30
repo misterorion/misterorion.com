@@ -70,7 +70,7 @@ steps:
             -f app/values-dev.yaml > state/dev/state.yaml && \
         ./helm template --set shortSHA=$SHORT_SHA app \
             -f app/values-prod.yaml > state/prod/state.yaml && \
-        git add state/dev.yaml state/prod.yaml && \
+        git add state/dev/state.yaml state/prod/state.yaml && \
         git config user.name "$$AUTHOR_NAME" && \
         git config user.email "$$AUTHOR_EMAIL" && \
         git commit -m "$$LAST_COMMIT_MESSAGE" && \
