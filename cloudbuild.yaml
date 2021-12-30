@@ -67,11 +67,8 @@ steps:
           LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
           git clone $_CONFIG_REPO tmp && cd tmp && \
           test -f state/dev.yaml || mkdir state && \
-          kustomize build --help && \
-          kubectl kustomize app/dev -o state/dev.yaml && \
-          cat state/dev.yaml && \
+          kustomize app/dev --output state/dev.yaml && \
           sed "s/SHORT_SHA/$SHORT_SHA/g" state/dev.yaml && \
-          cat state/dev.yaml && \
           git add state/dev.yaml && \
           git config user.name "$$AUTHOR_NAME" && \
           git config user.email "$$AUTHOR_EMAIL" && \
