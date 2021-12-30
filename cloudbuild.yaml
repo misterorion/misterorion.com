@@ -52,7 +52,7 @@ steps:
       - |
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
         docker push $_APP_IMAGE:$SHORT_SHA
-  - id: Prep SSH for GitHub
+  - id: Push manifest
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
     args:
@@ -60,33 +60,21 @@ steps:
       - |
         echo "$$SECRET_KEY" >> /root/.ssh/id_ed25519 && chmod 400 /root/.ssh/id_ed25519
         ssh-keyscan -p 2022 source.developers.google.com > /root/.ssh/known_hosts
-    secretEnv:
-      - SECRET_KEY
-    volumes:
-      - name: ssh
-        path: /root/.ssh
-  - id: Update manifests
-    name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
         (
           AUTHOR_NAME=$$(git log -1 --pretty=format:"%an")
           AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
           LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
-          git clone -b dev $_CONFIG_REPO tmp && cd tmp && \
-          sed "s/COMMIT_SHA/$SHORT_SHA/g" dev/deployment.yaml.tpl > dev/deployment.yaml && \
-          sed "s/COMMIT_SHA/$SHORT_SHA/g" master/deployment.yaml.tpl > master/deployment.yaml && \
-          git add dev/deployment.yaml master/deployment.yaml && \
+          git clone $_CONFIG_REPO tmp && cd tmp && \
+          kubectl kustomize app/dev -o state/dev.yaml && \
+          sed "s/COMMIT_SHA/$SHORT_SHA/g" state/dev.yaml && \
+          git add state/dev.yaml && \
           git config user.name "$$AUTHOR_NAME" && \
           git config user.email "$$AUTHOR_EMAIL" && \
           git commit -m "$$LAST_COMMIT_MESSAGE" && \
-          git push origin dev
+          git push origin master
         ) || true
-    volumes:
-      - name: ssh
-        path: /root/.ssh
+    secretEnv:
+      - SECRET_KEY
   - id: Push cache
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
