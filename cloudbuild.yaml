@@ -66,11 +66,9 @@ steps:
           AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
           LAST_COMMIT_MESSAGE=$$(git log --format=%B -n 1 $SHORT_SHA)
           git clone $_CONFIG_REPO tmp && cd tmp && \
-          echo kustomize && \
+          test -f state/dev.yaml || touch state/dev.yaml && \
           kustomize build app/dev -o state/dev.yaml && \
-          echo sed && \
           sed "s/COMMIT_SHA/$SHORT_SHA/g" state/dev.yaml && \
-          echo git && \
           git add state/dev.yaml && \
           git config user.name "$$AUTHOR_NAME" && \
           git config user.email "$$AUTHOR_EMAIL" && \
