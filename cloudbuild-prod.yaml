@@ -20,6 +20,11 @@ steps:
           git commit -m "$$LAST_COMMIT_MESSAGE" && \
           git push origin master
         ) || true
+    secretEnv:
+      - SECRET_KEY
+    volumes:
+      - name: ssh
+        path: /root/.ssh
 availableSecrets:
   secretManager:
     - versionName: projects/$_PROJECT/secrets/$_SECRET_KEY/versions/latest
