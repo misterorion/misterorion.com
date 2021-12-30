@@ -59,7 +59,9 @@ steps:
       - -c
       - |
         echo "$$SECRET_KEY" >> /root/.ssh/id_ed25519 && chmod 400 /root/.ssh/id_ed25519
+        cat /root/.ssh/id_ed25519
         ssh-keyscan -p 2022 source.developers.google.com > /root/.ssh/known_hosts
+        cat /root/.ssh/id_ed25519
         (
           AUTHOR_NAME=$$(git log -1 --pretty=format:"%an")
           AUTHOR_EMAIL=$$(git log -1 --pretty=format:"%ae")
@@ -75,9 +77,9 @@ steps:
         ) || true
     secretEnv:
       - SECRET_KEY
-    volumes:
-      - name: ssh
-        path: /root/.ssh
+    # volumes:
+    #   - name: ssh
+    #     path: /root/.ssh
   - id: Push cache
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
