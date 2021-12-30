@@ -62,7 +62,7 @@ steps:
         echo "$$SECRET_KEY" >> /root/.ssh/id_ed25519 && chmod 400 /root/.ssh/id_ed25519
         ssh-keyscan -p 2022 source.developers.google.com > /root/.ssh/known_hosts
         git clone $_CONFIG_REPO tmp && cd tmp && \
-        test -f state/dev.yaml || mkdir state && \
+        test -f state/dev.yaml || mkdir state && touch state/dev.yaml && \
         kustomize build app/dev | sed "s/SHORT_SHA/$SHORT_SHA/g" -f state/dev.yaml && \
         cat state/dev.yaml && \
         git add state/dev.yaml && \
