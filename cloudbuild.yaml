@@ -52,7 +52,7 @@ steps:
       - |
         docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
         docker push $_APP_IMAGE:$SHORT_SHA
-  - id: Push manifest
+  - id: Update manifest
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
     args:
