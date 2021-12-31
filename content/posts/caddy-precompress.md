@@ -186,8 +186,8 @@ steps:
 
 ## Summary
 
-It looks like Brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I hope this article gave you some insights into Brotli of how you can start using in your build automataion workflows. 
+It looks like Brotli is here to stay and I encourage you to try it out if you are seeking some of the benefits. I hope this article gave you some insights into Brotli and how you can start using in your build automataion workflows.
 
-I'd encourage you to give Caddy a try as well, as it's a fine piece of technology.
+I'd encourage you to give [Caddy](https://caddyserver.com/) a try as well, as it's a fine piece of technology.
 
 Send me a message using the form below with your thoughts or suggestions!
