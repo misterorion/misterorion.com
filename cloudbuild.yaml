@@ -22,8 +22,9 @@ steps:
         test -f cache.tar.gz || yarn install --immutable
         yarn build
     env:
-      - GATSBY_TELEMETRY_DISABLED=true
       - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
+      - GATSBY_LOGGER=yurnalist
+      - GATSBY_TELEMETRY_DISABLED=true
   - id: Precompress files
     name: gcr.io/cloud-builders/gcloud
     entrypoint: bash
