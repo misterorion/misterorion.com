@@ -1442,24 +1442,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/jetbrains-mono@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "@fontsource/jetbrains-mono@npm:4.5.0"
-  checksum: 3de42f6f26506e597026c2460e9f34dc002cb8b34d7e04871ad0d2a15f277d087170ab9e0604176d23ae4ec90fefe2730660672b6b9ffd7f4cc8335ead11e134
+"@fontsource/jetbrains-mono@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "@fontsource/jetbrains-mono@npm:4.5.1"
+  checksum: 40cf10b37233f1c05eab4e3a82527fd05dcb08ba8f0c0780512070e6700ee6c736fe359ba016d6a3db36424de184ba32c63340fe3d8581bd479cea7e5983340d
   languageName: node
   linkType: hard
 
-"@fontsource/quicksand@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "@fontsource/quicksand@npm:4.5.1"
-  checksum: b002eed8f11e9180d29dc1f67e480a74932f9efb9003d0ddb13c7374a8c50b5bc977df6705048dbf4b96d241d56b3b486294564187093bce197153c644e440b9
+"@fontsource/quicksand@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "@fontsource/quicksand@npm:4.5.2"
+  checksum: 2f918bdfaf5a007b099147a846fc6d98ba409336a603e0568253ddab4a7df0df679f1e844a7c532652b4428f2adf58085bdeda4af4efa8380e822d046d9c326f
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "@fontsource/roboto@npm:4.5.1"
-  checksum: dddc5b883e0355096ebb8944a6ad8ec5fec583482e96b22c2b2b7e83d3a538a85586c379b9471db117f934bfcea981c273c153bdf55a33f5c44a39837dc6fa97
+"@fontsource/roboto@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "@fontsource/roboto@npm:4.5.2"
+  checksum: 053bdfcb21c6bbdeb20c9c21c60ec21f9cd36760022344dbdc15ade39567bcfa5bb1ba2c9a0ba48f4608c2ab55440299182f369235f340d620ab91f834931c36
   languageName: node
   linkType: hard
 
@@ -2606,9 +2606,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=10.0.0, @types/node@npm:^17.0.5":
-  version: 17.0.12
-  resolution: "@types/node@npm:17.0.12"
-  checksum: f7e4c384b72648550391c2c8bd42560dfccf5b7a0506fb5842f326f8b176286be279dd63f62af621fe6d409d474ea5d312855061f512132e999f4e902a22e4db
+  version: 17.0.13
+  resolution: "@types/node@npm:17.0.13"
+  checksum: 8b87c850c1604c65e3474bd03d122914464b7970caed20f65f4a7706ab429353b896a3916be4d2581164eccda9e3dd95c338fbccf686ff85a824c40d15e8f3fa
   languageName: node
   linkType: hard
 
@@ -4136,9 +4136,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001125, caniuse-lite@npm:^1.0.30001286, caniuse-lite@npm:^1.0.30001297":
-  version: 1.0.30001302
-  resolution: "caniuse-lite@npm:1.0.30001302"
-  checksum: 612689059f6a9aeebad43afeabac655308ddbad8e0f345030edf7656564cf9d0d5af10e3cbf61b64b09b06a97f82ba3788f5621d6526c7a3e7e068cae88d6782
+  version: 1.0.30001303
+  resolution: "caniuse-lite@npm:1.0.30001303"
+  checksum: fe77fb680c94c875be2fb78c9507a69d3ed6be8894832d3ee8a7d24e4c5c7599bf217f030fcdfd761ea211065042679bf697a57eefe114058a3208561e2fd042
   languageName: node
   linkType: hard
 
@@ -5281,6 +5281,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"detect-libc@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "detect-libc@npm:2.0.0"
+  checksum: cb96738a4a6fd2cc7b2e2c86624d0fc4a1f6e2b9502175b8d04e71a1075d65bcf9c3489b2f9a459e4caccc46fefa96a3c8f3182ddc876d850f639c956f7c5610
+  languageName: node
+  linkType: hard
+
 "detect-port-alt@npm:1.1.6":
   version: 1.1.6
   resolution: "detect-port-alt@npm:1.1.6"
@@ -5543,9 +5550,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.564, electron-to-chromium@npm:^1.4.17":
-  version: 1.4.53
-  resolution: "electron-to-chromium@npm:1.4.53"
-  checksum: 8c221a85b1941763803836044a8d8eaacb6e9661302fcdd36601a74f7123236aa52b0007d54320a1550cbbcf9dfdd4cf52ca92e677df3f71be0ee2ed68c738d7
+  version: 1.4.57
+  resolution: "electron-to-chromium@npm:1.4.57"
+  checksum: 42a922c688bffeab1612e7dee8ba946351ae6af465c0b5ee63ac4a7c0928d2bdf1f0cd147c3fa74dd73e933e57664bfe1083a9a317880918726fc3d0b366fe3d
   languageName: node
   linkType: hard
 
@@ -5880,12 +5887,12 @@ __metadata:
   linkType: hard
 
 "eslint-module-utils@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "eslint-module-utils@npm:2.7.2"
+  version: 2.7.3
+  resolution: "eslint-module-utils@npm:2.7.3"
   dependencies:
     debug: ^3.2.7
     find-up: ^2.1.0
-  checksum: 3e6407461d12b1568556fc9a84668415693ecce92d17d7407353defcfcafec5d3d8dfa2d9eda3743b3b53ef04101d8aa69072b3d634d92e766c3dfa10505542d
+  checksum: 77048263f309167a1e6a1e1b896bfb5ddd1d3859b2e2abbd9c32c432aee13d610d46e6820b1ca81b37fba437cf423a404bc6649be64ace9148a3062d1886a678
   languageName: node
   linkType: hard
 
@@ -10383,9 +10390,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "misterorion-com@workspace:."
   dependencies:
-    "@fontsource/jetbrains-mono": ^4.5.0
-    "@fontsource/quicksand": ^4.5.1
-    "@fontsource/roboto": ^4.5.1
+    "@fontsource/jetbrains-mono": ^4.5.1
+    "@fontsource/quicksand": ^4.5.2
+    "@fontsource/roboto": ^4.5.2
     autoprefixer: ^10.4.2
     dotenv: ^14.3.2
     formik: ^2.2.9
@@ -10412,7 +10419,7 @@ __metadata:
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
     shx: ^0.3.4
-    tailwindcss: ^3.0.17
+    tailwindcss: ^3.0.18
   languageName: unknown
   linkType: soft
 
@@ -11601,14 +11608,14 @@ __metadata:
   linkType: hard
 
 "postcss-calc@npm:^8.2.0":
-  version: 8.2.2
-  resolution: "postcss-calc@npm:8.2.2"
+  version: 8.2.3
+  resolution: "postcss-calc@npm:8.2.3"
   dependencies:
     postcss-selector-parser: ^6.0.2
     postcss-value-parser: ^4.0.2
   peerDependencies:
     postcss: ^8.2.2
-  checksum: aa60cbb01ae48ae8b708bc8c056e8ad6ddcc9f56af88c8e898c0b5d5d7c24f3448ec61698628d6c2e70893a657e99917ad77f18214c3d3bcab32477e855bccb4
+  checksum: 90e8f4404771c3caa404f518494121720040d146fd97c1a1db70099abf0cfc719c165458b1a655b7057cb8775d1018744f1d8a1ff1f65491cf74015b476378c4
   languageName: node
   linkType: hard
 
@@ -12001,7 +12008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4, postcss-selector-parser@npm:^6.0.5, postcss-selector-parser@npm:^6.0.6, postcss-selector-parser@npm:^6.0.8":
+"postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4, postcss-selector-parser@npm:^6.0.5, postcss-selector-parser@npm:^6.0.6, postcss-selector-parser@npm:^6.0.9":
   version: 6.0.9
   resolution: "postcss-selector-parser@npm:6.0.9"
   dependencies:
@@ -12072,10 +12079,10 @@ __metadata:
   linkType: hard
 
 "prebuild-install@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "prebuild-install@npm:7.0.0"
+  version: 7.0.1
+  resolution: "prebuild-install@npm:7.0.1"
   dependencies:
-    detect-libc: ^1.0.3
+    detect-libc: ^2.0.0
     expand-template: ^2.0.3
     github-from-package: 0.0.0
     minimist: ^1.2.3
@@ -12090,7 +12097,7 @@ __metadata:
     tunnel-agent: ^0.6.0
   bin:
     prebuild-install: bin.js
-  checksum: 413783f74677a9691c286f3302ef37a9d4d6121b85bb38064d286931dfc57961da6066bfe02e7c411ee828c2ee40b0ba467575e7197178582db8385dd8402d5f
+  checksum: 117c8966f221242633bbf245755fb469dabc7085909f5e3db83359d6281a88dedbdada7e839315805a192c74b7cce3ed1a86c1382a8d950c1ea60a9d5d8e7bf0
   languageName: node
   linkType: hard
 
@@ -14177,9 +14184,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.17":
-  version: 3.0.17
-  resolution: "tailwindcss@npm:3.0.17"
+"tailwindcss@npm:^3.0.18":
+  version: 3.0.18
+  resolution: "tailwindcss@npm:3.0.18"
   dependencies:
     arg: ^5.0.1
     chalk: ^4.1.2
@@ -14197,7 +14204,7 @@ __metadata:
     postcss-js: ^4.0.0
     postcss-load-config: ^3.1.0
     postcss-nested: 5.0.6
-    postcss-selector-parser: ^6.0.8
+    postcss-selector-parser: ^6.0.9
     postcss-value-parser: ^4.2.0
     quick-lru: ^5.1.1
     resolve: ^1.21.0
@@ -14207,7 +14214,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: 70f259dac375bab397ffd4c736db31697992d67a3d4c449ee0d4268ea78f525b13065e2be91616824d2b75a60afa4ecf19f779dd30aebf4792a12b767dd5d073
+  checksum: 3c56692eee2d2bb5e5328429c3c2a951716e7af76bc161c3f2d2efa1bfc5b3963967b64db962cea5fdcc3bc4ae1948c305dd7d9c1dc80603de85b785997d567c
   languageName: node
   linkType: hard
 
@@ -15525,9 +15532,9 @@ __metadata:
   linkType: hard
 
 "xstate@npm:^4.26.0, xstate@npm:^4.26.1":
-  version: 4.28.1
-  resolution: "xstate@npm:4.28.1"
-  checksum: 1b46d3b4ebe410d1846e8eac63e4dc2c71e140873eaae99773ab3a73f3fcfed4b814bc9d001fa8f4cbc5ae62a26f2639b9e3a9cbb01aac9fd42dfe84c1049fc7
+  version: 4.29.0
+  resolution: "xstate@npm:4.29.0"
+  checksum: af4d273632dbab9df91aba1204bf9c28ff2dbed73a23ed16c77e2151702a18030b9187565bdb92f9e95c309b0cffa6d86655d1b36f2e22e8f0a0d193472dea6b
   languageName: node
   linkType: hard
 

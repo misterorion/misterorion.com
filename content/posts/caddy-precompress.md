@@ -14,15 +14,6 @@ Gzip is supported in virtually in all browsers, having been around since 1993. I
 
 Developed by Google and released in 2013 as a way to compress web fonts, Brotli (not to be confused with the vegetable) is a relative newcomer, but its algorithm provides better overall compression than Gzip. Akamai found that Brotli was  21% better at compressing HTML, 14% better at compressing JavaScript, and 17% better at compressing CSS. Brotli support in browsers is [extremely high](https://caniuse.com/brotli) and getting higher, but still not as ubiquitous as Gzip.
 
-## Do I Need All This Complexity?
-
-One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling Brotli and Gzip compression for you. Another way would be to use a CDN that performs on-the-fly Brotli compression, such as KeyCDN.
-
-But the situation may arise where you don't have access to, or are prohibited from using the above services, for example if you are restricted to using on-prem resources.
-
-Or, you just fancy yourself a crazy hacker and like to roll your own solution, and learn
-something in the process!
-
 ## What to Compress?
 
 It's a somewhat convoluted and perhaps controversial topic, but a common practice is to only compress files larger than 1,500 bytes.
@@ -183,6 +174,14 @@ steps:
         docker build -t $_APP_IMAGE:latest .
         docker push $_APP_IMAGE:latest
 ```
+## Do I Need All This Complexity?
+
+One way to avoid all this trouble would be to use a service like Netlify to deploy your site. They already do a great job handling Brotli and Gzip compression for you. Another way would be to use a CDN that performs on-the-fly Brotli compression, such as KeyCDN, or CloudFront.
+
+But the situation may arise where you don't have access to, or are prohibited from using the above services, for example if you are restricted to using on-prem resources.
+
+Or, you just fancy yourself a crazy hacker and like to roll your own solution, and learn
+something in the process!
 
 ## Summary
 

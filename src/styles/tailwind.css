@@ -52,7 +52,7 @@
   }
 
   article h3 {
-    @apply text-lg mt-8 pb-0;
+    @apply text-lg mt-8 pb-4;
   }
 
   article ul,
