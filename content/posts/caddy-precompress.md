@@ -89,37 +89,38 @@ All too easy. Thanks, Caddy!
 
 ### Sample Caddyfile for a Gatsby Site
 
-In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination. Thus, I'm not using Caddy's automatic https feature. I also disable the admin endpoint since I don't need it.
+> In my case, Caddy runs as a docker container on Kubernetes behind a load balancer that handles TLS termination. Thus, I'm not using Caddy's [automatic https feature](https://caddyserver.com/docs/automatic-https) (although it's a fantastic feature). I also disable the admin endpoint since I don't need it.
 
 ```caddy
 # Caddyfile
 
 {
-	admin off
+    admin off
+    auto_https off
 }
 :80
 file_server {
-	precompressed br gzip
-	root /srv
+    precompressed br gzip
+    root /srv
 }
 
 header {
-	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
-	Referrer-Policy "strict-origin-when-cross-origin"
-	Strict-Transport-Security "max-age=63072000; includeSubDomains"
-	X-Content-Type-Options "nosniff"
-	X-Frame-Options "DENY"
-	X-XSS-Protection "1; mode=block"
+    Content-Security-Policy "default-src https: data: 'unsafe-inline'"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    Strict-Transport-Security "max-age=63072000; includeSubDomains"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+    X-XSS-Protection "1; mode=block"
 }
 
 @immutable {
-	path *.js *.css
-	path /static/*
-	not path /sw.js
+    path *.js *.css
+    path /static/*
+    not path /sw.js
 }
 route {
-	header Cache-Control public,max-age=0,must-revalidate
-	header @immutable Cache-Control public,max-age=31536000,immutable
+    header Cache-Control public,max-age=0,must-revalidate
+    header @immutable Cache-Control public,max-age=31536000,immutable
 }
 ```
 
