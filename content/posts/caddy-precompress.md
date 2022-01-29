@@ -1,5 +1,5 @@
 ---
-title: "Precompressed Brotli and GZIP with Caddy"
+title: "Precompressed Brotli and Gzip with Caddy"
 date: "2021-12-23"
 slug: "caddy-server-brotli"
 description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting Brotli compression algorithm."
