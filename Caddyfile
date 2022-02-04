@@ -9,6 +9,11 @@ file_server {
 	root /srv
 }
 
+handle_errors {
+	rewrite * /404/
+	file_server
+}
+
 header {
 	Content-Security-Policy "default-src https: data: 'unsafe-inline'"
 	Permissions-Policy "geolocation=()"
