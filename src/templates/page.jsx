@@ -3,39 +3,35 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo/Seo'
+import { useSiteMetadata } from '../hooks/Metadata'
 import { title } from '../components/Layout.module.css'
 
 const Page = ({ data }) => {
-  const { frontmatter, html } = data.markdownRemark
-  const { siteUrl } = data.site.siteMetadata
+  const { frontmatter: page, html } = data.markdownRemark
+  const { siteUrl } = useSiteMetadata()
   return (
     <Layout>
       <Seo
-        title={frontmatter.title}
-        description={frontmatter.description || 'nothin’'}
-        url={`${siteUrl}/${frontmatter.slug}/`}
+        title={page.title}
+        description={page.description || 'nothin’'}
+        url={`${siteUrl}/${page.slug}/`}
       />
       <h1 className={title}>
-        {frontmatter.title}
+        {page.title}
       </h1>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
 }
 
-export const pageQuery = graphql`
-  query PageByPath($slug: String!) {
+export const PageBySlugQuery = graphql`
+  query PageBySlugQuery($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
         description
         slug
         title
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
       }
     }
   }

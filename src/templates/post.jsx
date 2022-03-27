@@ -6,12 +6,13 @@ import { kebabCase } from 'lodash'
 import ContactForm from '../components/contactForm/ContactForm'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo/Seo'
+import { useSiteMetadata } from '../hooks/Metadata'
 import { featImg, date, description, tags } from '../components/Layout.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark
   const { html: content } = data.markdownRemark
-
+  const { siteUrl } = useSiteMetadata()
   const image = post.imageFluid ? (
     <GatsbyImage
       alt={post.imageAlt}
@@ -21,7 +22,6 @@ const Post = ({ data }) => {
       alt={post.imageAlt}
       image={post.imageFixed.childImageSharp.gatsbyImageData} />
   )
-
   const imagePath = post.imageFluid
     ? post.imageFluid.childImageSharp.original.src
     : post.imageFixed.childImageSharp.original.src
@@ -32,7 +32,7 @@ const Post = ({ data }) => {
         title={post.title}
         description={post.description || ''}
         image={imagePath}
-        url={`${data.site.siteMetadata.siteUrl}/${post.slug}/`}
+        url={`${siteUrl}/${post.slug}/`}
       />
       <h1>{post.title}</h1>
       <div className={date}>{post.date}</div>
@@ -83,11 +83,6 @@ export const postQuery = graphql`
           }
         }
         imageAlt
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
       }
     }
   }

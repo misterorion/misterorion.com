@@ -23,8 +23,8 @@ const ContactForm = () => {
   const [buttonVisible, setButtonVisible] = useState(true)
 
   const toggleButtonVisible = () => {
-    setButtonVisible(!buttonVisible);
-  };
+    setButtonVisible(!buttonVisible)
+  }
 
   const {
     values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting
@@ -67,7 +67,7 @@ const ContactForm = () => {
       if ((values.name) || (values.email) || (values.comment)) {
         errors.message = 'Begone with you!'
       }
-      return errors;
+      return errors
     },
     onSubmit: async (values, { resetForm }) => {
       var convertedValues = {

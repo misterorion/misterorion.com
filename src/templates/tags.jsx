@@ -4,15 +4,19 @@ import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
 import PostLink from '../components/PostLink/PostLink'
+import { useSiteMetadata } from '../hooks/Metadata'
 
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
-  const posts = data.allMarkdownRemark.edges.map((edge) => (
+  const { edges: tags } = data.allMarkdownRemark
+  const posts = tags.map((edge) => (
     <PostLink key={edge.node.id} post={edge.node} />
   ))
+  const { siteTitle } = useSiteMetadata()
+
   return (
     <Layout>
-      <Helmet title={`${tag} | ${data.site.siteMetadata.siteTitle}`} />
+      <Helmet title={`${tag} | ${siteTitle}`} />
       <h1>Posts tagged with “{tag}”</h1>
       <div className="py-6">{posts}</div>
     </Layout>
@@ -35,11 +39,6 @@ export const tagQuery = graphql`
             title
           }
         }
-      }
-    }
-    site {
-      siteMetadata {
-        siteTitle
       }
     }
   }

@@ -29,8 +29,8 @@ const Grimoire = ({ data }) => {
   )
 }
 
-export const GrimoireQuery = graphql`
-  query GrimoireQuery {
+export const GrimoirePageQuery = graphql`
+  query GrimoirePageQuery {
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/(grimoire)/" } }
     ) {

@@ -19,8 +19,8 @@ const Index = ({ data }) => {
   )
 }
 
-export const pageQuery = graphql`
-  query pageQuery {
+export const PostByDateQuery = graphql`
+  query PostByDateQuery {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { fileAbsolutePath: { regex: "/(posts)/" } }

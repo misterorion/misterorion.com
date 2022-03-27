@@ -4,16 +4,18 @@ import { kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo/Seo'
+import { useSiteMetadata } from '../hooks/Metadata'
 import { title } from '../components/Layout.module.css'
 
 const GrimoirePage = ({ data }) => {
   const { frontmatter, html } = data.markdownRemark
+  const { siteUrl } = useSiteMetadata()
   return (
     <Layout>
       <Seo
         title={frontmatter.title}
         description={frontmatter.title || 'nothin’'}
-        url={`${data.site.siteMetadata.siteUrl}/grimoire/${kebabCase(frontmatter.title)}/`}
+        url={`${siteUrl}/grimoire/${kebabCase(frontmatter.title)}/`}
       />
       <h1 className={title}>
         {frontmatter.title}
@@ -23,17 +25,12 @@ const GrimoirePage = ({ data }) => {
   )
 }
 
-export const GimoireQuery = graphql`
-  query GimoireQuery($title: String!) {
+export const GrimoireTitleQuery = graphql`
+  query GrimoireTitleQuery($title: String!) {
     markdownRemark(frontmatter: { title: { eq: $title } }) {
       html
       frontmatter {
         title
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
       }
     }
   }

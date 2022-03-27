@@ -1,37 +1,30 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
+import { useSiteMetadata } from '../../hooks/Metadata'
+
 const Seo = ({ title, description, image, url }) => {
-  const data = useStaticQuery(graphql`
-    {
-      site {
-        siteMetadata {
-          siteTitle
-          siteDescription
-          siteUrl
-          siteImage
-          userName
-          userTwitter
-        }
-      }
-    }
-  `)
+  const {
+    siteUrl,
+    siteTitle,
+    siteDescription,
+    siteImage,
+    userName,
+    userTwitter
+  } = useSiteMetadata()
 
-  const defaults = data.site.siteMetadata
-
-  if (defaults.siteUrl === '') {
+  if (siteUrl === '') {
     console.error('Please set a siteUrl in your site metadata!')
     return null
   }
 
   const seo = {
-    title: title || defaults.siteTitle,
-    description: description || defaults.siteDescription,
-    url: url || `${defaults.siteUrl}`,
-    author: defaults.userName,
-    twitter: `@${defaults.userTwitter}`,
-    image: `${defaults.siteUrl}${image || defaults.siteImage}`,
+    title: title || siteTitle,
+    description: description || siteDescription,
+    url: url || `${siteUrl}`,
+    author: userName,
+    twitter: `@${userTwitter}`,
+    image: `${siteUrl}${image || siteImage}`,
   }
 
   return (
@@ -42,7 +35,7 @@ const Seo = ({ title, description, image, url }) => {
 
       <title>{seo.title}</title>
 
-      <meta name="author" content={seo.author}/>
+      <meta name="author" content={seo.author} />
 
       <meta property="og:url" content={seo.url} />
       <meta property="og:type" content="article" />

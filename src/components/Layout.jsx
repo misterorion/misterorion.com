@@ -13,11 +13,16 @@ import Footer from './Footer/Footer'
 import Nav from './Nav/Nav'
 import Seo from './Seo/Seo'
 
+import { useSiteMetadata } from '../hooks/Metadata'
+
 const Layout = ({ children }) => {
+
+  const { siteTitle } = useSiteMetadata()
+
   return (
     <div className="mainContainer">
       <Seo />
-      <Nav siteTitle="Orion Anderson" />
+      <Nav siteTitle={siteTitle} />
       <article>{children}</article>
       <Footer />
     </div>
