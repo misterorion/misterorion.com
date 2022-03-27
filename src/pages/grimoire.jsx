@@ -7,7 +7,8 @@ import { entryList } from '../components/grimoire/Grimoire.module.css'
 import { title } from '../components/Layout.module.css'
 
 const Grimoire = ({ data }) => {
-  const Entries = data.allMarkdownRemark.edges.map((edge) => (
+  const {edges: entries} = data.allMarkdownRemark
+  const Entries = entries.map((edge) => (
     <GrimoireEntry entry={edge.node.frontmatter} key={edge.node.id} />
   ))
   return (
@@ -28,8 +29,8 @@ const Grimoire = ({ data }) => {
   )
 }
 
-export const grimoireList = graphql`
-  query GrimQuery {
+export const GrimoireQuery = graphql`
+  query GrimoireQuery {
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/(grimoire)/" } }
     ) {

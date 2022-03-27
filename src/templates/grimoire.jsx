@@ -7,24 +7,24 @@ import Seo from '../components/Seo/Seo'
 import { title } from '../components/Layout.module.css'
 
 const GrimoirePage = ({ data }) => {
-  const { markdownRemark: page } = data
+  const { frontmatter, html } = data.markdownRemark
   return (
     <Layout>
       <Seo
-        title={page.frontmatter.title}
-        description={page.frontmatter.title || 'nothin’'}
-        url={`${data.site.siteMetadata.siteUrl}/grimoire/${kebabCase(page.frontmatter.title)}/`}
+        title={frontmatter.title}
+        description={frontmatter.title || 'nothin’'}
+        url={`${data.site.siteMetadata.siteUrl}/grimoire/${kebabCase(frontmatter.title)}/`}
       />
       <h1 className={title}>
-        {page.frontmatter.title}
+        {frontmatter.title}
       </h1>
-      <div dangerouslySetInnerHTML={{ __html: page.html }} />
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
 }
 
-export const pageQuery = graphql`
-  query Grimoire($title: String!) {
+export const GimoireQuery = graphql`
+  query GimoireQuery($title: String!) {
     markdownRemark(frontmatter: { title: { eq: $title } }) {
       html
       frontmatter {

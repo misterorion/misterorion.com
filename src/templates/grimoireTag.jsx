@@ -6,8 +6,8 @@ import Layout from '../components/Layout'
 
 const GrimoireTags = ({ pageContext, data }) => {
   const { tag } = pageContext
-  const { allMarkdownRemark: tags } = data
-  const Entries = tags.edges.map((edge) => (
+  const { edges: tags } = data.allMarkdownRemark
+  const Entries = tags.map((edge) => (
     <div key={edge.node.id}>
       <h2>{edge.node.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: edge.node.html }} />

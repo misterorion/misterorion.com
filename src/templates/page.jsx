@@ -6,18 +6,19 @@ import Seo from '../components/Seo/Seo'
 import { title } from '../components/Layout.module.css'
 
 const Page = ({ data }) => {
-  const { markdownRemark: page } = data
+  const { frontmatter, html } = data.markdownRemark
+  const { siteUrl } = data.site.siteMetadata
   return (
     <Layout>
       <Seo
-        title={page.frontmatter.title}
-        description={page.description || 'nothin’'}
-        url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}/`}
+        title={frontmatter.title}
+        description={frontmatter.description || 'nothin’'}
+        url={`${siteUrl}/${frontmatter.slug}/`}
       />
       <h1 className={title}>
-        {page.frontmatter.title}
+        {frontmatter.title}
       </h1>
-      <div dangerouslySetInnerHTML={{ __html: page.html }} />
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
 }
@@ -27,10 +28,9 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        description
         slug
         title
-        description
       }
     }
     site {
