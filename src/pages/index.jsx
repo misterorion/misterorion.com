@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Hero from '../components/hero/Hero'
+import Hero from '../components/Hero/Hero'
 import Layout from '../components/Layout'
-import PostLink from '../components/postLink/PostLink'
+import PostLink from '../components/PostLink/PostLink'
 
 const Index = ({ data }) => {
   const Posts = data.allMarkdownRemark.edges.map((edge) => (
@@ -20,7 +20,7 @@ const Index = ({ data }) => {
 }
 
 export const pageQuery = graphql`
-  query MyQuery {
+  query pageQuery {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { fileAbsolutePath: { regex: "/(posts)/" } }

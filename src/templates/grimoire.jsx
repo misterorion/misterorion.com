@@ -3,10 +3,10 @@ import { graphql } from 'gatsby'
 import { kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
-import Seo from '../components/seo/Seo'
+import Seo from '../components/Seo/Seo'
 import { title } from '../components/Layout.module.css'
 
-const Page = ({ data }) => {
+const GrimoirePage = ({ data }) => {
   const { markdownRemark: page } = data
   return (
     <Layout>
@@ -39,4 +39,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default Page
+export default GrimoirePage

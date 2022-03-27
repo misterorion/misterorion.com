@@ -5,7 +5,7 @@ import { kebabCase } from 'lodash'
 
 import ContactForm from '../components/contactForm/ContactForm'
 import Layout from '../components/Layout'
-import Seo from '../components/seo/Seo'
+import Seo from '../components/Seo/Seo'
 import { featImg, date, description, tags } from '../components/Layout.module.css'
 
 const Post = ({ data }) => {
