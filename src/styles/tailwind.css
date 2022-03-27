@@ -5,7 +5,7 @@
 @layer base {
   body {
     @apply bg-gray-100 text-gray-900 bg-fixed antialiased;
-    background-image: url("./funky-lines.png");
+    background-image: url("../assets/funky-lines.png");
     font-family: "Roboto", sans-serif;
   }
 
