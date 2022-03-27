@@ -3,10 +3,10 @@ import { Link, graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { kebabCase } from 'lodash'
 
-import ContactForm from '../components/modules/ContactForm'
+import ContactForm from '../components/modules/contactForm/ContactForm'
 import Layout from '../components/Layout'
-import Seo from '../components/modules/Seo'
-import { featImg, date, description, tags } from '../components/modules/styles/Post.module.css'
+import Seo from '../components/modules/seo/Seo'
+import { featImg, date, description, tags } from '../components/Layout.module.css'
 
 const Post = ({ data }) => {
   const { frontmatter: post } = data.markdownRemark

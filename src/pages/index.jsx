@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Hero from '../components/modules/Hero'
+import Hero from '../components/modules/hero/Hero'
 import Layout from '../components/Layout'
-import PostLink from '../components/modules/PostLink'
+import PostLink from '../components/modules/postLink/PostLink'
 
 const Index = ({ data }) => {
   const Posts = data.allMarkdownRemark.edges.map((edge) => (

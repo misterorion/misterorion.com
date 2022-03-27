@@ -70,11 +70,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const tags = result.data.allTag.group
 
   // Load templates
-  const postTemplate = path.resolve(`src/templates/post.js`)
-  const pageTemplate = path.resolve(`src/templates/page.js`)
-  const tagTemplate = path.resolve(`src/templates/tags.js`)
-  const grimoireTemplate = path.resolve(`src/templates/grimoire.js`)
-  const grimoireTagTemplate = path.resolve(`src/templates/grimoireTag.js`)
+  const postTemplate = path.resolve(`src/templates/post.jsx`)
+  const pageTemplate = path.resolve(`src/templates/page.jsx`)
+  const tagTemplate = path.resolve(`src/templates/tags.jsx`)
+  const grimoireTemplate = path.resolve(`src/templates/grimoire.jsx`)
+  const grimoireTagTemplate = path.resolve(`src/templates/grimoireTag.jsx`)
 
   // Create post pages
   posts.forEach((post) => {

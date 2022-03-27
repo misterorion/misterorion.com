@@ -1,10 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
-import Seo from '../components/modules/Seo'
-import { title } from '../components/modules/styles/Page.module.css'
+import Seo from '../components/modules/seo/Seo'
+import { title } from '../components/Layout.module.css'
 
 const Page = ({ data }) => {
   const { markdownRemark: page } = data
@@ -12,8 +11,8 @@ const Page = ({ data }) => {
     <Layout>
       <Seo
         title={page.frontmatter.title}
-        description={page.frontmatter.title || 'nothin’'}
-        url={`${data.site.siteMetadata.siteUrl}/grimoire/${kebabCase(page.frontmatter.title)}/`}
+        description={page.description || 'nothin’'}
+        url={`${data.site.siteMetadata.siteUrl}/${page.frontmatter.slug}/`}
       />
       <h1 className={title}>
         {page.frontmatter.title}
@@ -23,11 +22,14 @@ const Page = ({ data }) => {
   )
 }
 export const pageQuery = graphql`
-  query Grimoire($title: String!) {
-    markdownRemark(frontmatter: { title: { eq: $title } }) {
+  query PageByPath($slug: String!) {
+    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        slug
         title
+        description
       }
     }
     site {

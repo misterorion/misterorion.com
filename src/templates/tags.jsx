@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
-import PostLink from '../components/modules/PostLink'
+import PostLink from '../components/modules/postLink/PostLink'
 
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext

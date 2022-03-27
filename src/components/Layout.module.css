@@ -1,3 +1,6 @@
+.title {
+  @apply mb-4 mt-12 font-bold text-4xl;
+}
 .date {
   @apply text-gray-600;
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./src/**/*.js'],
+  content: ['./src/**/*.jsx'],
   theme: {
     screens: {
       mobile: '360px',

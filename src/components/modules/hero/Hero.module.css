@@ -2,8 +2,7 @@
   @apply mb-6 p-6 border border-gray-300 rounded shadow;
 }
 .image {
-  @apply mb-6
-  w-40;
+  @apply mb-6 w-40;
 }
 .text {
   @apply text-lg;
