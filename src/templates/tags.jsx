@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
-import PostLink from '../components/modules/postLink/PostLink'
+import PostLink from '../components/postLink/PostLink'
 
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
@@ -26,7 +26,6 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {fileAbsolutePath: {regex: "/(posts)/"}, frontmatter: {tags: {in: [$tag]}}}
     ) {
-      totalCount
       edges {
         node {
           id
@@ -45,4 +44,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
 export default Tags

@@ -1,0 +1,22 @@
+.row {
+  @apply flex justify-between mb-4 pb-4 items-baseline border-b border-gray-400 last:border-0;
+}
+.title {
+  @apply font-bold hover:border-0;
+}
+.arrow {
+  @apply text-teal-700 mr-4 ml-4;
+}
+.entryList {
+  @apply mt-12 mb-12;
+}
+.tagsList {
+  @apply text-left;
+}
+.excerpt {
+  @apply inline text-gray-500 italic;
+}
+.tagStyle {
+  @apply inline bg-gray-200 text-gray-600 hover:text-pink-700 rounded px-2 py-1 ml-2 border-none;
+  font-family: "Quicksand", sans-serif;
+}

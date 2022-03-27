@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import GrimoireEntry from '../components/modules/grimoire/Grimoire'
+import GrimoireEntry from '../components/grimoire/Grimoire'
 import Layout from '../components/Layout'
-import { entryList } from '../components/modules/grimoire/Grimoire.module.css'
+import { entryList } from '../components/grimoire/Grimoire.module.css'
 import { title } from '../components/Layout.module.css'
 
 const Grimoire = ({ data }) => {

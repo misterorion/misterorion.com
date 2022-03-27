@@ -1,0 +1,13 @@
+.box {
+  @apply mb-4 px-4 py-2 transition duration-100 ease-in-out border border-gray-400 rounded;
+}
+.box:hover {
+  @apply border-pink-700 shadow;
+}
+.title {
+  font-family: "Quicksand", sans-serif;
+  @apply font-bold text-xl text-gray-700;
+}
+.date {
+  @apply text-sm text-gray-600;
+}

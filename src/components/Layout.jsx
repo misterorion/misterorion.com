@@ -9,9 +9,9 @@ import '@fontsource/jetbrains-mono/400-italic.css'
 import '@fontsource/jetbrains-mono/600.css'
 import '@fontsource/jetbrains-mono/600-italic.css'
 
-import Footer from './modules/footer/Footer'
-import Nav from './modules/nav/Nav'
-import Seo from './modules/seo/Seo'
+import Footer from './footer/Footer'
+import Nav from './nav/Nav'
+import Seo from './seo/Seo'
 
 const Layout = ({ children }) => {
   return (

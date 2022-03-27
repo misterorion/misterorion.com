@@ -44,4 +44,5 @@ export const grimoireTagQuery = graphql`
     }
   }
 `
+
 export default grimoireTags

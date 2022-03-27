@@ -3,9 +3,9 @@ import { Link, graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { kebabCase } from 'lodash'
 
-import ContactForm from '../components/modules/contactForm/ContactForm'
+import ContactForm from '../components/contactForm/ContactForm'
 import Layout from '../components/Layout'
-import Seo from '../components/modules/seo/Seo'
+import Seo from '../components/seo/Seo'
 import { featImg, date, description, tags } from '../components/Layout.module.css'
 
 const Post = ({ data }) => {
@@ -55,6 +55,7 @@ const Post = ({ data }) => {
     </Layout>
   )
 }
+
 export const postQuery = graphql`
   query BlogPostByPath($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
@@ -91,4 +92,5 @@ export const postQuery = graphql`
     }
   }
 `
+
 export default Post

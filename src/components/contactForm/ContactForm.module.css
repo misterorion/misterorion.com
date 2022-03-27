@@ -1,0 +1,48 @@
+.button {
+  @apply mt-3 py-2 px-4 bg-pink-700 hover:bg-pink-500 text-white font-bold rounded focus:ring;
+}
+.container {
+  @apply w-full;
+}
+.error {
+  @apply h-4 pt-1 pl-1;
+}
+.errorText {
+  @apply text-pink-700 text-sm;
+}
+.formContainer {
+  @apply w-full px-3 pt-6 pb-8 mt-8 bg-gray-200 border-2 border-gray-500 rounded;
+}
+.formContainer h2 {
+  @apply mt-0;
+}
+.formOpaque {
+  @apply opacity-40;
+}
+.input {
+  @apply appearance-none shadow border rounded py-2 px-3 focus:outline-none focus:ring
+  text-gray-700 leading-tight placeholder-gray-300;
+}
+.label {
+  @apply block mt-4 mb-1 pl-1 text-base text-gray-700 font-bold;
+}
+.comment {
+  @apply h-24 w-full appearance-none shadow border rounded py-2 px-3
+  text-gray-700 leading-tight placeholder-gray-300
+  focus:outline-none focus:ring;
+}
+.nope {
+  @apply opacity-0 absolute top-0 left-0 w-0 h-0 z-n1;
+}
+.section {
+  @apply mb-4;
+}
+.success {
+  @apply text-xl font-bold text-green-800;
+}
+
+@screen tablet {
+  .formContainer {
+    @apply px-12;
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Seo from '../components/modules/seo/Seo'
+import Seo from '../components/seo/Seo'
 import { title } from '../components/Layout.module.css'
 
 const Page = ({ data }) => {
@@ -21,6 +21,7 @@ const Page = ({ data }) => {
     </Layout>
   )
 }
+
 export const pageQuery = graphql`
   query PageByPath($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {

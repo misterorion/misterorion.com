@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { kebabCase } from 'lodash'
 
 import Layout from '../components/Layout'
-import Seo from '../components/modules/seo/Seo'
+import Seo from '../components/seo/Seo'
 import { title } from '../components/Layout.module.css'
 
 const Page = ({ data }) => {
@@ -22,6 +22,7 @@ const Page = ({ data }) => {
     </Layout>
   )
 }
+
 export const pageQuery = graphql`
   query Grimoire($title: String!) {
     markdownRemark(frontmatter: { title: { eq: $title } }) {
