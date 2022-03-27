@@ -7,8 +7,8 @@ import { entryList } from '../components/grimoire/Grimoire.module.css'
 import { title } from '../components/Layout.module.css'
 
 const Grimoire = ({ data }) => {
-  const {edges: entries} = data.allMarkdownRemark
-  const Entries = entries.map((edge) => (
+  const { edges } = data.allMarkdownRemark
+  const entries = edges.map((edge) => (
     <GrimoireEntry entry={edge.node.frontmatter} key={edge.node.id} />
   ))
   return (
@@ -23,7 +23,7 @@ const Grimoire = ({ data }) => {
       <p>Wherein I record knowledge of a technical nature for future reference.</p>
       <h2>All Entries</h2>
       <div className={entryList}>
-        {Entries}
+        {entries}
       </div>
     </Layout>
   )

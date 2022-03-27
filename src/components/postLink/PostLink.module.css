@@ -4,10 +4,10 @@
 .box:hover {
   @apply border-pink-700 shadow;
 }
-.title {
+.postTitle {
   font-family: "Quicksand", sans-serif;
   @apply font-bold text-xl text-gray-700;
 }
-.date {
+.postDate {
   @apply text-sm text-gray-600;
 }
