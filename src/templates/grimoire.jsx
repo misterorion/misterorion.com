@@ -8,19 +8,20 @@ import { useSiteMetadata } from '../hooks/Metadata'
 import { title } from '../components/Layout.module.css'
 
 const GrimoirePage = ({ data }) => {
-  const { frontmatter, html } = data.markdownRemark
+  const { frontmatter: entry, html: content } = data.markdownRemark
   const { siteUrl } = useSiteMetadata()
+
   return (
     <Layout>
       <Seo
-        title={frontmatter.title}
-        description={frontmatter.title || 'nothin’'}
-        url={`${siteUrl}/grimoire/${kebabCase(frontmatter.title)}/`}
+        title={entry.title}
+        description={entry.title || 'nothin’'}
+        url={`${siteUrl}/grimoire/${kebabCase(entry.title)}/`}
       />
       <h1 className={title}>
-        {frontmatter.title}
+        {entry.title}
       </h1>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </Layout>
   )
 }

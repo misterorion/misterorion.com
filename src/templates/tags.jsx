@@ -23,8 +23,8 @@ const Tags = ({ pageContext, data }) => {
   )
 }
 
-export const tagQuery = graphql`
-  query($tag: String) {
+export const TagQuery = graphql`
+  query TagQuery($tag: String) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }

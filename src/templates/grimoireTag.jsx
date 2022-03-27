@@ -15,6 +15,7 @@ const GrimoireTags = ({ pageContext, data }) => {
       <div dangerouslySetInnerHTML={{ __html: edge.node.html }} />
     </div>
   ))
+
   return (
     <Layout>
       <Helmet title={`${tag} | ${siteTitle}`} />
@@ -24,7 +25,7 @@ const GrimoireTags = ({ pageContext, data }) => {
   )
 }
 
-export const grimoireTagQuery = graphql`
+export const GrimoireTagQuery = graphql`
   query GrimoireTagQuery($tag: String!) {
     allMarkdownRemark(
       filter: {fileAbsolutePath: {regex: "/(grimoire)/"}, frontmatter: {tags: {in: [$tag]}}}

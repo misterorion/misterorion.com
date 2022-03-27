@@ -10,8 +10,7 @@ import { useSiteMetadata } from '../hooks/Metadata'
 import { featImg, date, description, tags } from '../components/Layout.module.css'
 
 const Post = ({ data }) => {
-  const { frontmatter: post } = data.markdownRemark
-  const { html: content } = data.markdownRemark
+  const { frontmatter: post, html: content } = data.markdownRemark
   const { siteUrl } = useSiteMetadata()
   const image = post.imageFluid ? (
     <GatsbyImage

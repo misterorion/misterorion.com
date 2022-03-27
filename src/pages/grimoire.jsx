@@ -1,16 +1,17 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import GrimoireEntry from '../components/grimoire/Grimoire'
+import GrimoireLink from '../components/GrimoireLink/GrimoireLink'
 import Layout from '../components/Layout'
-import { entryList } from '../components/grimoire/Grimoire.module.css'
+import { entryList } from '../components/GrimoireLink/GrimoireLink.module.css'
 import { title } from '../components/Layout.module.css'
 
 const Grimoire = ({ data }) => {
   const { edges } = data.allMarkdownRemark
   const entries = edges.map((edge) => (
-    <GrimoireEntry entry={edge.node.frontmatter} key={edge.node.id} />
+    <GrimoireLink entry={edge.node.frontmatter} key={edge.node.id} />
   ))
+
   return (
     <Layout>
       <h1 className={title}>✨ Grimoire</h1>

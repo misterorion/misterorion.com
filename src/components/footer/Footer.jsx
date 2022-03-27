@@ -1,11 +1,10 @@
 import React from 'react'
 
+import { useSiteMetadata } from '../../hooks/Metadata'
 import GithubLogo from '../../assets/github.svg'
 import LinkedInLogo from '../../assets/linkedin.svg'
 import TwitterLogo from '../../assets/twitter.svg'
 import { container, icon } from './Footer.module.css'
-
-import { useSiteMetadata } from '../../hooks/Metadata'
 
 const Footer = () => {
   const { userTwitter, userGitHub, userLinkedIn } = useSiteMetadata()

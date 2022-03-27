@@ -7,6 +7,7 @@ module.exports = {
     siteUrl: `https://misterorion.com`,
     siteTitle: `Orion Anderson`,
     siteDescription: `My personal home on the web.`,
+    siteGreeting: `Greetings. My name is Orion Anderson. I'm a DevOps Developer in New York City. I love all things Docker, AWS, and automation.`,
     userName: `Orion Anderson`,
     userFirstName: `orion`,
     userLastName: `anderson`,
