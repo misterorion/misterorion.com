@@ -1,0 +1,12 @@
+.cache/
+public/
+
+# Yarn 2 files
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+!.yarn/unplugged

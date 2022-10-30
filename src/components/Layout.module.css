@@ -1,0 +1,104 @@
+.title {
+  @apply mb-4 mt-12 font-bold text-4xl;
+}
+.date {
+  @apply text-gray-600;
+}
+.description {
+  @apply mt-12;
+}
+.featImg {
+  @apply my-16;
+}
+.tags {
+  @apply my-12 pt-6 border-t border-gray-400;
+}
+.tags h3 {
+  @apply block mb-3;
+}
+.tags ul {
+  @apply block font-bold ml-0;
+}
+.tags li {
+  @apply inline-block mr-2 text-base;
+}
+article {
+  @apply my-0;
+}
+article picture,
+img {
+  border-radius: 0.4rem;
+}
+article a {
+  @apply transition duration-200 ease-in-out text-pink-700;
+  padding-bottom: 0.1rem;
+}
+article p {
+  @apply mb-5;
+}
+article a:hover {
+  @apply underline;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-bold;
+  font-family: "Quicksand", sans-serif;
+}
+article h1 {
+  @apply mb-4 mt-12 text-2xl;
+}
+article h2 {
+  @apply text-2xl mt-12 pb-6 mb-6 border-b border-gray-300 text-teal-700;
+}
+article h3 {
+  @apply text-lg mt-8 mb-5;
+}
+article ul,
+ol {
+  @apply list-outside ml-6;
+}
+article ul > li {
+  @apply list-disc text-base mb-4;
+}
+article ol > li {
+  @apply list-decimal text-lg mb-4;
+}
+article a:hover.gatsby-resp-image-link {
+  @apply border-0;
+}
+
+@screen tablet {
+  .tags h3 {
+    @apply inline text-lg mr-4;
+  }
+  .tags ul {
+    @apply inline;
+  }
+  .tags li {
+    @apply inline text-lg mr-4;
+  }
+}
+
+@screen desktop {
+  article h1 {
+    @apply text-3xl;
+  }
+  article h2 {
+    @apply text-3xl mt-12 pb-3;
+  }
+  article h3 {
+    @apply text-2xl;
+  }
+  article p {
+    @apply text-lg leading-normal;
+  }
+  article ul > li {
+    @apply text-lg mb-2;
+  }
+  article ol > li {
+    @apply list-decimal text-lg mb-2;
+  }
+}

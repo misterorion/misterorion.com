@@ -1,0 +1,34 @@
+.box {
+  @apply mb-6 p-6 border border-gray-300 rounded shadow;
+}
+.image {
+  @apply mb-6 w-40;
+}
+.text {
+  @apply text-lg;
+  font-family: "Quicksand", sans-serif;
+}
+
+@screen tablet {
+  .box {
+    @apply flex;
+  }
+  .image {
+    @apply w-32 mb-0 mr-6 flex-shrink-0;
+  }
+  .text {
+    @apply text-xl;
+  }
+}
+
+@screen desktop {
+  .box {
+    @apply mb-4 p-4;
+  }
+  .image {
+    @apply w-24 mr-6;
+  }
+  .text {
+    @apply text-2xl;
+  }
+}

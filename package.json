@@ -1,0 +1,55 @@
+{
+  "name": "misterorion-com",
+  "packageManager": "yarn@3.2.4",
+  "private": true,
+  "version": "1.0.0",
+  "description": "My personal home on the web.",
+  "author": "Orion Anderson",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop",
+    "reset": "yarn run clean && shx rm yarn.lock && yarn cache clean && yarn install",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^4.5.11",
+    "@fontsource/quicksand": "^4.5.11",
+    "@fontsource/roboto": "^4.5.8",
+    "autoprefixer": "^10.4.13",
+    "dotenv": "^16.0.3",
+    "formik": "^2.2.9",
+    "gatsby": "^4.24.5",
+    "gatsby-parcel-config": "^0.15.1",
+    "gatsby-plugin-advanced-sitemap": "^2.1.0",
+    "gatsby-plugin-image": "^2.24.0",
+    "gatsby-plugin-manifest": "^4.24.0",
+    "gatsby-plugin-postcss": "^5.24.0",
+    "gatsby-plugin-react-helmet": "^5.24.0",
+    "gatsby-plugin-sharp": "^4.24.0",
+    "gatsby-remark-embed-video": "^3.2.1",
+    "gatsby-remark-external-links": "0.0.4",
+    "gatsby-remark-images": "^6.24.0",
+    "gatsby-remark-prismjs": "^6.24.0",
+    "gatsby-remark-responsive-iframe": "^5.24.0",
+    "gatsby-remark-smartypants": "^5.24.0",
+    "gatsby-source-filesystem": "^4.24.0",
+    "gatsby-transformer-remark": "^5.24.0",
+    "gatsby-transformer-sharp": "^4.24.0",
+    "lodash": "^4.17.21",
+    "postcss": "^8.4.18",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "tailwindcss": "^3.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/misterorion/misterorion.com"
+  },
+  "devDependencies": {
+    "shx": "^0.3.4"
+  }
+}
