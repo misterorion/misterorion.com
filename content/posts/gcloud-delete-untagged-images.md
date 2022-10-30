@@ -118,6 +118,6 @@ You can change `-Skip` to a larger value to keep more tagged images, or just omi
 
 ## The End
 
-I created a Cloud Scheduler job to run this automatically once a week (cron is `33 15 * * 4`). Instead of using Cloud Scheduler to trigger your build, you could certainly integrate the steps into an existing build.
+I created a Cloud Scheduler job to run this automatically once a week. Instead of using Cloud Scheduler to trigger your build, you could certainly integrate the steps into an existing build, or run it manually.
 
 Hope this helps some of you clean out your repositories. Happy coding!
