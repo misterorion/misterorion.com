@@ -41,8 +41,8 @@ This is the list of repositories you want to clean out, in a text file.
 ```txt
 # repos-to-clean.txt
 
-us-central1-docker.pkg.dev/repo-name/cool-app
-us-central1-docker.pkg.dev/repo-name/awesome-app
+us-central1-docker.pkg.dev/project/cool-app
+us-central1-docker.pkg.dev/project/awesome-app
 EOF
 
 ```
