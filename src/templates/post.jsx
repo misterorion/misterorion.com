@@ -1,40 +1,38 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
-import { kebabCase } from 'lodash'
+import React from "react";
+import { Link, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { kebabCase } from "lodash";
 
-import ContactForm from '../components/ContactForm/ContactForm'
-import Layout from '../components/Layout'
-import Seo from '../components/Seo/Seo'
-import { useSiteMetadata } from '../hooks/Metadata'
-import { featImg, date, description, tags } from '../components/Layout.module.css'
+import ContactForm from "../components/ContactForm/ContactForm";
+import Layout from "../components/Layout";
+import Seo from "../components/Seo/Seo";
+import { useSiteMetadata } from "../hooks/Metadata";
+import {
+  featImg,
+  date,
+  description,
+  tags,
+} from "../components/Layout.module.css";
 
 const Post = ({ data }) => {
-  const { frontmatter: post, html: content } = data.markdownRemark
-  const { siteUrl } = useSiteMetadata()
+  const { frontmatter: post, html: content } = data.markdownRemark;
+
   const image = post.imageFluid ? (
     <GatsbyImage
       alt={post.imageAlt}
-      loading='eager'
-      image={post.imageFluid.childImageSharp.gatsbyImageData} />
+      loading="eager"
+      image={post.imageFluid.childImageSharp.gatsbyImageData}
+    />
   ) : (
     <GatsbyImage
       alt={post.imageAlt}
-      loading='eager'
-      image={post.imageFixed.childImageSharp.gatsbyImageData} />
-  )
-  const imagePath = post.imageFluid
-    ? post.imageFluid.childImageSharp.original.src
-    : post.imageFixed.childImageSharp.original.src
+      loading="eager"
+      image={post.imageFixed.childImageSharp.gatsbyImageData}
+    />
+  );
 
   return (
     <Layout>
-      <Seo
-        title={post.title}
-        description={post.description || ''}
-        image={imagePath}
-        url={`${siteUrl}/${post.slug}/`}
-      />
       <h1>{post.title}</h1>
       <div className={date}>{post.date}</div>
       <div className={description}>
@@ -54,8 +52,26 @@ const Post = ({ data }) => {
       </div>
       <ContactForm />
     </Layout>
-  )
-}
+  );
+};
+
+export const Head = ({ data }) => {
+  const { siteUrl } = useSiteMetadata();
+  const { frontmatter: post } = data.markdownRemark;
+
+  const imagePath = post.imageFluid
+    ? post.imageFluid.childImageSharp.original.src
+    : post.imageFixed.childImageSharp.original.src;
+
+  return (
+    <Seo
+      title={post.title}
+      description={post.description || ""}
+      image={imagePath}
+      url={`${siteUrl}/${post.slug}/`}
+    />
+  );
+};
 
 export const PostBySlugQuery = graphql`
   query PostBySlugQuery($slug: String!) {
@@ -87,6 +103,6 @@ export const PostBySlugQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Post
+export default Post;

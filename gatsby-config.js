@@ -8,13 +8,13 @@ module.exports = {
     siteTitle: `Orion Anderson`,
     siteDescription: `My personal home on the web.`,
     siteGreeting: `Greetings. My name is Orion Anderson. I'm a DevOps Developer in New York City. I love all things Docker, AWS, and automation.`,
+    siteImage: `/enso.jpg`,
     userName: `Orion Anderson`,
     userFirstName: `orion`,
     userLastName: `anderson`,
     userTwitter: `MisterOrion`,
     userLinkedIn: `orionanderson`,
     userGitHub: `MisterOrion`,
-    siteImage: `/enso.jpg`,
   },
   plugins: [
     {
@@ -35,7 +35,6 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,

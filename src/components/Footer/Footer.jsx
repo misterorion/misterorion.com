@@ -1,38 +1,38 @@
-import React from 'react'
+import React from "react";
 
-import { useSiteMetadata } from '../../hooks/Metadata'
-import GithubLogo from './github.svg'
-import LinkedInLogo from './linkedin.svg'
-import TwitterLogo from './twitter.svg'
-import { container, icon } from './Footer.module.css'
+import { useSiteMetadata } from "../../hooks/Metadata";
+import GithubLogo from "./github.svg";
+import LinkedInLogo from "./linkedin.svg";
+import TwitterLogo from "./twitter.svg";
+import { container, icon } from "./Footer.module.css";
 
 const Footer = () => {
-  const { userTwitter, userGitHub, userLinkedIn } = useSiteMetadata()
+  const { userTwitter, userGitHub, userLinkedIn } = useSiteMetadata();
   const FooterLink = (props) => (
     <a href={props.link} className={icon}>
       <img src={props.logo} alt={props.logoAlt} width="36" />
     </a>
-  )
+  );
 
   return (
     <footer className={container}>
       <FooterLink
         link={`https://www.linkedin.com/in/${userLinkedIn}`}
         logo={LinkedInLogo}
-        logoAlt={'LinkedIn'}
+        logoAlt={"LinkedIn"}
       />
       <FooterLink
         link={`https://twitter.com/${userTwitter}`}
         logo={TwitterLogo}
-        logoAlt={'Twitter'}
+        logoAlt={"Twitter"}
       />
       <FooterLink
         link={`https://github.com/${userGitHub}`}
         logo={GithubLogo}
-        logoAlt={'GitHub'}
+        logoAlt={"GitHub"}
       />
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

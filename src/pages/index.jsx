@@ -1,23 +1,30 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react";
+import { graphql } from "gatsby";
 
-import Hero from '../components/Hero/Hero'
-import Layout from '../components/Layout'
-import PostLink from '../components/PostLink/PostLink'
+import Hero from "../components/Hero/Hero";
+import Layout from "../components/Layout";
+import PostLink from "../components/PostLink/PostLink";
+import Seo from "../components/Seo/Seo";
 
 const Index = ({ data }) => {
-  const Posts = data.allMarkdownRemark.edges.map((edge) => (
+  const posts = data.allMarkdownRemark.edges.map((edge) => (
     <PostLink key={edge.node.id} post={edge.node} />
-  ))
+  ));
   return (
     <Layout>
       <Hero />
-      <div className="py-6">
-        {Posts}
-      </div>
+      <div className="py-6">{posts}</div>
     </Layout>
-  )
-}
+  );
+};
+
+export const Head = () => {
+  return (
+    <>
+      <Seo />
+    </>
+  );
+};
 
 export const PostByDateQuery = graphql`
   query PostByDateQuery {
@@ -37,6 +44,6 @@ export const PostByDateQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Index
+export default Index;

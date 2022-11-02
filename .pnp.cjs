@@ -45,7 +45,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gatsby-plugin-image", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:2.24.0"],\
             ["gatsby-plugin-manifest", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:4.24.0"],\
             ["gatsby-plugin-postcss", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.24.0"],\
-            ["gatsby-plugin-react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.24.0"],\
             ["gatsby-plugin-sharp", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:4.24.0"],\
             ["gatsby-remark-embed-video", "npm:3.2.1"],\
             ["gatsby-remark-external-links", "npm:0.0.4"],\
@@ -10125,33 +10124,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["gatsby-plugin-react-helmet", [\
-        ["npm:5.24.0", {\
-          "packageLocation": "./.yarn/cache/gatsby-plugin-react-helmet-npm-5.24.0-eb76ebea13-9f9c44b3bc.zip/node_modules/gatsby-plugin-react-helmet/",\
-          "packageDependencies": [\
-            ["gatsby-plugin-react-helmet", "npm:5.24.0"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.24.0", {\
-          "packageLocation": "./.yarn/__virtual__/gatsby-plugin-react-helmet-virtual-75f278c4f7/0/cache/gatsby-plugin-react-helmet-npm-5.24.0-eb76ebea13-9f9c44b3bc.zip/node_modules/gatsby-plugin-react-helmet/",\
-          "packageDependencies": [\
-            ["gatsby-plugin-react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.24.0"],\
-            ["@babel/runtime", "npm:7.20.0"],\
-            ["@types/gatsby", null],\
-            ["@types/react-helmet", null],\
-            ["gatsby", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:4.24.5"],\
-            ["react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:6.1.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/gatsby",\
-            "@types/react-helmet",\
-            "gatsby",\
-            "react-helmet"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["gatsby-plugin-sharp", [\
         ["npm:4.24.0", {\
           "packageLocation": "./.yarn/cache/gatsby-plugin-sharp-npm-4.24.0-1afce88a9a-757ba1afd3.zip/node_modules/gatsby-plugin-sharp/",\
@@ -13597,7 +13569,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["gatsby-plugin-image", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:2.24.0"],\
             ["gatsby-plugin-manifest", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:4.24.0"],\
             ["gatsby-plugin-postcss", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.24.0"],\
-            ["gatsby-plugin-react-helmet", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:5.24.0"],\
             ["gatsby-plugin-sharp", "virtual:2849b3dc8d9d1dcf2bad4760f90be679a90849ac50a9673ebf605818c646ebaeb6868611036d01aed8456a165991480cfe67a7c6587716448215f97e0148989d#npm:4.24.0"],\
             ["gatsby-remark-embed-video", "npm:3.2.1"],\
             ["gatsby-remark-external-links", "npm:0.0.4"],\

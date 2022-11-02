@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useFormik } from 'formik'
+import React, { useState } from "react";
+import { useFormik } from "formik";
 
 import {
   button,
@@ -13,100 +13,112 @@ import {
   label,
   nope,
   section,
-  success
-} from './ContactForm.module.css'
+  success,
+} from "./ContactForm.module.css";
 
-const formEndpoint = '/contact/'
-const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`
+const formEndpoint = "/contact/";
+const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`;
 
 const ContactForm = () => {
-
-  const [buttonVisible, setButtonVisible] = useState(true)
+  const [buttonVisible, setButtonVisible] = useState(true);
 
   const toggleButtonVisible = () => {
-    setButtonVisible(!buttonVisible)
-  }
+    setButtonVisible(!buttonVisible);
+  };
 
   const {
-    values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    isSubmitting,
   } = useFormik({
     initialValues: {
-      namee2d8u: '',
-      emaile2d8u: '',
-      commente2d8u: '',
+      namee2d8u: "",
+      emaile2d8u: "",
+      commente2d8u: "",
     },
-    validate: values => {
+    validate: (values) => {
       const nameRegex = /^(?![\s.]+$)[a-zA-Z\s'.]*$/; // Negative lookahead for all spaces or "."
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
       const commentRegex = /^[^:$#@^&*]*$/; // not :$#@^&*
       const errors = {};
       if (touched.namee2d8u && !values.namee2d8u) {
-        errors.namee2d8u = 'Name Required'
+        errors.namee2d8u = "Name Required";
       } else if (!nameRegex.test(values.namee2d8u)) {
-        errors.namee2d8u = 'Valid Name required (no special characters)'
+        errors.namee2d8u = "Valid Name required (no special characters)";
       }
       if (touched.emaile2d8u && !values.emaile2d8u) {
-        errors.emaile2d8u = 'Email Required'
+        errors.emaile2d8u = "Email Required";
       } else if (!emailRegex.test(values.emaile2d8u)) {
-        errors.emaile2d8u = 'Valid Email Required'
+        errors.emaile2d8u = "Valid Email Required";
       }
       if (touched.commente2d8u && !values.commente2d8u) {
-        errors.commente2d8u = 'Comment Required'
+        errors.commente2d8u = "Comment Required";
       } else if (!commentRegex.test(values.commente2d8u)) {
-        errors.commente2d8u = "Valid comment required (:$#@^&* not allowed)"
+        errors.commente2d8u = "Valid comment required (:$#@^&* not allowed)";
       }
       if (touched.namee2d8u && values.namee2d8u.length > 100) {
-        errors.namee2d8u = "Name must be less than 100 characters"
+        errors.namee2d8u = "Name must be less than 100 characters";
       }
       if (touched.emaile2d8u && values.emaile2d8u.length > 100) {
-        errors.emaile2d8u = "Email must be less than 100 characters"
+        errors.emaile2d8u = "Email must be less than 100 characters";
       }
       if (touched.commente2d8u && values.commente2d8u.length > 500) {
-        errors.commente2d8u = 'Comment must be less than 500 characters'
+        errors.commente2d8u = "Comment must be less than 500 characters";
       }
       // Honeypot trap
-      if ((values.name) || (values.email) || (values.comment)) {
-        errors.message = 'Begone with you!'
+      if (values.name || values.email || values.comment) {
+        errors.message = "Begone with you!";
       }
-      return errors
+      return errors;
     },
     onSubmit: async (values, { resetForm }) => {
       var convertedValues = {
         name: values.namee2d8u,
         email: values.emaile2d8u,
-        comment: values.commente2d8u
-      }
+        comment: values.commente2d8u,
+      };
       await fetch(formEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": basicAuth
+          Authorization: basicAuth,
         },
-        body: JSON.stringify(convertedValues)
+        body: JSON.stringify(convertedValues),
       })
         .then(() => {
-          resetForm()
-          toggleButtonVisible()
+          resetForm();
+          toggleButtonVisible();
         })
         .catch(() => {
-          alert('Error');
-        })
+          alert("Error");
+        });
     },
-  })
+  });
 
   return (
     <div className={formContainer}>
       <h2>Contact Form</h2>
       <p>
         Form submissions are sent to my email inbox. Besides reading your
-        comment, I don't do anything with your information. Caveat: I log IPs
-        to prevent spam.
+        comment, I don't do anything with your information. Caveat: I log IPs to
+        prevent spam.
       </p>
-      <p><strong>Enter a valid email if you want a response.</strong></p>
+      <p>
+        <strong>Enter a valid email if you want a response.</strong>
+      </p>
       <div className={container}>
-        <form onSubmit={handleSubmit} className={isSubmitting ? formOpaque : ""}>
+        <form
+          onSubmit={handleSubmit}
+          className={isSubmitting ? formOpaque : ""}
+        >
           <div className={section}>
-            <label htmlFor="namee2d8u" className={label}>Name</label>
+            <label htmlFor="namee2d8u" className={label}>
+              Name
+            </label>
             <input
               autoComplete="off"
               className={input}
@@ -120,15 +132,15 @@ const ContactForm = () => {
             />
             <div className={error}>
               {errors.namee2d8u && touched.namee2d8u && (
-                <div className={errorText}>
-                  {errors.namee2d8u}
-                </div>
+                <div className={errorText}>{errors.namee2d8u}</div>
               )}
             </div>
           </div>
 
           <div className={section}>
-            <label htmlFor="emaile2d8u" className={label}>Email</label>
+            <label htmlFor="emaile2d8u" className={label}>
+              Email
+            </label>
             <input
               autoComplete="off"
               className={input}
@@ -142,15 +154,15 @@ const ContactForm = () => {
             />
             <div className={error}>
               {errors.emaile2d8u && touched.emaile2d8u && (
-                <div className={errorText}>
-                  {errors.emaile2d8u}
-                </div>
+                <div className={errorText}>{errors.emaile2d8u}</div>
               )}
             </div>
           </div>
 
           <div className={section}>
-            <label htmlFor="commente2d8u" className={label}>Comment</label>
+            <label htmlFor="commente2d8u" className={label}>
+              Comment
+            </label>
             <textarea
               autoComplete="off"
               className={comment}
@@ -164,18 +176,14 @@ const ContactForm = () => {
             />
             <div className={error}>
               {errors.commente2d8u && touched.commente2d8u && (
-                <div className={errorText}>
-                  {errors.commente2d8u}
-                </div>
+                <div className={errorText}>{errors.commente2d8u}</div>
               )}
             </div>
           </div>
 
           {/* H o n e y p o t BEGINS */}
           <div>
-            <label
-              className={nope}
-              htmlFor="text">
+            <label className={nope} htmlFor="text">
               Name
             </label>
             <input
@@ -188,9 +196,7 @@ const ContactForm = () => {
               placeholder="Your name here"
               tabIndex="-1"
             />
-            <label
-              className={nope}
-              htmlFor="text">
+            <label className={nope} htmlFor="text">
               Email
             </label>
             <input
@@ -203,9 +209,7 @@ const ContactForm = () => {
               placeholder="Your email here"
               tabIndex="-1"
             />
-            <label
-              className={nope}
-              htmlFor="message">
+            <label className={nope} htmlFor="message">
               Message
             </label>
             <input
@@ -222,7 +226,7 @@ const ContactForm = () => {
           </div>
           {/* H o n e y p o t ENDS */}
 
-          {buttonVisible ?
+          {buttonVisible ? (
             <button
               className={button}
               disabled={isSubmitting}
@@ -231,14 +235,14 @@ const ContactForm = () => {
               value="Submit"
             >
               Submit
-            </button> :
-            <div className={success}>
-              Thanks for your comment!
-            </div>}
+            </button>
+          ) : (
+            <div className={success}>Thanks for your comment!</div>
+          )}
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

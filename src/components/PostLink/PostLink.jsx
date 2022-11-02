@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from "gatsby";
 
-import { box, postDate, postTitle, postLink } from './PostLink.module.css'
+import { box, postDate, postTitle, postLink } from "./PostLink.module.css";
 
 const PostLink = ({ post }) => {
-  const { slug, title, date } = post.frontmatter
+  const { slug, title, date } = post.frontmatter;
   return (
     <Link className={postLink} to={`/${slug}/`}>
       <div className={box}>
@@ -12,7 +12,7 @@ const PostLink = ({ post }) => {
         <div className={postDate}>{date}</div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default PostLink
+export default PostLink;

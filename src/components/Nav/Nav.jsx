@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link, graphql, useStaticQuery } from 'gatsby'
+import React from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
 
-import { useSiteMetadata } from '../../hooks/Metadata'
-import { container, menuItem, nav, title } from './Nav.module.css'
+import { useSiteMetadata } from "../../hooks/Metadata";
+import { container, menuItem, nav, title } from "./Nav.module.css";
 
 const Nav = () => {
-  const { userFirstName, userLastName } = useSiteMetadata()
+  const { userFirstName, userLastName } = useSiteMetadata();
   const { allMarkdownRemark: pages } = useStaticQuery(
     graphql`
       query NavQuery {
@@ -25,7 +25,7 @@ const Nav = () => {
         }
       }
     `
-  )
+  );
 
   return (
     <div className={container}>
@@ -44,15 +44,15 @@ const Nav = () => {
         {pages.edges.map((edge) => {
           return (
             <div className={menuItem} key={edge.node.id}>
-              <Link to={`/${edge.node.frontmatter.slug}/`} >
+              <Link to={`/${edge.node.frontmatter.slug}/`}>
                 {edge.node.frontmatter.title}
               </Link>
             </div>
-          )
+          );
         })}
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

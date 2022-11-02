@@ -1,10 +1,10 @@
-import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 
-import GrimoireLink from '../components/GrimoireLink/GrimoireLink'
-import Layout from '../components/Layout'
-import { entryList } from '../components/GrimoireLink/GrimoireLink.module.css'
-import { title } from '../components/Layout.module.css'
+import GrimoireLink from "../components/GrimoireLink/GrimoireLink";
+import Layout from "../components/Layout";
+import { entryList } from "../components/GrimoireLink/GrimoireLink.module.css";
+import { title } from "../components/Layout.module.css";
 
 const Grimoire = () => {
   const { allMarkdownRemark } = useStaticQuery(
@@ -26,11 +26,11 @@ const Grimoire = () => {
         }
       }
     `
-  )
+  );
 
   const entries = allMarkdownRemark.edges.map((edge) => (
     <GrimoireLink entry={edge.node.frontmatter} key={edge.node.id} />
-  ))
+  ));
 
   return (
     <Layout>
@@ -41,13 +41,13 @@ const Grimoire = () => {
         <strong>▶&nbsp;&nbsp;&nbsp;noun</strong>
         &nbsp;&nbsp;&nbsp;A book of magical knowledge.
       </p>
-      <p>Wherein I record knowledge of a technical nature for future reference.</p>
+      <p>
+        Wherein I record knowledge of a technical nature for future reference.
+      </p>
       <h2>All Entries</h2>
-      <div className={entryList}>
-        {entries}
-      </div>
+      <div className={entryList}>{entries}</div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Grimoire
+export default Grimoire;
