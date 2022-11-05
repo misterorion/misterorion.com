@@ -1,7 +1,7 @@
 ---
 title: "Building Gatsby with Google Cloud"
 excerpt: "Using Google Cloud Build"
-tags: ["Gatsby","GCP","Cloud" ]
+tags: ["Gatsby","GCP","Cloud"]
 ---
 
 A Cloud Build setup that caches `node_modules` and Gatsby-specific build folders. It also cleans your website bucket before deploying and sets cache-control headers that are appropriate for Gatsby. Caching really speeds up the builds and gives you almost Netlify-like speeds.
