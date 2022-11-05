@@ -5,7 +5,7 @@ import { kebabCase } from "lodash";
 
 import ContactForm from "../components/ContactForm/ContactForm";
 import Layout from "../components/Layout";
-import Seo from "../components/Seo/Seo";
+import Seo from "../components/Seo";
 import { useSiteMetadata } from "../hooks/Metadata";
 import {
   featImg,
@@ -55,7 +55,7 @@ const Post = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
+export function Head({ data }) {
   const { siteUrl } = useSiteMetadata();
   const { frontmatter: post } = data.markdownRemark;
 

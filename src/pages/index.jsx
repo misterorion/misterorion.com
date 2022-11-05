@@ -1,10 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
 
+import Seo from "../components/Seo";
 import Hero from "../components/Hero/Hero";
 import Layout from "../components/Layout";
 import PostLink from "../components/PostLink/PostLink";
-import Seo from "../components/Seo/Seo";
 
 const Index = ({ data }) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => (
@@ -18,13 +18,9 @@ const Index = ({ data }) => {
   );
 };
 
-export const Head = () => {
-  return (
-    <>
-      <Seo />
-    </>
-  );
-};
+export function Head() {
+  return <Seo />;
+}
 
 export const PostByDateQuery = graphql`
   query PostByDateQuery {

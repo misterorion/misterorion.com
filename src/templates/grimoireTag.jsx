@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
 import { useSiteMetadata } from "../hooks/Metadata";
-import Seo from "../components/Seo/Seo";
+import Seo from "../components/Seo";
 
 const GrimoireTags = ({ pageContext, data }) => {
   const { tag } = pageContext;
@@ -23,12 +23,12 @@ const GrimoireTags = ({ pageContext, data }) => {
   );
 };
 
-export const Head = ({ pageContext }) => {
+export function Head({ pageContext }) {
   const { siteTitle } = useSiteMetadata();
   const { tag } = pageContext;
 
   return <Seo title={`${tag} | ${siteTitle}`} />;
-};
+}
 
 export const GrimoireTagQuery = graphql`
   query GrimoireTagQuery($tag: String!) {

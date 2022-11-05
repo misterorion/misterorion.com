@@ -3,8 +3,10 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import GrimoireLink from "../components/GrimoireLink/GrimoireLink";
 import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 import { entryList } from "../components/GrimoireLink/GrimoireLink.module.css";
 import { title } from "../components/Layout.module.css";
+import { useSiteMetadata } from "../hooks/Metadata";
 
 const Grimoire = () => {
   const { allMarkdownRemark } = useStaticQuery(
@@ -49,5 +51,16 @@ const Grimoire = () => {
     </Layout>
   );
 };
+
+export function Head() {
+  const { siteTitle, siteUrl } = useSiteMetadata();
+  return (
+    <Seo
+      description="Wherein I record knowledge of a technical nature for future reference."
+      title={`${siteTitle} - Grimoire`}
+      url={`${siteUrl}/grimoire/`}
+    />
+  );
+}
 
 export default Grimoire;

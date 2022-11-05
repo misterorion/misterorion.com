@@ -9,6 +9,7 @@ export const useSiteMetadata = () => {
             siteTitle
             siteDescription
             siteGreeting
+            siteImage
             userName
             userFirstName
             userLastName

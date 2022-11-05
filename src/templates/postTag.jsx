@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import PostLink from "../components/PostLink/PostLink";
 import { useSiteMetadata } from "../hooks/Metadata";
-import Seo from "../components/Seo/Seo";
+import Seo from "../components/Seo";
 
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext;
@@ -21,7 +21,7 @@ const Tags = ({ pageContext, data }) => {
   );
 };
 
-export const Head = ({ pageContext }) => {
+export function Head({ pageContext }) {
   const { siteTitle } = useSiteMetadata();
   const { tag } = pageContext;
 
