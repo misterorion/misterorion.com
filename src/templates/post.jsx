@@ -45,7 +45,7 @@ const Post = ({ data }) => {
         <ul>
           {post.tags.map((tag) => (
             <li key={tag}>
-              <Link to={`/tag/${kebabCase(tag)}`}>{tag}</Link>
+              <Link to={`/tag/${kebabCase(tag)}/`}>{tag}</Link>
             </li>
           ))}
         </ul>
