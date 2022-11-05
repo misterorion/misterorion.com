@@ -10,7 +10,7 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "reset": "yarn run clean && shx rm yarn.lock && yarn cache clean && yarn install",
+    "reset": "yarn run clean && shx rm yarn.lock && yarn cache clean && yarn install && wsl yarn install",
     "serve": "gatsby serve"
   },
   "dependencies": {
