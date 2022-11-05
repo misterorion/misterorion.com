@@ -27,6 +27,7 @@ const Seo = ({ title, description, image, url }) => {
 
   return (
     <Fragment>
+      <title>{title || siteTitle}</title>
       <link rel="canonical" href={url || `${siteUrl}`} />
       <meta name="description" content={description} />
       <meta name="author" content={userName} />

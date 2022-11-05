@@ -19,7 +19,7 @@ const Index = ({ data }) => {
 };
 
 export function Head() {
-  return <Seo title="Orion Anderson" />;
+  return <Seo />;
 }
 
 export const PostByDateQuery = graphql`
