@@ -33,15 +33,9 @@ steps:
     args:
       - -c
       - |
-        gcloud run deploy $_SERVICE_NA_EAST --image $_APP_IMAGE:$SHORT_SHA --async \
-          --region us-east4
-        gcloud run deploy $_SERVICE_NA_CENTRAL --image $_APP_IMAGE:$SHORT_SHA --async \
-          --region us-central1
-        gcloud run deploy $_SERVICE_NA_WEST --image $_APP_IMAGE:$SHORT_SHA --async \
-          --region us-west1
-        gcloud run deploy $_SERVICE_EU --image $_APP_IMAGE:$SHORT_SHA --async \
-          --region europe-west1
-        gcloud run deploy $_SERVICE_AP --image $_APP_IMAGE:$SHORT_SHA --async \
-          --region asia-northeast1
-        gcloud run deploy $_SERVICE_SA --image $_APP_IMAGE:$SHORT_SHA --async \
-          --region southamerica-east1
+        gcloud run deploy $_SERVICE_NA_EAST --image $_APP_IMAGE:$SHORT_SHA --async --region us-east4
+        gcloud run deploy $_SERVICE_NA_CENTRAL --image $_APP_IMAGE:$SHORT_SHA --async --region us-central1
+        gcloud run deploy $_SERVICE_NA_WEST --image $_APP_IMAGE:$SHORT_SHA --async --region us-west1
+        gcloud run deploy $_SERVICE_EU --image $_APP_IMAGE:$SHORT_SHA --async --region europe-west1
+        gcloud run deploy $_SERVICE_AP --image $_APP_IMAGE:$SHORT_SHA --async --region asia-northeast1
+        gcloud run deploy $_SERVICE_SA --image $_APP_IMAGE:$SHORT_SHA --async --region southamerica-east1

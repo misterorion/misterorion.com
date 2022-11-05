@@ -17,14 +17,6 @@ const Seo = ({ title, description, image, url }) => {
     return null;
   }
 
-  // if (!image) {
-  //   image = siteImage;
-  // }
-
-  // if (!description) {
-  //   description = siteDescription;
-  // }
-
   return (
     <Fragment>
       <title>{title || siteTitle}</title>
