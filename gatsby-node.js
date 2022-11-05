@@ -1,12 +1,12 @@
-const path = require(`path`)
-const kebabCase = require("lodash/kebabCase")
+const path = require(`path`);
+const kebabCase = require("lodash/kebabCase");
 
 exports.onPostBuild = ({ reporter }) => {
-  reporter.info(`Your Gatsby site has been built!`)
-}
+  reporter.info(`Your Gatsby site has been built!`);
+};
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   const content = await graphql(`
     {
@@ -58,17 +58,17 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
   if (content.errors) {
-    throw new Error(content.errors)
+    throw new Error(content.errors);
   }
 
   // Extract content data
-  const posts = content.data.allPosts.edges
-  const pages = content.data.allPages.edges
-  const grimoireEntries = content.data.allGrimoireEntries.edges
-  const grimoireTags = content.data.allGrimoireTags.group
-  const postTags = content.data.allPostTags.group
+  const posts = content.data.allPosts.edges;
+  const pages = content.data.allPages.edges;
+  const grimoireEntries = content.data.allGrimoireEntries.edges;
+  const grimoireTags = content.data.allGrimoireTags.group;
+  const postTags = content.data.allPostTags.group;
 
   pages.forEach((page) => {
     createPage({
@@ -77,8 +77,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: page.node.frontmatter.slug,
       },
-    })
-  })
+    });
+  });
   posts.forEach((post) => {
     createPage({
       path: `/${post.node.frontmatter.slug}/`,
@@ -86,8 +86,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: post.node.frontmatter.slug,
       },
-    })
-  })
+    });
+  });
   postTags.forEach((tag) => {
     createPage({
       path: `/tag/${kebabCase(tag.fieldValue)}/`,
@@ -95,8 +95,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         tag: tag.fieldValue,
       },
-    })
-  })
+    });
+  });
   grimoireEntries.forEach((entry) => {
     createPage({
       path: `/grimoire/${kebabCase(entry.node.frontmatter.title)}/`,
@@ -104,8 +104,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         title: entry.node.frontmatter.title,
       },
-    })
-  })
+    });
+  });
   grimoireTags.forEach((tag) => {
     createPage({
       path: `/grimoire/tag/${kebabCase(tag.fieldValue)}/`,
@@ -113,6 +113,6 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         tag: tag.fieldValue,
       },
-    })
-  })
-}
+    });
+  });
+};

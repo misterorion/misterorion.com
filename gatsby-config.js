@@ -1,6 +1,6 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -23,14 +23,11 @@ module.exports = {
         additionalSitemaps: [
           {
             name: `ghost-posts`,
-            url: `https://misterorion.com/gg/sitemap-posts.xml`
-          }
+            url: `https://misterorion.com/gg/sitemap-posts.xml`,
+          },
         ],
-        exclude: [
-          /(\/)?404\S*/,
-          /(\/)?tag\S*/
-        ]
-      }
+        exclude: [/(\/)?404\S*/, /(\/)?tag\S*/],
+      },
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -75,9 +72,9 @@ module.exports = {
           `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
           {
-            resolve: 'gatsby-remark-external-links',
+            resolve: "gatsby-remark-external-links",
             options: {
-              target: '_blank',
+              target: "_blank",
             },
           },
           {
@@ -96,8 +93,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Orion Anderson',
-        short_name: 'Orion Anderson',
+        name: "Orion Anderson",
+        short_name: "Orion Anderson",
         start_url: `/`,
         background_color: `#6b37bf`,
         theme_color: `#6b37bf`,
@@ -106,4 +103,4 @@ module.exports = {
       },
     },
   ],
-}
+};
