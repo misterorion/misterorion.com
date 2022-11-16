@@ -46,14 +46,14 @@ exports.createPages = async ({ graphql, actions }) => {
       allGrimoireTags: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/(grimoire)/" } }
       ) {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
         }
       }
       allPostTags: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/(posts)/" } }
       ) {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
         }
       }
