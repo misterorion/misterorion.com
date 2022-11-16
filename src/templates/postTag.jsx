@@ -26,13 +26,13 @@ export function Head({ pageContext }) {
   const { tag } = pageContext;
 
   return <Seo title={`${tag} | ${siteTitle}`} />;
-};
+}
 
 export const PostTagQuery = graphql`
   query PostTagQuery($tag: String) {
     allMarkdownRemark(
       limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: {
         fileAbsolutePath: { regex: "/(posts)/" }
         frontmatter: { tags: { in: [$tag] } }
