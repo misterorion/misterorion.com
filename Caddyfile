@@ -27,7 +27,7 @@ http:// {
 			not path /sw.js
 		}
 		route {
-			header Cache-Control public,max-age=0,must-revalidate
+			header Cache-Control public,max-age=3600,must-revalidate
 			header @immutable Cache-Control public,max-age=31536000,immutable
 		}
 	}
