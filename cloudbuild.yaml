@@ -1,36 +1,13 @@
 steps:
-  - id: Yarn build
-    name: $_NODE_IMAGE
-    entrypoint: yarn
-    args:
-      - build
-    env:
-      - GATSBY_BASIC_AUTH=${_GATSBY_BASIC_AUTH}
-      - GATSBY_LOGGER=yurnalist
-      - GATSBY_TELEMETRY_DISABLED=true
-  - id: Precompress files
+  - id: Fetch Brotlin Binary
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        gsutil -q -m cp $_BROTLI_BIN brotli.tar.gz && tar -zxf brotli.tar.gz
-        find ./public -type f -size +1400c \
-          -regex ".*\.\(css\|html\|js\|json\|svg\|xml\)$" \
-          -exec ./brotli --best {} \+ \
-          -exec gzip --best -k {} \+
-  - id: Build and push image
+    args: ['storage', 'cp', '$_BROTLI_BIN', 'brotli.tar.gz']
+  - id: Build Container
     name: gcr.io/cloud-builders/docker
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        docker build --build-arg CADDY_IMAGE=$_CADDY_IMAGE -t $_APP_IMAGE:$SHORT_SHA .
-        docker push $_APP_IMAGE:$SHORT_SHA
-  - id: Deploy
+    args: ['build', '-t', '$_APP_IMAGE:$SHORT_SHA', '.']
+  - id: Push Container
+    name: gcr.io/cloud-builders/docker
+    args: ['push', '$_APP_IMAGE:$SHORT_SHA']
+  - id: Deploy to Cloud Run
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        gcloud run deploy $_SERVICE_NA_CENTRAL --image $_APP_IMAGE:$SHORT_SHA --async --region us-central1
+    args: ['run', 'deploy', '$_SERVICE', '--image=$_APP_IMAGE:$SHORT_SHA', '--region=us-central1', '--async']

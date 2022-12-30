@@ -1,0 +1,40 @@
+---
+import { SITE } from "@config";
+import Layout from "@layouts/Layout.astro";
+import GrimoireLink from "@components/GrimoireLink.astro";
+const entries = await Astro.glob("../../content/grimoire/*.{md,mdx}");
+---
+
+<Layout
+  title={`${SITE.title} - Grimoire`}
+  description="Wherein I record knowledge of a technical nature for future reference."
+>
+  <p>
+    <strong>Grimoire</strong>
+    &nbsp;&nbsp;&nbsp;/grəm-wär′/&nbsp;&nbsp;&nbsp;
+    <strong>▶&nbsp;&nbsp;&nbsp;noun</strong>
+    &nbsp;&nbsp;&nbsp;A book of magical knowledge.
+  </p>
+  <p>Wherein I record knowledge of a technical nature for future reference.</p>
+  <h2>All Entries</h2>
+  <div class="entry-list">
+    {
+      entries.map((entry) => (
+        <GrimoireLink
+          title={entry.frontmatter.title}
+          tags={entry.frontmatter.tags}
+        />
+      ))
+    }
+  </div>
+</Layout>
+
+<style>
+  .emoji {
+    font-size: 6rem;
+  }
+  .entry-list {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+</style>

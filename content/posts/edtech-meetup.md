@@ -3,7 +3,7 @@ title: "Edtech Meetup"
 date:  "2018-09-12"
 slug: "edtech-meetup"
 description: "Let's plug little Johnny into the Matrix."
-imageFluid:  "../images/edtech.jpg"
+image:  "/images/edtech.jpg"
 imageAlt: "Edtech Meetup"
 tags: ["Career"]
 ---
@@ -22,9 +22,7 @@ The event took place at Alley Chelsea, a workspace/community area in the Chelsea
 
 ## Highlights and notes
 
-After Michelle introduced the panelists, we watched a video produced by BBC Worldhacks, "Schools of the Future," to provide context for the discussion to follow.
-
-`video: https://youtu.be/VqK7V58sDAs`
+To provide context for the discussion to follow, the audience was presented with a video produced by BBC Worldhacks: ["Schools of the Future"](https://youtu.be/VqK7V58sDAs)
 
 After the video, the panel opened into a lively discussion.
 

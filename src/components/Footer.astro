@@ -1,0 +1,58 @@
+---
+import { socials } from "@config";
+---
+
+<div class="footer-container">
+  <div class="social-container">
+    {
+      socials
+        .filter((social) => social.enabled)
+        .map((social) => (
+          <a href={social.url}>
+            <Fragment set:html={social.svg} />
+          </a>
+        ))
+    }
+  </div>
+  <div class="credits">
+    <p>
+      Built with <a href="https://astro.build">Astro</a>. Hosting on <a
+        href="https://cloud.google.com/">Google Cloud</a
+      >. Icons courtesy of <a href="https://icons8.com">icons8</a>.
+    </p>
+  </div>
+</div>
+
+<style>
+  .footer-container {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-box-border);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+  }
+  .social-container a {
+    fill: var(--color-box-border);
+    text-decoration: none;
+    padding: 0rem 0.5rem;
+    display: inline-block;
+  }
+  .social-container a:hover {
+    fill: var(--color-highlight);
+    transform: rotate(-3deg) translateY(-2px);
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 250ms;
+  }
+  .social-container a:hover:nth-child(odd) {
+    transform: rotate(3deg) translateY(-2px);
+  }
+  .credits {
+    font-size: 0.65rem;
+    color: var(--color-box-border);
+  }
+  .credits a {
+    color: var(--color-box-border);
+    font-weight: 700;
+  }
+</style>

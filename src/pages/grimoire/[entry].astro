@@ -1,0 +1,27 @@
+---
+import slugify from "slugify";
+import { SITE } from "@config";
+import Layout from "@layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const entries = await Astro.glob("../../../content/grimoire/*.{md,mdx}");
+
+  return entries.map((entry) => ({
+    params: {
+      entry: slugify(entry.frontmatter.title, {lower: true}),
+    },
+    props: {
+      entry,
+    },
+  }));
+}
+
+const { Content, frontmatter } = Astro.props.entry;
+---
+
+<Layout author={SITE.author}>
+  <h1>
+    {frontmatter.title}
+  </h1>
+  <Content />
+</Layout>

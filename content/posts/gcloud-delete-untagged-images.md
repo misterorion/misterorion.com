@@ -3,14 +3,14 @@ title: "Delete Untagged Images on Google Artifact Registry"
 date: "2021-10-19"
 slug: "gcloud-delete-untagged-images"
 description: "Using Cloud Build and Cloud Scheduler"
-imageFluid: "../images/raph-howald-GSCtoEEqntQ-unsplash_resized.jpg"
-imageAlt: "Angkor Wat, Cambodia"
+image: "/images/ruins.jpg"
+imageAlt: "Ta Prohm Temple, Banteay Chhmar, Cambodia"
 tags: ["PowerShell","Google Cloud", "Docker"]
 ---
 
 When we push a container image to Google Artifact Registry with the same tag as an existing image, the tag on the existing image is removed, leaving us an image with no tag.
 
-![Empty Tags](../images/empty-tags.png)
+![Empty Tags](/images/empty-tags.png)
 
 All images take up space and count towards your bill. Assuming you have no use for the untagged images, wouldn't it be nice if we could remove all of them at once? What if we also wanted to clean out unwanted tagged images as well?
 
@@ -38,7 +38,7 @@ My solution uses Cloud Build and Cloud Scheduler with a dash of PowerShell and s
 
 This is the list of repositories you want to clean out, in a text file.
 
-```txt
+```sh
 # repos-to-clean.txt
 
 us-central1-docker.pkg.dev/project/cool-app

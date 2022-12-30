@@ -3,6 +3,7 @@
 	auto_https off
 	http_port 8080
 }
+
 http:// {
 	handle {
 		file_server {
@@ -11,28 +12,25 @@ http:// {
 		}
 
 		header {
-			Content-Security-Policy "default-src 'none'; font-src 'self' data:; frame-src https://www.youtube.com 'self'; manifest-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; img-src https://i.ytimg.com 'self' data:; prefetch-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'"
+			Cache-Control "no-cache"
+			Content-Security-Policy "default-src 'self' data:; frame-ancestors 'none'"
 			Permissions-Policy "geolocation=()"
 			Referrer-Policy "strict-origin-when-cross-origin"
-			Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-			Server "MECHAPOWER"
+			Strict-Transport-Security "max-age=63072000; includeSubDomains"
 			X-Content-Type-Options "nosniff"
-			X-Frame-Options "SAMEORIGIN"
-			X-XSS-Protection "1; mode=block"
 		}
 
 		@immutable {
-			path *.js *.css
-			path /static/*
-			not path /sw.js
+			path /assets/*
 		}
-		route {
-			header Cache-Control public,max-age=3600,must-revalidate
-			header @immutable Cache-Control public,max-age=31536000,immutable
+		route @immutable {
+			header -Content-Security-Policy
+			header Cache-Control public,max-age=31536000,immutable
 		}
 	}
+
 	handle_errors {
-		rewrite * /404/
+		rewrite * /404.html
 		file_server
 	}
 }

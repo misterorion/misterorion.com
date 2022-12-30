@@ -1,53 +1,33 @@
 {
-  "name": "misterorion-com",
-  "packageManager": "yarn@3.2.4",
+  "name": "misterorion.com",
   "private": true,
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "My personal home on the web.",
   "author": "Orion Anderson",
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
-    "build": "gatsby build",
-    "clean": "gatsby clean",
-    "develop": "gatsby develop",
-    "reset": "yarn run clean && shx rm yarn.lock && yarn cache clean && yarn install && wsl yarn install",
-    "serve": "gatsby serve"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/image": "^0.12.1",
+    "@astrojs/mdx": "^0.14.0",
+    "@astrojs/react": "^1.2.2",
+    "@astrojs/sitemap": "^1.0.0",
     "@fontsource/jetbrains-mono": "^4.5.11",
     "@fontsource/quicksand": "^4.5.11",
     "@fontsource/roboto": "^4.5.8",
-    "autoprefixer": "^10.4.13",
-    "dotenv": "^16.0.3",
+    "@fontsource/rubik": "^4.5.13",
+    "astro": "^1.8.0",
     "formik": "^2.2.9",
-    "gatsby": "^5.1.0",
-    "gatsby-parcel-config": "^1.1.0",
-    "gatsby-plugin-advanced-sitemap": "^2.1.0",
-    "gatsby-plugin-image": "^3.1.0",
-    "gatsby-plugin-manifest": "^5.1.0",
-    "gatsby-plugin-postcss": "^6.1.0",
-    "gatsby-plugin-sharp": "^5.1.0",
-    "gatsby-remark-embed-video": "^3.2.1",
-    "gatsby-remark-external-links": "0.0.4",
-    "gatsby-remark-images": "^7.1.0",
-    "gatsby-remark-prismjs": "^7.1.0",
-    "gatsby-remark-responsive-iframe": "^6.1.0",
-    "gatsby-remark-smartypants": "^6.1.0",
-    "gatsby-source-filesystem": "^5.1.0",
-    "gatsby-transformer-remark": "^6.1.0",
-    "gatsby-transformer-sharp": "^5.1.0",
-    "lodash": "^4.17.21",
-    "postcss": "^8.4.19",
-    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.2.4"
+    "slugify": "^1.6.5"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/misterorion/misterorion.com"
-  },
-  "devDependencies": {
-    "shx": "^0.3.4"
   }
 }

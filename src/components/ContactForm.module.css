@@ -1,0 +1,113 @@
+.button {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-highlight);
+  color: white;
+  border-radius: 0.25rem;
+  border: none;
+  font-weight: 700;
+}
+.button:hover {
+  background-color: var(--color-accent);
+  cursor: pointer;
+}
+.container {
+  width: 100%;
+}
+.error {
+  height: 1rem;
+  padding-top: 0.25rem;
+  padding-left: 0.25rem;
+}
+.errorText {
+  color: var(--color-highlight);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.formContainer {
+  width: 100%;
+  background-color: var(--color-neutral);
+  border: 1px solid var(--color-box-border);
+  border-radius: 0.25rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+.formContainer h2 {
+  margin-top: 0;
+}
+.formOpaque {
+  opacity: 0.4;
+}
+.input {
+  padding: 0.5rem 0.75rem ;
+  appearance: none;
+  background-color: var(--color-neutral);
+  border: 1px solid var(--color-box-border);
+  border-radius: 0.25rem;
+  box-shadow: var(--box-shadow-light);
+  line-height: 1.25rem;
+  color: var(--color-text-base);
+}
+.input::placeholder {
+  color: var(--color-text-contrast);
+}
+.input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 0px;
+}
+.label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  padding-left: 0.25rem;
+  font-weight: 700;
+  color: var(--color-text-base);
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+.comment {
+  appearance: none;
+  height: 6rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-neutral);
+  border: 1px solid var(--color-box-border);
+  border-radius: 0.25rem;
+  box-shadow: var(--box-shadow-light);
+  line-height: 1.25;
+  color: var(--color-text-base);
+}
+.comment::placeholder {
+  color: var(--color-text-contrast);
+}
+.comment:focus {
+  outline: 2px solid var(--teal);
+  outline-offset: 0px;
+}
+.nope {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: -10;
+  opacity: 0;
+  position: absolute;
+}
+.section {
+  margin-bottom: 1rem;
+}
+.success {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+@screen tablet {
+  .formContainer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}

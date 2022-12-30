@@ -1,0 +1,41 @@
+---
+import Layout from "@layouts/Layout.astro";
+import slugify from "slugify";
+import { SITE } from "@config";
+
+export async function getStaticPaths() {
+  const allEntries = await Astro.glob(
+    "../../../../content/grimoire/*.{md,mdx}"
+  );
+
+  const uniqueTags = [
+    ...new Set(allEntries.map((entry) => entry.frontmatter.tags).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
+    const filteredEntries = allEntries.filter((entry) =>
+      entry.frontmatter.tags.includes(tag)
+    );
+    return {
+      params: { tag: slugify(tag, { lower: true }) },
+      props: { entries: filteredEntries, tag },
+    };
+  });
+}
+
+const { entries, tag } = Astro.props;
+---
+
+<Layout title={`${tag} | ${SITE.title}`}>
+  <h1>
+    Grimoire Entries tagged with “{tag}”
+  </h1>
+  {
+    entries.map((entry) => (
+      <>
+        <h2>{entry.frontmatter.title}</h2>
+        <entry.Content />
+      </>
+    ))
+  }
+</Layout>

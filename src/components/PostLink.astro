@@ -1,0 +1,65 @@
+---
+export interface Props {
+  slug: string;
+  title: string;
+  date: string;
+}
+
+const { slug, title, date } = Astro.props;
+---
+
+<a href={`/${slug}`}>
+  <div class="box">
+    <div class="box-inner">
+      <div class="text">
+        <div class="title">{title}</div>
+        <div class="date">
+          {
+            new Date(date).toLocaleDateString("us-en", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .box-inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  .text {
+    padding: 1rem 1rem;
+  }
+  .box {
+    margin-bottom: 1rem;
+    color: var(--color-text-base);
+    border: 1px solid var(--color-box-border);
+    border-radius: 0.25rem;
+    transition-property: border-color, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 175ms;
+  }
+  a {
+    text-decoration: none;
+  }
+  .box:hover {
+    border: 1px solid var(--color-highlight);
+    box-shadow: var(--box-shadow);
+  }
+  .title {
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .date {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: var(--color-box-border);
+    padding-top: 0.2rem;
+  }
+</style>
