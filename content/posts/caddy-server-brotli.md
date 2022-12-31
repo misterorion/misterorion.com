@@ -3,7 +3,7 @@ title: Precompressed Brotli and Gzip with Caddy
 date: "2021-01-18"
 description: "You are serving your website with Caddy. Great! You’re an awesome person. Become even more awesome and serve your assets using the exciting Brotli compression algorithm."
 image: "/images/vapor.jpg"
-imageAlt: "Vaporwave"
+imageAlt: "Synthwave Journey (source unknown)"
 slug: "caddy-server-brotli"
 tags: ["Caddy"]
 ---

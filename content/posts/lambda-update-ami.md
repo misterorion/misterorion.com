@@ -4,7 +4,7 @@ date:  "2020-03-01"
 slug: "lambda-update-ami"
 description: "Update launch template AMIs and roll them out to your auto-scaling group with AWS Lambda and Python."
 image:  "/images/vinyl-jukebox.jpg"
-imageAlt: "Vinyl Jukebox"
+imageAlt: "Vinyl Jukebox (source unknown)"
 tags: ["AWS", "DevOps", "Python", "Lambda"]
 ---
 

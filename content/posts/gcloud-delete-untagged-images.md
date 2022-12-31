@@ -5,6 +5,8 @@ slug: "gcloud-delete-untagged-images"
 description: "Using Cloud Build and Cloud Scheduler"
 image: "/images/ruins.jpg"
 imageAlt: "Ta Prohm Temple, Banteay Chhmar, Cambodia"
+imageSource: "unsplash.com"
+imageSourceUrl: "https://unsplash.com/photos/GSCtoEEqntQ"
 tags: ["PowerShell","Google Cloud", "Docker"]
 ---
 

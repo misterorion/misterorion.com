@@ -4,7 +4,9 @@ date:  "2020-01-05"
 slug: "moving-to-gatsby"
 description: "I moved my site from Hugo to Gatsby and now it's fast as hell."
 image:  "/images/great-gatsby.jpg"
-imageAlt: "The Great Gatsby cover cropped"
+imageAlt: "The Great Gatsby"
+imageSource: "Simon & Schuster"
+imageSourceUrl: "https://www.simonandschuster.co.uk/books/The-Great-Gatsby/F-Scott-Fitzgerald/9780743246392t"
 tags: ["Code", "Gatsby"]
 ---
 
