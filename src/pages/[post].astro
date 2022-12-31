@@ -39,6 +39,7 @@ const {
   title={title}
 >
   <h1>{title}</h1>
+  {description && <p class="description">{description}</p>}
   <div class="date">
     {
       new Date(date).toLocaleDateString("us-en", {
@@ -48,7 +49,6 @@ const {
       })
     }
   </div>
-  {description && <p class="description">{description}</p>}
   {image && <img src={image} alt={imageAlt} class="responsive" />}
   <div class="caption">
     {imageAlt}
@@ -78,13 +78,17 @@ const {
 <style>
   h1 {
     font-size: 2.8rem;
-    line-height: 3.6rem;
+    line-height: 3.7rem;
+    margin-bottom: 0;
   }
   .date {
-    color: var(--grey-600);
+    color: var(--color-text-contrast);
+    padding-bottom: 2rem;
   }
   .description {
-    margin-top: 3rem;
+    margin-bottom: 1.3rem;
+    font-size: 1.8rem;
+    line-height: 2.1rem;
   }
   .featured {
     margin-top: 2rem;
@@ -116,12 +120,10 @@ const {
     font-size: 1rem;
     line-height: 1.5rem;
   }
-
   .tags li a {
     color: var(--color-highlight);
     text-decoration: none;
   }
-
   .tags li a:hover {
     text-decoration: underline;
   }

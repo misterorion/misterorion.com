@@ -61,21 +61,20 @@ const { title, tags } = Astro.props;
   .tag-style {
     display: inline-block;
     font-family: "Quicksand", sans-serif;
-    background-color: rgb(216 222 233);
+    background-color: var(--color-neutral);
     text-decoration: none;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
     margin-right: 0.5rem;
-    color: var(--grey-600);
+    color: var(--color-text-contrast);
   }
   .tag-style:hover {
     color: var(--color-highlight);
     transform: rotate(-2deg) translateY(-2px);
-    transition-property: transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 250ms;
+    /* transition-duration: 150ms; */
   }
   .tag-style:hover:nth-child(odd) {
     transform: rotate(2deg) translateY(-2px);
