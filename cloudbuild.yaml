@@ -4,7 +4,7 @@ steps:
     args: ['storage', 'cp', '$_BROTLI_BIN', 'brotli.tar.gz']
   - id: Build Container
     name: gcr.io/cloud-builders/docker
-    args: ['build', '-t', '$_APP_IMAGE:$SHORT_SHA', '.']
+    args: ['build', '--build-arg', 'BASIC_AUTH=$_BASIC_AUTH', '-t', '$_APP_IMAGE:$SHORT_SHA', '.']
   - id: Push Container
     name: gcr.io/cloud-builders/docker
     args: ['push', '$_APP_IMAGE:$SHORT_SHA']

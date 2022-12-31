@@ -17,7 +17,7 @@ import {
 } from "./ContactForm.module.css";
 
 const formEndpoint = "https://misterorion.com/contact/";
-// const basicAuth = `${process.env.GATSBY_BASIC_AUTH}`;
+const basicAuth = `${import.meta.env.PUBLIC_BASIC_AUTH}`;
 
 const ContactForm = () => {
   const [buttonVisible, setButtonVisible] = useState(true);
