@@ -18,7 +18,6 @@
     "@astrojs/sitemap": "^1.0.0",
     "@fontsource/jetbrains-mono": "^4.5.11",
     "@fontsource/quicksand": "^4.5.11",
-    "@fontsource/roboto": "^4.5.8",
     "@fontsource/rubik": "^4.5.13",
     "astro": "^1.8.0",
     "formik": "^2.2.9",

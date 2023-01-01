@@ -32,10 +32,10 @@ const { entries, tag } = Astro.props;
   </h1>
   {
     entries.map((entry) => (
-      <>
+      <Fragment>
         <h2>{entry.frontmatter.title}</h2>
         <entry.Content />
-      </>
+      </Fragment>
     ))
   }
 </Layout>

@@ -1,3 +1,14 @@
+export const MENU = [
+  {
+    name: "Grimoire",
+    slug: "/grimoire/",
+  },
+  {
+    name: "About",
+    slug: "/who/",
+  },
+];
+
 export const SITE = {
   url: "https://misterorion.com",
   title: "Orion Anderson",

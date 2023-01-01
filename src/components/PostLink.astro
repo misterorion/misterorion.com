@@ -10,30 +10,22 @@ const { slug, title, date } = Astro.props;
 
 <a href={`/${slug}`}>
   <div class="box">
-    <div class="box-inner">
-      <div class="text">
-        <div class="title">{title}</div>
-        <div class="date">
-          {
-            new Date(date).toLocaleDateString("us-en", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })
-          }
-        </div>
-      </div>
+    <div class="title">{title}</div>
+    <div class="date">
+      {
+        new Date(date).toLocaleDateString("us-en", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
+      }
     </div>
   </div>
 </a>
 
 <style>
-  .box-inner {
-    display: flex;
-    justify-content: space-between;
-  }
-  .text {
-    padding: 1rem 1rem;
+  a {
+    text-decoration: none;
   }
   .box {
     margin-bottom: 1rem;
@@ -44,16 +36,9 @@ const { slug, title, date } = Astro.props;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 175ms;
   }
-  a {
-    text-decoration: none;
-  }
   .box:hover {
     border: 1px solid var(--color-highlight);
     box-shadow: var(--box-shadow);
-  }
-  .title {
-    font-weight: 700;
-    font-size: 1.25rem;
   }
   .date {
     font-size: 0.875rem;
@@ -61,5 +46,9 @@ const { slug, title, date } = Astro.props;
     font-weight: 400;
     color: var(--color-box-border);
     padding-top: 0.2rem;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 1.25rem;
   }
 </style>

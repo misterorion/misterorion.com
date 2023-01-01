@@ -1,16 +1,5 @@
 ---
-import { SITE } from "@config";
-
-const menu = [
-  {
-    name: "Grimoire",
-    slug: "/grimoire/",
-  },
-  {
-    name: "About",
-    slug: "/who/",
-  },
-];
+import { SITE, MENU } from "@config";
 
 const { userFirstName, userLastName } = SITE;
 ---
@@ -24,7 +13,7 @@ const { userFirstName, userLastName } = SITE;
   </a>
   <nav>
     {
-      menu.map((item) => (
+      MENU.map((item) => (
         <div class="menu-item">
           <a href={item.slug}>{item.name}</a>
         </div>
