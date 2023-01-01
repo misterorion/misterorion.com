@@ -1,7 +1,8 @@
 ---
-import Layout from "@layouts/Layout.astro";
 import slugify from "slugify";
+
 import { SITE } from "@config";
+import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const allEntries = await Astro.glob(
