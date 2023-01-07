@@ -31,10 +31,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const socialImageURL = new URL(
-  ogImage ? ogImage : SITE.image,
-  Astro.site
-);
+const socialImageURL = new URL(ogImage ? ogImage : SITE.image, Astro.site);
 ---
 
 <html lang="en">
@@ -101,8 +98,10 @@ const socialImageURL = new URL(
     --color-highlight: #ec4899;
     --color-box-border: #6b7280;
     --color-box-border-heavy: #475569;
-    --box-shadow: 0 1px 3px 0 var(--color-highlight), 0 1px 2px -1px var(--color-highlight);
-    --box-shadow-light: 0 1px 3px 0 rgba(240, 240, 240, 0.521), 0 1px 2px -1px rgba(240, 240, 240, 0.493);
+    --box-shadow: 0 1px 3px 0 var(--color-highlight),
+      0 1px 2px -1px var(--color-highlight);
+    --box-shadow-light: 0 1px 3px 0 rgba(240, 240, 240, 0.521),
+      0 1px 2px -1px rgba(240, 240, 240, 0.493);
     --box-border-width: 1px;
   }
   body {
@@ -112,8 +111,13 @@ const socialImageURL = new URL(
     color: var(--color-text-base);
   }
   main {
-    margin: 0.5rem auto;
-    width: 100vw;
-    max-width: 40rem;
+    margin: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    main {
+      margin: 0.5rem auto;
+      max-width: 40rem;
+    }
   }
 </style>

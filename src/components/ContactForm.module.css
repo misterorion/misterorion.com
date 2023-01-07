@@ -43,10 +43,9 @@
 .input {
   padding: 0.5rem 0.75rem ;
   appearance: none;
-  background-color: var(--color-neutral);
+  background-color: var(--color-fill);
   border: 1px solid var(--color-box-border);
   border-radius: 0.25rem;
-  box-shadow: var(--box-shadow-light);
   line-height: 1.25rem;
   color: var(--color-text-base);
 }
@@ -72,10 +71,9 @@
   height: 6rem;
   width: 100%;
   padding: 0.5rem 0.75rem;
-  background-color: var(--color-neutral);
+  background-color: var(--color-fill);
   border: 1px solid var(--color-box-border);
   border-radius: 0.25rem;
-  box-shadow: var(--box-shadow-light);
   line-height: 1.25;
   color: var(--color-text-base);
 }

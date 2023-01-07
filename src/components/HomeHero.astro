@@ -3,55 +3,48 @@ import selfie from "@images/me.jpg";
 ---
 
 <div class="container">
-  <div class="image-container">
-    <img src={selfie} alt="Orion Anderson" height={96} width={96} />
+  <div class="row1">
+    <div class="image-container">
+      <img src={selfie} alt="Orion Anderson" height={150} width={150} />
+    </div>
+    <div class="greet">
+      <strong>Hello!</strong>
+      <br />My name is Orion Anderson.
+      <br />I'm a DevOps Guy in NYC.
+    </div>
   </div>
-  <div class="text">
-    Greetings. My name is Orion Anderson. I'm a DevOps Developer in New York
-    City. I love all things Docker, AWS, and automation.
+  <div class="text2">
+    I love all this AWS, Docker, automation.
   </div>
 </div>
 
 <style>
   .container {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
-    border: 1px solid var(--color-highlight);
-    border-radius: 0.25rem;
-    box-shadow: var(--box-shadow);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-box-border);
   }
-  .image-container {
-    margin-bottom: 1.5rem;
-    width: 10rem;
+  .row1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
   }
-  .image-container > img {
-    border-radius: 0.25rem;
+  .greet {
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+  img {
+    border-radius: 0.3rem;
   }
 
   @media (min-width: 768px) {
-    .container {
-      display: flex;
+    img {
+      margin-right: 2rem;
     }
-    .image-container {
-      width: 8rem;
-      margin-bottom: 0px;
-      margin-right: 1.5rem;
-      flex-shrink: 0;
-    }
-    .text {
-      font-size: 1.25rem;
-      line-height: 1.9rem;
-    }
-  }
 
-  @media (min-width: 1024px) {
-    .container {
-      margin-bottom: 1rem;
-      padding: 1rem;
-    }
-    .image-container {
-      width: 6rem;
-      margin-right: 1.5rem;
+    .greet {
+      margin-top: -0.5rem;
     }
   }
 </style>
