@@ -12,7 +12,7 @@ http:// {
 		}
 
 		header {
-			Cache-Control "no-cache"
+			Cache-Control "max-age=600, must-revalidatae"
 			Content-Security-Policy "default-src 'self' data: 'unsafe-inline'; frame-ancestors 'none'"
 			Permissions-Policy "geolocation=()"
 			Referrer-Policy "strict-origin-when-cross-origin"
@@ -25,7 +25,7 @@ http:// {
 		}
 		route @immutable {
 			header -Content-Security-Policy
-			header Cache-Control public,max-age=31536000,immutable
+			header Cache-Control public, max-age=31536000, immutable
 		}
 	}
 
