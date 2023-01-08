@@ -1,0 +1,124 @@
+---
+import { SITE, MENU } from "@config";
+
+const { userFirstName, userLastName } = SITE;
+---
+
+<div class="header-container">
+  <a href="/">
+    <div class="title">
+      <div class="text-pink">{userFirstName.toLowerCase()}</div>
+      <div class="text-teal">{userLastName.toLowerCase()}</div>
+    </div>
+  </a>
+  <nav>
+    {
+      MENU.map((item) => (
+        <div class="menu-item">
+          <a href={item.slug}>{item.name}</a>
+        </div>
+      ))
+    }
+    <div id="theme-btn">
+      <img
+        id="sun-png"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABaElEQVR4nO2WXUrDUBCFk2erLzZVXIvQ2g1Ixa1I8U3tZvJm0V0ErYJK3UVt9FU/GXoCKTYhN17/MAfuQ5IzM2cmuecmCBr8ZSA0AoIvGm8ExECn7iuwWOWI6giIlf8e2HIVYDGKNcR1J3CnBI/AjkNsJxc7BbadBeS6eFCiBAiVfATcAC9aE+BMokNxUezK6bmKSIBd4BBIKcYcOBA3+XTxDOrKir+p0DnQBda0esBYz16BgcUEvsBi7FnnRyW8oThPQNungFHWeQXuhbinPgXcKmm3AndP3EmdQh+g+8+6bFXIsS5uWpbTVUDqIGBD3LmzgCJozxt6Fbh9ca8DX2BhMoZxBe6luCc+BUQyGcOwhHcszgzY9CkglMOZyaCtZl97S6uf69w4+96MiGUrHshkijBTcT9WzOrDqG0mYx+ZtqftkCt75zZ2b4cRy8fx9NuPY37JD0n8Y79kVVDb2XyBfy+gQeAB7+09W+gK63gGAAAAAElFTkSuQmCC"
+      />
+      <img
+        id="moon-png"
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABnElEQVR4nO2Wu0oDQRSGv2jEgDdQ1BcQRLDTQiy08wJaBSJWvoAIiqCVqIWIWBgxhSg2NoK1TyEoYgQvhdgIIYWSVF7IysAfWMJmk91kRTAfDMzumXPOP5czu1Cjxh/FUvt/AqwirVwiQMNvCYgAM8A58AB8AFmgvRIBeUrNPAa8OAg9oEpYRQTUA3s2exqIA0k9DxMwcSX6BraBZr1P631rkMljSvIJRAtsGdlagkreCDwrybKD/Va2oaAEzCrBHVDnYN+t9iEs5EwJ5nGmF/hSKQ4QAE8S0OcyJr8Kr8Cgy7iOIqvoSlbBm1zGhIEL20E9BEaBLqAbGAESihXCI5kyT7kRsSMBxW7Vd3xwL+f+Msf3AFvAJZDSrXmtGFd+BJzKeRH/JBTjxI9z1FaG5jr2ShvwphiTfgSEbduw4MN/3zYBE8sXU0BOB2zcg9+c/Ewbo0I2bWW2VOLnw9g29OEyPmtUgRCwrtmYoI/Aqm4/U++d6q/Yvh05+XiufTcmtJ9WiZb0uF2eMNUwDRwDN6r3lPpHsvmpmBr/jB+XeIlBagJJNwAAAABJRU5ErkJggg=="
+      />
+    </div>
+  </nav>
+</div>
+
+<style>
+  #theme-btn {
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #sun-png,
+  html[data-theme="dark"] #moon-png {
+    display: none;
+  }
+  #moon-png,
+  html[data-theme="dark"] #sun-png {
+    display: block;
+  }
+  .text-pink {
+    color: var(--color-highlight);
+  }
+  .text-teal {
+    color: var(--color-accent);
+  }
+  .header-container {
+    margin-bottom: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Quicksand", sans-serif;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    color: var(--color-text-base);
+  }
+  .title::before {
+    content: "<";
+    font-size: 2rem;
+    top: 1px;
+    position: relative;
+    margin-right: 8px;
+  }
+  .title::after {
+    content: ">";
+    font-size: 2rem;
+    top: 1px;
+    position: relative;
+    margin-left: 8px;
+  }
+  .menu-item {
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-neutral);
+    padding: 0.25rem 0.5rem;
+    margin-left: 1rem;
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  .menu-item:hover a {
+    color: var(--color-highlight);
+  }
+  .menuItem:first-child {
+    margin-left: 0;
+  }
+  a {
+    text-decoration: none;
+    color: var(--color-text-contrast);
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      margin-top: 1rem;
+    }
+    .header-container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .title {
+      margin: 0;
+    }
+  }
+</style>

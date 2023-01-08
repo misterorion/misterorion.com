@@ -1,0 +1,123 @@
+---
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/400-italic.css";
+import "@fontsource/jetbrains-mono/600.css";
+import "@fontsource/jetbrains-mono/600-italic.css";
+import "@fontsource/quicksand/700.css";
+import "@fontsource/rubik/400.css";
+import "@fontsource/rubik/400-italic.css";
+import "@fontsource/rubik/700.css";
+
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import { SITE } from "@config";
+import Favicon from "@images/favicon.png";
+import "@styles/modern-normalize.css";
+import "@styles/global.css";
+
+export interface Props {
+  title?: string;
+  author?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = SITE.title,
+  author = SITE.author,
+  description = SITE.description,
+  ogImage = SITE.image,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const socialImageURL = new URL(ogImage ? ogImage : SITE.image, Astro.site);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href={Favicon} type="image/png" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+    <!-- General Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+    <!-- Plausible Proxy -->
+    <script defer data-domain="misterorion.com" src="/js/script.js"></script>
+    <script is:inline src="/toggle-theme.js"></script>
+  </head>
+  <body>
+    <main>
+      <Header />
+      <article>
+        <slot />
+      </article>
+      <Footer />
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    font-size: 18px;
+  }
+  :root,
+  html[data-theme="light"] {
+    --color-fill: #fafafa;
+    --color-neutral: #e5e5e5;
+    --color-text-base: #171717;
+    --color-text-contrast: #6b7280;
+    --color-accent: #0f766e;
+    --color-highlight: #be185d;
+    --color-box-border: #6b7280;
+    --color-box-border-heavy: #4b5563;
+    --box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --box-border-width: 0px;
+  }
+  html[data-theme="dark"] {
+    --color-fill: #171717;
+    --color-neutral: #404040;
+    --color-text-base: #f5f5f5;
+    --color-text-contrast: #9ca3af;
+    --color-accent: #14b8a6;
+    --color-highlight: #ec4899;
+    --color-box-border: #6b7280;
+    --color-box-border-heavy: #475569;
+    --box-shadow: 0 1px 3px 0 var(--color-highlight),
+      0 1px 2px -1px var(--color-highlight);
+    --box-shadow-light: 0 1px 3px 0 rgba(240, 240, 240, 0.521),
+      0 1px 2px -1px rgba(240, 240, 240, 0.493);
+    --box-border-width: 1px;
+  }
+  body {
+    font-family: "Rubik", sans-serif;
+    line-height: 1.75rem;
+    background-color: var(--color-fill);
+    color: var(--color-text-base);
+  }
+  main {
+    margin: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    main {
+      margin: 0.5rem auto;
+      max-width: 40rem;
+    }
+  }
+</style>

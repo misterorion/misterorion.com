@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /gg/ghost/
+Disallow: /gg/p/
+Disallow: /gg/email/
+Disallow: /gg/r/
+
+Sitemap: https://misterorion.com/sitemap-index.xml

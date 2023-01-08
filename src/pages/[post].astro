@@ -1,0 +1,140 @@
+---
+import slugify from "slugify";
+
+import ContactForm from "@components/ContactForm";
+import { SITE } from "@config";
+import Layout from "@layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob("../../content/posts/*.{md,mdx}");
+
+  return posts.map((post) => ({
+    params: {
+      post: post.frontmatter.slug,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+const { Content, frontmatter } = Astro.props.post;
+
+const {
+  title,
+  date,
+  description,
+  image,
+  imageAlt,
+  imageSource,
+  imageSourceUrl,
+  tags,
+} = frontmatter;
+---
+
+<Layout
+  author={SITE.author}
+  description={description}
+  ogImage={image ? image : SITE.image}
+  title={title}
+>
+  <h1>{title}</h1>
+  {description && <p class="description">{description}</p>}
+  <div class="date">
+    {
+      new Date(date).toLocaleDateString("us-en", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })
+    }
+  </div>
+  {image && <img src={image} alt={imageAlt} class="responsive" />}
+  <div class="caption">
+    {imageAlt}
+    {
+      imageSource && (
+        <Fragment>
+          (<a href={imageSourceUrl}>{imageSource}</a>)
+        </Fragment>
+      )
+    }
+  </div>
+  <Content />
+  <div class="tags">
+    <ul>
+      {
+        tags.map((tag) => (
+          <li>
+            <a href={`/tag/${slugify(tag, { lower: true })}`}>#{tag}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <ContactForm client:visible />
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2.2rem;
+    line-height: 120%;
+    margin-bottom: 0;
+  }
+  .date {
+    color: var(--color-text-contrast);
+    padding-bottom: 2rem;
+  }
+  .description {
+    margin-bottom: 1.3rem;
+    font-size: 1.8rem;
+    line-height: 2.1rem;
+  }
+  .featured {
+    margin-top: 2rem;
+    /* margin-bottom: 4rem; */
+  }
+  .caption {
+    margin-bottom: 2rem;
+  }
+  .caption a {
+    font-weight: normal;
+    color: var(--color-box-border);
+    border-bottom: 1px dotted var(--color-box-border);
+  }
+  .tags {
+    margin-top: 3.3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--color-box-border);
+    padding-bottom: 3rem;
+  }
+  .tags ul {
+    display: block;
+    font-weight: 700;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .tags li {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .tags li a {
+    color: var(--color-highlight);
+    text-decoration: none;
+  }
+  .tags li a:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (min-width: 768px) {
+    h1 {
+      font-size: 2.8rem;
+      line-height: 3.7rem;
+    }
+    .tags ul {
+      display: inline;
+    }
+  }
+</style>

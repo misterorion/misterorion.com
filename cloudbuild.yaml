@@ -1,0 +1,21 @@
+steps:
+  - id: Fetch Content
+    name: gcr.io/cloud-builders/git
+    script: |
+      git init
+      git config -f .gitmodules submodule.content.url $CONTENT_REPO
+      git submodule init
+      git submodule update
+    env: ['GIT_DISCOVERY_ACROSS_FILESYSTEM=1', 'CONTENT_REPO=$_CONTENT_REPO']
+  - id: Fetch Brotlin Binary
+    name: gcr.io/cloud-builders/gcloud
+    args: ['storage', 'cp', '$_BROTLI_BIN', 'brotli.tar.gz']
+  - id: Build Container
+    name: gcr.io/cloud-builders/docker
+    args: ['build', '--build-arg', 'BASIC_AUTH=$_BASIC_AUTH', '-t', '$_APP_IMAGE:$SHORT_SHA', '.']
+  - id: Push Container
+    name: gcr.io/cloud-builders/docker
+    args: ['push', '$_APP_IMAGE:$SHORT_SHA']
+  - id: Deploy to Cloud Run
+    name: gcr.io/cloud-builders/gcloud
+    args: ['run', 'deploy', '$_SERVICE', '--image=$_APP_IMAGE:$SHORT_SHA', '--region=us-central1', '--async']

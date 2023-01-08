@@ -1,0 +1,32 @@
+{
+  "name": "misterorion.com",
+  "private": true,
+  "version": "3.0.0",
+  "description": "My personal home on the web.",
+  "author": "Orion Anderson",
+  "license": "ISC",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.12.1",
+    "@astrojs/mdx": "^0.14.0",
+    "@astrojs/react": "^1.2.2",
+    "@astrojs/sitemap": "^1.0.0",
+    "@fontsource/jetbrains-mono": "^4.5.11",
+    "@fontsource/quicksand": "^4.5.11",
+    "@fontsource/rubik": "^4.5.13",
+    "astro": "^1.9.1",
+    "formik": "^2.2.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "slugify": "^1.6.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/misterorion/misterorion.com"
+  }
+}
