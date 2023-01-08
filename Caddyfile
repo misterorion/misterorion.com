@@ -13,7 +13,7 @@ http:// {
 
 		header {
 			Cache-Control "no-cache"
-			Content-Security-Policy "default-src 'self' data:; frame-ancestors 'none'"
+			Content-Security-Policy "default-src 'self' data:; frame-ancestors 'none'; style-src 'unsafe-inline';"
 			Permissions-Policy "geolocation=()"
 			Referrer-Policy "strict-origin-when-cross-origin"
 			Strict-Transport-Security "max-age=63072000; includeSubDomains"
