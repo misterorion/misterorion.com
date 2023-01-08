@@ -6,7 +6,11 @@ import selfie from "@images/me.jpg";
   <div class="hero-text">
     <h2>Greetings, I'm Orion!</h2>
     <p>Welcome to my home on the Web.</p>
-    <p>I'm a DevOps engineer and technical director. I manage cloud infrastructure, write CI and CD tools, and define technological strategy. I like classical music, gaming, sci-fi, and yoga.</p>
+    <p>
+      I'm a DevOps engineer and technical director. I manage cloud
+      infrastructure, write CI and CD tools, and define technological strategy.
+      I like classical music, gaming, sci-fi, and yoga.
+    </p>
   </div>
   <div>
     <img src={selfie} alt="Orion Anderson" height={230} width={230} />
@@ -17,9 +21,7 @@ import selfie from "@images/me.jpg";
   .container {
     padding-bottom: 2rem;
     display: flex;
-    flex-direction: row;
-    align-items:flex-start;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--color-box-border);
   }
@@ -32,6 +34,13 @@ import selfie from "@images/me.jpg";
   }
 
   @media (min-width: 768px) {
+    .container {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--color-box-border);
+    }
     img {
       margin-left: 2rem;
     }
