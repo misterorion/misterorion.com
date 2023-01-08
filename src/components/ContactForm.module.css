@@ -81,7 +81,7 @@
   color: var(--color-text-contrast);
 }
 .comment:focus {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--color-accent);
   outline-offset: 0px;
 }
 .nope {
@@ -100,7 +100,7 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-  color: var(--teal);
+  color: var(--color-accent);
 }
 
 @screen tablet {
