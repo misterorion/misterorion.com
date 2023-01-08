@@ -3,36 +3,29 @@ import selfie from "@images/me.jpg";
 ---
 
 <div class="container">
-  <div class="row1">
-    <div class="image-container">
-      <img src={selfie} alt="Orion Anderson" height={150} width={150} />
-    </div>
-    <div class="greet">
-      <strong>Hello!</strong>
-      <br />My name is Orion Anderson.
-      <br />I'm a DevOps Guy in NYC.
-    </div>
+  <div class="hero-text">
+    <h2>Greetings, I'm Orion!</h2>
+    <p>Welcome to my home on the Web.</p>
+    <p>I'm a DevOps engineer and technical director. I manage cloud infrastructure, write CI and CD tools, and define technological strategy. I like classical music, gaming, sci-fi, and yoga.</p>
   </div>
-  <div class="text2">
-    I love all this AWS, Docker, automation.
+  <div class="image-container">
+    <img src={selfie} alt="Orion Anderson" height={230} width={230} />
   </div>
 </div>
 
 <style>
   .container {
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-box-border);
-  }
-  .row1 {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+    align-items:flex-start;
+    justify-content: space-between;
     margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-box-border);
   }
-  .greet {
-    font-size: 2rem;
-    line-height: 2.3rem;
+  .hero-text > h2 {
+    margin-top: 0;
+    color: var(--color-text-base);
   }
   img {
     border-radius: 0.3rem;
@@ -40,11 +33,7 @@ import selfie from "@images/me.jpg";
 
   @media (min-width: 768px) {
     img {
-      margin-right: 2rem;
-    }
-
-    .greet {
-      margin-top: -0.5rem;
+      margin-left: 2rem;
     }
   }
 </style>
