@@ -1,15 +1,12 @@
 steps:
-  - id: git-submodule
-    name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
-    env: ['GIT_DISCOVERY_ACROSS_FILESYSTEM=1']
-    args:
-    - '-c'
-    - |
+  - id: Fetch Content
+    name: gcr.io/cloud-builders/git
+    script: |
       git init
-      git config -f .gitmodules submodule.content.url https://source.developers.google.com/p/mechapower/r/github_misterorion_misterorion.com-content
+      git config -f .gitmodules submodule.content.url $CONTENT_REPO
       git submodule init
       git submodule update
+    env: ['GIT_DISCOVERY_ACROSS_FILESYSTEM=1', 'CONTENT_REPO=$_CONTENT_REPO']
   - id: Fetch Brotlin Binary
     name: gcr.io/cloud-builders/gcloud
     args: ['storage', 'cp', '$_BROTLI_BIN', 'brotli.tar.gz']
