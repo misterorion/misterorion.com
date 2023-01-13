@@ -10,7 +10,7 @@ const { slug, title, date, description } = Astro.props;
 ---
 
 <div class="box">
-  <a href={`/${slug}`}>
+  <a href={`/${slug}/`}>
     <div class="title">{title}</div>
   </a>
   <div class="date">
@@ -33,6 +33,9 @@ const { slug, title, date, description } = Astro.props;
     margin-bottom: 2rem;
     margin-top: 5rem;
     padding-bottom: 3rem;
+  }
+  a:hover {
+    text-decoration: underline;
   }
   .box {
     margin-top: 3rem;
