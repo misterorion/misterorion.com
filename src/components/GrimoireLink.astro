@@ -10,7 +10,7 @@ const { title, tags } = Astro.props;
 ---
 
 <div class="row">
-  <a href={`/grimoire/${slugify(title, { lower: true })}`} class="title">
+  <a href={`/grimoire/${slugify(title, { lower: true })}/`} class="title">
     {title}
   </a>
   <div class="tag-list">
