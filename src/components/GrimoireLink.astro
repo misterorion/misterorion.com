@@ -18,7 +18,7 @@ const { title, tags } = Astro.props;
     {
       tags.map((tag) => (
         <a
-          href={`/grimoire/tag/${slugify(tag, { lower: true })}`}
+          href={`/grimoire/tag/${slugify(tag, { lower: true })}/`}
           class="tag-style"
         >
           {tag}
