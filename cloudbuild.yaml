@@ -7,7 +7,7 @@ steps:
       git submodule init
       git submodule update
     env: ["GIT_DISCOVERY_ACROSS_FILESYSTEM=1", "CONTENT_REPO=$_CONTENT_REPO"]
-  - id: Fetch Brotlin Binary
+  - id: Fetch Brotli Binary
     name: gcr.io/cloud-builders/gcloud
     args: ["storage", "cp", "$_BROTLI_BIN", "brotli.tar.gz"]
   - id: Build Container
