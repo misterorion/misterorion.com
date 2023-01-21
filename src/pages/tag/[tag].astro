@@ -34,6 +34,7 @@ const { posts, tag } = Astro.props;
     posts.map((post) => (
       <PostLink
         title={post.frontmatter.title}
+        description={post.frontmatter.description}
         date={post.frontmatter.date}
         slug={post.frontmatter.slug}
       />
