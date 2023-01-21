@@ -12,7 +12,7 @@ http:// {
 		}
 
 		header {
-			Cache-Control "max-age=600, must-revalidate"
+			Cache-Control "max-age=3600, must-revalidate"
 			Content-Security-Policy "default-src 'self' data: 'unsafe-inline'; frame-ancestors 'none'"
 			Permissions-Policy "geolocation=()"
 			Referrer-Policy "strict-origin-when-cross-origin"
