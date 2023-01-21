@@ -8,7 +8,7 @@ http:// {
 	handle {
 		file_server {
 			precompressed br gzip
-			root /srv
+			root * /srv
 		}
 
 		header {
