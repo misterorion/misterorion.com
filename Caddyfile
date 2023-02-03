@@ -21,7 +21,7 @@ http:// {
 		}
 
 		@immutable {
-			path /assets/*
+			path /_astro/*
 		}
 		route @immutable {
 			header -Content-Security-Policy
