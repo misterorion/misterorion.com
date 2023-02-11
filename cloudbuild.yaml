@@ -15,7 +15,6 @@ steps:
     args:
       [
         "build",
-        "--progress=plain",
         "--build-arg",
         "BASIC_AUTH=$_BASIC_AUTH",
         "-t",

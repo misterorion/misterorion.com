@@ -16,8 +16,5 @@ RUN tar -zxf brotli.tar.gz && \
     -exec gzip --best -k {} \+
 
 FROM caddy:2-alpine
-RUN caddy version
-
-FROM caddy:2-alpine
 COPY --from=compressor /app/dist /srv
 COPY ./Caddyfile /etc/caddy/Caddyfile
