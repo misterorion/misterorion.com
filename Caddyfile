@@ -21,7 +21,7 @@ http:// {
 		}
 
 		@immutable {
-			path /_astro/*
+			path /_astro/* /robots.txt
 		}
 		route @immutable {
 			header -Content-Security-Policy
