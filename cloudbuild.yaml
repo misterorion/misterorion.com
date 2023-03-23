@@ -8,7 +8,7 @@ steps:
       git submodule update
     env: ["GIT_DISCOVERY_ACROSS_FILESYSTEM=1", "CONTENT_REPO=$_CONTENT_REPO"]
   - id: Fetch Brotli Binary
-    name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
     entrypoint: gcloud
     args: ["storage", "cp", "$_BROTLI_BIN", "brotli.tar.gz"]
   - id: Build Container
@@ -26,7 +26,7 @@ steps:
     name: gcr.io/cloud-builders/docker
     args: ["push", "$_APP_IMAGE:$SHORT_SHA"]
   - id: Deploy to Cloud Run
-    name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
     entrypoint: gcloud
     args:
       [
