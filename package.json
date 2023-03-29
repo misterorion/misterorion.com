@@ -12,18 +12,18 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/image": "^0.16.2",
+    "@astrojs/image": "^0.16.3",
     "@astrojs/mdx": "^0.18.2",
     "@astrojs/react": "^2.1.0",
     "@astrojs/sitemap": "^1.2.1",
     "@fontsource/jetbrains-mono": "^4.5.12",
     "@fontsource/quicksand": "^4.5.12",
     "@fontsource/rubik": "^4.5.14",
-    "astro": "^2.1.7",
+    "astro": "^2.1.8",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.6"
   },
   "repository": {
     "type": "git",
