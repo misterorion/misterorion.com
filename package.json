@@ -20,7 +20,7 @@
     "@fontsource/quicksand": "^5.0.1",
     "@fontsource/rubik": "^5.0.1",
     "astro": "^2.5.5",
-    "formik": "^2.2.9",
+    "formik": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "slugify": "^1.6.6"
