@@ -8,7 +8,7 @@ import { socials } from "config";
       socials
         .filter((social) => social.enabled)
         .map((social) => (
-          <a href={social.url}>
+          <a href={social.url} aria-label={social.name}>
             <Fragment set:html={social.svg} />
           </a>
         ))
