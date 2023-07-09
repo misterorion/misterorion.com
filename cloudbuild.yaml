@@ -15,8 +15,6 @@ steps:
     args: ["run", "build"]
     env:
       - PUBLIC_BASIC_AUTH=$_BASIC_AUTH
-    # script: |
-      # PUBLIC_BASIC_AUTH=$PUBLIC_BASIC_AUTH npm run build
   - id: Sync
     name: gcr.io/cloud-builders/gcloud
     env:
