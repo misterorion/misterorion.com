@@ -12,17 +12,21 @@ steps:
     args: ["ci"]
   - id: Build
     name: gcr.io/cloud-builders/npm
+    env:
+      - 'PUBLIC_BASIC_AUTH=$_BASIC_AUTH'
     script: |
-      PUBLIC_BASIC_AUTH=$_BASIC_AUTH npm run build
+      PUBLIC_BASIC_AUTH=$PUBLIC_BASIC_AUTH npm run build
   - id: Sync
     name: gcr.io/cloud-builders/gcloud
+    env:
+      - 'WEBSITE_BUCKET=$_WEBSITE_BUCKET'
     script: |
       mkdir empty
-      gsutil -q -m rsync -R -d empty gs://$_WEBSITE_BUCKET
+      gsutil -q -m rsync -R -d empty gs://$WEBSITE_BUCKET
       echo Syncing website content ...
-      gsutil -q -m cp -R dist/* gs://$_WEBSITE_BUCKET
-      gsutil -q -m setmeta -h "Cache-Control:public,max-age=86400" gs://$_WEBSITE_BUCKET/**
-      gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000" gs://$_WEBSITE_BUCKET/_astro/**
+      gsutil -q -m cp -R dist/* gs://$WEBSITE_BUCKET
+      gsutil -q -m setmeta -h "Cache-Control:public,max-age=86400" gs://$WEBSITE_BUCKET/**
+      gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000" gs://$WEBSITE_BUCKET/_astro/**
       echo Done!
   - id: Bust Cache
     name: gcr.io/cloud-builders/gcloud
