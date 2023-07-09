@@ -7,33 +7,38 @@ steps:
       git submodule init
       git submodule update
     env: ["GIT_DISCOVERY_ACROSS_FILESYSTEM=1", "CONTENT_REPO=$_CONTENT_REPO"]
-  - id: Fetch Brotli Binary
-    name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
-    entrypoint: gcloud
-    args: ["storage", "cp", "$_BROTLI_BIN", "brotli.tar.gz"]
-  - id: Build Container
-    name: gcr.io/cloud-builders/docker
+  - id: Install
+    name: gcr.io/cloud-builders/npm
+    args: ["ci"]
+  - id: Build
+    name: gcr.io/cloud-builders/npm
+    args: ["run", "build"]
+    env: ["BASIC_AUTH=$_BASIC_AUTH"]
+  - id: Sync
+    name: gcr.io/cloud-builders/gcloud
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        mkdir empty
+        gsutil -q -m rsync -R -d empty gs://$_WEBSITE_BUCKET
+        echo Syncing website content ...
+        gsutil -q -m cp -R dist/* gs://$_WEBSITE_BUCKET
+        gsutil -q -m setmeta -h "Cache-Control:public,max-age=86400" gs://$_WEBSITE_BUCKET/**
+        gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000" gs://$_WEBSITE_BUCKET/_astro/**
+    waitFor: ["Build"]
+  - id: Bust Cache
+    name: gcr.io/cloud-builders/gcloud
     args:
       [
-        "build",
-        "--build-arg",
-        "BASIC_AUTH=$_BASIC_AUTH",
-        "-t",
-        "$_APP_IMAGE:$SHORT_SHA",
-        ".",
-      ]
-  - id: Push Container
-    name: gcr.io/cloud-builders/docker
-    args: ["push", "$_APP_IMAGE:$SHORT_SHA"]
-  - id: Deploy to Cloud Run
-    name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
-    entrypoint: gcloud
-    args:
-      [
-        "run",
-        "deploy",
-        "$_SERVICE",
-        "--image=$_APP_IMAGE:$SHORT_SHA",
-        "--region=us-central1",
+        "compute",
+        "url-maps",
+        "invalidate-cdn-cache",
+        $_LB_NAME,
+        "--global",
+        "--host",
+        $_LB_HOST,
+        "--path",
+        "/*",
         "--async",
       ]
