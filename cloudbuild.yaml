@@ -12,8 +12,10 @@ steps:
     args: ["ci"]
   - id: Build
     name: gcr.io/cloud-builders/npm
-    args: ["run", "build"]
-    env: ["PUBLIC_BASIC_AUTH=$_BASIC_AUTH"]
+    args:
+      - -c
+      - |
+        PUBLIC_BASIC_AUTH=$_BASIC_AUTH npm run build
   - id: Sync
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
