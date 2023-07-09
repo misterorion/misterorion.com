@@ -1,29 +1,28 @@
 steps:
   - id: Fetch Content Submodule
     name: gcr.io/cloud-builders/git
-    env: ["GIT_DISCOVERY_ACROSS_FILESYSTEM=1", "CONTENT_REPO=$_CONTENT_REPO"]
     script: |
       git init
       git config -f .gitmodules submodule.content.url $CONTENT_REPO
       git submodule init
       git submodule update
+    env: ["GIT_DISCOVERY_ACROSS_FILESYSTEM=1", "CONTENT_REPO=$_CONTENT_REPO"]
   - id: Install
     name: gcr.io/cloud-builders/npm
     args: ["ci"]
   - id: Build
     name: gcr.io/cloud-builders/npm
     args: ["run", "build"]
-    env:
-      - PUBLIC_BASIC_AUTH=$_BASIC_AUTH
+    env: ["PUBLIC_BASIC_AUTH=$_BASIC_AUTH"]
   - id: Sync
     name: gcr.io/cloud-builders/gcloud
-    env: ["WEBSITE_BUCKET=$_WEBSITE_BUCKET"]
     script: |
       mkdir empty
       gsutil -q -m rsync -R -d empty gs://$WEBSITE_BUCKET
       gsutil -q -m cp -R dist/* gs://$WEBSITE_BUCKET
       gsutil -q -m setmeta -h "Cache-Control:public,max-age=86400" gs://$WEBSITE_BUCKET/**
       gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000" gs://$WEBSITE_BUCKET/_astro/**
+    env: ["WEBSITE_BUCKET=$_WEBSITE_BUCKET"]
   - id: Bust Cache
     name: gcr.io/cloud-builders/gcloud
     args:
