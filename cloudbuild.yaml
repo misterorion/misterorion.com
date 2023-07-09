@@ -13,7 +13,7 @@ steps:
   - id: Build
     name: gcr.io/cloud-builders/npm
     args: ["run", "build"]
-    env: ["BASIC_AUTH=$_BASIC_AUTH"]
+    env: ["PUBLIC_BASIC_AUTH=$_BASIC_AUTH"]
   - id: Sync
     name: gcr.io/cloud-builders/gcloud
     entrypoint: sh
