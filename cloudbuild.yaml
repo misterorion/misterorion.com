@@ -16,7 +16,6 @@ steps:
       PUBLIC_BASIC_AUTH=$_BASIC_AUTH npm run build
   - id: Sync
     name: gcr.io/cloud-builders/gcloud
-    entrypoint: sh
     script: |
       mkdir empty
       gsutil -q -m rsync -R -d empty gs://$_WEBSITE_BUCKET
