@@ -21,20 +21,6 @@ steps:
       gsutil -q -m rsync -R -d empty gs://$WEBSITE_BUCKET
       gsutil -q -m cp -R dist/* gs://$WEBSITE_BUCKET
       gsutil -q -m setmeta -h "Cache-Control:public,max-age=86400" gs://$WEBSITE_BUCKET/**
-      gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000" gs://$WEBSITE_BUCKET/_astro/**
+      gsutil -q -m setmeta -h "Cache-Control:public,max-age=180" gs://$WEBSITE_BUCKET/**/*.html
+      gsutil -q -m setmeta -h "Cache-Control:public,max-age=31536000,immutable" gs://$WEBSITE_BUCKET/_astro/**
     env: ["WEBSITE_BUCKET=$_WEBSITE_BUCKET"]
-  - id: Bust Cache
-    name: gcr.io/cloud-builders/gcloud
-    args:
-      [
-        "compute",
-        "url-maps",
-        "invalidate-cdn-cache",
-        $_LB_NAME,
-        "--global",
-        "--host",
-        $_LB_HOST,
-        "--path",
-        "/*",
-        "--async",
-      ]
