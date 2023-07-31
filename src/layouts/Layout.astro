@@ -1,12 +1,9 @@
 ---
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/400-italic.css";
-import "@fontsource/jetbrains-mono/600.css";
-import "@fontsource/jetbrains-mono/600-italic.css";
-import "@fontsource/quicksand/700.css";
-import "@fontsource/rubik/400.css";
-import "@fontsource/rubik/400-italic.css";
-import "@fontsource/rubik/700.css";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/jetbrains-mono/wght-italic.css";
+import "@fontsource-variable/quicksand";
+import "@fontsource-variable/rubik";
+import "@fontsource-variable/rubik/wght-italic.css";
 
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
@@ -105,7 +102,7 @@ const socialImageURL = new URL(ogImage ? ogImage : SITE.image, Astro.site);
     --box-border-width: 1px;
   }
   body {
-    font-family: "Rubik", sans-serif;
+    font-family: "Rubik Variable", sans-serif;
     line-height: 1.75rem;
     background-color: var(--color-fill);
     color: var(--color-text-base);

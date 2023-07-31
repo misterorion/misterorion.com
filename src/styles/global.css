@@ -40,14 +40,14 @@ pre {
 }
 
 pre > code {
-  font-family: "JetBrains Mono", monospace;
+  font-family: "JetBrains Mono Variable", monospace;
   font-size: 0.7rem;
   font-weight: 600;
 }
 
 p > code,
 li > code {
-  font-family: "JetBrains Mono", monospace;
+  font-family: "JetBrains Mono Variable", monospace;
   font-size: 0.8rem;
   padding: 0.1rem 0.5rem 0.2rem 0.5rem;
   border-radius: 0.15rem;
@@ -65,7 +65,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Rubik", sans-serif;
+  font-family: "Rubik Variable", sans-serif;
   font-weight: 700;
   color: var(--color-text-base);
 }
