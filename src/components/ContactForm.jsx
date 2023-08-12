@@ -81,7 +81,7 @@ const ContactForm = () => {
         email: values.emaile2d8u,
         comment: values.commente2d8u,
       };
-      await fetch(formEndpoint, {
+      const response = await fetch(formEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,13 +90,15 @@ const ContactForm = () => {
         body: JSON.stringify(convertedValues),
         mode: "cors"
       })
-        .then(() => {
-          resetForm();
-          toggleButtonVisible();
-        })
-        .catch(() => {
-          alert("Error");
-        });
+      .catch(() => {
+        alert("Error"); // This will catch CORS errors.
+      });
+      if (!response.ok) {
+        alert("Error"); // This will catch non-200 response codes from the response.
+      } else {
+        resetForm();
+        toggleButtonVisible();
+      }
     },
   });
 
