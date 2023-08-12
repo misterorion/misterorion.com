@@ -91,10 +91,10 @@ const ContactForm = () => {
         mode: "cors"
       })
       .catch(() => {
-        alert("Error"); // This will catch CORS errors.
+        alert("Browser Error"); // This will catch CORS errors.
       });
       if (!response.ok) {
-        alert("Error"); // This will catch non-200 response codes from the response.
+        alert("Backend Error"); // This will catch non-200 response codes from the response.
       } else {
         resetForm();
         toggleButtonVisible();
