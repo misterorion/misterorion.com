@@ -17,7 +17,6 @@ import {
 } from "./ContactForm.module.css";
 
 const formEndpoint = "https://misterorion.com/contact/";
-// const basicAuth = `${import.meta.env.PUBLIC_BASIC_AUTH}`;
 
 const ContactForm = () => {
   const [buttonVisible, setButtonVisible] = useState(true);
@@ -85,9 +84,9 @@ const ContactForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: basicAuth,
         },
         body: JSON.stringify(convertedValues),
+        mode: "cors"
       })
         .then(() => {
           resetForm();
