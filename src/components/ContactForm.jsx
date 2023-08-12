@@ -16,7 +16,8 @@ import {
   success,
 } from "./ContactForm.module.css";
 
-const formEndpoint = "https://misterorion.com/contact/";
+// const formEndpoint = "https://misterorion.com/contact/";
+const formEndpoint = "https://nhv3tpknrguux46ubb5lkskala0nwvrb.lambda-url.us-east-2.on.aws/contact/"
 
 const ContactForm = () => {
   const [buttonVisible, setButtonVisible] = useState(true);
