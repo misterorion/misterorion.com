@@ -1,6 +1,5 @@
 ---
 import slugify from "slugify";
-
 import ContactForm from "@components/ContactForm";
 import { SITE } from "config";
 import Layout from "@layouts/Layout.astro";
@@ -49,7 +48,7 @@ const {
       })
     }
   </div>
-  {image && <img src={image} alt={imageAlt} class="responsive" />}
+  {image && <img src={image.src} alt={imageAlt} class="responsive" />}
   <div class="caption">
     {imageAlt}
     {

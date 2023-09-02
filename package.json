@@ -12,14 +12,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/image": "^0.17.3",
-    "@astrojs/mdx": "^0.19.7",
-    "@astrojs/react": "^2.3.2",
-    "@astrojs/sitemap": "^2.0.2",
+    "@astrojs/mdx": "^1.0.0",
+    "@astrojs/react": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
     "@fontsource-variable/jetbrains-mono": "^5.0.9",
     "@fontsource-variable/quicksand": "^5.0.8",
     "@fontsource-variable/rubik": "^5.0.10",
-    "astro": "^2.10.13",
+    "astro": "^3.0.7",
     "formik": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

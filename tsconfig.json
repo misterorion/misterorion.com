@@ -7,7 +7,6 @@
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@styles/*": ["styles/*"]
-    },
-    "types": ["@astrojs/image/client"]
+    }
   }
 }
