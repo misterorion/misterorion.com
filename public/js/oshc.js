@@ -1,6 +1,6 @@
 var r = window.document,
   o = r.currentScript,
-  s = o.getAttribute("data-siteid");
+  s = o.getAttribute("data-domain");
 
 fetch("/oshc", {
   method: "POST",

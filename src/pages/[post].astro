@@ -3,6 +3,7 @@ import slugify from "slugify";
 import ContactForm from "@components/ContactForm";
 import { SITE } from "config";
 import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await Astro.glob("../../content/posts/*.{md,mdx}");
@@ -23,10 +24,10 @@ const {
   title,
   date,
   description,
-  image,
-  imageAlt,
-  imageSource,
-  imageSourceUrl,
+  heroImage,
+  heroImageAlt,
+  heroImageSource,
+  heroImageSourceUrl,
   tags,
 } = frontmatter;
 ---
@@ -34,7 +35,7 @@ const {
 <Layout
   author={SITE.author}
   description={description}
-  ogImage={image ? image : SITE.image}
+  ogImage={heroImage ? heroImage : SITE.image}
   title={title}
 >
   <h1>{title}</h1>
@@ -48,13 +49,23 @@ const {
       })
     }
   </div>
-  {image && <img src={image.src} alt={imageAlt} class="responsive" />}
+  {
+    heroImage && (
+      <Image
+        src={heroImage}
+        alt={heroImageAlt}
+        width={720}
+        height={480}
+        class="responsive"
+      />
+    )
+  }
   <div class="caption">
-    {imageAlt}
+    {heroImageAlt}
     {
-      imageSource && (
+      heroImageSource && (
         <Fragment>
-          (<a href={imageSourceUrl}>{imageSource}</a>)
+          (<a href={heroImageSourceUrl}>{heroImageSource}</a>)
         </Fragment>
       )
     }
