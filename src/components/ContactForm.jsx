@@ -88,10 +88,9 @@ const ContactForm = () => {
           "X-Frontend-Auth": frontendAuthKey
         },
         body: JSON.stringify(convertedValues),
-        mode: "cors"
       })
       .catch(() => {
-        alert("Browser Error"); // This will catch CORS errors.
+        alert("Browser Error"); // This will catch CORS errors if calling from a different domain.
       });
       if (!response.ok) {
         alert("Backend Error"); // This will catch non-200 response codes from the response.
