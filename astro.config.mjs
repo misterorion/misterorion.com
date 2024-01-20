@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import caddy from "./src/caddyfile.tmLanguage.json";
 
 export default defineConfig({
   site: "https://misterorion.com",
@@ -11,11 +12,7 @@ export default defineConfig({
       theme: "github-dark-dimmed",
       langs: [
         'bash',
-        {
-          id: "caddy",
-          scopeName: "source.Caddyfile",
-          path: "../../src/caddyfile.tmLanguage.json",
-        },
+        caddy,
         'docker',
         'go',
         'json',
