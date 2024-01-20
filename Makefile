@@ -17,4 +17,7 @@ lockfile:
 dev:
 	@npm run dev
 
+deploy:
+	@aws codebuild start-build --project-name misterorion-com
+
 run: install build dev
