@@ -19,6 +19,6 @@ dev:
 	@npm run dev
 
 deploy:
-	@aws codebuild start-build --project-name misterorion-com
+	@aws codebuild start-build --project-name misterorion-com --query 'build.buildStatus'
 
 run: install build dev
