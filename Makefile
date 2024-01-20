@@ -2,6 +2,7 @@
 clean:
 	@rm -rf ./node_modules
 	@rm -rf ./dist
+	@rm -rf ./.astro
 	@rm package-lock.json
 	@make lockfile
 
