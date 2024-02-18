@@ -19,6 +19,9 @@ dev:
 	@npm run dev
 
 deploy:
+	@git add .
+	@git commit -m "Make deploy"
+	@git push origin main
 	@aws codebuild start-build --project-name misterorion-com --query 'build.buildStatus'
 
 run: install build dev
