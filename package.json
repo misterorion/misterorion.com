@@ -18,7 +18,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.0.20",
     "@fontsource-variable/quicksand": "^5.0.17",
     "@fontsource-variable/rubik": "^5.0.21",
-    "astro": "^4.5.2",
+    "astro": "^4.5.5",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
