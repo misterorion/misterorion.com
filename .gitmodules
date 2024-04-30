@@ -1,3 +1,3 @@
 [submodule "content"]
 	path = content
-	url = https://github.com/misterorion/misterorion.com-content
+	url = git@github.com:misterorion/misterorion.com-content.git
