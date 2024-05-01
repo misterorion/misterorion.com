@@ -16,7 +16,7 @@ import {
   success,
 } from "./ContactForm.module.css";
 
-const formEndpoint = "https://misterorion.com/contact/";
+const formEndpoint = "https://api.misterorion.com/contact/";
 const frontendAuthKey = `${import.meta.env.PUBLIC_FRONTEND_AUTH_KEY}`;
 
 const ContactForm = () => {
