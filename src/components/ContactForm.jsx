@@ -83,6 +83,7 @@ const ContactForm = () => {
       };
       const response = await fetch(formEndpoint, {
         method: "POST",
+        modde: "no-cors",
         headers: {
           "Content-Type": "application/json",
           "X-Frontend-Auth": frontendAuthKey
