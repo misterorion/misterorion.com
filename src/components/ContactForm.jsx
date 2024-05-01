@@ -90,7 +90,7 @@ const ContactForm = () => {
         body: JSON.stringify(convertedValues),
       })
       .catch(() => {
-        alert("Browser Error"); // This will catch CORS errors if calling from a different domain.
+        alert("Browser Error"); // This will catch CORS errors.
       });
       if (!response.ok) {
         alert("Backend Error"); // This will catch non-200 response codes from the response.
