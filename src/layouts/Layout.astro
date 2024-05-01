@@ -55,7 +55,7 @@ const socialImageURL = new URL(ogImage ? ogImage : SITE.image, Astro.site);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
     <!-- Plausible Proxy -->
-    <script defer data-domain="misterorion.com" data-api="/api/event" src="/js/script.js"></script>
+    <script defer data-domain="misterorion.com" data-api="/p/api/event" src="/p/js/script.js"></script>
     <!-- Light/Dark Theme -->
     <script is:inline src="/toggle-theme.js"></script>
   </head>
