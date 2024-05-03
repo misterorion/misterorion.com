@@ -185,7 +185,7 @@ const ContactForm = () => {
 
           {/* H o n e y p o t BEGINS */}
           <div>
-            <label className={nope} htmlFor="text">
+            <label className={nope} htmlFor="name">
               Name
             </label>
             <input
@@ -198,7 +198,7 @@ const ContactForm = () => {
               placeholder="Your name here"
               tabIndex="-1"
             />
-            <label className={nope} htmlFor="text">
+            <label className={nope} htmlFor="email">
               Email
             </label>
             <input
