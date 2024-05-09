@@ -1,8 +1,37 @@
 /
-  Cache-Control: public,max-age=300
+  Cache-Control: public, max-age=300
+  Content-Security-Policy: default-src 'self' data: 'unsafe-inline'
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-XSS-Protection: 0
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Embedder-Policy: 'require-corp; report-to=default;'
+  Cross-Origin-Opener-Policy: 'same-site; report-to=default;'
+  Cross-Origin-Resource-Policy: same-site
+  Permissions-Policy: interest-cohort=()
+
 /*/
-  Cache-Control: public,max-age=300
+  Cache-Control: public, max-age=300
+  Content-Security-Policy: default-src 'self' data: 'unsafe-inline'
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-XSS-Protection: 0
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Embedder-Policy: 'require-corp; report-to=default;'
+  Cross-Origin-Opener-Policy: 'same-site; report-to=default;'
+  Cross-Origin-Resource-Policy: same-site
+  Permissions-Policy: interest-cohort=()
+
 /_astro/*
-  Cache-Control: public,max-age=31536000,immutable
+  Cache-Control: public, max-age=31536000, immutable
+
 /toggle-theme.js
-  Cache-Control: public,max-age=7200
+  Cache-Control: public, max-age=7200
+
+https://misterorion-com.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://origin.misterorion.com/*
+  X-Robots-Tag: noindex
