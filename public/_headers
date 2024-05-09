@@ -30,6 +30,9 @@
 /toggle-theme.js
   Cache-Control: public, max-age=7200
 
+/robots.txt
+  Cache-Control: public, max-age=86400
+
 https://misterorion-com.pages.dev/*
   X-Robots-Tag: noindex
 
