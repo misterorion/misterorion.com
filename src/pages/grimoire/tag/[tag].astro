@@ -6,7 +6,7 @@ import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const allEntries = await Astro.glob(
-    "../../../../content/grimoire/*.{md,mdx}"
+    "../../../content/grimoire/*.{md,mdx}"
   );
 
   const uniqueTags = [

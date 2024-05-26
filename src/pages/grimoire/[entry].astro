@@ -5,7 +5,7 @@ import { SITE } from "config";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const entries = await Astro.glob("../../../content/grimoire/*.{md,mdx}");
+  const entries = await Astro.glob("../../content/grimoire/*.{md,mdx}");
 
   return entries.map((entry) => ({
     params: {
