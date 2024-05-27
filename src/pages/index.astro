@@ -1,8 +1,7 @@
 ---
-import HomeHero from "@components/HomeHero.astro";
-import PostLink from "@components/PostLink.astro";
-import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
+import HomeHero from "@components/HomeHero.astro";
+import { siteConfig } from "config";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("posts")).sort(
@@ -15,12 +14,46 @@ const posts = (await getCollection("posts")).sort(
   <h2>Posts</h2>
   {
     posts.map((post) => (
-      <PostLink
-        slug={post.slug}
-        title={post.data.title}
-        date={post.data.date.toLocaleDateString("en-us")}
-        description={post.data.description}
-      />
+      <div class="box">
+        <a href={`/${post.slug}/`}>
+          <div class="title">{post.data.title}</div>
+        </a>
+        <div class="date">
+          {new Date(post.data.date).toLocaleDateString("us-en", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </div>
+        <div class="description">{post.data.description}</div>
+      </div>
     ))
   }
 </Layout>
+
+<style>
+  a {
+    text-decoration: none;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+    padding-bottom: 3rem;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .box {
+    margin-top: 3rem;
+  }
+  .date {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: var(--color-box-border);
+    padding-top: 0.2rem;
+    padding-bottom: 0.4rem;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+</style>

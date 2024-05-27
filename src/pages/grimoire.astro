@@ -1,8 +1,9 @@
 ---
-import GrimoireLink from "@components/GrimoireLink.astro";
-import { siteConfig } from "config";
+import slugify from "slugify";
 import Layout from "@layouts/Layout.astro";
+import { siteConfig } from "config";
 import { getCollection } from "astro:content";
+
 const entries = await getCollection("grimoire");
 ---
 
@@ -12,7 +13,7 @@ const entries = await getCollection("grimoire");
 >
   <p>
     <strong>Grimoire</strong>
-    &nbsp;&nbsp;&nbsp;/grəm-wär′/&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;/grəm-wär&#39;/&nbsp;&nbsp;&nbsp;
     <strong>▶&nbsp;&nbsp;&nbsp;noun</strong>
     &nbsp;&nbsp;&nbsp;A book of magical knowledge.
   </p>
@@ -20,9 +21,30 @@ const entries = await getCollection("grimoire");
   <h2>All Entries</h2>
   <div class="entry-list">
     {
-      entries.map((entry) => (
-        <GrimoireLink title={entry.data.title} tags={entry.data.tags} />
-      ))
+      entries.map((entry) => {
+        const { title, tags } = entry.data;
+        return (
+          <div class="row">
+            <a
+              href={`/grimoire/${slugify(title, { lower: true })}/`}
+              class="title"
+            >
+              {title}
+            </a>
+            <div class="tag-list">
+              <span class="arrow">▶</span>
+              {tags.map((tag) => (
+                <a
+                  href={`/grimoire/tag/${slugify(tag, { lower: true })}/`}
+                  class="tag-style"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })
     }
   </div>
 </Layout>
@@ -31,5 +53,64 @@ const entries = await getCollection("grimoire");
   .entry-list {
     margin-top: 3rem;
     margin-bottom: 3rem;
+  }
+  .row {
+    display: flex;
+    border-bottom: 1px solid rgb(216 222 233);
+    flex-direction: column;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  .row:last-child {
+    border-width: 0;
+  }
+  .arrow {
+    color: var(--color-accent);
+    margin-right: 1rem;
+    margin-left: 0;
+  }
+  .excerpt {
+    display: inline;
+    font-style: italic;
+  }
+  .title {
+    font-weight: 700;
+    text-decoration: none;
+    flex-grow: 1;
+    color: var(--color-highlight);
+  }
+  .title:hover {
+    text-decoration: underline;
+  }
+  .tag-style {
+    display: inline-block;
+    background-color: var(--color-neutral);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-right: 0.5rem;
+    color: var(--color-text-contrast);
+  }
+  .tag-style:hover {
+    color: var(--color-highlight);
+    transform: rotate(-2deg) translateY(-2px);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition-duration: 150ms; */
+  }
+  .tag-style:hover:nth-child(odd) {
+    transform: rotate(2deg) translateY(-2px);
+  }
+
+  @media screen and (min-width: 1024px) {
+    .row {
+      flex-direction: row;
+    }
+    .arrow {
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
   }
 </style>

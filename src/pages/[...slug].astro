@@ -1,8 +1,8 @@
 ---
 import slugify from "slugify";
 import ContactForm from "@components/ContactForm";
-import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
+import { siteConfig } from "config";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
@@ -10,9 +10,7 @@ export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
 
   return allPosts.map((entry) => ({
-    params: {
-      slug: entry.slug,
-    },
+    params: { slug: entry.slug },
     props: {
       entry,
     },
@@ -21,30 +19,23 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-
-const {
-  title,
-  date,
-  description,
-  heroImage,
-  heroImageAlt,
-  heroImageSource,
-  heroImageSourceUrl,
-  tags,
-} = entry.data;
 ---
 
 <Layout
   author={siteConfig.author}
-  description={description}
-  ogImage={heroImage ? heroImage : siteConfig.image}
-  title={title}
+  description={entry.data.description}
+  ogImage={entry.data.heroImage ? entry.data.heroImage : siteConfig.image}
+  title={entry.data.title}
 >
-  <h1>{title}</h1>
-  {description && <p class="description">{description}</p>}
+  <h1>{entry.data.title}</h1>
+  {
+    entry.data.description && (
+      <p class="description">{entry.data.description}</p>
+    )
+  }
   <div class="date">
     {
-      new Date(date).toLocaleDateString("us-en", {
+      entry.data.date.toLocaleDateString("en-us", {
         month: "long",
         day: "numeric",
         year: "numeric",
@@ -52,10 +43,10 @@ const {
     }
   </div>
   {
-    heroImage && (
+    entry.data.heroImage && (
       <Image
-        src={heroImage}
-        alt={heroImageAlt}
+        src={entry.data.heroImage}
+        alt={entry.data.heroImageAlt ? entry.data.heroImageAlt : null}
         width={720}
         height={480}
         class="responsive"
@@ -63,11 +54,15 @@ const {
     )
   }
   <div class="caption">
-    {heroImageAlt}
+    {entry.data.heroImageAlt}
     {
-      heroImageSource && (
+      entry.data.heroImageSource && (
         <Fragment>
-          (<a href={heroImageSourceUrl}>{heroImageSource}</a>)
+          (
+          <a href={entry.data.heroImageSourceUrl}>
+            {entry.data.heroImageSource}
+          </a>
+          )
         </Fragment>
       )
     }
@@ -76,7 +71,7 @@ const {
   <div class="tags">
     <ul>
       {
-        tags.map((tag) => (
+        entry.data.tags.map((tag) => (
           <li>
             <a href={`/tag/${slugify(tag, { lower: true })}/`}>#{tag}</a>
           </li>
@@ -104,7 +99,6 @@ const {
   }
   .featured {
     margin-top: 2rem;
-    /* margin-bottom: 4rem; */
   }
   .caption {
     margin-bottom: 2rem;

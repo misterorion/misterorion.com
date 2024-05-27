@@ -85,11 +85,10 @@ const ContactForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Frontend-Auth": frontendAuthKey
+          "X-Frontend-Auth": frontendAuthKey,
         },
         body: JSON.stringify(convertedValues),
-      })
-      .catch(() => {
+      }).catch(() => {
         alert("Browser Error"); // This will catch CORS errors.
       });
       if (!response.ok) {
