@@ -1,13 +1,13 @@
 ---
 import GrimoireLink from "@components/GrimoireLink.astro";
-import { SITE } from "config";
+import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 const entries = await getCollection("grimoire");
 ---
 
 <Layout
-  title={`${SITE.title} - Grimoire`}
+  title={`${siteConfig.title} - Grimoire`}
   description="Wherein I record knowledge of a technical nature for future reference."
 >
   <p>

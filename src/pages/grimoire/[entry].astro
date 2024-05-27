@@ -1,7 +1,7 @@
 ---
 import slugify from "slugify";
 import { getCollection } from 'astro:content';
-import { SITE } from "config";
+import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -21,7 +21,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout author={SITE.author}>
+<Layout author={siteConfig.author}>
   <h1>
     {entry.data.title}
   </h1>

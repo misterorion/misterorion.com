@@ -7,7 +7,7 @@ import "@fontsource-variable/rubik/wght-italic.css";
 
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import { SITE } from "config";
+import { siteConfig } from "config";
 import Favicon from "@images/favicon.png";
 import "@styles/modern-normalize.css";
 import "@styles/global.css";
@@ -20,15 +20,15 @@ export interface Props {
 }
 
 const {
-  title = SITE.title,
-  author = SITE.author,
-  description = SITE.description,
-  ogImage = SITE.image,
+  title = siteConfig.title,
+  author = siteConfig.author,
+  description = siteConfig.description,
+  ogImage = siteConfig.image,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const socialImageURL = new URL(ogImage ? ogImage : SITE.image, Astro.site);
+const socialImageURL = new URL(ogImage ? ogImage : siteConfig.image, Astro.site);
 ---
 
 <html lang="en">

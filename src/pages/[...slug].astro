@@ -1,7 +1,7 @@
 ---
 import slugify from "slugify";
 import ContactForm from "@components/ContactForm";
-import { SITE } from "config";
+import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
@@ -35,9 +35,9 @@ const {
 ---
 
 <Layout
-  author={SITE.author}
+  author={siteConfig.author}
   description={description}
-  ogImage={heroImage ? heroImage : SITE.image}
+  ogImage={heroImage ? heroImage : siteConfig.image}
   title={title}
 >
   <h1>{title}</h1>

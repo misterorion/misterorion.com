@@ -2,7 +2,7 @@
 import slugify from "slugify";
 import { getCollection } from "astro:content";
 import PostLink from "@components/PostLink.astro";
-import { SITE } from "config";
+import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 const { posts, tag } = Astro.props;
 ---
 
-<Layout title={`${tag} | ${SITE.title}`}>
+<Layout title={`${tag} | ${siteConfig.title}`}>
   <h1>
     Posts tagged with “{tag}”
   </h1>

@@ -1,7 +1,7 @@
 ---
-import { SITE, MENU } from "config";
+import { siteConfig, mainMenu } from "config";
 
-const { userFirstName, userLastName } = SITE;
+const { userFirstName, userLastName } = siteConfig;
 ---
 
 <div class="header-container">
@@ -13,7 +13,7 @@ const { userFirstName, userLastName } = SITE;
   </a>
   <nav>
     {
-      MENU.map((item) => (
+      mainMenu.map((item) => (
         <div class="menu-item">
           <a href={item.slug}>{item.name}</a>
         </div>
