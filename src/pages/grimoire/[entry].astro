@@ -1,15 +1,15 @@
 ---
 import slugify from "slugify";
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const entries = await getCollection('grimoire');
+  const entries = await getCollection("grimoire");
 
   return entries.map((entry) => ({
     params: {
-      entry: slugify(entry.data.title, {lower: true}),
+      entry: slugify(entry.data.title, { lower: true }),
     },
     props: {
       entry,
@@ -27,3 +27,10 @@ const { Content } = await entry.render();
   </h1>
   <Content />
 </Layout>
+
+<style>
+  h1 {
+    font-size: 2.8rem;
+    line-height: 3.7rem;
+  }
+</style>

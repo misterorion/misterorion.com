@@ -1,9 +1,9 @@
 ---
 import slugify from "slugify";
-import { getCollection } from "astro:content";
-import { siteConfig } from "config";
 import Layout from "@layouts/Layout.astro";
 import Entry from "@components/GrimoireEntry.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "config";
 
 export async function getStaticPaths() {
   const entries = await getCollection("grimoire");
