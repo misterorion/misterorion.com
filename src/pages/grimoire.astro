@@ -21,24 +21,30 @@ const entries = await getCollection("grimoire");
   <h2>All Entries</h2>
   <div class="entry-list">
     {
-      entries.map((entry) => (
-        <div class="row">
-          <a href={entry.slug} class="title">
-            {entry.data.title}
-          </a>
-          <div class="tag-list">
-            <span class="arrow">▶</span>
-            {entry.data.tags.map((tag) => (
-              <a
-                href={`/grimoire/tag/${slugify(tag, { lower: true })}/`}
-                class="tag-style"
-              >
-                {tag}
-              </a>
-            ))}
+      entries.map((entry) => {
+        const { title, tags } = entry.data;
+        return (
+          <div class="row">
+            <a
+              href={`/grimoire/${slugify(title, { lower: true })}/`}
+              class="title"
+            >
+              {title}
+            </a>
+            <div class="tag-list">
+              <span class="arrow">▶</span>
+              {tags.map((tag) => (
+                <a
+                  href={`/grimoire/tag/${slugify(tag, { lower: true })}/`}
+                  class="tag-style"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      ))
+        );
+      })
     }
   </div>
 </Layout>
