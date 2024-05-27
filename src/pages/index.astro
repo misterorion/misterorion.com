@@ -3,11 +3,10 @@ import HomeHero from "@components/HomeHero.astro";
 import PostLink from "@components/PostLink.astro";
 import { SITE } from "config";
 import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const posts = await Astro.glob("../content/posts/*.{md,mdx}");
-
-posts.sort(
-  (a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
@@ -17,10 +16,10 @@ posts.sort(
   {
     posts.map((post) => (
       <PostLink
-        slug={post.frontmatter.slug}
-        title={post.frontmatter.title}
-        date={post.frontmatter.date}
-        description={post.frontmatter.description}
+        slug={post.slug}
+        title={post.data.title}
+        date={post.data.date.toLocaleDateString("en-us")}
+        description={post.data.description}
       />
     ))
   }
