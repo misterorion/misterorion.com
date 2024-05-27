@@ -2,8 +2,8 @@
 import GrimoireLink from "@components/GrimoireLink.astro";
 import { SITE } from "config";
 import Layout from "@layouts/Layout.astro";
-
-const entries = await Astro.glob("../content/grimoire/*.{md,mdx}");
+import { getCollection } from "astro:content";
+const entries = await getCollection("grimoire");
 ---
 
 <Layout
@@ -21,10 +21,7 @@ const entries = await Astro.glob("../content/grimoire/*.{md,mdx}");
   <div class="entry-list">
     {
       entries.map((entry) => (
-        <GrimoireLink
-          title={entry.frontmatter.title}
-          tags={entry.frontmatter.tags}
-        />
+        <GrimoireLink title={entry.data.title} tags={entry.data.tags} />
       ))
     }
   </div>

@@ -4,21 +4,23 @@ import ContactForm from "@components/ContactForm";
 import { SITE } from "config";
 import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob("../content/posts/*.{md,mdx}");
+  const allPosts = await getCollection("posts");
 
-  return posts.map((post) => ({
+  return allPosts.map((entry) => ({
     params: {
-      post: post.frontmatter.slug,
+      slug: entry.slug,
     },
     props: {
-      post,
+      entry,
     },
   }));
 }
 
-const { Content, frontmatter } = Astro.props.post;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
 
 const {
   title,
@@ -29,7 +31,7 @@ const {
   heroImageSource,
   heroImageSourceUrl,
   tags,
-} = frontmatter;
+} = entry.data;
 ---
 
 <Layout
