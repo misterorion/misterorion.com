@@ -32,9 +32,3 @@
 
 /robots.txt
   Cache-Control: public, max-age=86400
-
-https://misterorion-com.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://origin.misterorion.com/*
-  X-Robots-Tag: noindex
