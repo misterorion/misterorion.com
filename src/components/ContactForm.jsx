@@ -83,20 +83,19 @@ const ContactForm = () => {
         comment: values.commente2d8u,
       };
 
-      var bodyAsJson = JSON.stringify(convertedValues);
+      var bodyAsJsonString = JSON.stringify(convertedValues);
 
-      var result = '';
-
-      result = await sha256(bodyAsJson);
+      var hashedBody = '';
+      hashedBody = await sha256(bodyAsJsonString);
 
       const response = await fetch(formEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-Frontend-Auth": frontendAuthKey,
-          "X-Amz-Content-Sha256": result
+          "X-Amz-Content-Sha256": hashedBody
         },
-        body: bodyAsJson,
+        body: bodyAsJsonString,
       }).catch(() => {
         alert("Browser Error"); // This will catch CORS errors.
       });
