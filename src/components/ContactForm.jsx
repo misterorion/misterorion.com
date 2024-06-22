@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import { sha256 } from "crypto-hash";
 
 import {
   button,
@@ -81,13 +82,21 @@ const ContactForm = () => {
         email: values.emaile2d8u,
         comment: values.commente2d8u,
       };
+
+      var bodyAsJson = JSON.stringify(convertedValues);
+
+      var result = '';
+
+      result = await sha256(bodyAsJson);
+
       const response = await fetch(formEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-Frontend-Auth": frontendAuthKey,
+          "X-Amz-Content-Sha256": result
         },
-        body: JSON.stringify(convertedValues),
+        body: bodyAsJson,
       }).catch(() => {
         alert("Browser Error"); // This will catch CORS errors.
       });
