@@ -1,5 +1,5 @@
 /
-  Cache-Control: public, max-age=300
+  Cache-Control: public, max-age=3600
   Content-Security-Policy: default-src 'self' data: 'unsafe-inline'
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-XSS-Protection: 0
@@ -12,7 +12,7 @@
   Permissions-Policy: interest-cohort=()
 
 /*/
-  Cache-Control: public, max-age=300
+  Cache-Control: public, max-age=3600
   Content-Security-Policy: default-src 'self' data: 'unsafe-inline'
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-XSS-Protection: 0
@@ -28,7 +28,7 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /toggle-theme.js
-  Cache-Control: public, max-age=7200
+  Cache-Control: public, max-age=43200
 
 /robots.txt
   Cache-Control: public, max-age=86400
