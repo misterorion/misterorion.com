@@ -9,7 +9,7 @@
   Cross-Origin-Embedder-Policy: 'require-corp; report-to=default;'
   Cross-Origin-Opener-Policy: 'same-site; report-to=default;'
   Cross-Origin-Resource-Policy: same-site
-  Permissions-Policy: interest-cohort=()
+  Permissions-Policy: web-share=*
 
 /*/
   Cache-Control: public, max-age=3600
@@ -22,7 +22,7 @@
   Cross-Origin-Embedder-Policy: 'require-corp; report-to=default;'
   Cross-Origin-Opener-Policy: 'same-site; report-to=default;'
   Cross-Origin-Resource-Policy: same-site
-  Permissions-Policy: interest-cohort=()
+  Permissions-Policy: web-share=*
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
