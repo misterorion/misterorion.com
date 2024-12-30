@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { sha256 } from "crypto-hash";
 
 import {
   button,
@@ -85,15 +84,12 @@ const ContactForm = () => {
 
       var bodyAsJsonString = JSON.stringify(convertedValues);
 
-      var hashedBody = '';
-      hashedBody = await sha256(bodyAsJsonString);
-
       const response = await fetch(formEndpoint, {
         method: "POST",
+        mode: 'cors',
         headers: {
           "Content-Type": "application/json",
           "X-Frontend-Auth": frontendAuthKey,
-          "X-Amz-Content-Sha256": hashedBody
         },
         body: bodyAsJsonString,
       }).catch(() => {
