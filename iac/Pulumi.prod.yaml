@@ -1,0 +1,10 @@
+encryptionsalt: v1:/T2ld7Am9Fk=:v1:j+1b/PWDoyYSn5YQ:XlSLd/iQMyPKMFQuZq/kQIzWnjfheA==
+config:
+  misterorion.com:cf-account-id:
+    secure: v1:6eWUIj4EVph5Yzop:RFslGfciy1NUkZEvEWaJB0AP2P3k8GBxf1JnlwKsbZucLBU9/dgrGLEB9Ao1ZAXI
+  misterorion.com:cf-zone-id:
+    secure: v1:sRkcu37iW4NnD/kQ:jxwjPTtyqLGZMHglFbCB0RSxMTrlyEX9lIdiTQ58f5PK6yrO1BO6DGrsvzQzd7mF
+  misterorion.com:public-frontend-auth-key:
+    secure: v1:2vGsi11fba29SrFZ:a5zcbm0tbcyuZcBSujK8nRHiPvinwzUjWnTY6OPzd+0=
+  misterorion.com:mg-api-key:
+    secure: v1:ehayUJ4jEEyx1IF7:KZJgeMxpdRjBoShS1nWtYRg5e7kjrLei38aoR4yPAQcR3xu+ZrS1KTANDDavLjoNrQm3vYwSOPBAjxp8SjHCptqw
