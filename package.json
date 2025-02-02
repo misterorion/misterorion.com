@@ -12,13 +12,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.3",
-    "@astrojs/react": "^4.1.2",
+    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.2.1",
     "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@fontsource-variable/quicksand": "^5.1.1",
     "@fontsource-variable/rubik": "^5.1.1",
-    "astro": "^5.1.1",
+    "astro": "^5.2.3",
     "formik": "^2.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
