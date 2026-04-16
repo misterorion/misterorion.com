@@ -1,0 +1,14 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    "paths": {
+      "@images/*": ["./src/images/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils": ["./src/utils.ts"],
+      "@config": ["./src/config.ts"],
+    }
+  },
+  "strictNullChecks": true
+}

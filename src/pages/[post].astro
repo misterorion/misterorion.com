@@ -1,0 +1,125 @@
+---
+import { getCollection, render } from "astro:content";
+import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import Figure from "@components/Figure.astro";
+import { site } from "@config";
+import { formatDate, slugify } from "@utils";
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({
+    params: { post: post.id },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { data } = post;
+---
+
+<Layout
+  author={site.author}
+  description={data.description}
+  ogImage={data.cover?.src || site.image}
+  title={data.title}
+>
+  <h1>{data.title}</h1>
+  {data.description && <p class="description">{data.description}</p>}
+  <div class="date">{formatDate(data.date)}</div>
+
+  {
+    data.cover && (
+      <Figure
+        src={data.cover}
+        alt={data.coverAlt || ""}
+        caption={data.coverAlt}
+        priority
+      />
+    )
+  }
+
+  <Content />
+
+  {
+    data.tags && (
+      <div class="tags">
+        <ul>
+          {data.tags.map((tag) => (
+            <li>
+              <a href={`/tag/${slugify(tag)}/`}>#{tag}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</Layout>
+
+<style>
+  h1 {
+    font-size: 2.2rem;
+    line-height: 1.3;
+    margin-bottom: 0;
+  }
+  .date {
+    color: var(--color-text-contrast);
+    padding-bottom: 2rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    padding-top: 0.2rem;
+  }
+  .description {
+    margin-bottom: 1.3rem;
+    font-size: 1.8rem;
+    line-height: 2.1rem;
+  }
+  .featured {
+    margin-top: 2rem;
+  }
+  .caption {
+    margin-bottom: 2rem;
+  }
+  .caption a {
+    font-weight: normal;
+    border-bottom: 1px dotted var(--color-box-border);
+  }
+  .tags {
+    margin-top: 3.3rem;
+    padding-bottom: 1rem;
+  }
+  .tags ul {
+    display: block;
+    font-weight: 700;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .tags li {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .tags li a {
+    color: var(--color-highlight);
+    text-decoration: none;
+  }
+  .tags li a:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (min-width: 768px) {
+    h1 {
+      font-size: 2.8rem;
+      line-height: 3.7rem;
+    }
+    .tags ul {
+      display: inline;
+    }
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import PostPreview from "@components/PostPreview.astro";
+import { site } from "@config";
+import { slugify } from "@utils";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  const tagMap: Record<string, typeof allPosts> = {};
+
+  allPosts.forEach((post) => {
+    post.data.tags?.forEach((tag) => {
+      // If the tag doesn't exist in our map yet, create an empty array
+      if (!tagMap[tag]) {
+        tagMap[tag] = [];
+      }
+      // Push the post into that tag's bucket
+      tagMap[tag].push(post);
+    })
+  })
+
+  // Map the keys of the object into Astro format
+  return Object.keys(tagMap).map((tag) => ({
+    params: { tag: slugify(tag) },
+    props: { posts: tagMap[tag], tag},
+  }))
+}
+
+const { posts, tag } = Astro.props;
+---
+
+<Layout title={`${tag} | ${site.title}`}>
+  <h1>
+    Posts tagged with “{tag}”
+  </h1>
+  {
+    posts.map((post) => (
+      <PostPreview post={post} />
+    ))
+  }
+</Layout>

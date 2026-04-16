@@ -1,0 +1,68 @@
+---
+import { socials } from "@config";
+
+const svgIcons = import.meta.glob("@images/icons/*.svg", {
+  query: "raw",
+  import: "default",
+  eager: true,
+});
+---
+
+<footer>
+  <div class="social-container">
+    {
+      socials
+        .filter((social) => social.enabled)
+        .map((social) => {
+          const svgContent = svgIcons[`${social.svgPath}`];
+          return (
+            <a href={social.url} aria-label={social.name}>
+              <Fragment set:html={svgContent} />
+            </a>
+          );
+        })
+    }
+  </div>
+  <div class="credits">
+    <p>
+      Built with <a href="https://astro.build/">Astro</a>. Hosting on <a
+        href="https://aws.amazon.com/">AWS</a
+      >.
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-box-border);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+  }
+  .social-container a {
+    fill: var(--color-box-border);
+    text-decoration: none;
+    padding: 0rem 0.5rem;
+    display: inline-block;
+  }
+  .social-container a:hover {
+    fill: var(--color-highlight);
+    transform: rotate(-3deg) translateY(-2px);
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 250ms;
+  }
+  .social-container a:hover:nth-child(odd) {
+    transform: rotate(3deg) translateY(-2px);
+  }
+  .credits {
+    font-size: 0.65rem;
+    color: var(--color-box-border);
+    line-height: 1rem;
+  }
+  .credits a {
+    color: var(--color-box-border);
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Greeting from "@components/Greeting.astro";
+import PostPreview from "@components/PostPreview.astro";
+import { site } from "@config";
+
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title={site.title}>
+  <Greeting />
+
+  <h2>Posts</h2>
+
+  {
+    posts.map((post) => (
+      <PostPreview post={post} />
+    ))
+  }
+</Layout>
+

@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+import { site } from "@config";
+
+interface Props {
+  src: any;
+  alt: string;
+  caption?: string;
+  remote?: boolean;
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  remote = false,
+  priority = false,
+  ...props
+} = Astro.props;
+
+const isRemote = remote;
+const finalSrc = isRemote ? `https://${site.bunnyDomain}${src}` : src;
+---
+
+<figure>
+  {
+    isRemote ? (
+      <a
+        href={finalSrc}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="image-link"
+      >
+        <Image
+          src={finalSrc}
+          alt={alt || caption || ""}
+          inferSize
+          quality="mid"
+          widths={[400, 800]}
+          sizes="(max-width: 640px) 400px, 800px"
+          class="zoom-thumb"
+          priority={priority}
+          {...props}
+        />
+      </a>
+    ) : (
+      <Image
+        src={finalSrc}
+        alt={alt || caption || ""}
+        quality="mid"
+        widths={[400, 800]}
+        sizes="(max-width: 640px) 400px, 800px"
+        class="zoom-thumb"
+        priority={priority}
+        {...props}
+      />
+    )
+  }
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  figure {
+    margin: 1rem 0;
+  }
+  .image-link {
+    display: block;
+    cursor: zoom-in;
+    max-width: 100%;
+  }
+  img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0.25rem;
+  }
+  .zoom-thumb {
+    display: block;
+    transition: transform 0.2s ease-in-out;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0.5rem;
+  }
+  .image-link:hover .zoom-thumb {
+    transform: scale(1.02);
+  }
+  figcaption {
+    color: var(--color-box-border);
+    font-size: 0.85rem;
+    padding-left: 0.5rem;
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+import { formatDate } from "@utils";
+
+interface Props {
+  post: {
+    id: string;
+    data: {
+      title: string;
+      date: Date;
+      description: string;
+    };
+  };
+}
+
+const { post } = Astro.props;
+---
+
+<div class="post-preview">
+  <div class="date">{formatDate(post.data.date)}</div>
+  <a href={`/${post.id}/`}>
+    <div class="title">{post.data.title}</div>
+  </a>
+  <div class="description">{post.data.description}</div>
+</div>
+
+<style>
+  .post-preview {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  a {
+    text-decoration: none;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .date {
+    color: var(--color-text-contrast);
+    font-size: 0.9rem;
+  }
+  .description {
+    margin-top: 0.4rem;
+  }
+</style>

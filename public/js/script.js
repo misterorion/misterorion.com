@@ -1,0 +1,1 @@
+console.log("/js/script.js is proxied to Plausible.io in production")
