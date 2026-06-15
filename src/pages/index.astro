@@ -1,24 +1,29 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Greeting from "@components/Greeting.astro";
 import PostPreview from "@components/PostPreview.astro";
+import HomeContent from "@components/HomeContent.mdx";
 import { site } from "@config";
 
-const posts = (await getCollection("posts")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const featuredPosts = (await getCollection("posts"))
+  .filter((post) => post.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout title={site.title}>
-  <Greeting />
-
-  <h2>Posts</h2>
+  <HomeContent />
 
   {
-    posts.map((post) => (
-      <PostPreview post={post} />
-    ))
+    featuredPosts.length > 0 && (
+      <>
+        <h2>Writing</h2>
+        {featuredPosts.map((post) => (
+          <PostPreview post={post} />
+        ))}
+        <p>
+          <a href="/writing/">See all writing →</a>
+        </p>
+      </>
+    )
   }
 </Layout>
-

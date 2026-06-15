@@ -4,7 +4,6 @@ date:  "2018-09-12"
 description: "Let's plug little Johnny into the Matrix."
 cover:  "@images/edtech.jpg"
 coverAlt: "Edtech Meetup"
-tags: ["Career"]
 ---
 
 I recently attended a panel hosted by the [Irish International Business Network (IIBN) New York Chapter](http://www.iibn.nyc/) and [Digital Irish](http://digital.irish/) titled "Back to School: EdTech."

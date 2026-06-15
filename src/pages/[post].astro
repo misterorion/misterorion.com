@@ -4,7 +4,7 @@ import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 import Layout from "@layouts/Layout.astro";
 import Figure from "@components/Figure.astro";
 import { site } from "@config";
-import { formatDate, slugify } from "@utils";
+import { formatDate } from "@utils";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("posts");
@@ -44,20 +44,6 @@ const { data } = post;
   }
 
   <Content />
-
-  {
-    data.tags && (
-      <div class="tags">
-        <ul>
-          {data.tags.map((tag) => (
-            <li>
-              <a href={`/tag/${slugify(tag)}/`}>#{tag}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
 </Layout>
 
 <style>
@@ -89,37 +75,11 @@ const { data } = post;
     font-weight: normal;
     border-bottom: 1px dotted var(--color-box-border);
   }
-  .tags {
-    margin-top: 3.3rem;
-    padding-bottom: 1rem;
-  }
-  .tags ul {
-    display: block;
-    font-weight: 700;
-    margin-left: 0;
-    padding-left: 0;
-  }
-  .tags li {
-    display: inline-block;
-    margin-right: 1rem;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-  .tags li a {
-    color: var(--color-highlight);
-    text-decoration: none;
-  }
-  .tags li a:hover {
-    text-decoration: underline;
-  }
 
   @media screen and (min-width: 768px) {
     h1 {
       font-size: 2.8rem;
       line-height: 3.7rem;
-    }
-    .tags ul {
-      display: inline;
     }
   }
 </style>

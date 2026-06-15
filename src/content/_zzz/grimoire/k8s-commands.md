@@ -1,6 +1,5 @@
 ---
 title: "Handy Kubernetes Commands"
-tags: ["Kubernetes","GCP"]
 ---
 
 ### Set current cluster

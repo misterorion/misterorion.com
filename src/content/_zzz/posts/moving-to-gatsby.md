@@ -4,7 +4,6 @@ date:  "2020-01-05"
 description: "I moved my site from Hugo to Gatsby and now it's fast as hell."
 cover:  "@images/great-gatsby.jpg"
 coverAlt: "The Great Gatsby (Simon & Schuster)"
-tags: ["Code", "Gatsby"]
 ---
 
 This site is now made with Gatsby!

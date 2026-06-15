@@ -1,6 +1,5 @@
 ---
 title: "Building Gatsby with Google Cloud"
-tags: ["Gatsby","GCP"]
 ---
 
 A Cloud Build setup that caches `node_modules` and Gatsby-specific build folders. It also cleans your website bucket before deploying and sets cache-control headers that are appropriate for Gatsby. Caching really speeds up the builds and gives you almost Netlify-like speeds.
@@ -15,7 +14,7 @@ Four substitution variables need to be set in your Cloud Build trigger:
 
 **`_REVALIDATE`** Header, e.g. `"Cache-Control:public,max-age=0,must-revalidate"`
 
-Two things to be aware of: 
+Two things to be aware of:
 
 1. I'm not sure if the website bucket really needs to be cleaned out before deployment, although it does make viewing the files in the console more coherent.
 2. The `gsutil setmeta` commands are "Class A" storage operations so they do accumulate some cost, although just a few cents if you have a small site and only deploy a few times per week. There may be a better way to set the metadata.

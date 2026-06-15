@@ -1,6 +1,5 @@
 ---
 title: Parameter Input vs Pipeline Input
-tags: ["PowerShell"]
 ---
 
 _Parameter input_ sends the input parameter object to the function.

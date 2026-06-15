@@ -1,6 +1,5 @@
 ---
 title: "Websockets and Caddy"
-tags: ["Caddy"]
 ---
 
 The snippet below works well for Caddy v2 running behind a load balancer with a websockets container `api` running on port 3000.

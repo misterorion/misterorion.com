@@ -1,6 +1,5 @@
 ---
 title: Scheduled Reboots with Systemd
-tags: ["Linux"]
 ---
 
 I wanted to schedule reboots of my machine running Container Optimized OS on Google Cloud, since that is the intended way to pull in automatic updates.

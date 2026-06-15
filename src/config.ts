@@ -11,20 +11,10 @@ export const site = {
   userLinkedIn: "orionanderson",
   userReddit: "soldatz",
   bunnyDomain: "gg-4zior.b-cdn.net",
-  profile: {
-    header: "Hey, I'm Orion",
-    welcome: "Welcome to my home on the Web.",
-    bio: "I'm a cloud infrastructure engineer and cybersecurity enthusiast living in NYC.",
-    interests: ["classical music", "gaming", "sci-fi", "yoga"],
-  },
   mainMenu: [
     {
-      name: "Grimoire",
-      slug: "/grimoire/",
-    },
-    {
-      name: "About",
-      slug: "/about/",
+      name: "Writing",
+      slug: "/writing/",
     },
   ],
 };

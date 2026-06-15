@@ -4,7 +4,6 @@ date: "2024-05-27"
 description: "My Gatsby story and sailing to fresh water."
 cover: "@images/sailing-chop.jpg"
 coverAlt: "Sailing boat, before the storm (unsplash.com)"
-tags: ["Gatsby", "Astro", "Code"]
 ---
 
 You probably can't tell from the way this site looks and functions, but about a year and a half ago, I started using Astro instead of Gatsby as my web framework. It's not such a big deal since this site is so small, but I thought I'd tell my Gatsby story.

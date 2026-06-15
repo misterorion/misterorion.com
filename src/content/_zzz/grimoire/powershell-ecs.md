@@ -1,6 +1,5 @@
 ---
 title: "Check AMI with PowerShell"
-tags: ["AWS","PowerShell"]
 ---
 
 A Simple Lambda function to check your launch template AMI against the latest Bottlerocket AMI (or any AMI) and publish an SNS message if a new AMI exists.

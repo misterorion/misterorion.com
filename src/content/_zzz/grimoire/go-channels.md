@@ -1,6 +1,5 @@
 ---
 title: "Example of channels in Go"
-tags: ["Go"]
 ---
 
 > Channels are communication channels between goroutines. Use channels when you want to pass errors or any other kind of information between goroutines.

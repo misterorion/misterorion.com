@@ -2,8 +2,6 @@
 import quicksandNormal from "@fontsource-variable/quicksand/files/quicksand-latin-wght-normal.woff2?url";
 import rubikNormal from "@fontsource-variable/rubik/files/rubik-latin-wght-normal.woff2?url";
 import rubikItalic from "@fontsource-variable/rubik/files/rubik-latin-wght-italic.woff2?url";
-import exo2Normal from "@fontsource-variable/exo-2/files/exo-2-latin-wght-normal.woff2?url";
-import exo2Italic from "@fontsource-variable/exo-2/files/exo-2-latin-wght-italic.woff2?url";
 
 import "@styles/modern-normalize.css";
 import "@styles/toggle.css";
@@ -48,44 +46,20 @@ const socialImageURL = new URL(ogImage, Astro.site);
       href={quicksandNormal}
       crossorigin="anonymous"
     />
-
-    {
-      Astro.url.pathname.startsWith("/gg/") ? (
-        <>
-          <link
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            href={exo2Normal}
-            crossorigin="anonymous"
-          />
-          <link
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            href={exo2Italic}
-            crossorigin="anonymous"
-          />
-        </>
-      ) : (
-        <>
-          <link
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            href={rubikNormal}
-            crossorigin="anonymous"
-          />
-          <link
-            rel="preload"
-            as="font"
-            type="font/woff2"
-            href={rubikItalic}
-            crossorigin="anonymous"
-          />
-        </>
-      )
-    }
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={rubikNormal}
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={rubikItalic}
+      crossorigin="anonymous"
+    />
 
     <!-- General Meta Tags -->
     <title>{title}</title>
