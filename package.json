@@ -12,13 +12,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.3",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/mdx": "^7.0.0",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/quicksand": "^5.2.10",
     "@fontsource-variable/rubik": "^5.2.8",
     "@fontsource-variable/exo-2": "^5.2.8",
-    "astro": "^6.1.7"
+    "astro": "^7.0.3"
   },
   "repository": {
     "type": "git",
